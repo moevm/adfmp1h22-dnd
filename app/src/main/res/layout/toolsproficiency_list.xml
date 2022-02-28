@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_place"
+    android:layout_width="200dp"
+    android:layout_height="400dp"
+    android:layout_marginTop="200dp"
+    app:layout_constraintWidth_percent="0.85"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ToolsRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_weight="1"
+        android:layout_gravity="center_horizontal"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/AddToolsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="New"
+        android:textSize="20dp"
+        android:textAppearance="@style/Theme.5edPocketHelper"
+        android:layout_gravity="center_horizontal"/>
+</LinearLayout>

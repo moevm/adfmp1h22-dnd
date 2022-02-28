@@ -1,15 +1,19 @@
 package com.dwards.a5edpockethelper
 
+
+import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dwards.a5edpockethelper.model.Character
 import com.dwards.a5edpockethelper.model.CharacterDAO
-
-
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel() {
+
+class MyViewModel(private val characterDao: CharacterDAO, application: Application) : AndroidViewModel(application) {
     //временные флаги для создания персонажей
     var flag1: Boolean = false
     var flag2: Boolean = false
@@ -20,41 +24,33 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
     var characterList: MutableLiveData<List<Character?>> = MutableLiveData()
 
     init {
-        currentId = id
+        viewModelScope.launch{
+            characterList.value = characterDao.getAll()
+        }
+    }
 
+    fun startDB(){
+        getCharacterID()
 
-
-        if (flag1) {
-            var character = Character()
-            character.name = "Arno"
-            character.strength = 20
-            character.dexterity = 20
-            character.constitution = 20
-            character.intelligence = 20
-            character.wisdom = 20
-            character.charisma = 20
-            viewModelScope.launch{
-                characterDao.insertChar(character)
+        viewModelScope.launch {
+            val job: Job = viewModelScope.launch{fetchAll()}
+            job.join()
+            characterList.value = characterDao.getAll()
+            if (characterList.value?.size == 0) {
+                addCharacter()
+                val job: Job = viewModelScope.launch{fetchAll()}
+                job.join()
+                chooseCharacter(characterList.value?.get(0)?.id!!)
+            } else {
+                if (currentId != 0) {
+                    fetchData(currentId)
+                    chooseCharacter(currentId)
+                } else
+                    chooseCharacter(characterList.value?.get(0)?.id!!)
             }
-            flag1 = false
         }
 
-        if (flag2)  {
-            character = Character()
-            character.name = "Kostoprav"
-            character.strength = 10
-            character.dexterity = 10
-            character.constitution = 10
-            character.intelligence = 10
-            character.wisdom = 10
-            character.charisma = 10
-            viewModelScope.launch {
-                characterDao.insertChar(character)
-            }
-            flag2 = false
-        }
 
-        fetchData(0)
     }
 
     fun getCharacter() = currentChar
@@ -69,11 +65,32 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
         }
     }
 
+    private fun fetchAll(){
+        viewModelScope.launch{
+            characterList.value = characterDao.getAll()
+        }
+    }
+
 
 
     fun chooseCharacter(id: Int){
         currentId = id
+        saveCharacterID(id)
         fetchData(currentId)
+    }
+
+    private fun saveCharacterID(id: Int){
+        val settings: SharedPreferences = getApplication<Application>().applicationContext.getSharedPreferences("gameSetting", Context.MODE_PRIVATE)
+        val editor = settings.edit()
+        editor.putInt("id", id)
+        editor.apply()
+    }
+
+    private fun getCharacterID(){
+        val settings: SharedPreferences = getApplication<Application>().applicationContext.getSharedPreferences("gameSetting", Context.MODE_PRIVATE)
+        if (settings!=null){
+            currentId = settings.getInt("id",0)
+        }
     }
 
     fun deleteCharacter(id: Int){
@@ -91,18 +108,19 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
     //Пока это просто заглушка болванка для проверки добавления в БД, функционала нет
     fun addCharacter(){
         character = Character()
-        character.name = "Molchun"
-        character.strength = 18
-        character.dexterity = 14
-        character.constitution = 11
-        character.intelligence = 7
-        character.wisdom = 15
-        character.charisma = 13
+        character.name = "Name"
+        character.charClass = "Class"
+        character.level = 1
+        character.strength = 10
+        character.dexterity = 10
+        character.constitution = 10
+        character.intelligence = 10
+        character.wisdom = 10
+        character.charisma = 10
         viewModelScope.launch {
             characterDao.insertChar(character)
             characterList.value = characterDao.getAll()
         }
-
     }
 
     fun changeCharactersStats(statMap: HashMap<String, Int> ){
@@ -426,6 +444,24 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
         pushToDB(updatedChar)
     }
 
+    fun deleteToolsProficiency(id: Int){
+        val updatedChar = currentChar.value!!
+        updatedChar.toolsProficiencyList.removeAt(id)
+        pushToDB(updatedChar)
+    }
+
+    fun addToolsProficiency(){
+        val updatedChar = currentChar.value!!
+        updatedChar.toolsProficiencyList.add("Name")
+        pushToDB(updatedChar)
+    }
+
+    fun changeToolsProficiency(num: Int, value: String){
+        val updatedChar = currentChar.value!!
+        updatedChar.toolsProficiencyList[num] = value
+        pushToDB(updatedChar)
+    }
+
 
 
     private fun pushToDB(updatedChar: Character){
@@ -508,3 +544,4 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
     }
 
 }
+

@@ -45,9 +45,6 @@ class CustomBlockSettingsDialog : DialogFragment() {
             }
         })
 
-
-
-
         binding.PlusButton1.setOnClickListener{
             if (customBlock1Value.toIntOrNull() != null){
                 customBlock1Value = (customBlock1Value.toInt()+1).toString()

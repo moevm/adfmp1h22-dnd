@@ -12,13 +12,6 @@
     android:paddingEnd="14dp"
     android:id="@+id/characterLayout">
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <TextView
         android:id="@+id/characterLevel"
         android:layout_width="wrap_content"

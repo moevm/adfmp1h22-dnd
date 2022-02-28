@@ -32,12 +32,11 @@ class CharacterList : DialogFragment(), RecyclerViewClickListener {
         savedInstanceState: Bundle?
     ): View? {
 
-        getDialog()!!.getWindow()?.setBackgroundDrawableResource(R.drawable.round_corner);
+        dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner);
         _binding = CharacterListBinding.inflate(inflater, container, false)
         val view = binding.root
 
         characterList = binding.charRecycler
-        //var layoutManager: LinearLayoutManager = LinearLayoutManager(activity)
 
 
         viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)

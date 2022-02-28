@@ -224,6 +224,11 @@ class CharacterSkills : Fragment() {
             return@setOnLongClickListener true
         }
 
+        binding.ToolsProficiencyLayout.setOnClickListener {
+            val toolsProficiencyListDialog: ToolsProficiencyList = ToolsProficiencyList()
+            toolsProficiencyListDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
+        }
+
         return view
     }
 

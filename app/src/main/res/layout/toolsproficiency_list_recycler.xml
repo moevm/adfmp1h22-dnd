@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ToolsLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="3dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="3dp"
+    android:background="@drawable/corner_10_w1dp"
+    android:backgroundTint="@color/stat_green"
+    android:paddingStart="14dp"
+    android:paddingTop="2dp"
+    android:paddingEnd="14dp"
+    android:paddingBottom="2dp">
+
+    <TextView
+        android:id="@+id/ToolsText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="6dp"
+        android:text="Text"
+        android:textColor="@color/text_black"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/DeleteIcon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/DeleteIcon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/cross_mark"
+        android:backgroundTint="@color/cross_red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/del_icon" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

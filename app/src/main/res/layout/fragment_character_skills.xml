@@ -986,90 +986,48 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/ToolsProficiencyLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
         android:background="@drawable/back_10dp_w1dp"
         android:backgroundTint="#e8e8e8"
+        android:foreground="?android:attr/selectableItemBackground"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Tools Proficiency"
+        android:textAppearance="@style/Theme.5edPocketHelper"
+        android:textColor="#000000"
+        android:textSize="@dimen/stat_name_size"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IntelligenceLayout">
-
-        <TextView
-            android:id="@+id/ToolsProficiencyText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ToolsProficiency"
-            android:textColor="#000000"
-            android:textSize="@dimen/stat_name_size"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/ToolsProficiencyModifier"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/ToolsProficiencyModifier"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="0"
-            android:textColor="#000000"
-            android:textSize="@dimen/stat_name_size"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/ToolsProficiencyText"
-            app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/IntelligenceLayout" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/LanguageProficiencyLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
         android:background="@drawable/back_10dp_w1dp"
         android:backgroundTint="#e8e8e8"
+        android:foreground="?android:attr/selectableItemBackground"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="LanguageProficiency"
+        android:textAppearance="@style/Theme.5edPocketHelper"
+        android:textColor="#000000"
+        android:textSize="@dimen/stat_name_size"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ToolsProficiencyLayout">
+        app:layout_constraintTop_toBottomOf="@+id/ToolsProficiencyLayout" />
 
-        <TextView
-            android:id="@+id/LanguageProficiencyText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="LanguageProficiency"
-            android:textColor="#000000"
-            android:textSize="@dimen/stat_name_size"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/LanguageProficiencyModifier"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/LanguageProficiencyModifier"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="0"
-            android:textColor="#000000"
-            android:textSize="@dimen/stat_name_size"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/LanguageProficiencyText"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

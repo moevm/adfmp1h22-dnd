@@ -19,5 +19,7 @@
     <color name="text_black">#1f1f1f</color>
 
     <color name="separator_gray">#ababab</color>
+    <color name="stat_green">#00521d</color>
+
 
 </resources>

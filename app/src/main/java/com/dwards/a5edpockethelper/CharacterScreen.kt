@@ -47,7 +47,6 @@ class CharacterScreen : Fragment() {
         //создание вью-модел и обсервера
 
         val viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
-
         viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
             it?.let {
                 refreshChar(it)
@@ -62,8 +61,6 @@ class CharacterScreen : Fragment() {
 
         // редактирование характеристик
         binding.StatsLayout.setOnLongClickListener {
-                //ТЕСТИЛ НАВИГАЦИЮ
-                //view : View -> view.findNavController().navigate(R.id.action_characterScreen_to_characterSkills)
             val statsSettingsDialog: CharacteristicSettingsDialog = CharacteristicSettingsDialog()
 
             statsSettingsDialog.show(parentFragmentManager, "CharacteristicSettingsDialog")
@@ -142,7 +139,6 @@ class CharacterScreen : Fragment() {
             val deathSavesDialog: DeathSavesDialog = DeathSavesDialog()
             deathSavesDialog.show(parentFragmentManager, "MaxHPSettingsDialog")
         }
-
         return view
     }
 

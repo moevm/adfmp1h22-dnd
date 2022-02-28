@@ -49,9 +49,9 @@ class MainActivity : AppCompatActivity() {
         var charID: Int = 0
 
         // создание ViewModel через фабрику
-        viewModelFactory = MyViewModelFactory(characterDao, charID)
+        viewModelFactory = MyViewModelFactory(characterDao, application)
         val viewModel = ViewModelProvider(this, viewModelFactory).get(MyViewModel::class.java)
-
+        viewModel.startDB()
 
         _binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
@@ -60,8 +60,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         adapter = ViewPageAdapter(this)
-        //viewPager = findViewById(R.id.pager)
-        //viewPager.adapter = adapter
         binding.pager.adapter = adapter
 
         TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->

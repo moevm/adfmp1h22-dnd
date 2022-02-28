@@ -1,12 +1,11 @@
 package com.dwards.a5edpockethelper.model
 
-import androidx.room.Database
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import androidx.room.RoomDatabase
+import androidx.room.*
+import com.dwards.a5edpockethelper.StringListConverter
 
 
 @Entity(tableName = "character")
+@TypeConverters(StringListConverter::class)
 data class Character(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
@@ -172,5 +171,15 @@ data class Character(
     var persuasionProf: Boolean = false,
     var persuasionHalfProf: Boolean = false,
     var persuasionDoubleProf: Boolean = false,
+
+    //Tools Proficiency
+    @TypeConverters(StringListConverter::class)
+    var toolsProficiencyList: MutableList<String> = mutableListOf(),
+    //Language Proficiency
+    @TypeConverters(StringListConverter::class)
+    var languageProficiencyList: MutableList<String> = mutableListOf(),
+    //Weapon id list
+    //@TypeConverters(Converters::class)
+    //var weaponList: List<Int>,
 
     )
