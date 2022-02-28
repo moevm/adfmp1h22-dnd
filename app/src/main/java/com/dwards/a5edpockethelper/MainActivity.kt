@@ -1,24 +1,41 @@
 package com.dwards.a5edpockethelper
 
 import android.os.Bundle
+import android.view.GestureDetector
+import android.view.MotionEvent
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GestureDetectorCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.viewpager2.widget.ViewPager2
 import com.dwards.a5edpockethelper.databinding.ActivityMainBinding
 import com.dwards.a5edpockethelper.model.AppDatabase
 import com.dwards.a5edpockethelper.model.CharacterDAO
 import com.dwards.a5edpockethelper.model.Character
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
+
 
 
 class MainActivity : AppCompatActivity() {
 
 
-
     var db: AppDatabase? = DnDPocketHelperApp.getInstance()?.getDatabase()
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
+
     private lateinit var viewModelFactory: MyViewModelFactory
 
+
+    private lateinit var navController: NavController
+
+    private lateinit var adapter: ViewPageAdapter
+    private lateinit var viewPager: ViewPager2
+    private lateinit var tabLayout: TabLayout
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,24 +59,75 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(view)
 
-        val toolbar = binding.topAppBar
-        setSupportActionBar(toolbar)
+        adapter = ViewPageAdapter(this)
+        //viewPager = findViewById(R.id.pager)
+        //viewPager.adapter = adapter
+        binding.pager.adapter = adapter
 
+        TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
+            when (position) {
+                0 -> {
+                    val view1: View = layoutInflater.inflate(R.layout.custom_tab, null)
+                    view1.findViewById<View>(R.id.icon).setBackgroundResource(R.drawable.ic_character)
+                    tab.customView = view1
+                    //tab.setIcon(R.drawable.ic_character)
+                }
+                1 -> {
+                    val view2: View = layoutInflater.inflate(R.layout.custom_tab, null)
+                    view2.findViewById<View>(R.id.icon).setBackgroundResource(R.drawable.ic_skills)
+                    tab.customView = view2
+                    //tab.setIcon(R.drawable.ic_skills)
+                }
+            }
+        }.attach()
+
+
+        //val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_graph) as NavHostFragment
+        //navController = navHostFragment.navController
+        //navController = Navigation.findNavController(this, R.id.nav_graph);
+        //val navController = this.findNavController(R.id.navigationHost)
+
+        //navController = Navigation.findNavController(this, R.id.navigationHost)
+
+        //setupBottomNavMenu(navController)
+        //setupSideNavigationMenu(navController)
+        //setupActionBar(navController)
+
+        val toolbar = binding.topAppBar
+
+
+        setSupportActionBar(toolbar)
         viewModel.getCharacter().observe(this, Observer {
             it?.let {
                 refreshChar(it)
             }
         })
 
-        binding.topAppBar.setOnLongClickListener{
-            val nameClassLevelSettingsDialog: NameClassLevelSettingsDialog = NameClassLevelSettingsDialog()
-            nameClassLevelSettingsDialog.show(supportFragmentManager, "NameClassLevelSettingsDialog")
+        binding.topAppBar.setOnLongClickListener {
+            val nameClassLevelSettingsDialog: NameClassLevelSettingsDialog =
+                NameClassLevelSettingsDialog()
+            nameClassLevelSettingsDialog.show(
+                supportFragmentManager,
+                "NameClassLevelSettingsDialog"
+            )
             return@setOnLongClickListener true
         }
+
+
     }
 
-    private fun refreshChar(character: Character){
-        binding.topAppBar.title = character.name+", "+character.charClass+" "+character.level.toString()
+
+    private fun refreshChar(character: Character) {
+        binding.topAppBar.title =
+            character.name + ", " + character.charClass + " " + character.level.toString()
     }
 
 }
+
+
+
+
+
+
+
+

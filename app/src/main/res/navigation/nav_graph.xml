@@ -9,5 +9,18 @@
         android:id="@+id/characterScreen"
         android:name="com.dwards.a5edpockethelper.CharacterScreen"
         android:label="fragment_character_screen"
-        tools:layout="@layout/fragment_character_screen" />
+        tools:layout="@layout/fragment_character_screen">
+        <action
+            android:id="@+id/action_characterScreen_to_characterSkills"
+            app:destination="@id/characterSkills" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterSkills"
+        android:name="com.dwards.a5edpockethelper.CharacterSkills"
+        android:label="fragment_character_skills"
+        tools:layout="@layout/fragment_character_skills" >
+        <action
+            android:id="@+id/action_characterSkills_to_characterScreen"
+            app:destination="@id/characterScreen" />
+    </fragment>
 </navigation>

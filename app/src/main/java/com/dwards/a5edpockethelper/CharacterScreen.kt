@@ -7,6 +7,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.dwards.a5edpockethelper.databinding.FragmentCharacterScreenBinding
 import com.dwards.a5edpockethelper.model.Character
 
@@ -61,7 +62,8 @@ class CharacterScreen : Fragment() {
 
         // редактирование характеристик
         binding.StatsLayout.setOnLongClickListener {
-
+                //ТЕСТИЛ НАВИГАЦИЮ
+                //view : View -> view.findNavController().navigate(R.id.action_characterScreen_to_characterSkills)
             val statsSettingsDialog: CharacteristicSettingsDialog = CharacteristicSettingsDialog()
 
             statsSettingsDialog.show(parentFragmentManager, "CharacteristicSettingsDialog")
