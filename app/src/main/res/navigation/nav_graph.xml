@@ -29,6 +29,14 @@
         android:label="CharacterWeapon" >
         <action
             android:id="@+id/action_characterWeapon_to_characterScreen"
+            app:destination="@id/characterSpell" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterSpell"
+        android:name="com.dwards.a5edpockethelper.CharacterSpell"
+        android:label="CharacterSpell" >
+        <action
+            android:id="@+id/action_characterSpell_to_characterScreen"
             app:destination="@id/characterScreen" />
     </fragment>
 </navigation>
