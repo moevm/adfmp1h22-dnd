@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.dwards.a5edpockethelper.databinding.CharacteristicSettingsDialogBinding
 
-
-class CharacteristicSettingsDialog : DialogFragment(){
+class CharacteristicSettingsDialog : DialogFragment() {
 
     private var _binding: CharacteristicSettingsDialogBinding? = null
     private val binding get() = _binding!!
@@ -17,7 +16,7 @@ class CharacteristicSettingsDialog : DialogFragment(){
     private val TAG = "MyCustomDialog"
 
     interface StatChange {
-        fun sendStats(statMap:HashMap<String,Int>)
+        fun sendStats(statMap: HashMap<String, Int>)
     }
 
     var OnStatChange: StatChange? = null
@@ -34,11 +33,15 @@ class CharacteristicSettingsDialog : DialogFragment(){
 
     //override fun onAttach(context: Context){
     //    super.onAttach(context)
-     //   changestat = context as ChangeStats
+    //   changestat = context as ChangeStats
     //}
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         getDialog()!!.getWindow()?.setBackgroundDrawableResource(R.drawable.round_corner);
 
         _binding = CharacteristicSettingsDialogBinding.inflate(inflater, container, false)
@@ -48,7 +51,7 @@ class CharacteristicSettingsDialog : DialogFragment(){
             OnStatChange?.sendStats(passageStat());
             //changestat.change(passageStat ())
             dismiss()
-           }
+        }
 
 
         return view
@@ -85,14 +88,14 @@ class CharacteristicSettingsDialog : DialogFragment(){
         _binding = null
     }
 
-    fun passageStat ():HashMap<String,Int>{
-        val statsMap:HashMap<String,Int> = hashMapOf()
-        statsMap.put("Strength",binding.StrengthScoreValue.text.toString().toInt())
-        statsMap.put("Dexterity",binding.DexterityScoreValue.text.toString().toInt())
-        statsMap.put("Constitution",binding.ConstitutionScoreValue.text.toString().toInt())
-        statsMap.put("Intelligence",binding.IntelligenceScoreValue.text.toString().toInt())
-        statsMap.put("Wisdom",binding.WisdomScoreValue.text.toString().toInt())
-        statsMap.put("Charisma",binding.CharismaScoreValue.text.toString().toInt())
+    fun passageStat(): HashMap<String, Int> {
+        val statsMap: HashMap<String, Int> = hashMapOf()
+        statsMap.put("Strength", binding.StrengthScoreValue.text.toString().toInt())
+        statsMap.put("Dexterity", binding.DexterityScoreValue.text.toString().toInt())
+        statsMap.put("Constitution", binding.ConstitutionScoreValue.text.toString().toInt())
+        statsMap.put("Intelligence", binding.IntelligenceScoreValue.text.toString().toInt())
+        statsMap.put("Wisdom", binding.WisdomScoreValue.text.toString().toInt())
+        statsMap.put("Charisma", binding.CharismaScoreValue.text.toString().toInt())
         return statsMap
     }
 
