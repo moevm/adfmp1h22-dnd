@@ -1,154 +1,390 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/dialog_place"
-    android:layout_height="400dp"
-    android:layout_width="300dp"
-    android:layout_marginTop="200dp"
-    tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/StrengthScoreText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Strength\nScore"
-        app:layout_constraintEnd_toEndOf="@+id/StrengthScoreValue"
-        app:layout_constraintStart_toStartOf="@+id/StrengthScoreValue"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/DexterityScoreText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="Dexterity\nScore"
-        app:layout_constraintEnd_toEndOf="@+id/DexterityScoreValue"
-        app:layout_constraintStart_toStartOf="@+id/DexterityScoreValue"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:maxHeight="400dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="200dp"
+        tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/ConstitutionScoreText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="Constitution\nScore"
-        app:layout_constraintEnd_toEndOf="@+id/ConstitutionScoreValue"
-        app:layout_constraintStart_toStartOf="@+id/ConstitutionScoreValue"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/StrengthScoreValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="4"
-        android:gravity="center"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/StrengthScoreText" />
+        <TextView
+            android:id="@+id/StrengthScoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Strength\nScore"
+            app:layout_constraintEnd_toEndOf="@+id/StrengthScoreValue"
+            app:layout_constraintStart_toStartOf="@+id/StrengthScoreValue"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/DexterityScoreValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="4"
-        android:gravity="center"
-        android:inputType="number"
-        app:layout_constraintEnd_toStartOf="@+id/ConstitutionScoreValue"
-        app:layout_constraintStart_toEndOf="@+id/StrengthScoreValue"
-        app:layout_constraintTop_toBottomOf="@+id/DexterityScoreText" />
+        <TextView
+            android:id="@+id/DexterityScoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Dexterity\nScore"
+            app:layout_constraintEnd_toEndOf="@+id/DexterityScoreValue"
+            app:layout_constraintStart_toStartOf="@+id/DexterityScoreValue"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/ConstitutionScoreValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="4"
-        android:gravity="center"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ConstitutionScoreText" />
+        <TextView
+            android:id="@+id/ConstitutionScoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Constitution\nScore"
+            app:layout_constraintEnd_toEndOf="@+id/ConstitutionScoreValue"
+            app:layout_constraintStart_toStartOf="@+id/ConstitutionScoreValue"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/IntelligenceScoreText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Intelligence\nScore"
-        app:layout_constraintEnd_toEndOf="@+id/IntelligenceScoreValue"
-        app:layout_constraintStart_toStartOf="@+id/IntelligenceScoreValue"
-        app:layout_constraintTop_toBottomOf="@+id/StrengthScoreValue" />
+        <TextView
+            android:id="@+id/IntelligenceScoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Intelligence\nScore"
+            app:layout_constraintEnd_toEndOf="@+id/IntelligenceScoreValue"
+            app:layout_constraintStart_toStartOf="@+id/IntelligenceScoreValue"
+            app:layout_constraintTop_toBottomOf="@+id/StrengthScoreValue" />
 
-    <TextView
-        android:id="@+id/WisdomScoreText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="Wisdom\nScore"
-        app:layout_constraintEnd_toEndOf="@+id/WisdomScoreValue"
-        app:layout_constraintStart_toStartOf="@+id/WisdomScoreValue"
-        app:layout_constraintTop_toBottomOf="@+id/DexterityScoreValue" />
+        <TextView
+            android:id="@+id/WisdomScoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Wisdom\nScore"
+            app:layout_constraintEnd_toEndOf="@+id/WisdomScoreValue"
+            app:layout_constraintStart_toStartOf="@+id/WisdomScoreValue"
+            app:layout_constraintTop_toBottomOf="@+id/DexterityScoreValue" />
 
-    <TextView
-        android:id="@+id/CharismaScoreText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="Charisma\nScore"
-        app:layout_constraintEnd_toEndOf="@+id/CharismaScoreValue"
-        app:layout_constraintStart_toStartOf="@+id/CharismaScoreValue"
-        app:layout_constraintTop_toBottomOf="@+id/ConstitutionScoreValue" />
+        <TextView
+            android:id="@+id/CharismaScoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Charisma\nScore"
+            app:layout_constraintEnd_toEndOf="@+id/CharismaScoreValue"
+            app:layout_constraintStart_toStartOf="@+id/CharismaScoreValue"
+            app:layout_constraintTop_toBottomOf="@+id/ConstitutionScoreValue" />
 
-    <EditText
-        android:id="@+id/IntelligenceScoreValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="4"
-        android:gravity="center"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IntelligenceScoreText" />
+        <EditText
+            android:id="@+id/StrengthScoreValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="4"
+            android:gravity="center"
+            android:inputType="number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/StrengthScoreText" />
 
-    <EditText
-        android:id="@+id/WisdomScoreValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="4"
-        android:gravity="center"
-        android:inputType="number"
-        app:layout_constraintEnd_toStartOf="@+id/CharismaScoreValue"
-        app:layout_constraintStart_toEndOf="@+id/IntelligenceScoreValue"
-        app:layout_constraintTop_toBottomOf="@+id/WisdomScoreText" />
+        <EditText
+            android:id="@+id/DexterityScoreValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="4"
+            android:gravity="center"
+            android:inputType="number"
+            app:layout_constraintEnd_toStartOf="@+id/ConstitutionScoreValue"
+            app:layout_constraintStart_toEndOf="@+id/StrengthScoreValue"
+            app:layout_constraintTop_toBottomOf="@+id/DexterityScoreText" />
 
-    <EditText
-        android:id="@+id/CharismaScoreValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="4"
-        android:gravity="center"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CharismaScoreText" />
+        <EditText
+            android:id="@+id/ConstitutionScoreValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="4"
+            android:gravity="center"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ConstitutionScoreText" />
 
-    <Button
-        android:id="@+id/SaveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/WisdomScoreValue" />
+        <EditText
+            android:id="@+id/IntelligenceScoreValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="4"
+            android:gravity="center"
+            android:inputType="number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/IntelligenceScoreText" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/WisdomScoreValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="4"
+            android:gravity="center"
+            android:inputType="number"
+            app:layout_constraintEnd_toStartOf="@+id/CharismaScoreValue"
+            app:layout_constraintStart_toEndOf="@+id/IntelligenceScoreValue"
+            app:layout_constraintTop_toBottomOf="@+id/WisdomScoreText" />
+
+        <EditText
+            android:id="@+id/CharismaScoreValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="4"
+            android:gravity="center"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CharismaScoreText" />
+
+        <TextView
+            android:id="@+id/SaveProficiencyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Save Proficiency:"
+            android:textSize="@dimen/stat_name_size"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/WisdomScoreValue" />
+
+        <CheckBox
+            android:id="@+id/IntelligenceSaveProf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="Int"
+            app:layout_constraintEnd_toStartOf="@+id/WisdomSaveProf"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/StrengthSaveProf" />
+
+        <CheckBox
+            android:id="@+id/CharismaSaveProf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="Cha"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/WisdomSaveProf"
+            app:layout_constraintTop_toBottomOf="@+id/ConstitutionSaveProf" />
+
+        <CheckBox
+            android:id="@+id/WisdomSaveProf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="Wis"
+            app:layout_constraintEnd_toStartOf="@+id/CharismaSaveProf"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/IntelligenceSaveProf"
+            app:layout_constraintTop_toBottomOf="@+id/DexteritySaveProf" />
+
+        <CheckBox
+            android:id="@+id/StrengthSaveProf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Str"
+            app:layout_constraintEnd_toStartOf="@+id/DexteritySaveProf"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/SaveProficiencyText" />
+
+        <CheckBox
+            android:id="@+id/DexteritySaveProf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Dex"
+            app:layout_constraintEnd_toStartOf="@+id/ConstitutionSaveProf"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/StrengthSaveProf"
+            app:layout_constraintTop_toBottomOf="@+id/SaveProficiencyText" />
+
+        <CheckBox
+            android:id="@+id/ConstitutionSaveProf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Con"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/DexteritySaveProf"
+            app:layout_constraintTop_toBottomOf="@+id/SaveProficiencyText" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Misc Save Bonus:"
+            android:textSize="@dimen/stat_name_size"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/WisdomSaveProf" />
+
+        <TextView
+            android:id="@+id/StrengthSaveMiscText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Str Save\nMisc Bonus"
+            app:layout_constraintEnd_toEndOf="@+id/StrengthSaveMiscValue"
+            app:layout_constraintStart_toStartOf="@+id/StrengthSaveMiscValue"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/DexteritySaveMiscText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Dex Save\nMisc Bonus"
+            app:layout_constraintEnd_toEndOf="@+id/DexteritySaveMiscValue"
+            app:layout_constraintStart_toStartOf="@+id/DexteritySaveMiscValue"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/ConstitutionSaveMiscText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Con Save\nMisc Bonus"
+            app:layout_constraintEnd_toEndOf="@+id/ConstitutionSaveMiscValue"
+            app:layout_constraintStart_toStartOf="@+id/ConstitutionSaveMiscValue"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <EditText
+            android:id="@+id/StrengthSaveMiscValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="4"
+            android:gravity="center"
+            android:inputType="number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/StrengthSaveMiscText" />
+
+        <EditText
+            android:id="@+id/DexteritySaveMiscValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="4"
+            android:gravity="center"
+            android:inputType="number"
+            app:layout_constraintEnd_toStartOf="@+id/ConstitutionSaveMiscValue"
+            app:layout_constraintStart_toEndOf="@+id/StrengthSaveMiscValue"
+            app:layout_constraintTop_toBottomOf="@+id/DexteritySaveMiscText" />
+
+        <EditText
+            android:id="@+id/ConstitutionSaveMiscValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="4"
+            android:gravity="center"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ConstitutionSaveMiscText" />
+
+        <TextView
+            android:id="@+id/IntelligenceSaveMiscText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Int Save\nMisc Bonus"
+            app:layout_constraintEnd_toEndOf="@+id/IntelligenceSaveMiscValue"
+            app:layout_constraintStart_toStartOf="@+id/IntelligenceSaveMiscValue"
+            app:layout_constraintTop_toBottomOf="@+id/StrengthSaveMiscValue" />
+
+        <TextView
+            android:id="@+id/WisdomSaveMiscText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Wis Save\nMisc Bonus"
+            app:layout_constraintEnd_toEndOf="@+id/WisdomSaveMiscValue"
+            app:layout_constraintStart_toStartOf="@+id/WisdomSaveMiscValue"
+            app:layout_constraintTop_toBottomOf="@+id/DexteritySaveMiscValue" />
+
+        <TextView
+            android:id="@+id/CharismaSaveMiscText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Cha Save\nMisc Bonus"
+            app:layout_constraintEnd_toEndOf="@+id/CharismaSaveMiscValue"
+            app:layout_constraintStart_toStartOf="@+id/CharismaSaveMiscValue"
+            app:layout_constraintTop_toBottomOf="@+id/ConstitutionSaveMiscValue" />
+
+        <EditText
+            android:id="@+id/IntelligenceSaveMiscValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="4"
+            android:gravity="center"
+            android:inputType="number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/IntelligenceSaveMiscText" />
+
+        <EditText
+            android:id="@+id/WisdomSaveMiscValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="4"
+            android:gravity="center"
+            android:inputType="number"
+            app:layout_constraintEnd_toStartOf="@+id/CharismaSaveMiscValue"
+            app:layout_constraintStart_toEndOf="@+id/IntelligenceSaveMiscValue"
+            app:layout_constraintTop_toBottomOf="@+id/WisdomSaveMiscText" />
+
+        <EditText
+            android:id="@+id/CharismaSaveMiscValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="4"
+            android:gravity="center"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CharismaSaveMiscText" />
+
+        <Button
+            android:id="@+id/SaveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/WisdomSaveMiscValue" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+

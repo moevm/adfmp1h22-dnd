@@ -60,17 +60,17 @@ class CharacterScreen : Fragment() {
         // редактирование характеристик
         binding.StatsLayout.setOnLongClickListener {
 
-            val StatsSettingsdialog: CharacteristicSettingsDialog = CharacteristicSettingsDialog()
+            val statsSettingsDialog: CharacteristicSettingsDialog = CharacteristicSettingsDialog()
 
-            StatsSettingsdialog.show(parentFragmentManager, "CharacteristicSettingsDialog")
+            statsSettingsDialog.show(parentFragmentManager, "CharacteristicSettingsDialog")
             return@setOnLongClickListener true
         }
 
         //редактирование бонуса мастерства
         binding.ProficiencyLayout.setOnLongClickListener {
 
-            val ProficiencySettingsDialog: ProficiencySettingsDialog = ProficiencySettingsDialog()
-            ProficiencySettingsDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
+            val proficiencySettingsDialog: ProficiencySettingsDialog = ProficiencySettingsDialog()
+            proficiencySettingsDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
             return@setOnLongClickListener true
         }
 
@@ -89,30 +89,16 @@ class CharacterScreen : Fragment() {
 
 
     private fun refreshChar(character: Character) {
-        binding.StrengthScoreValue.setText("${character.strength}")
-        binding.DexterityScoreValue.setText("${character.dexterity}")
-        binding.ConstitutionScoreValue.setText("${character.constitution}")
-        binding.IntelligenceScoreValue.setText("${character.intelligence}")
-        binding.WisdomScoreValue.setText("${character.wisdom}")
-        binding.CharismaScoreValue.setText("${character.charisma}")
+        binding.StrengthScoreValue.text = "${character.strength}"
+        binding.DexterityScoreValue.text = "${character.dexterity}"
+        binding.ConstitutionScoreValue.text = "${character.constitution}"
+        binding.IntelligenceScoreValue.text = "${character.intelligence}"
+        binding.WisdomScoreValue.text = "${character.wisdom}"
+        binding.CharismaScoreValue.text = "${character.charisma}"
+        binding.ProficiencyValue.text = ("+" + character.proficiency.toString())
     }
 
-    /*
-    fun change(statMap: HashMap<String, Int>) {
-        val strength = statMap.get("Strength")
-        val dexterity = statMap.get("Dexterity")
-        val constitution = statMap.get("Constitution")
-        val intelligence = statMap.get("Intelligence")
-        val wisdom = statMap.get("Wisdom")
-        val charisma = statMap.get("Charisma")
-        binding.StrengthScoreValue.setText("${strength}")
-        binding.DexterityScoreValue.setText("${dexterity}")
-        binding.ConstitutionScoreValue.setText("${constitution}")
-        binding.IntelligenceScoreValue.setText("${intelligence}")
-        binding.WisdomScoreValue.setText("${wisdom}")
-        binding.CharismaScoreValue.setText("${charisma}")
-    }
-    */
+
 
     override fun onDestroyView() {
         super.onDestroyView()

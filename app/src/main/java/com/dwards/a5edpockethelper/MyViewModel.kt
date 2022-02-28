@@ -10,8 +10,10 @@ import com.dwards.a5edpockethelper.model.CharacterDAO
 import kotlinx.coroutines.launch
 
 class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel() {
+    //временные флаги для создания персонажей
+    var flag1: Boolean = false
+    var flag2: Boolean = false
 
-    var flag = 0
     var currentId: Int = 0
     var character: Character = Character()
     var currentChar: MutableLiveData<Character> = MutableLiveData()
@@ -20,7 +22,9 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
     init {
         currentId = id
 
-        if (character.id == null) {
+
+
+        if (flag1) {
             var character = Character()
             //character.id = currentId
             character.name = "Arno"
@@ -33,23 +37,26 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
             viewModelScope.launch{
                 characterDao.insertChar(character)
             }
+            flag1 = false
             //currentId++
         }
 
-
-        character = Character()
-        //character.id = currentId
-        character.name = "Kostoprav"
-        character.strength = 10
-        character.dexterity = 10
-        character.constitution = 10
-        character.intelligence = 10
-        character.wisdom = 10
-        character.charisma = 10
-        viewModelScope.launch {
-            characterDao.insertChar(character)
+        if (flag2)  {
+            character = Character()
+            //character.id = currentId
+            character.name = "Kostoprav"
+            character.strength = 10
+            character.dexterity = 10
+            character.constitution = 10
+            character.intelligence = 10
+            character.wisdom = 10
+            character.charisma = 10
+            viewModelScope.launch {
+                characterDao.insertChar(character)
+            }
+            flag2 = false
         }
-        //currentId++
+
         fetchData(0)
     }
 
@@ -101,21 +108,47 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
 
     }
 
-    fun changeCharacter(statMap: HashMap<String, Int> ){
-        character.id = currentChar.value?.id
-        character.strength = statMap["Strength"]!!
-        character.dexterity = statMap["Dexterity"]!!
-        character.constitution = statMap["Constitution"]!!
-        character.intelligence = statMap["Intelligence"]!!
-        character.wisdom = statMap["Wisdom"]!!
-        character.charisma = statMap["Charisma"]!!
-        viewModelScope.launch{
-            characterDao.updateChar(character)
-        }
+    fun changeCharactersStats(statMap: HashMap<String, Int> ){
+        val updatedChar = currentChar.value!!
+        updatedChar.strength = statMap["Strength"]!!
+        updatedChar.dexterity = statMap["Dexterity"]!!
+        updatedChar.constitution = statMap["Constitution"]!!
+        updatedChar.intelligence = statMap["Intelligence"]!!
+        updatedChar.wisdom = statMap["Wisdom"]!!
+        updatedChar.charisma = statMap["Charisma"]!!
 
-        fetchData(character.id!!)
+        updatedChar.strengthSaveMisc = statMap["StrengthSaveMisc"]!!
+        updatedChar.dexteritySaveMisc = statMap["DexteritySaveMisc"]!!
+        updatedChar.constitutionSaveMisc = statMap["ConstitutionSaveMisc"]!!
+        updatedChar.intelligenceSaveMisc = statMap["IntelligenceSaveMisc"]!!
+        updatedChar.wisdomSaveMisc = statMap["WisdomSaveMisc"]!!
+        updatedChar.charismaSaveMisc = statMap["CharismaSaveMisc"]!!
+
+        updatedChar.strengthSaveProf = intToBoolean(statMap["StrengthSaveProf"]!!)
+        updatedChar.dexteritySaveProf = intToBoolean(statMap["DexteritySaveProf"]!!)
+        updatedChar.constitutionSaveProf = intToBoolean(statMap["ConstitutionSaveProf"]!!)
+        updatedChar.intelligenceSaveProf = intToBoolean(statMap["IntelligenceSaveProf"]!!)
+        updatedChar.wisdomSaveProf = intToBoolean(statMap["WisdomSaveProf"]!!)
+        updatedChar.charismaSaveProf = intToBoolean(statMap["CharismaSaveProf"]!!)
+
+
+        viewModelScope.launch{
+            characterDao.updateChar(updatedChar)
+        }
+        fetchData(updatedChar.id!!)
     }
 
+    fun changeCharactersProficiency(proficiency: Int){
+        val updatedChar = currentChar.value!!
+        updatedChar.proficiency = proficiency
+        viewModelScope.launch{
+            characterDao.updateChar(updatedChar)
+        }
+        fetchData(updatedChar.id!!)
+    }
 
+    fun intToBoolean(b: Int): Boolean {
+        return b == 1
+    }
 
 }

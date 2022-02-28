@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.dwards.a5edpockethelper.databinding.ProficiencySettingsDialogBinding
+import com.dwards.a5edpockethelper.model.Character
 
 class ProficiencySettingsDialog : DialogFragment() {
 
@@ -33,9 +36,17 @@ class ProficiencySettingsDialog : DialogFragment() {
         _binding = ProficiencySettingsDialogBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        //создание вью-модел и добавление обсервера
+        val viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+
+        viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
+            it?.let {
+                refreshChar(it)
+            }
+        })
+
         binding.SaveButton.setOnClickListener {
-            //OnStatChange?.sendStats(passageStat());
-            //changestat.change(passageStat ())
+            viewModel.changeCharactersProficiency(binding.ProficiencyBonusValue.text.toString().toInt())
             dismiss()
         }
 
@@ -61,5 +72,8 @@ class ProficiencySettingsDialog : DialogFragment() {
         _binding = null
     }
 
+    private fun refreshChar(character: Character) {
+        binding.ProficiencyBonusValue.setText(character.proficiency.toString())
 
+    }
 }
