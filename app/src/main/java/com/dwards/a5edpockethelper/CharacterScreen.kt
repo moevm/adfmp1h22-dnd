@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.dwards.a5edpockethelper.databinding.FragmentCharacterScreenBinding
+import com.dwards.a5edpockethelper.model.AppDatabase
+import com.dwards.a5edpockethelper.model.CharacterDAO
 
 class CharacterScreen : Fragment(), CharacteristicSettingsDialog.StatChange {
     private val TAG = "MainFragment"
@@ -25,7 +27,8 @@ class CharacterScreen : Fragment(), CharacteristicSettingsDialog.StatChange {
 
         _binding = FragmentCharacterScreenBinding.inflate(inflater, container, false)
         val view = binding.root
-
+        //var db: AppDatabase? = DnDPocketHelperApp.getInstance()?.getDatabase()
+        //val characterDao: CharacterDAO = db!!.characterDao() //Хз как это вызывать
 
         binding.StatsLayout.setOnLongClickListener {
 

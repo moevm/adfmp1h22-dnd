@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.RoomDatabase
 
+
 @Entity(tableName = "character")
 data class Character(
     @PrimaryKey(autoGenerate = true)

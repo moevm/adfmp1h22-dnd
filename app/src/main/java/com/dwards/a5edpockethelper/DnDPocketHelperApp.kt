@@ -20,6 +20,7 @@ class DnDPocketHelperApp : Application() {
 
     companion object {
         private var instance: DnDPocketHelperApp? = null
+
         fun getInstance(): DnDPocketHelperApp? {
             return instance
         }
