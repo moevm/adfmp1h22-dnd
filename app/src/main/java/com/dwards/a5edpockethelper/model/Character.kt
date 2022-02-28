@@ -5,10 +5,11 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.RoomDatabase
 
-@Entity
+@Entity(tableName = "character")
 class Character {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     var id: Int? = null
+
     var name: String = ""
     var Strength: Int = 0
     var Dexterity: Int = 0
@@ -18,10 +19,3 @@ class Character {
     var Charisma: Int = 0
 }
 
-@Database(
-    entities = [Character::class],
-    version = 1
-)
-abstract class AppDatabase : RoomDatabase() {
-    abstract val CharacterDao: CharacterDAO.CharacterDao?
-}
