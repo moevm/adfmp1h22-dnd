@@ -21,5 +21,5 @@ import androidx.room.*
 
         // Изменение в бд
         @Update
-        suspend  fun update(character: Character)
+        suspend  fun updateChar(character: Character)
     }

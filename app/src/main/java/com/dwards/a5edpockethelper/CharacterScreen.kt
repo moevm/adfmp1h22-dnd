@@ -45,50 +45,24 @@ class CharacterScreen : Fragment() {
                 refreshChar(it)
             }
         })
-        /*
-        var af: FragmentActivity = requireActivity()
-        var viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
-        */
+
 
         _binding = FragmentCharacterScreenBinding.inflate(inflater, container, false)
         val view = binding.root
 
-
-        /*
-        viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
-            it?.let {
-                //adapter.refreshUsers(it)
-            }
-        })
-        */
-
+        // редактирование характеристик
         binding.StatsLayout.setOnLongClickListener {
 
             val StatsSettingsdialog: CharacteristicSettingsDialog = CharacteristicSettingsDialog()
-            val args = Bundle()
-            //val stats = passageStat()
-            //for (i in stats) {
-            //    args.putString(i.key, i.value.toString())
-            //}
-            StatsSettingsdialog.setArguments(args)
-
-            //StatsSettingsdialog.setTargetFragment(this@CharacterScreen, 1);
 
             StatsSettingsdialog.show(parentFragmentManager, "CharacteristicSettingsDialog")
             return@setOnLongClickListener true
         }
 
+        //редактирование бонуса мастерства
         binding.ProficiencyLayout.setOnLongClickListener {
 
             val StatsSettingsdialog: ProficiencySettingsDialog = ProficiencySettingsDialog()
-            val args = Bundle()
-            //val stats = passageStat()
-            //for (i in stats){
-            //   args.putString(i.key, i.value.toString())}
-            //StatsSettingsdialog.setArguments(args)
-
-            //StatsSettingsdialog.setTargetFragment(this@CharacterScreen, 1);
-
             StatsSettingsdialog.show(parentFragmentManager, "CharacteristicSettingsDialog")
             return@setOnLongClickListener true
         }
@@ -105,20 +79,9 @@ class CharacterScreen : Fragment() {
 
     }
 
-    /*
-    fun passageStat(): HashMap<String, Int> {
-        val statsMap: HashMap<String, Int> = hashMapOf()
-        statsMap.put("Strength", binding.StrengthScoreValue.text.toString().toInt())
-        statsMap.put("Dexterity", binding.DexterityScoreValue.text.toString().toInt())
-        statsMap.put("Constitution", binding.ConstitutionScoreValue.text.toString().toInt())
-        statsMap.put("Intelligence", binding.IntelligenceScoreValue.text.toString().toInt())
-        statsMap.put("Wisdom", binding.WisdomScoreValue.text.toString().toInt())
-        statsMap.put("Charisma", binding.CharismaScoreValue.text.toString().toInt())
-        return statsMap
-    }
-    */
 
-    fun refreshChar(character: Character) {
+
+    private fun refreshChar(character: Character) {
         binding.StrengthScoreValue.setText("${character.strength}")
         binding.DexterityScoreValue.setText("${character.dexterity}")
         binding.ConstitutionScoreValue.setText("${character.constitution}")
