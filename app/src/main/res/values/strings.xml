@@ -5,4 +5,15 @@
     <string name="save">Save</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="StatsList">
+        <item>None</item>
+        <item>Strength</item>
+        <item>Dexterity</item>
+        <item>Constitution</item>
+        <item>Intelligence</item>
+        <item>Wisdom</item>
+        <item>Charisma</item>
+    </string-array>
+
 </resources>

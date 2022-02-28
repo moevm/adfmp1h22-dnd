@@ -11,25 +11,20 @@ import com.dwards.a5edpockethelper.model.CharacterDAO
 
 class MainActivity : AppCompatActivity() {
 
-    //ленивое создание
-    //private val userViewModel by lazy {ViewModelProvider(this, viewModelFactory).get(MyViewModel::class.java)}
 
 
-    //var db: AppDatabase? = DnDPocketHelperApp.getInstance()?.getDatabase()
+    var db: AppDatabase? = DnDPocketHelperApp.getInstance()?.getDatabase()
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModelFactory: MyViewModelFactory
-    private lateinit var viewModel: MyViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // создание БД
-        var db = Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java, "character"
-        ).build()
+        //var db = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "character").build()
+
         // создание ДАО
-        val characterDao: CharacterDAO = db.characterDao()
+        val characterDao: CharacterDAO = db!!.characterDao()
         var charID: Int = 0
 
         // создание ViewModel через фабрику
@@ -37,7 +32,6 @@ class MainActivity : AppCompatActivity() {
         val viewModel = ViewModelProvider(this, viewModelFactory).get(MyViewModel::class.java)
 
 
-        //val model:  MyViewModel by viewModels<MyViewModel>({characterDao})
 
         setContentView(R.layout.activity_main)
 

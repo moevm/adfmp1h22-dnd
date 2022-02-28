@@ -81,6 +81,15 @@ class CharacterScreen : Fragment() {
             speedSettingsDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
             return@setOnLongClickListener true
         }
+
+        //редактирование скорости
+        binding.InitiativeLayout.setOnLongClickListener {
+
+            val initiativeSettingsDialog: InitiativeSettingsDialog = InitiativeSettingsDialog()
+            initiativeSettingsDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
+            return@setOnLongClickListener true
+        }
+
         return view
     }
 
@@ -138,6 +147,18 @@ class CharacterScreen : Fragment() {
                 binding.SpeedText.text = character.chosenSpeed
             }
         }
+
+
+        binding.InitiativeValue.text = viewModel.calcInitiative(viewModel.calcModifier(
+            character.dexterity).toInt(),
+            character.miscInitiativeBonus,
+            character.initiativeProf,
+            character.initiativeHalfProf,
+            character.initiativeDoubleProf,
+            character.initiativeAdditionalAbility,
+            character.proficiency
+        ).toString()
+
     }
 
 

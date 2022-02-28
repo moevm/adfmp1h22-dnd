@@ -16,7 +16,7 @@ class SpeedSettingsDialog : DialogFragment() {
     private val binding get() = _binding!!
 
     private val TAG = "MyCustomDialog"
-
+    private var speedType: String = "None"
 
 
     override fun onCreateView(
@@ -38,42 +38,42 @@ class SpeedSettingsDialog : DialogFragment() {
             }
         })
         //вылет если не выбрать персонажа
-        switchSpeed(viewModel.getCharacter().value!!)
+        switchSpeed(viewModel.getCharacter().value!!, speedType)
 
         binding.WalkCheck.setOnClickListener{
-            viewModel.changeChosenSpeed(1)
+            speedType = changeChosenSpeed(1)
             binding.FlyCheck.isChecked = false
             binding.SwimCheck.isChecked = false
             binding.ClimbCheck.isChecked = false
-            switchSpeed(viewModel.getCharacter().value!!)
+            switchSpeed(viewModel.getCharacter().value!!, speedType)
         }
 
         binding.FlyCheck.setOnClickListener{
-            viewModel.changeChosenSpeed(2)
+            speedType = changeChosenSpeed(2)
             binding.WalkCheck.isChecked = false
             binding.SwimCheck.isChecked = false
             binding.ClimbCheck.isChecked = false
-            switchSpeed(viewModel.getCharacter().value!!)
+            switchSpeed(viewModel.getCharacter().value!!, speedType)
         }
 
         binding.SwimCheck.setOnClickListener{
-            viewModel.changeChosenSpeed(3)
+            speedType = changeChosenSpeed(3)
             binding.FlyCheck.isChecked = false
             binding.WalkCheck.isChecked = false
             binding.ClimbCheck.isChecked = false
-            switchSpeed(viewModel.getCharacter().value!!)
+            switchSpeed(viewModel.getCharacter().value!!, speedType)
         }
 
         binding.ClimbCheck.setOnClickListener{
-            viewModel.changeChosenSpeed(4)
+            speedType = changeChosenSpeed(4)
             binding.FlyCheck.isChecked = false
             binding.SwimCheck.isChecked = false
             binding.WalkCheck.isChecked = false
-            switchSpeed(viewModel.getCharacter().value!!)
+            switchSpeed(viewModel.getCharacter().value!!, speedType)
         }
 
         binding.SaveButton.setOnClickListener {
-            viewModel.changeCharactersSpeed(binding.SpeedBaseValue.text.toString().toInt(),binding.SpeedMiscBonusValue.text.toString().toInt())
+            viewModel.changeCharactersSpeed(binding.SpeedBaseValue.text.toString().toInt(),binding.SpeedMiscBonusValue.text.toString().toInt(), speedType)
             dismiss()
         }
 
@@ -102,7 +102,6 @@ class SpeedSettingsDialog : DialogFragment() {
     private fun refreshChar(character: Character) {
         when(character.chosenSpeed){
             "Walk" -> {
-                val test: Int = character.baseWalkSpeed
                 binding.SpeedBaseValue.setText(character.baseWalkSpeed.toString())
                 binding.SpeedMiscBonusValue.setText(character.miscWalkSpeedBonus.toString())
                 binding.SpeedText.text = "Speed"
@@ -122,11 +121,17 @@ class SpeedSettingsDialog : DialogFragment() {
                 binding.SpeedMiscBonusValue.setText(character.miscClimbSpeedBonus.toString())
                 binding.SpeedText.text = character.chosenSpeed
             }
+            else -> {
+                binding.SpeedBaseValue.setText(character.baseWalkSpeed.toString())
+                binding.SpeedMiscBonusValue.setText(character.miscWalkSpeedBonus.toString())
+                binding.SpeedText.text = "Speed"
+            }
         }
     }
 
-    private fun switchSpeed(character: Character) {
-        when(character.chosenSpeed){
+    private fun switchSpeed(character: Character, type: String) {
+        when(type){
+
             "Walk" -> {
                 val test: Int = character.baseWalkSpeed
                 binding.SpeedBaseValue.setText(character.baseWalkSpeed.toString())
@@ -134,24 +139,49 @@ class SpeedSettingsDialog : DialogFragment() {
                 binding.SpeedText.text = "Speed"
                 binding.WalkCheck.isChecked = true
             }
+
             "Fly" -> {
                 binding.SpeedBaseValue.setText(character.baseFlySpeed.toString())
                 binding.SpeedMiscBonusValue.setText(character.miscFlySpeedBonus.toString())
-                binding.SpeedText.text = character.chosenSpeed
+                binding.SpeedText.text = type
                 binding.FlyCheck.isChecked = true
             }
+
             "Swim" -> {
                 binding.SpeedBaseValue.setText(character.baseSwimSpeed.toString())
                 binding.SpeedMiscBonusValue.setText(character.miscSwimSpeedBonus.toString())
-                binding.SpeedText.text = character.chosenSpeed
+                binding.SpeedText.text = type
                 binding.SwimCheck.isChecked = true
             }
+
             "Climb" -> {
                 binding.SpeedBaseValue.setText(character.baseClimbSpeed.toString())
                 binding.SpeedMiscBonusValue.setText(character.miscClimbSpeedBonus.toString())
-                binding.SpeedText.text = character.chosenSpeed
+                binding.SpeedText.text = type
                 binding.ClimbCheck.isChecked = true
             }
+
+            "None" -> {
+                binding.SpeedBaseValue.setText(character.baseClimbSpeed.toString())
+                binding.SpeedMiscBonusValue.setText(character.miscClimbSpeedBonus.toString())
+                binding.SpeedText.text = "Speed"
+                binding.WalkCheck.isChecked = true
+            }
+
+            else ->{
+                binding.SpeedBaseValue.setText(character.baseClimbSpeed.toString())
+                binding.SpeedMiscBonusValue.setText(character.miscClimbSpeedBonus.toString())
+                binding.SpeedText.text = "Speed"
+                binding.WalkCheck.isChecked = true
+            }
         }
+    }
+
+    fun changeChosenSpeed(type: Int) = when (type){
+        1 ->  "Walk"
+        2 ->  "Fly"
+        3 ->  "Swim"
+        4 ->  "Climb"
+        else -> "Walk"
     }
 }

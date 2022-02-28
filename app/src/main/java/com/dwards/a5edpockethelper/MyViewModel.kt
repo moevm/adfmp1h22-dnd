@@ -72,6 +72,8 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
         }
     }
 
+
+
     fun chooseCharacter(id: Int){
         currentId = id
         fetchData(currentId)
@@ -87,8 +89,6 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
             }
         }
 
-
-        //currentId--
     }
 
     //Пока это просто заглушка болванка для проверки добавления в БД, функционала нет
@@ -132,27 +132,25 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
         updatedChar.charismaSaveProf = intToBoolean(statMap["CharismaSaveProf"]!!)
 
 
-        viewModelScope.launch{
-            characterDao.updateChar(updatedChar)
-        }
+        pushToDB(updatedChar)
         fetchData(updatedChar.id!!)
     }
 
     fun changeCharactersProficiency(proficiency: Int){
         val updatedChar = currentChar.value!!
         updatedChar.proficiency = proficiency
-        viewModelScope.launch{
-            characterDao.updateChar(updatedChar)
-        }
+
+        pushToDB(updatedChar)
         fetchData(updatedChar.id!!)
     }
 
-    fun changeCharactersSpeed(speed: Int, miscBonus: Int){
+    fun changeCharactersSpeed(speed: Int, miscBonus: Int, speedType: String){
         val updatedChar = currentChar.value!!
-        when(updatedChar.chosenSpeed){
+        when(speedType){
             "Walk" -> {
                 updatedChar.baseWalkSpeed = speed
                 updatedChar.miscWalkSpeedBonus = miscBonus
+
             }
             "Fly" -> {
                 updatedChar.baseFlySpeed = speed
@@ -167,21 +165,28 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
                 updatedChar.miscClimbSpeedBonus = miscBonus
             }
         }
-        viewModelScope.launch{
-            characterDao.updateChar(updatedChar)
-        }
-        fetchData(updatedChar.id!!)
+        updatedChar.chosenSpeed = speedType
+            pushToDB(updatedChar)
     }
 
-    fun changeChosenSpeed(type: Int){
+    fun changeCharactersInitiative(miscBonus: Int, prof: Boolean, halfProf: Boolean, doubleProf: Boolean, additionalStat: Int){
         val updatedChar = currentChar.value!!
-        when(type){
-            1 -> updatedChar.chosenSpeed = "Walk"
-            2 -> updatedChar.chosenSpeed = "Fly"
-            3 -> updatedChar.chosenSpeed = "Swim"
-            4 -> updatedChar.chosenSpeed = "Climb"
+        updatedChar.miscInitiativeBonus = miscBonus
+        updatedChar.initiativeProf = prof
+        updatedChar.initiativeHalfProf = halfProf
+        updatedChar.initiativeDoubleProf = doubleProf
+        updatedChar.initiativeAdditionalAbility = additionalStat
+        pushToDB(updatedChar)
+    }
+
+
+    private fun pushToDB(updatedChar: Character){
+        viewModelScope.launch{
+            characterDao.updateChar(updatedChar)
+            fetchData(updatedChar.id!!)
         }
     }
+
 
     fun calcSave(value: Int, saveProf: Boolean, misc: Int): String{
         var sum: Int = calcModifier(value).toInt()
@@ -213,8 +218,26 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
             else -> "0"
     }
 
-    fun calcSpeed(base: Int, misc: Int): Int{
-        return base+misc
+    fun calcInitiative(dexModifier: Int, miscBonus: Int, prof: Boolean, halfProf: Boolean, doubleProf: Boolean, additionalStat: Int, profBonus: Int): Int{
+        var sum = dexModifier+miscBonus
+        if(doubleProf){
+            sum += profBonus*2
+        }
+        else if(prof){
+            sum += profBonus
+        }
+        else if(halfProf){
+            sum += profBonus/2
+        }
+        when (additionalStat){
+            1 -> sum += calcModifier(currentChar.value?.strength!!).toInt()
+            2 -> sum += calcModifier(currentChar.value?.dexterity!!).toInt()
+            3 -> sum += calcModifier(currentChar.value?.constitution!!).toInt()
+            4 -> sum += calcModifier(currentChar.value?.intelligence!!).toInt()
+            5 -> sum += calcModifier(currentChar.value?.wisdom!!).toInt()
+            6 -> sum += calcModifier(currentChar.value?.charisma!!).toInt()
+        }
+        return sum
     }
 
     private fun intToBoolean(b: Int): Boolean {

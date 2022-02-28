@@ -40,16 +40,21 @@ data class Character(
     var charismaSaveMisc: Int = 0,
 
     var proficiency: Int = 2,
-
+    //armor
     var armorBonus: Int = 10,
     var shieldBonus: Int = 0,
     var miscArmorBonus: Int = 0,
 
     var miscInitiativeBonus: Int = 0,
+    var initiativeProf: Boolean = false,
+    var initiativeHalfProf: Boolean = false,
+    var initiativeDoubleProf: Boolean = false,
+    var initiativeAdditionalAbility: Int = 0,
 
+    //hit dice
     var hitDiceCount: Int = 0,
     var hitDiceSize: Int = 0,
-
+    //speed
     var chosenSpeed: String = "Walk",
     var baseWalkSpeed: Int = 30,
     var miscWalkSpeedBonus: Int = 0,
@@ -61,4 +66,5 @@ data class Character(
     var miscBurrowSpeedBonus: Int = 0,
     var baseClimbSpeed: Int = 0,
     var miscClimbSpeedBonus: Int = 0,
+
 )
