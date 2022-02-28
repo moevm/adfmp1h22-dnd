@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_place"
+    android:layout_width="350dp"
+    android:layout_height="400dp"
+    android:layout_marginTop="200dp"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ArmorLayout"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/back_20dp"
+        android:backgroundTint="#e8e8e8"
+        android:foreground="@drawable/corner_20_w2dp"
+        android:foregroundTint="#727272"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/ArmorText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AC"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_name_size"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/ArmorValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="16"
+            android:textColor="#000000"
+            android:textSize="@dimen/Armor_number_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ArmorText"
+            app:layout_constraintVertical_bias="0.75" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/ArmorClassText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:text="Armor Class"
+        android:textSize="@dimen/HP_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ArmorLayout" />
+
+    <TextView
+        android:id="@+id/ArmorBonusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:text="Armor\nBonus"
+        app:layout_constraintEnd_toEndOf="@+id/ArmorBonusValue"
+        app:layout_constraintStart_toStartOf="@+id/ArmorBonusValue"
+        app:layout_constraintTop_toBottomOf="@+id/ArmorClassText" />
+
+
+    <EditText
+        android:id="@+id/ArmorBonusValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="2"
+        android:gravity="center"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/ShieldBonusValue"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ArmorBonusText" />
+
+    <TextView
+        android:id="@+id/ShieldBonusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Shield\nBonus"
+        app:layout_constraintEnd_toEndOf="@+id/ShieldBonusValue"
+        app:layout_constraintStart_toStartOf="@+id/ShieldBonusValue"
+        app:layout_constraintTop_toTopOf="@+id/ArmorBonusText" />
+
+
+    <EditText
+        android:id="@+id/ShieldBonusValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="2"
+        android:gravity="center"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/DexterityBonusValue"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ArmorBonusValue"
+        app:layout_constraintTop_toBottomOf="@+id/ShieldBonusText" />
+
+    <TextView
+        android:id="@+id/DexterityBonusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Dex\nMod"
+        app:layout_constraintEnd_toEndOf="@+id/DexterityBonusValue"
+        app:layout_constraintStart_toStartOf="@+id/DexterityBonusValue"
+        app:layout_constraintTop_toTopOf="@+id/ShieldBonusText" />
+
+
+    <EditText
+        android:id="@+id/DexterityBonusValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="2"
+        android:gravity="center"
+        android:inputType="number"
+        android:enabled="false"
+        app:layout_constraintEnd_toStartOf="@+id/MaxDexterityBonusValue"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ShieldBonusValue"
+        app:layout_constraintTop_toBottomOf="@+id/DexterityBonusText" />
+
+    <TextView
+        android:id="@+id/MaxDexterityBonusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Max Dex\nMod"
+        app:layout_constraintEnd_toEndOf="@+id/MaxDexterityBonusValue"
+        app:layout_constraintStart_toStartOf="@+id/MaxDexterityBonusValue"
+        app:layout_constraintTop_toTopOf="@+id/DexterityBonusText" />
+
+
+    <EditText
+        android:id="@+id/MaxDexterityBonusValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="2"
+        android:gravity="center"
+        android:inputType="number"
+        android:enabled="false"
+        app:layout_constraintEnd_toStartOf="@+id/MiscBonusValue"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/DexterityBonusValue"
+        app:layout_constraintTop_toBottomOf="@+id/MaxDexterityBonusText" />
+
+    <TextView
+        android:id="@+id/MiscBonusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Misc\nBonus"
+        app:layout_constraintEnd_toEndOf="@+id/MiscBonusValue"
+        app:layout_constraintStart_toStartOf="@+id/MiscBonusValue"
+        app:layout_constraintTop_toTopOf="@+id/MaxDexterityBonusText" />
+
+
+    <EditText
+        android:id="@+id/MiscBonusValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="2"
+        android:gravity="center"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/MaxDexterityBonusValue"
+        app:layout_constraintTop_toBottomOf="@+id/MiscBonusText" />
+
+    <Spinner
+        android:id="@+id/ArmorTypeSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DexterityBonusValue" />
+
+    <Spinner
+        android:id="@+id/AdditionalStatBonusSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ArmorTypeSpinner" />
+
+    <Button
+        android:id="@+id/SaveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AdditionalStatBonusSpinner" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

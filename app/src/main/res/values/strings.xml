@@ -16,4 +16,21 @@
         <item>Charisma</item>
     </string-array>
 
+    <string-array name="ArmorTypeList">
+        <item>None</item>
+        <item>Light</item>
+        <item>Medium</item>
+        <item>Heavy</item>
+        <item>Custom</item>
+    </string-array>
+
+    <string-array name="StatsForArmorList">
+        <item>None</item>
+        <item>Strength</item>
+        <item>Constitution</item>
+        <item>Intelligence</item>
+        <item>Wisdom</item>
+        <item>Charisma</item>
+    </string-array>
+
 </resources>

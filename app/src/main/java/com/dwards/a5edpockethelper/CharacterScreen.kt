@@ -110,10 +110,14 @@ class CharacterScreen : Fragment() {
 
         //редактирование максимума здоровья
         binding.HPLayout.setOnClickListener {
-            //val maxHPSettingsDialog: MaxHPSettingsDialog = MaxHPSettingsDialog()
-            //maxHPSettingsDialog.show(parentFragmentManager, "MaxHPSettingsDialog")
             val currentHpSettingsDialog: CurrentHpSettingsDialog = CurrentHpSettingsDialog()
             currentHpSettingsDialog.show(parentFragmentManager, "MaxHPSettingsDialog")
+        }
+
+        //редактирование максимума здоровья
+        binding.ArmorLayout.setOnClickListener {
+            val armorSettingsDialog: ArmorSettingsDialog = ArmorSettingsDialog()
+            armorSettingsDialog.show(parentFragmentManager, "MaxHPSettingsDialog")
         }
 
         return view
@@ -182,7 +186,6 @@ class CharacterScreen : Fragment() {
             }
         }
 
-
         binding.InitiativeValue.text = viewModel.calcInitiative(viewModel.calcModifier(
             character.dexterity).toInt(),
             character.miscInitiativeBonus,
@@ -192,6 +195,13 @@ class CharacterScreen : Fragment() {
             character.initiativeAdditionalAbility,
             character.proficiency
         ).toString()
+
+        binding.ArmorValue.setText(viewModel.calcArmor(character.armorBonus,
+            character.shieldBonus,
+            character.maxDexterityBonus,
+            character.miscArmorBonus,
+            character.armorType,
+            character.statBonusArmor).toString())
 
     }
 

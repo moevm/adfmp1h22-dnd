@@ -44,6 +44,9 @@ data class Character(
     var armorBonus: Int = 10,
     var shieldBonus: Int = 0,
     var miscArmorBonus: Int = 0,
+    var armorType: Int = 2,
+    var statBonusArmor: Int = 0,
+    var maxDexterityBonus: Int = 0,
 
     var miscInitiativeBonus: Int = 0,
     var initiativeProf: Boolean = false,

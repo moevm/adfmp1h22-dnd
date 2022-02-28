@@ -225,6 +225,34 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
         pushToDB(updatedChar)
     }
 
+    fun changeCharactersArmor(armorBonus: Int, shieldBonus: Int, maxDex: Int, miscBonus: Int, armorType: Int, additionalStatBonus: Int){
+        val updatedChar = currentChar.value!!
+        updatedChar.armorBonus = armorBonus
+        updatedChar.shieldBonus = shieldBonus
+        updatedChar.miscArmorBonus = miscBonus
+        updatedChar.armorType = armorType
+        updatedChar.maxDexterityBonus = maxDex
+        updatedChar.statBonusArmor = additionalStatBonus
+
+        pushToDB(updatedChar)
+    }
+
+    fun calcArmor(armorBonus: Int, shieldBonus: Int, maxDex: Int, miscBonus: Int, armorType: Int, additionalStatBonus: Int): Int{
+        val updatedChar = currentChar.value!!
+        var sum: Int = armorBonus + shieldBonus
+        sum += miscBonus
+        if (maxDex < calcModifier(updatedChar.dexterity).toInt()) sum += maxDex else sum += calcModifier(updatedChar.dexterity).toInt()
+        when (additionalStatBonus){
+            0 -> 0
+            1 -> sum += calcModifier(updatedChar.strength).toInt()
+            2 -> sum += calcModifier(updatedChar.constitution).toInt()
+            3 -> sum += calcModifier(updatedChar.intelligence).toInt()
+            4 -> sum += calcModifier(updatedChar.wisdom).toInt()
+            5 -> sum += calcModifier(updatedChar.charisma).toInt()
+        }
+        return sum
+    }
+
 
 
 
