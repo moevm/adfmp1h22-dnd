@@ -153,6 +153,7 @@
             android:id="@+id/ArmorLayout"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_marginEnd="6dp"
             android:background="@drawable/back_20dp"
             android:backgroundTint="#e8e8e8"
             android:foreground="@drawable/corner_20_w2dp"
@@ -199,13 +200,85 @@
             android:background="@drawable/back_30dp"
             android:backgroundTint="#e8e8e8"
             android:foreground="@drawable/corner_30_w2dp"
-            android:foregroundTint="#940000"
+            android:foregroundTint="#242424"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/HitDiceLayout"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/ArmorLayout"
             app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/Check1"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/circle"
+                app:layout_constraintEnd_toStartOf="@+id/Check2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/DeathsSaveText"
+                app:tint="@color/check_green" />
+
+            <ImageView
+                android:id="@+id/Check2"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/circle"
+                app:layout_constraintEnd_toStartOf="@+id/Check3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/Check1"
+                app:layout_constraintTop_toBottomOf="@+id/DeathsSaveText"
+                app:tint="@color/check_green"/>
+
+            <ImageView
+                android:id="@+id/Check3"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/circle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/Check2"
+                app:layout_constraintTop_toBottomOf="@+id/DeathsSaveText"
+                app:tint="@color/check_green"/>
+
+            <ImageView
+                android:id="@+id/Cross1"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/circle"
+                app:layout_constraintEnd_toStartOf="@+id/Cross2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Check1"
+                app:tint="@color/cross_red"/>
+
+            <ImageView
+                android:id="@+id/Cross2"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/circle"
+                app:layout_constraintEnd_toStartOf="@+id/Cross3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/Cross1"
+                app:layout_constraintTop_toBottomOf="@+id/Check1"
+                app:tint="@color/cross_red"/>
+
+            <ImageView
+                android:id="@+id/Cross3"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/circle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/Cross2"
+                app:layout_constraintTop_toBottomOf="@+id/Check1"
+                app:tint="@color/cross_red"/>
 
             <TextView
                 android:id="@+id/DeathsSaveText"
@@ -226,6 +299,7 @@
             android:id="@+id/HPLayout"
             android:layout_width="90dp"
             android:layout_height="90dp"
+
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"
             android:background="@drawable/back_30dp"
@@ -269,6 +343,7 @@
             android:id="@+id/HitDiceLayout"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_marginStart="6dp"
             android:background="@drawable/back_20dp"
             android:backgroundTint="#e8e8e8"
             android:foreground="@drawable/corner_20_w2dp"

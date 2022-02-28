@@ -241,6 +241,52 @@ class CharacterScreen : Fragment() {
             binding.HPLayout.visibility = View.VISIBLE
             binding.DeathsSaveLayout.visibility = View.INVISIBLE
         }
+
+        when (character.passDeathSave){
+            0->{
+                binding.Check1.setImageResource(R.drawable.circle)
+                binding.Check2.setImageResource(R.drawable.circle)
+                binding.Check3.setImageResource(R.drawable.circle)
+            }
+            1->{
+                binding.Check1.setImageResource(R.drawable.check_mark)
+                binding.Check2.setImageResource(R.drawable.circle)
+                binding.Check3.setImageResource(R.drawable.circle)
+            }
+            2->{
+                binding.Check1.setImageResource(R.drawable.check_mark)
+                binding.Check2.setImageResource(R.drawable.check_mark)
+                binding.Check3.setImageResource(R.drawable.circle)
+            }
+            3->{
+                binding.Check1.setImageResource(R.drawable.check_mark)
+                binding.Check2.setImageResource(R.drawable.check_mark)
+                binding.Check3.setImageResource(R.drawable.check_mark)
+            }
+        }
+
+        when (character.failureDeathSave){
+            0->{
+                binding.Cross1.setImageResource(R.drawable.circle)
+                binding.Cross2.setImageResource(R.drawable.circle)
+                binding.Cross3.setImageResource(R.drawable.circle)
+            }
+            1->{
+                binding.Cross1.setImageResource(R.drawable.cross_mark)
+                binding.Cross2.setImageResource(R.drawable.circle)
+                binding.Cross3.setImageResource(R.drawable.circle)
+            }
+            2->{
+                binding.Cross1.setImageResource(R.drawable.cross_mark)
+                binding.Cross2.setImageResource(R.drawable.cross_mark)
+                binding.Cross3.setImageResource(R.drawable.circle)
+            }
+            3->{
+                binding.Cross1.setImageResource(R.drawable.cross_mark)
+                binding.Cross2.setImageResource(R.drawable.cross_mark)
+                binding.Cross3.setImageResource(R.drawable.cross_mark)
+            }
+        }
     }
 
 

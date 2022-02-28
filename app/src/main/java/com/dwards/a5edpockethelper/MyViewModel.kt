@@ -288,8 +288,10 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
     fun makeDeathSave(result: Boolean){
         val updatedChar = currentChar.value!!
         when (result){
-            true -> updatedChar.passDeathSave += 1
-            false -> updatedChar.failureDeathSave += 1
+            true -> if (updatedChar.passDeathSave < 3)
+                updatedChar.passDeathSave += 1
+            false -> if (updatedChar.failureDeathSave < 3)
+                updatedChar.failureDeathSave += 1
         }
         if (updatedChar.passDeathSave >= 3){
             stabilizeCharacter()
@@ -298,6 +300,13 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
             pushToDB(updatedChar)
     }
 
+    fun changeCharactersNameClassLevel(name: String, charclass: String, level: Int){
+        val updatedChar = currentChar.value!!
+        updatedChar.name = name
+        updatedChar.charClass = charclass
+        updatedChar.level = level
+        pushToDB(updatedChar)
+    }
 
 
 

@@ -12,7 +12,7 @@
         android:id="@+id/SwimCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Swin"
+        android:text="Swim"
         app:layout_constraintEnd_toStartOf="@+id/ClimbCheck"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/FlyCheck"

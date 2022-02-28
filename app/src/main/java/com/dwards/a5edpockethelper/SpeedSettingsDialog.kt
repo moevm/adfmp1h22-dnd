@@ -38,7 +38,7 @@ class SpeedSettingsDialog : DialogFragment() {
             }
         })
         //вылет если не выбрать персонажа
-        switchSpeed(viewModel.getCharacter().value!!, speedType)
+        //switchSpeed(viewModel.getCharacter().value!!, speedType)
 
         binding.WalkCheck.setOnClickListener{
             speedType = changeChosenSpeed(1)
@@ -106,35 +106,38 @@ class SpeedSettingsDialog : DialogFragment() {
                 binding.SpeedBaseValue.setText(character.baseWalkSpeed.toString())
                 binding.SpeedMiscBonusValue.setText(character.miscWalkSpeedBonus.toString())
                 binding.SpeedText.text = "Speed"
+                binding.WalkCheck.isChecked = true
             }
             "Fly" -> {
                 binding.SpeedBaseValue.setText(character.baseFlySpeed.toString())
                 binding.SpeedMiscBonusValue.setText(character.miscFlySpeedBonus.toString())
                 binding.SpeedText.text = character.chosenSpeed
+                binding.FlyCheck.isChecked = true
             }
             "Swim" -> {
                 binding.SpeedBaseValue.setText(character.baseSwimSpeed.toString())
                 binding.SpeedMiscBonusValue.setText(character.miscSwimSpeedBonus.toString())
                 binding.SpeedText.text = character.chosenSpeed
+                binding.SwimCheck.isChecked = true
             }
             "Climb" -> {
                 binding.SpeedBaseValue.setText(character.baseClimbSpeed.toString())
                 binding.SpeedMiscBonusValue.setText(character.miscClimbSpeedBonus.toString())
                 binding.SpeedText.text = character.chosenSpeed
+                binding.ClimbCheck.isChecked = true
             }
             else -> {
                 binding.SpeedBaseValue.setText(character.baseWalkSpeed.toString())
                 binding.SpeedMiscBonusValue.setText(character.miscWalkSpeedBonus.toString())
                 binding.SpeedText.text = "Speed"
+                binding.WalkCheck.isChecked = true
             }
         }
     }
 
     private fun switchSpeed(character: Character, type: String) {
         when(type){
-
             "Walk" -> {
-                val test: Int = character.baseWalkSpeed
                 binding.SpeedBaseValue.setText(character.baseWalkSpeed.toString())
                 binding.SpeedMiscBonusValue.setText(character.miscWalkSpeedBonus.toString())
                 binding.SpeedText.text = "Speed"
@@ -178,7 +181,7 @@ class SpeedSettingsDialog : DialogFragment() {
         }
     }
 
-    fun changeChosenSpeed(type: Int) = when (type){
+    private fun changeChosenSpeed(type: Int) = when (type){
         1 ->  "Walk"
         2 ->  "Fly"
         3 ->  "Swim"

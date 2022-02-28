@@ -57,8 +57,8 @@ class CharacterListAdapter(charArrayList: List<Character?>, private val listener
 
 
         fun bind(character: Character?) {
-            itemBinding.characterName.text = (character?.name +',')
-            itemBinding.characterClass.text = character?.charClass
+            itemBinding.characterName.text = (character?.name + ", ")
+            itemBinding.characterClass.text = character?.charClass + " "
             itemBinding.characterLevel.text = "${character?.level}"
             characterId = character?.id!!
         }
