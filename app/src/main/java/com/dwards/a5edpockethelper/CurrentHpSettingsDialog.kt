@@ -2,6 +2,8 @@ package com.dwards.a5edpockethelper
 
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,6 +45,7 @@ class CurrentHpSettingsDialog : DialogFragment() {
             }
         })
 
+        binding.MinusButton.isEnabled = false
         binding.DamageCheck.isChecked = true
 
         binding.DamageCheck.setOnClickListener{
@@ -50,10 +53,6 @@ class CurrentHpSettingsDialog : DialogFragment() {
             binding.HealCheck.isChecked = false
             binding.TempHPCheck.isChecked = false
             changeMode = 1
-
-            //damageMode = true
-            //healMode = false
-            //tempHPMode = false
         }
 
         binding.HealCheck.setOnClickListener{
@@ -61,10 +60,6 @@ class CurrentHpSettingsDialog : DialogFragment() {
             binding.HealCheck.isChecked = true
             binding.TempHPCheck.isChecked = false
             changeMode = 2
-
-            //damageMode = false
-            //healMode = true
-            //tempHPMode = false
         }
 
         binding.TempHPCheck.setOnClickListener{
@@ -72,25 +67,36 @@ class CurrentHpSettingsDialog : DialogFragment() {
             binding.HealCheck.isChecked = false
             binding.TempHPCheck.isChecked = true
             changeMode = 3
-
-            //damageMode = false
-            //healMode = false
-            //tempHPMode = true
         }
+
+        binding.ChangeHPValue.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                changeHP = if (binding.ChangeHPValue.text.toString() != "") binding.ChangeHPValue.text.toString().toInt() else 0
+                binding.MinusButton.isEnabled = changeHP!=0
+            }
+            override fun afterTextChanged(s: Editable?) {
+            }
+        })
 
         binding.PlusButton.setOnClickListener{
             changeHP += 1
+            //закрываем кнопку -, если 0
+            binding.MinusButton.isEnabled = changeHP!=0
             binding.ChangeHPValue.setText(changeHP.toString())
         }
 
         binding.MinusButton.setOnClickListener{
             if (changeHP>0)
             changeHP -= 1
+            //закрываем кнопку -, если 0
+            binding.MinusButton.isEnabled = changeHP!=0
             binding.ChangeHPValue.setText(changeHP.toString())
         }
 
         binding.SaveButton.setOnClickListener {
-            changeHP = binding.ChangeHPValue.text.toString().toInt()
+            //changeHP = binding.ChangeHPValue.text.toString().toInt()
             viewModel.changeCharactersCurrentHP(if (changeHP > 0) changeHP else 0, changeMode)
             dismiss()
         }
@@ -119,8 +125,8 @@ class CurrentHpSettingsDialog : DialogFragment() {
 
 
     private fun refreshChar(character: Character) {
-        binding.HPValue.text = (character.currentHP+character.TempHP).toString()
-        if(character.TempHP > 0)
+        binding.HPValue.text = (character.currentHP+character.tempHP).toString()
+        if(character.tempHP > 0)
             binding.HPValue.setTextColor(Color.parseColor("#2f00ba"))
         else
             binding.HPValue.setTextColor(Color.parseColor("#000000"))

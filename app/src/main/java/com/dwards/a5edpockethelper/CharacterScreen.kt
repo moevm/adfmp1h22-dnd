@@ -114,10 +114,31 @@ class CharacterScreen : Fragment() {
             currentHpSettingsDialog.show(parentFragmentManager, "MaxHPSettingsDialog")
         }
 
-        //редактирование максимума здоровья
-        binding.ArmorLayout.setOnClickListener {
+        //редактирование Брони
+        binding.ArmorLayout.setOnLongClickListener {
             val armorSettingsDialog: ArmorSettingsDialog = ArmorSettingsDialog()
             armorSettingsDialog.show(parentFragmentManager, "MaxHPSettingsDialog")
+            return@setOnLongClickListener true
+        }
+
+        //редактирование кастом блоков
+        binding.CustomTableLayout.setOnLongClickListener {
+            val customBlockSettingsDialog: CustomBlockSettingsDialog = CustomBlockSettingsDialog()
+            customBlockSettingsDialog.show(parentFragmentManager, "MaxHPSettingsDialog")
+            return@setOnLongClickListener true
+        }
+
+        //стабилизировать персонажа
+        binding.DeathsSaveLayout.setOnLongClickListener {
+            val stabilizeSettingsDialog: StabilizeSettingsDialog = StabilizeSettingsDialog()
+            stabilizeSettingsDialog.show(parentFragmentManager, "MaxHPSettingsDialog")
+            return@setOnLongClickListener true
+        }
+
+        //спасбросок от смерти
+        binding.DeathsSaveLayout.setOnClickListener {
+            val deathSavesDialog: DeathSavesDialog = DeathSavesDialog()
+            deathSavesDialog.show(parentFragmentManager, "MaxHPSettingsDialog")
         }
 
         return view
@@ -161,8 +182,8 @@ class CharacterScreen : Fragment() {
         binding.CharismaSaveValue.text = viewModel.calcSave(character.charisma, character.charismaSaveProf, character.charismaSaveMisc)
 
         binding.HitDiceValue.text = (character.hitDiceCount.toString() + "d" + character.hitDiceSize.toString())
-        binding.HPValue.text = (character.currentHP+character.TempHP).toString()
-        if(character.TempHP > 0)
+        binding.HPValue.text = (character.currentHP+character.tempHP).toString()
+        if(character.tempHP > 0)
             binding.HPValue.setTextColor(Color.parseColor("#2f00ba"))
         else
             binding.HPValue.setTextColor(Color.parseColor("#000000"))
@@ -203,6 +224,23 @@ class CharacterScreen : Fragment() {
             character.armorType,
             character.statBonusArmor).toString())
 
+        binding.CustomBlock1Text.text = character.customBlock1Name
+        binding.CustomBlock1ScoreValue.text = character.customBlock1Value
+        binding.CustomBlock2Text.text = character.customBlock2Name
+        binding.CustomBlock2ScoreValue.text = character.customBlock2Value
+        binding.CustomBlock3Text.text = character.customBlock3Name
+        binding.CustomBlock3ScoreValue.text = character.customBlock3Value
+        binding.CustomBlock4Text.text = character.customBlock4Name
+        binding.CustomBlock4ScoreValue.text = character.customBlock4Value
+
+        if (character.currentHP <= 0){
+            binding.HPLayout.visibility = View.INVISIBLE
+            binding.DeathsSaveLayout.visibility = View.VISIBLE
+        }
+        else {
+            binding.HPLayout.visibility = View.VISIBLE
+            binding.DeathsSaveLayout.visibility = View.INVISIBLE
+        }
     }
 
 

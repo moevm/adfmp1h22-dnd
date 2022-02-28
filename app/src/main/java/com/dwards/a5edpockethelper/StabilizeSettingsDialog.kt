@@ -1,7 +1,5 @@
 package com.dwards.a5edpockethelper
 
-import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.dwards.a5edpockethelper.databinding.MaxhpSettingsDialogBinding
+import com.dwards.a5edpockethelper.databinding.StabilizeSettingsDialogBinding
 import com.dwards.a5edpockethelper.model.Character
 
-class MaxHPSettingsDialog : DialogFragment() {
+class StabilizeSettingsDialog : DialogFragment() {
 
-    private var _binding: MaxhpSettingsDialogBinding? = null
+    private var _binding: StabilizeSettingsDialogBinding? = null
     private val binding get() = _binding!!
 
     private val TAG = "MyCustomDialog"
@@ -28,20 +26,19 @@ class MaxHPSettingsDialog : DialogFragment() {
     ): View? {
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner);
 
-        _binding = MaxhpSettingsDialogBinding.inflate(inflater, container, false)
+        _binding = StabilizeSettingsDialogBinding.inflate(inflater, container, false)
         val view = binding.root
 
         //создание вью-модел и добавление обсервера
         val viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
-        viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
-            it?.let {
-                refreshChar(it)
-            }
-        })
+        binding.StabilizeButton.setOnClickListener {
+            viewModel.stabilizeCharacter()
+            dismiss()
+        }
 
-        binding.SaveButton.setOnClickListener {
-            viewModel.changeCharactersMaxHP(if (binding.MaxHPValue.text.toString() != "") binding.MaxHPValue.text.toString().toInt() else 0)
+
+        binding.CancelButton.setOnClickListener {
             dismiss()
         }
 
@@ -67,12 +64,4 @@ class MaxHPSettingsDialog : DialogFragment() {
         _binding = null
     }
 
-    private fun refreshChar(character: Character) {
-        binding.MaxHPValue.setText(character.maxHP.toString())
-        if(character.tempHP > 0)
-            binding.HPValue.setTextColor(Color.parseColor("#2f00ba"))
-        else
-            binding.HPValue.setTextColor(Color.parseColor("#000000"))
-        binding.HPValue.text = (character.currentHP+character.tempHP).toString()
-    }
 }

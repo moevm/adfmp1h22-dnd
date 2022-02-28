@@ -16,7 +16,10 @@ data class Character(
 
     var maxHP: Int = 10,
     var currentHP: Int = 10,
-    var TempHP: Int = 0,
+    var tempHP: Int = 0,
+
+    var passDeathSave: Int = 0,
+    var failureDeathSave: Int = 0,
     //stats
     var strength: Int = 0,
     var dexterity: Int = 0,
@@ -46,7 +49,7 @@ data class Character(
     var miscArmorBonus: Int = 0,
     var armorType: Int = 2,
     var statBonusArmor: Int = 0,
-    var maxDexterityBonus: Int = 0,
+    var maxDexterityBonus: Int = 2,
 
     var miscInitiativeBonus: Int = 0,
     var initiativeProf: Boolean = false,
@@ -69,5 +72,14 @@ data class Character(
     var miscBurrowSpeedBonus: Int = 0,
     var baseClimbSpeed: Int = 0,
     var miscClimbSpeedBonus: Int = 0,
+
+    var customBlock1Name: String = "CustomBlock1",
+    var customBlock1Value: String = "0",
+    var customBlock2Name: String = "CustomBlock2",
+    var customBlock2Value: String = "0",
+    var customBlock3Name: String = "CustomBlock3",
+    var customBlock3Value: String = "0",
+    var customBlock4Name: String = "CustomBlock4",
+    var customBlock4Value: String = "0",
 
 )

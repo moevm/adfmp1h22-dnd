@@ -166,25 +166,28 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
         val updatedChar = currentChar.value!!
         when (mode){
             //дамаг
-            1 -> if (updatedChar.currentHP+updatedChar.TempHP - changeHP > 0){
+            1 -> if (updatedChar.currentHP+updatedChar.tempHP - changeHP > 0){
                 //если есть темп хп
-                if (updatedChar.TempHP != 0){
+                if (updatedChar.tempHP != 0){
                     //если урон больше хп, уменьшаем урон, иначе урон 0
-                    if (changeHP > updatedChar.TempHP) {
-                        changeHP -= updatedChar.TempHP
-                        updatedChar.TempHP = 0
+                    if (changeHP > updatedChar.tempHP) {
+                        changeHP -= updatedChar.tempHP
+                        updatedChar.tempHP = 0
                     }
                     else {
-                        updatedChar.TempHP -= changeHP
+                        updatedChar.tempHP -= changeHP
                         changeHP = 0
                     }
 
                 }
                 updatedChar.currentHP -= changeHP
             }
-            else updatedChar.currentHP = 0
+            else {
+                updatedChar.currentHP = 0
+                updatedChar.tempHP = 0
+            }
             2 -> if (updatedChar.currentHP + changeHP < updatedChar.maxHP) updatedChar.currentHP += changeHP else updatedChar.currentHP = updatedChar.maxHP
-            3 -> if (updatedChar.TempHP < changeHP) updatedChar.TempHP = changeHP else 0
+            3 -> if (updatedChar.tempHP < changeHP) updatedChar.tempHP = changeHP else 0
         }
         pushToDB(updatedChar)
         fetchData(updatedChar.id!!)
@@ -237,6 +240,24 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
         pushToDB(updatedChar)
     }
 
+    fun changeCharactersCustomBlock(customBlock1Value: String, customBlock1Text: String,
+                                    customBlock2Value: String, customBlock2Text: String,
+                                    customBlock3Value: String, customBlock3Text: String,
+                                    customBlock4Value: String, customBlock4Text: String){
+        val updatedChar = currentChar.value!!
+        updatedChar.customBlock1Name = customBlock1Text
+        updatedChar.customBlock1Value = customBlock1Value
+        updatedChar.customBlock2Name = customBlock2Text
+        updatedChar.customBlock2Value = customBlock2Value
+        updatedChar.customBlock3Name = customBlock3Text
+        updatedChar.customBlock3Value = customBlock3Value
+        updatedChar.customBlock4Name = customBlock4Text
+        updatedChar.customBlock4Value = customBlock4Value
+
+        pushToDB(updatedChar)
+    }
+
+
     fun calcArmor(armorBonus: Int, shieldBonus: Int, maxDex: Int, miscBonus: Int, armorType: Int, additionalStatBonus: Int): Int{
         val updatedChar = currentChar.value!!
         var sum: Int = armorBonus + shieldBonus
@@ -251,6 +272,30 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
             5 -> sum += calcModifier(updatedChar.charisma).toInt()
         }
         return sum
+    }
+
+    fun stabilizeCharacter(){
+        val updatedChar = currentChar.value!!
+        if(updatedChar.maxHP < 1)
+            updatedChar.maxHP = 1
+        updatedChar.currentHP = 1
+        updatedChar.failureDeathSave = 0
+        updatedChar.passDeathSave = 0
+
+        pushToDB(updatedChar)
+    }
+
+    fun makeDeathSave(result: Boolean){
+        val updatedChar = currentChar.value!!
+        when (result){
+            true -> updatedChar.passDeathSave += 1
+            false -> updatedChar.failureDeathSave += 1
+        }
+        if (updatedChar.passDeathSave >= 3){
+            stabilizeCharacter()
+        }
+        else
+            pushToDB(updatedChar)
     }
 
 
