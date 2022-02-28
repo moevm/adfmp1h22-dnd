@@ -7,7 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.dwards.a5edpockethelper.model.Character
 
 class ViewPageAdapter(fragment: FragmentActivity) : FragmentStateAdapter(fragment) {
-    override fun getItemCount(): Int = 3
+    override fun getItemCount(): Int = 5
 
     override fun createFragment(position: Int): Fragment {
 
@@ -20,6 +20,12 @@ class ViewPageAdapter(fragment: FragmentActivity) : FragmentStateAdapter(fragmen
             }
             2 -> {
                 return CharacterWeapon()
+            }
+            3 -> {
+                return CharacterSpell()
+            }
+            4 -> {
+                return CharacterInventory()
             }
             else ->{
                 return CharacterScreen()
