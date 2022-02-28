@@ -229,6 +229,11 @@ class CharacterSkills : Fragment() {
             toolsProficiencyListDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
         }
 
+        binding.LanguageProficiencyLayout.setOnClickListener {
+            val languageProficiencyListDialog: LanguageProficiencyList = LanguageProficiencyList()
+            languageProficiencyListDialog.show(parentFragmentManager, "LanguageSettingsDialog")
+        }
+
         return view
     }
 

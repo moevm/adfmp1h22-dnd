@@ -20,7 +20,15 @@
         android:label="fragment_character_skills"
         tools:layout="@layout/fragment_character_skills" >
         <action
-            android:id="@+id/action_characterSkills_to_characterScreen"
+            android:id="@+id/action_characterSkills_to_characterWeapon"
+            app:destination="@id/characterWeapon" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterWeapon"
+        android:name="com.dwards.a5edpockethelper.CharacterWeapon"
+        android:label="CharacterWeapon" >
+        <action
+            android:id="@+id/action_characterWeapon_to_characterScreen"
             app:destination="@id/characterScreen" />
     </fragment>
 </navigation>

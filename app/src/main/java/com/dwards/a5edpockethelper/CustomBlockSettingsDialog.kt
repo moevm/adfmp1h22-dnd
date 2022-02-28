@@ -54,7 +54,7 @@ class CustomBlockSettingsDialog : DialogFragment() {
                 var num = match?.range?.start?.let {customBlock1Value.substring(0, it)}
                 if(num != ""){
                     customBlock1Value =customBlock1Value.drop(num?.length!!)
-                    num = (num?.toInt()?.plus(1)).toString()
+                    num = (num.toInt().plus(1)).toString()
                     customBlock1Value = num.plus(customBlock1Value)
                 }
             }

@@ -65,6 +65,8 @@
     <string name="performance">Performance</string>
     <string name="persuasion">Persuasion</string>
     <string name="save_button_text">Save</string>
+    <string name="tools_proficiency">Tools Proficiency</string>
+    <string name="language_proficiency">Language Proficiency</string>
 
 
 </resources>

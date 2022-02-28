@@ -462,7 +462,23 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
         pushToDB(updatedChar)
     }
 
+    fun deleteLanguageProficiency(id: Int){
+        val updatedChar = currentChar.value!!
+        updatedChar.languageProficiencyList.removeAt(id)
+        pushToDB(updatedChar)
+    }
 
+    fun addLanguageProficiency(){
+        val updatedChar = currentChar.value!!
+        updatedChar.languageProficiencyList.add("Name")
+        pushToDB(updatedChar)
+    }
+
+    fun changeLanguageProficiency(num: Int, value: String){
+        val updatedChar = currentChar.value!!
+        updatedChar.languageProficiencyList[num] = value
+        pushToDB(updatedChar)
+    }
 
     private fun pushToDB(updatedChar: Character){
         viewModelScope.launch{

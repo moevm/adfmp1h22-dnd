@@ -211,7 +211,6 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
     }
 
     private fun refreshArmor(){
-        val text: String = binding.ArmorBonusValue.text.toString()
         binding.ArmorValue.text = viewModel.calcArmor(if (binding.ArmorBonusValue.text.toString() != "") binding.ArmorBonusValue.text.toString().toInt() else 0,
             if (binding.ShieldBonusValue.text.toString() != "") binding.ShieldBonusValue.text.toString().toInt() else 0,
             if (binding.MaxDexterityBonusValue.text.toString() != "") binding.MaxDexterityBonusValue.text.toString().toInt() else 0,

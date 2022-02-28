@@ -68,28 +68,19 @@ class MainActivity : AppCompatActivity() {
                     val view1: View = layoutInflater.inflate(R.layout.custom_tab, null)
                     view1.findViewById<View>(R.id.icon).setBackgroundResource(R.drawable.ic_character)
                     tab.customView = view1
-                    //tab.setIcon(R.drawable.ic_character)
                 }
                 1 -> {
                     val view2: View = layoutInflater.inflate(R.layout.custom_tab, null)
                     view2.findViewById<View>(R.id.icon).setBackgroundResource(R.drawable.ic_skills)
                     tab.customView = view2
-                    //tab.setIcon(R.drawable.ic_skills)
+                }
+                2 -> {
+                    val view3: View = layoutInflater.inflate(R.layout.custom_tab, null)
+                    view3.findViewById<View>(R.id.icon).setBackgroundResource(R.drawable.ic_weapon)
+                    tab.customView = view3
                 }
             }
         }.attach()
-
-
-        //val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_graph) as NavHostFragment
-        //navController = navHostFragment.navController
-        //navController = Navigation.findNavController(this, R.id.nav_graph);
-        //val navController = this.findNavController(R.id.navigationHost)
-
-        //navController = Navigation.findNavController(this, R.id.navigationHost)
-
-        //setupBottomNavMenu(navController)
-        //setupSideNavigationMenu(navController)
-        //setupActionBar(navController)
 
         val toolbar = binding.topAppBar
 

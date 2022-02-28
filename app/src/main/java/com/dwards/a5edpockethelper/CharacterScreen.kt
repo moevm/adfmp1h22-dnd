@@ -7,7 +7,6 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import com.dwards.a5edpockethelper.databinding.FragmentCharacterScreenBinding
 import com.dwards.a5edpockethelper.model.Character
 

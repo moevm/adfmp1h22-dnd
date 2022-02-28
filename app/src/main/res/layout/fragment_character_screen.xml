@@ -1089,26 +1089,14 @@
                 app:layout_constraintRight_toRightOf="@+id/CharismaScoreText"
                 app:layout_constraintTop_toBottomOf="@+id/CharismaScoreText"
                 app:layout_constraintVertical_bias="1.0" />
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:constraint_referenced_ids="IntelligenceLayout" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/CustomTableLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:background="@drawable/back_10dp"
         android:backgroundTint="#A8CBDE"
         android:foreground="@drawable/corner_10_w2dp"
@@ -1299,10 +1287,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

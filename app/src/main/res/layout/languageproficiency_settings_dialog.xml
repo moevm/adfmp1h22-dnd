@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="@string/tools_proficiency"
+        android:text="@string/language_proficiency"
         android:textColor="@color/black"
         android:textSize="@dimen/HP_text_size"
         app:layout_constraintEnd_toEndOf="parent"
