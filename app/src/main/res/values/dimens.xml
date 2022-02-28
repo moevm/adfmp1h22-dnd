@@ -40,6 +40,11 @@
             <dimen name="SpdInitProf_number_size">16sp</dimen>
             <dimen name="Prof_number_size">26sp</dimen>
 
+    <!--Skills Table-->
+        <dimen name="Skills_text_size">18sp</dimen>
+        <dimen name="Stats_text_size">16sp</dimen>
+
+
     <dimen name="design_navigation_icon_size" tools:override="true">40dp</dimen>
 
 
