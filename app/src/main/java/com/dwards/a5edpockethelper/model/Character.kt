@@ -50,7 +50,8 @@ data class Character(
     var hitDiceCount: Int = 0,
     var hitDiceSize: Int = 0,
 
-    var baseWalkSpeed: Int = 0,
+    var chosenSpeed: String = "Walk",
+    var baseWalkSpeed: Int = 30,
     var miscWalkSpeedBonus: Int = 0,
     var baseFlySpeed: Int = 0,
     var miscFlySpeedBonus: Int = 0,

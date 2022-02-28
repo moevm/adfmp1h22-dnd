@@ -147,7 +147,77 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
         fetchData(updatedChar.id!!)
     }
 
-    fun intToBoolean(b: Int): Boolean {
+    fun changeCharactersSpeed(speed: Int, miscBonus: Int){
+        val updatedChar = currentChar.value!!
+        when(updatedChar.chosenSpeed){
+            "Walk" -> {
+                updatedChar.baseWalkSpeed = speed
+                updatedChar.miscWalkSpeedBonus = miscBonus
+            }
+            "Fly" -> {
+                updatedChar.baseFlySpeed = speed
+                updatedChar.miscFlySpeedBonus = miscBonus
+            }
+            "Swim" -> {
+                updatedChar.baseSwimSpeed = speed
+                updatedChar.miscSwimSpeedBonus = miscBonus
+            }
+            "Climb" -> {
+                updatedChar.baseClimbSpeed = speed
+                updatedChar.miscClimbSpeedBonus = miscBonus
+            }
+        }
+        viewModelScope.launch{
+            characterDao.updateChar(updatedChar)
+        }
+        fetchData(updatedChar.id!!)
+    }
+
+    fun changeChosenSpeed(type: Int){
+        val updatedChar = currentChar.value!!
+        when(type){
+            1 -> updatedChar.chosenSpeed = "Walk"
+            2 -> updatedChar.chosenSpeed = "Fly"
+            3 -> updatedChar.chosenSpeed = "Swim"
+            4 -> updatedChar.chosenSpeed = "Climb"
+        }
+    }
+
+    fun calcSave(value: Int, saveProf: Boolean, misc: Int): String{
+        var sum: Int = calcModifier(value).toInt()
+        if (saveProf)
+            sum+=currentChar.value?.proficiency!!
+            sum+= misc
+        return if (sum>0)
+            "+$sum"
+        else
+            "$sum"
+    }
+
+    fun calcModifier(value: Int) = when (value) {
+            1, 2 -> "-4"
+            3, 4 -> "-3"
+            5, 6 -> "-2"
+            7, 8 -> "-1"
+            9, 10 -> "0"
+            11, 12 -> "+1"
+            13, 14 -> "+2"
+            15, 16 -> "+3"
+            17, 18 -> "+4"
+            19, 20 -> "+5"
+            21, 22 -> "+6"
+            23, 24 -> "+7"
+            25, 26 -> "+8"
+            27, 28 -> "+9"
+            29, 30 -> "+10"
+            else -> "0"
+    }
+
+    fun calcSpeed(base: Int, misc: Int): Int{
+        return base+misc
+    }
+
+    private fun intToBoolean(b: Int): Boolean {
         return b == 1
     }
 

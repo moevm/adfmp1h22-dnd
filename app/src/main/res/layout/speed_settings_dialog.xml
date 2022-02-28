@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_place"
+    android:layout_width="300dp"
+    android:layout_height="400dp"
+    android:layout_marginTop="200dp"
+    tools:context=".MainActivity">
+
+    <RadioButton
+        android:id="@+id/SwimCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Swin"
+        app:layout_constraintEnd_toStartOf="@+id/ClimbCheck"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/FlyCheck"
+        app:layout_constraintTop_toTopOf="@+id/FlyCheck" />
+
+    <RadioButton
+        android:id="@+id/ClimbCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Climb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/SwimCheck"
+        app:layout_constraintTop_toTopOf="@+id/SwimCheck" />
+
+    <TextView
+        android:id="@+id/SpeedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Speed"
+        android:textSize="@dimen/HP_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/SpeedMiscBonusValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="4"
+        android:gravity="center"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/SpeedBaseValue"
+        app:layout_constraintTop_toBottomOf="@+id/SpeedMiscBonusText" />
+
+    <TextView
+        android:id="@+id/SpeedMiscBonusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Misc\nBonus"
+        app:layout_constraintEnd_toEndOf="@+id/SpeedMiscBonusValue"
+        app:layout_constraintStart_toStartOf="@+id/SpeedMiscBonusValue"
+        app:layout_constraintTop_toBottomOf="@+id/SpeedText" />
+
+    <TextView
+        android:id="@+id/SpeedBaseText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Base\nSpeed"
+        app:layout_constraintEnd_toEndOf="@+id/SpeedBaseValue"
+        app:layout_constraintStart_toStartOf="@+id/SpeedBaseValue"
+        app:layout_constraintTop_toBottomOf="@+id/SpeedText" />
+
+    <EditText
+        android:id="@+id/SpeedBaseValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="4"
+        android:gravity="center"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/SpeedMiscBonusValue"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SpeedBaseText" />
+
+
+    <Button
+        android:id="@+id/SaveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SwimCheck" />
+
+    <RadioButton
+        android:id="@+id/WalkCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Walk"
+        app:layout_constraintEnd_toStartOf="@+id/FlyCheck"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SpeedBaseValue" />
+
+    <RadioButton
+        android:id="@+id/FlyCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fly"
+        app:layout_constraintEnd_toStartOf="@+id/SwimCheck"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/WalkCheck"
+        app:layout_constraintTop_toTopOf="@+id/WalkCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

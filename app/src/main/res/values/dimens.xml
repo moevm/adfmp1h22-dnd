@@ -36,9 +36,9 @@
         <dimen name="InitSpeedProf_block_width">105dp</dimen>
         <dimen name="InitSpeedProf_block_height">56dp</dimen>
 
-            <dimen name="SpeedInit_number_size">28sp</dimen>
+            <dimen name="SpeedInit_number_size">26sp</dimen>
             <dimen name="SpdInitProf_number_size">16sp</dimen>
-            <dimen name="Prof_number_size">28sp</dimen>
+            <dimen name="Prof_number_size">26sp</dimen>
 
 
 

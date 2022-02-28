@@ -74,6 +74,13 @@ class CharacterScreen : Fragment() {
             return@setOnLongClickListener true
         }
 
+        //редактирование скорости
+        binding.SpeedLayout.setOnLongClickListener {
+
+            val speedSettingsDialog: SpeedSettingsDialog = SpeedSettingsDialog()
+            speedSettingsDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
+            return@setOnLongClickListener true
+        }
         return view
     }
 
@@ -89,13 +96,48 @@ class CharacterScreen : Fragment() {
 
 
     private fun refreshChar(character: Character) {
+        val viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
         binding.StrengthScoreValue.text = "${character.strength}"
         binding.DexterityScoreValue.text = "${character.dexterity}"
         binding.ConstitutionScoreValue.text = "${character.constitution}"
         binding.IntelligenceScoreValue.text = "${character.intelligence}"
         binding.WisdomScoreValue.text = "${character.wisdom}"
         binding.CharismaScoreValue.text = "${character.charisma}"
+
         binding.ProficiencyValue.text = ("+" + character.proficiency.toString())
+
+        binding.StrengthModifierValue.text = viewModel.calcModifier(character.strength)
+        binding.DexterityModifierValue.text = viewModel.calcModifier(character.dexterity)
+        binding.ConstitutionModifierValue.text = viewModel.calcModifier(character.constitution)
+        binding.IntelligenceModifierValue.text = viewModel.calcModifier(character.intelligence)
+        binding.WisdomModifierValue.text = viewModel.calcModifier(character.wisdom)
+        binding.CharismaModifierValue.text = viewModel.calcModifier(character.charisma)
+
+        binding.StrengthSaveValue.text = viewModel.calcSave(character.strength, character.strengthSaveProf, character.strengthSaveMisc)
+        binding.DexteritySaveValue.text = viewModel.calcSave(character.dexterity, character.dexteritySaveProf, character.dexteritySaveMisc)
+        binding.ConstitutionSaveValue.text = viewModel.calcSave(character.constitution, character.constitutionSaveProf, character.constitutionSaveMisc)
+        binding.IntelligenceSaveValue.text = viewModel.calcSave(character.intelligence, character.intelligenceSaveProf, character.intelligenceSaveMisc)
+        binding.WisdomSaveValue.text = viewModel.calcSave(character.wisdom, character.wisdomSaveProf, character.wisdomSaveMisc)
+        binding.CharismaSaveValue.text = viewModel.calcSave(character.charisma, character.charismaSaveProf, character.charismaSaveMisc)
+
+        when(character.chosenSpeed){
+            "Walk" -> {
+                binding.SpeedValue.text = (character.baseWalkSpeed+character.miscWalkSpeedBonus).toString()
+                binding.SpeedText.text = "Speed"
+            }
+            "Fly" -> {
+                binding.SpeedValue.text = (character.baseFlySpeed+character.miscFlySpeedBonus).toString()
+                binding.SpeedText.text = character.chosenSpeed
+            }
+            "Swim" -> {
+                binding.SpeedValue.text = (character.baseSwimSpeed+character.miscSwimSpeedBonus).toString()
+                binding.SpeedText.text = character.chosenSpeed
+            }
+            "Climb" -> {
+                binding.SpeedValue.text = (character.baseClimbSpeed+character.miscClimbSpeedBonus).toString()
+                binding.SpeedText.text = character.chosenSpeed
+            }
+        }
     }
 
 

@@ -19,13 +19,6 @@ class ProficiencySettingsDialog : DialogFragment() {
 
 
 
-
-    //override fun onAttach(context: Context) {
-    //    super.onAttach(context)
-    //    OnStatChange = targetFragment as StatChange
-    // }
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

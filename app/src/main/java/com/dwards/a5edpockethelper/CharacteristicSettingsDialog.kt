@@ -55,7 +55,7 @@ class CharacteristicSettingsDialog : DialogFragment() {
     override fun onStart() {
         super.onStart()
         val width = (resources.displayMetrics.widthPixels * 0.85).toInt()
-        val height = (resources.displayMetrics.heightPixels * 0.70).toInt()
+        val height = (resources.displayMetrics.heightPixels * 0.65).toInt()
         dialog!!.window?.setLayout(width, height)
 
 
