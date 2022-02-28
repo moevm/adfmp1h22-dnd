@@ -33,4 +33,37 @@
         <item>Charisma</item>
     </string-array>
 
+
+    <string name="strength">Str</string>
+    <string name="dexterity">Dex</string>
+    <string name="constitution">Con</string>
+    <string name="intelligence">Int</string>
+    <string name="wisdom">Wis</string>
+    <string name="charisma">Cha</string>
+
+    <string name="halfProf">Add Half Proficiency</string>
+    <string name="doubleProf">Add Double Proficiency</string>
+
+    <string name="athletic">Athletic</string>
+    <string name="acrobatics">Acrobatics</string>
+    <string name="sleightOfHand">Sleight of Hand</string>
+    <string name="stealth">Stealth</string>
+    <string name="arcana">Arcana</string>
+    <string name="history">History</string>
+
+    <string name="investigation">Investigation</string>
+    <string name="nature">Nature</string>
+    <string name="religion">Religion</string>
+    <string name="animalHandling">Animal Handling</string>
+    <string name="insight">Insight</string>
+    <string name="medicine">Medicine</string>
+
+    <string name="perception">Perception</string>
+    <string name="survival">Survival</string>
+    <string name="deception">Deception</string>
+    <string name="intimidation">Intimidation</string>
+    <string name="performance">Performance</string>
+    <string name="persuasion">Persuasion</string>
+
+
 </resources>

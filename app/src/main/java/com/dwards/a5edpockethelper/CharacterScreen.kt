@@ -167,7 +167,10 @@ class CharacterScreen : Fragment() {
         binding.WisdomScoreValue.text = "${character.wisdom}"
         binding.CharismaScoreValue.text = "${character.charisma}"
 
-        binding.ProficiencyValue.text = ("+" + character.proficiency.toString())
+            if (character.proficiency > 0) binding.ProficiencyValue.text = ("+" + character.proficiency.toString())
+            else binding.ProficiencyValue.text = (character.proficiency.toString())
+
+
 
         binding.StrengthModifierValue.text = viewModel.calcModifier(character.strength)
         binding.DexterityModifierValue.text = viewModel.calcModifier(character.dexterity)
@@ -219,12 +222,12 @@ class CharacterScreen : Fragment() {
             character.proficiency
         ).toString()
 
-        binding.ArmorValue.setText(viewModel.calcArmor(character.armorBonus,
+        binding.ArmorValue.text = viewModel.calcArmor(character.armorBonus,
             character.shieldBonus,
             character.maxDexterityBonus,
             character.miscArmorBonus,
             character.armorType,
-            character.statBonusArmor).toString())
+            character.statBonusArmor).toString()
 
         binding.CustomBlock1Text.text = character.customBlock1Name
         binding.CustomBlock1ScoreValue.text = character.customBlock1Value

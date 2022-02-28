@@ -300,11 +300,129 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
             pushToDB(updatedChar)
     }
 
-    fun changeCharactersNameClassLevel(name: String, charclass: String, level: Int){
+    fun changeCharactersNameClassLevel(name: String, charClass: String, level: Int){
         val updatedChar = currentChar.value!!
         updatedChar.name = name
-        updatedChar.charClass = charclass
+        updatedChar.charClass = charClass
         updatedChar.level = level
+        pushToDB(updatedChar)
+    }
+
+    fun changeCharactersSkill(skill: String, miscBonus: Int, prof: Boolean, halfProf: Boolean, doubleProf: Boolean){
+        val updatedChar = currentChar.value!!
+        when (skill) {
+            "Athletics" -> {
+                updatedChar.athleticsMiscBonus = miscBonus
+                updatedChar.athleticsProf = prof
+                updatedChar.athleticsHalfProf = halfProf
+                updatedChar.athleticsDoubleProf = doubleProf
+            }
+
+            "Acrobatics" -> {
+                updatedChar.acrobaticsMiscBonus = miscBonus
+                updatedChar.acrobaticsProf = prof
+                updatedChar.acrobaticsHalfProf = halfProf
+                updatedChar.acrobaticsDoubleProf = doubleProf
+            }
+
+            "Sleight of Hand" -> {
+                updatedChar.sleightOfHandMiscBonus = miscBonus
+                updatedChar.sleightOfHandProf = prof
+                updatedChar.sleightOfHandHalfProf = halfProf
+                updatedChar.sleightOfHandDoubleProf = doubleProf
+
+            }
+            "Stealth" -> {
+                updatedChar.stealthMiscBonus = miscBonus
+                updatedChar.stealthProf = prof
+                updatedChar.stealthHalfProf = halfProf
+                updatedChar.stealthDoubleProf = doubleProf
+            }
+            "Arcana" -> {
+                updatedChar.arcanaMiscBonus = miscBonus
+                updatedChar.arcanaProf = prof
+                updatedChar.arcanaHalfProf = halfProf
+                updatedChar.arcanaDoubleProf = doubleProf
+            }
+            "History" -> {
+                updatedChar.historyMiscBonus = miscBonus
+                updatedChar.historyProf = prof
+                updatedChar.historyHalfProf = halfProf
+                updatedChar.historyDoubleProf = doubleProf
+            }
+            "Investigation" -> {
+                updatedChar.investigationMiscBonus = miscBonus
+                updatedChar.investigationProf = prof
+                updatedChar.investigationHalfProf = halfProf
+                updatedChar.investigationDoubleProf = doubleProf
+            }
+            "Nature" -> {
+                updatedChar.natureMiscBonus = miscBonus
+                updatedChar.natureProf = prof
+                updatedChar.natureHalfProf = halfProf
+                updatedChar.natureDoubleProf = doubleProf
+            }
+            "Religion" -> {
+                updatedChar.religionMiscBonus = miscBonus
+                updatedChar.religionProf = prof
+                updatedChar.religionHalfProf = halfProf
+                updatedChar.religionDoubleProf = doubleProf
+            }
+            "Animal Handling" -> {
+                updatedChar.animalHandlingMiscBonus = miscBonus
+                updatedChar.animalHandlingProf = prof
+                updatedChar.animalHandlingHalfProf = halfProf
+                updatedChar.animalHandlingDoubleProf = doubleProf
+            }
+            "Insight" -> {
+                updatedChar.insightMiscBonus = miscBonus
+                updatedChar.insightProf = prof
+                updatedChar.insightHalfProf = halfProf
+                updatedChar.insightDoubleProf = doubleProf
+            }
+            "Medicine" -> {
+                updatedChar.medicineMiscBonus = miscBonus
+                updatedChar.medicineProf = prof
+                updatedChar.medicineHalfProf = halfProf
+                updatedChar.medicineDoubleProf = doubleProf
+            }
+            "Perception" -> {
+                updatedChar.perceptionMiscBonus = miscBonus
+                updatedChar.perceptionProf = prof
+                updatedChar.perceptionHalfProf = halfProf
+                updatedChar.perceptionDoubleProf = doubleProf
+            }
+            "Survival" -> {
+                updatedChar.survivalMiscBonus = miscBonus
+                updatedChar.survivalProf = prof
+                updatedChar.survivalHalfProf = halfProf
+                updatedChar.survivalDoubleProf = doubleProf
+            }
+            "Deception" -> {
+                updatedChar.deceptionMiscBonus = miscBonus
+                updatedChar.deceptionProf = prof
+                updatedChar.deceptionHalfProf = halfProf
+                updatedChar.deceptionDoubleProf = doubleProf
+            }
+            "Intimidation" -> {
+                updatedChar.intimidationMiscBonus = miscBonus
+                updatedChar.intimidationProf = prof
+                updatedChar.intimidationHalfProf = halfProf
+                updatedChar.intimidationDoubleProf = doubleProf
+            }
+            "Performance" -> {
+                updatedChar.performanceMiscBonus = miscBonus
+                updatedChar.performanceProf = prof
+                updatedChar.performanceHalfProf = halfProf
+                updatedChar.performanceDoubleProf = doubleProf
+            }
+            "Persuasion" -> {
+                updatedChar.persuasionMiscBonus = miscBonus
+                updatedChar.persuasionProf = prof
+                updatedChar.persuasionHalfProf = halfProf
+                updatedChar.persuasionDoubleProf = doubleProf
+            }
+        }
         pushToDB(updatedChar)
     }
 
@@ -367,6 +485,20 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
             4 -> sum += calcModifier(currentChar.value?.intelligence!!).toInt()
             5 -> sum += calcModifier(currentChar.value?.wisdom!!).toInt()
             6 -> sum += calcModifier(currentChar.value?.charisma!!).toInt()
+        }
+        return sum
+    }
+
+    fun calcStat(statMod: Int, miscBonus: Int, prof: Boolean, halfProf: Boolean, doubleProf: Boolean): Int{
+        var sum = statMod+miscBonus
+        if(doubleProf){
+            sum += character.proficiency*2
+        }
+        else if(prof){
+            sum += character.proficiency
+        }
+        else if(halfProf){
+            sum += character.proficiency/2
         }
         return sum
     }

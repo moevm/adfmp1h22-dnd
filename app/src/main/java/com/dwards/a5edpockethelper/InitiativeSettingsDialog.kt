@@ -73,33 +73,32 @@ class InitiativeSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedLis
         })
 
         binding.AddProficiencyCheck.setOnClickListener {
-            //var test: Boolean = !binding.AddProficiencyCheck.isChecked
             if (binding.AddProficiencyCheck.isChecked && !binding.SecondProficiencyCheck.isChecked) {
                 binding.AddProficiencyCheck.isChecked = true
                 prof = true
                 halfProf = false
                 doubleProf = false
-                binding.SecondProficiencyCheck.text = "Add Double Proficiency"
-            } else if (binding.AddProficiencyCheck.isChecked && binding.SecondProficiencyCheck.isChecked && binding.SecondProficiencyCheck.text == "Add Double Proficiency"){
+                binding.SecondProficiencyCheck.text = resources.getString(R.string.doubleProf)
+            } else if (binding.AddProficiencyCheck.isChecked && binding.SecondProficiencyCheck.isChecked && binding.SecondProficiencyCheck.text == resources.getString(R.string.doubleProf)){
                 binding.AddProficiencyCheck.isChecked = false
                 binding.SecondProficiencyCheck.isChecked = false
                 prof = false
                 halfProf = false
                 doubleProf = false
-                binding.SecondProficiencyCheck.text = "Add Half Proficiency"
-            } else if (binding.AddProficiencyCheck.isChecked && binding.SecondProficiencyCheck.isChecked && binding.SecondProficiencyCheck.text == "Add Half Proficiency"){
+                binding.SecondProficiencyCheck.text = resources.getString(R.string.halfProf)
+            } else if (binding.AddProficiencyCheck.isChecked && binding.SecondProficiencyCheck.isChecked && binding.SecondProficiencyCheck.text == resources.getString(R.string.halfProf)){
                 binding.AddProficiencyCheck.isChecked = true
                 binding.SecondProficiencyCheck.isChecked = false
                 prof = true
                 halfProf = false
                 doubleProf = false
-                binding.SecondProficiencyCheck.text = "Add Double Proficiency"
+                binding.SecondProficiencyCheck.text = resources.getString(R.string.doubleProf)
             } else {
                 binding.AddProficiencyCheck.isChecked = false
                 prof = false
                 halfProf = false
                 doubleProf = false
-                binding.SecondProficiencyCheck.text = "Add Half Proficiency"
+                binding.SecondProficiencyCheck.text = resources.getString(R.string.halfProf)
                 binding.SecondProficiencyCheck.isChecked = false
             }
             refreshInitiative(viewModel.getCharacter().value!!)
@@ -203,16 +202,16 @@ class InitiativeSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedLis
 
         if (prof){
             binding.AddProficiencyCheck.isChecked = true
-            binding.SecondProficiencyCheck.text = "Add Double Proficiency"
+            binding.SecondProficiencyCheck.text = resources.getString(R.string.doubleProf)
         }
         if (halfProf){
             binding.SecondProficiencyCheck.isChecked = true
-            binding.SecondProficiencyCheck.text = "Add Half Proficiency"
+            binding.SecondProficiencyCheck.text = resources.getString(R.string.halfProf)
         }
         if (doubleProf){
             binding.SecondProficiencyCheck.isChecked = true
             binding.AddProficiencyCheck.isChecked = true
-            binding.SecondProficiencyCheck.text = "Add Double Proficiency"
+            binding.SecondProficiencyCheck.text = resources.getString(R.string.doubleProf)
         }
 
     }

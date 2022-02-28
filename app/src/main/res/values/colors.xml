@@ -11,4 +11,10 @@
     <color name="check_green">#00c417</color>
     <color name="cross_red">#c90202</color>
 
+
+    <color name="skill_half_prof">#cad9ad</color>
+    <color name="skill_prof">#a3d9a3</color>
+    <color name="skill_double_prof">#8dd9b9</color>
+    <color name="block_grey">#e8e8e8</color>
+
 </resources>

@@ -82,4 +82,95 @@ data class Character(
     var customBlock4Name: String = "CustomBlock4",
     var customBlock4Value: String = "0",
 
-)
+    // athletics
+    var athleticsMiscBonus: Int = 0,
+    var athleticsProf: Boolean = false,
+    var athleticsHalfProf: Boolean = false,
+    var athleticsDoubleProf: Boolean = false,
+    // acrobatics
+    var acrobaticsMiscBonus: Int = 0,
+    var acrobaticsProf: Boolean = false,
+    var acrobaticsHalfProf: Boolean = false,
+    var acrobaticsDoubleProf: Boolean = false,
+    // sleight of hand
+    var sleightOfHandMiscBonus: Int = 0,
+    var sleightOfHandProf: Boolean = false,
+    var sleightOfHandHalfProf: Boolean = false,
+    var sleightOfHandDoubleProf: Boolean = false,
+    // stealth
+    var stealthMiscBonus: Int = 0,
+    var stealthProf: Boolean = false,
+    var stealthHalfProf: Boolean = false,
+    var stealthDoubleProf: Boolean = false,
+    // arcana
+    var arcanaMiscBonus: Int = 0,
+    var arcanaProf: Boolean = false,
+    var arcanaHalfProf: Boolean = false,
+    var arcanaDoubleProf: Boolean = false,
+    // history
+    var historyMiscBonus: Int = 0,
+    var historyProf: Boolean = false,
+    var historyHalfProf: Boolean = false,
+    var historyDoubleProf: Boolean = false,
+    // investigation
+    var investigationMiscBonus: Int = 0,
+    var investigationProf: Boolean = false,
+    var investigationHalfProf: Boolean = false,
+    var investigationDoubleProf: Boolean = false,
+    // nature
+    var natureMiscBonus: Int = 0,
+    var natureProf: Boolean = false,
+    var natureHalfProf: Boolean = false,
+    var natureDoubleProf: Boolean = false,
+    // religion
+    var religionMiscBonus: Int = 0,
+    var religionProf: Boolean = false,
+    var religionHalfProf: Boolean = false,
+    var religionDoubleProf: Boolean = false,
+    // animal handling
+    var animalHandlingMiscBonus: Int = 0,
+    var animalHandlingProf: Boolean = false,
+    var animalHandlingHalfProf: Boolean = false,
+    var animalHandlingDoubleProf: Boolean = false,
+    // insight
+    var insightMiscBonus: Int = 0,
+    var insightProf: Boolean = false,
+    var insightHalfProf: Boolean = false,
+    var insightDoubleProf: Boolean = false,
+    // medicine
+    var medicineMiscBonus: Int = 0,
+    var medicineProf: Boolean = false,
+    var medicineHalfProf: Boolean = false,
+    var medicineDoubleProf: Boolean = false,
+    // perception
+    var perceptionMiscBonus: Int = 0,
+    var perceptionProf: Boolean = false,
+    var perceptionHalfProf: Boolean = false,
+    var perceptionDoubleProf: Boolean = false,
+    // survival
+    var survivalMiscBonus: Int = 0,
+    var survivalProf: Boolean = false,
+    var survivalHalfProf: Boolean = false,
+    var survivalDoubleProf: Boolean = false,
+    // deception
+    var deceptionMiscBonus: Int = 0,
+    var deceptionProf: Boolean = false,
+    var deceptionHalfProf: Boolean = false,
+    var deceptionDoubleProf: Boolean = false,
+    // intimidation
+    var intimidationMiscBonus: Int = 0,
+    var intimidationProf: Boolean = false,
+    var intimidationHalfProf: Boolean = false,
+    var intimidationDoubleProf: Boolean = false,
+    // performance
+    var performanceMiscBonus: Int = 0,
+    var performanceProf: Boolean = false,
+    var performanceHalfProf: Boolean = false,
+    var performanceDoubleProf: Boolean = false,
+    // persuasion
+    var persuasionMiscBonus: Int = 0,
+    var persuasionProf: Boolean = false,
+    var persuasionHalfProf: Boolean = false,
+    var persuasionDoubleProf: Boolean = false,
+
+    )
