@@ -6,16 +6,14 @@ import androidx.room.PrimaryKey
 import androidx.room.RoomDatabase
 
 @Entity(tableName = "character")
-class Character {
+data class Character(
     @PrimaryKey(autoGenerate = true)
-    var id: Int? = null
-
-    var name: String = ""
-    var Strength: Int = 0
-    var Dexterity: Int = 0
-    var Constitution: Int = 0
-    var Intelligence: Int = 0
-    var Wisdom: Int = 0
+    var id: Int? = null,
+    var name: String = "",
+    var Strength: Int = 0,
+    var Dexterity: Int = 0,
+    var Constitution: Int = 0,
+    var Intelligence: Int = 0,
+    var Wisdom: Int = 0,
     var Charisma: Int = 0
-}
-
+)
