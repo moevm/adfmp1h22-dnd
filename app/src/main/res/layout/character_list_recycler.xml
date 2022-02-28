@@ -6,6 +6,10 @@
     android:layout_height="wrap_content"
     android:minWidth="270dp"
     android:minHeight="48dp"
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp"
+    android:paddingStart="14dp"
+    android:paddingEnd="14dp"
     android:id="@+id/characterLayout">
 
 
@@ -20,16 +24,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Text"
+        android:textColor="@color/text_black"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/characterName"
         app:layout_constraintStart_toEndOf="@+id/characterClass"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/characterName"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/characterName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="Text"
+        android:textColor="@color/text_black"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,21 +48,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Text"
+        android:textColor="@color/text_black"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/characterName"
         app:layout_constraintStart_toEndOf="@+id/characterName"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/characterName" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/deleteIcon"
-        android:layout_width="26dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="6dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/cross_mark"
+        android:backgroundTint="@color/cross_red"
+        app:layout_constraintBottom_toBottomOf="@+id/characterLevel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/characterLevel"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/characterLevel"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/del_icon" />
 

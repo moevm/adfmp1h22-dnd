@@ -53,7 +53,7 @@ class CharacterList : DialogFragment(), RecyclerViewClickListener {
             }
         })
 
-        binding.addCharacterButton.setOnClickListener{
+        binding.AddCharacterButton.setOnClickListener{
             viewModel.addCharacter()
         }
 

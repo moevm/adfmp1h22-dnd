@@ -12,6 +12,7 @@
         android:id="@+id/HPLayout"
         android:layout_width="90dp"
         android:layout_height="90dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/back_30dp"
         android:backgroundTint="#e8e8e8"
         android:foreground="@drawable/corner_30_w2dp"
@@ -62,16 +63,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/HealCheck" />
 
-
-    <Button
-        android:id="@+id/SaveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MinusButton" />
 
     <RadioButton
         android:id="@+id/DamageCheck"
@@ -124,5 +115,26 @@
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="@+id/ChangeHPValue"
         app:layout_constraintTop_toTopOf="@+id/MinusButton" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/separator_gray"
+        app:layout_constraintBottom_toTopOf="@+id/SaveButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/SaveButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_button"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="@string/save_button_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MinusButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

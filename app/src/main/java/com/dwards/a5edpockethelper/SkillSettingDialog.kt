@@ -1,5 +1,6 @@
 package com.dwards.a5edpockethelper
 
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -40,6 +41,7 @@ class SkillSettingDialog : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        //dialog!!.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner);
 
         _binding = SkillSettingsDialogBinding.inflate(inflater, container, false)
@@ -194,7 +196,7 @@ class SkillSettingDialog : DialogFragment() {
                 doubleProf = character.stealthDoubleProf
             }
             "Arcana"->{
-                binding.SkillNameText.text = resources.getString(R.string.acrobatics)
+                binding.SkillNameText.text = resources.getString(R.string.arcana)
                 binding.StatText.text = resources.getString(R.string.intelligence)
                 binding.StatValue.setText(viewModel.calcModifier(character.intelligence))
                 miscStatBonus = character.arcanaMiscBonus
@@ -212,6 +214,7 @@ class SkillSettingDialog : DialogFragment() {
                 doubleProf = character.historyDoubleProf
             }
             "Investigation"->{
+                binding.SkillNameText.text = resources.getString(R.string.investigation)
                 binding.StatText.text = resources.getString(R.string.intelligence)
                 binding.StatValue.setText(viewModel.calcModifier(character.intelligence))
                 miscStatBonus = character.investigationMiscBonus

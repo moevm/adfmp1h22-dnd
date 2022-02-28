@@ -13,6 +13,7 @@
         android:id="@+id/HPLayout"
         android:layout_width="90dp"
         android:layout_height="90dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/back_30dp"
         android:backgroundTint="#e8e8e8"
         android:foreground="@drawable/corner_30_w2dp"
@@ -56,6 +57,8 @@
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="Max\nHP"
+        android:textSize="16dp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/HPLayout"
         app:layout_constraintStart_toStartOf="@+id/HPLayout"
         app:layout_constraintTop_toBottomOf="@+id/HPLayout" />
@@ -75,11 +78,22 @@
         app:layout_constraintTop_toBottomOf="@+id/MaxHPText" />
 
 
-    <Button
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/separator_gray"
+        app:layout_constraintBottom_toTopOf="@+id/SaveButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/SaveButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_button"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="@string/save_button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

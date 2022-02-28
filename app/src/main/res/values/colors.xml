@@ -16,5 +16,8 @@
     <color name="skill_prof">#a3d9a3</color>
     <color name="skill_double_prof">#8dd9b9</color>
     <color name="block_grey">#e8e8e8</color>
+    <color name="text_black">#1f1f1f</color>
+
+    <color name="separator_gray">#ababab</color>
 
 </resources>

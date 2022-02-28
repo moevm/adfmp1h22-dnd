@@ -13,15 +13,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/CustomBlockHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Custom Blocks"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/CustomBlockHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Custom Blocks"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     <EditText
@@ -39,23 +41,27 @@
         app:layout_constraintTop_toTopOf="@+id/CustomBlock1NameText"
         app:layout_constraintVertical_bias="0.7" />
 
-    <TextView
-        android:id="@+id/CustomBlock1NameText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Custom1 Name:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CustomBlockHeader" />
+        <TextView
+            android:id="@+id/CustomBlock1NameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="30dp"
+            android:text="Custom1 Name:"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CustomBlockHeader" />
 
-    <TextView
-        android:id="@+id/CustomBlock1ValueText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Custom1 Value:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CustomBlock1NameText" />
+        <TextView
+            android:id="@+id/CustomBlock1ValueText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="24dp"
+            android:text="Custom1 Value:"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CustomBlock1NameText" />
 
     <EditText
         android:id="@+id/CustomBlock1Value"
@@ -107,23 +113,27 @@
         app:layout_constraintTop_toTopOf="@+id/CustomBlock2NameText"
         app:layout_constraintVertical_bias="0.7" />
 
-    <TextView
-        android:id="@+id/CustomBlock2NameText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Custom2 Name:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CustomBlock1ValueText" />
+        <TextView
+            android:id="@+id/CustomBlock2NameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="30dp"
+            android:text="Custom2 Name:"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CustomBlock1ValueText" />
 
-    <TextView
-        android:id="@+id/CustomBlock2ValueText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Custom2 Value:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CustomBlock2NameText" />
+        <TextView
+            android:id="@+id/CustomBlock2ValueText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="24dp"
+            android:text="Custom2 Value:"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CustomBlock2NameText" />
 
     <EditText
         android:id="@+id/CustomBlock2Value"
@@ -175,23 +185,27 @@
         app:layout_constraintTop_toTopOf="@+id/CustomBlock3NameText"
         app:layout_constraintVertical_bias="0.7" />
 
-    <TextView
-        android:id="@+id/CustomBlock3NameText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Custom3 Name:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CustomBlock2ValueText" />
+        <TextView
+            android:id="@+id/CustomBlock3NameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            android:text="Custom3 Name:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CustomBlock2ValueText" />
 
-    <TextView
-        android:id="@+id/CustomBlock3ValueText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Custom3 Value:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CustomBlock3NameText" />
+        <TextView
+            android:id="@+id/CustomBlock3ValueText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="24dp"
+            android:textColor="@color/black"
+            android:text="Custom3 Value:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CustomBlock3NameText" />
 
     <EditText
         android:id="@+id/CustomBlock3Value"
@@ -243,23 +257,27 @@
         app:layout_constraintTop_toTopOf="@+id/CustomBlock4NameText"
         app:layout_constraintVertical_bias="0.7" />
 
-    <TextView
-        android:id="@+id/CustomBlock4NameText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Custom4 Name:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CustomBlock3ValueText" />
+        <TextView
+            android:id="@+id/CustomBlock4NameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            android:text="Custom4 Name:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CustomBlock3ValueText" />
 
-    <TextView
-        android:id="@+id/CustomBlock4ValueText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Custom4 Value:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CustomBlock4NameText" />
+        <TextView
+            android:id="@+id/CustomBlock4ValueText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="24dp"
+            android:textColor="@color/black"
+            android:text="Custom4 Value:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CustomBlock4NameText" />
 
     <EditText
         android:id="@+id/CustomBlock4Value"
@@ -297,12 +315,22 @@
         app:layout_constraintTop_toTopOf="@+id/MinusButton4" />
 
 
-    <Button
+        <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/separator_gray"
+        app:layout_constraintBottom_toTopOf="@+id/SaveButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/SaveButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Save"
+        android:background="@drawable/custom_button"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="@string/save_button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

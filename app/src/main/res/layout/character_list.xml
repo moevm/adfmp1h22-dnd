@@ -18,11 +18,15 @@
         android:layout_weight="1"
         android:layout_gravity="center_horizontal"/>
 
-    <Button
-        android:id="@+id/addCharacterButton"
-        android:layout_width="wrap_content"
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/AddCharacterButton"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
+        android:foreground="?android:attr/selectableItemBackground"
         android:text="New"
-        android:layout_weight="0"
+        android:textSize="20dp"
+        android:textAppearance="@style/Theme.5edPocketHelper"
         android:layout_gravity="center_horizontal"/>
 </LinearLayout>
