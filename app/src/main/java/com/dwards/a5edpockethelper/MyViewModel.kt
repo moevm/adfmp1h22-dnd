@@ -26,7 +26,6 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
 
         if (flag1) {
             var character = Character()
-            //character.id = currentId
             character.name = "Arno"
             character.strength = 20
             character.dexterity = 20
@@ -38,12 +37,10 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
                 characterDao.insertChar(character)
             }
             flag1 = false
-            //currentId++
         }
 
         if (flag2)  {
             character = Character()
-            //character.id = currentId
             character.name = "Kostoprav"
             character.strength = 10
             character.dexterity = 10
@@ -156,10 +153,39 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
     fun changeCharactersMaxHP(maxHP: Int){
         val updatedChar = currentChar.value!!
         updatedChar.maxHP = maxHP
-        if (updatedChar.currentHP < maxHP){
+        if (updatedChar.currentHP > maxHP){
             updatedChar.currentHP = maxHP
         }
         //А если 0??? Добавить!!!
+        pushToDB(updatedChar)
+        fetchData(updatedChar.id!!)
+    }
+
+    fun changeCharactersCurrentHP(diffHP: Int, mode: Int){
+        var changeHP = diffHP
+        val updatedChar = currentChar.value!!
+        when (mode){
+            //дамаг
+            1 -> if (updatedChar.currentHP+updatedChar.TempHP - changeHP > 0){
+                //если есть темп хп
+                if (updatedChar.TempHP != 0){
+                    //если урон больше хп, уменьшаем урон, иначе урон 0
+                    if (changeHP > updatedChar.TempHP) {
+                        changeHP -= updatedChar.TempHP
+                        updatedChar.TempHP = 0
+                    }
+                    else {
+                        updatedChar.TempHP -= changeHP
+                        changeHP = 0
+                    }
+
+                }
+                updatedChar.currentHP -= changeHP
+            }
+            else updatedChar.currentHP = 0
+            2 -> if (updatedChar.currentHP + changeHP < updatedChar.maxHP) updatedChar.currentHP += changeHP else updatedChar.currentHP = updatedChar.maxHP
+            3 -> if (updatedChar.TempHP < changeHP) updatedChar.TempHP = changeHP else 0
+        }
         pushToDB(updatedChar)
         fetchData(updatedChar.id!!)
     }

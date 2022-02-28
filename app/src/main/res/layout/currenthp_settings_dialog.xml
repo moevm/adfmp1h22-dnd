@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_place"
+    android:layout_width="300dp"
+    android:layout_height="400dp"
+    android:layout_marginTop="200dp"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/HPLayout"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@drawable/back_30dp"
+        android:backgroundTint="#e8e8e8"
+        android:foreground="@drawable/corner_30_w2dp"
+        android:foregroundTint="#940000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/HPText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HP"
+            android:textColor="#000000"
+            android:textSize="@dimen/HP_text_size"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/HPValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="56"
+            android:textColor="#000000"
+            android:textSize="@dimen/HP_number_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/HPText"
+            app:layout_constraintVertical_bias="0.9" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <EditText
+        android:id="@+id/ChangeHPValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_weight="1"
+        android:ems="3"
+        android:text = "0"
+        android:gravity="center"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HealCheck" />
+
+
+    <Button
+        android:id="@+id/SaveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MinusButton" />
+
+    <RadioButton
+        android:id="@+id/DamageCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="Damage"
+        app:layout_constraintEnd_toStartOf="@+id/HealCheck"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HPLayout" />
+
+    <RadioButton
+        android:id="@+id/HealCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Heal"
+        app:layout_constraintEnd_toStartOf="@+id/TempHPCheck"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/DamageCheck"
+        app:layout_constraintTop_toTopOf="@+id/DamageCheck" />
+
+    <RadioButton
+        android:id="@+id/TempHPCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Temp HP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/HealCheck"
+        app:layout_constraintTop_toTopOf="@+id/HealCheck" />
+
+    <Button
+        android:id="@+id/MinusButton"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/custom_btn_remove"
+        app:layout_constraintEnd_toEndOf="@+id/ChangeHPValue"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ChangeHPValue" />
+
+    <Button
+        android:id="@+id/PlusButton"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/custom_btn_add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="@+id/ChangeHPValue"
+        app:layout_constraintTop_toTopOf="@+id/MinusButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

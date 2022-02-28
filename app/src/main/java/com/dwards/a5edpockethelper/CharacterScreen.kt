@@ -1,5 +1,7 @@
 package com.dwards.a5edpockethelper
 
+
+import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -106,6 +108,14 @@ class CharacterScreen : Fragment() {
             return@setOnLongClickListener true
         }
 
+        //редактирование максимума здоровья
+        binding.HPLayout.setOnClickListener {
+            //val maxHPSettingsDialog: MaxHPSettingsDialog = MaxHPSettingsDialog()
+            //maxHPSettingsDialog.show(parentFragmentManager, "MaxHPSettingsDialog")
+            val currentHpSettingsDialog: CurrentHpSettingsDialog = CurrentHpSettingsDialog()
+            currentHpSettingsDialog.show(parentFragmentManager, "MaxHPSettingsDialog")
+        }
+
         return view
     }
 
@@ -117,6 +127,7 @@ class CharacterScreen : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
     }
+
 
 
 
@@ -146,6 +157,11 @@ class CharacterScreen : Fragment() {
         binding.CharismaSaveValue.text = viewModel.calcSave(character.charisma, character.charismaSaveProf, character.charismaSaveMisc)
 
         binding.HitDiceValue.text = (character.hitDiceCount.toString() + "d" + character.hitDiceSize.toString())
+        binding.HPValue.text = (character.currentHP+character.TempHP).toString()
+        if(character.TempHP > 0)
+            binding.HPValue.setTextColor(Color.parseColor("#2f00ba"))
+        else
+            binding.HPValue.setTextColor(Color.parseColor("#000000"))
 
         when(character.chosenSpeed){
             "Walk" -> {

@@ -1,5 +1,7 @@
 package com.dwards.a5edpockethelper
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -67,6 +69,10 @@ class MaxHPSettingsDialog : DialogFragment() {
 
     private fun refreshChar(character: Character) {
         binding.MaxHPValue.setText(character.maxHP.toString())
-
+        if(character.TempHP > 0)
+            binding.HPValue.setTextColor(Color.parseColor("#2f00ba"))
+        else
+            binding.HPValue.setTextColor(Color.parseColor("#000000"))
+        binding.HPValue.text = (character.currentHP+character.TempHP).toString()
     }
 }
