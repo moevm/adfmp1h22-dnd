@@ -2,7 +2,6 @@ package com.dwards.a5edpockethelper
 
 import android.content.Context
 import android.os.Bundle
-import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,11 +14,28 @@ class CharacteristicSettingsDialog : DialogFragment(){
     private var _binding: CharacteristicSettingsDialogBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var changestat: ChangeStats
-    override fun onAttach(context: Context){
-        super.onAttach(context)
-        changestat = context as ChangeStats
+    private val TAG = "MyCustomDialog"
+
+    interface StatChange {
+        fun sendStats(statMap:HashMap<String,Int>)
     }
+
+    var OnStatChange: StatChange? = null
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        OnStatChange = targetFragment as StatChange
+
+    }
+
+
+    //private lateinit var changestat: ChangeStats
+
+    //override fun onAttach(context: Context){
+    //    super.onAttach(context)
+     //   changestat = context as ChangeStats
+    //}
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -29,10 +45,11 @@ class CharacteristicSettingsDialog : DialogFragment(){
         val view = binding.root
 
         binding.SaveButton.setOnClickListener {
-
-            changestat.change(passageStat ())
+            OnStatChange?.sendStats(passageStat());
+            //changestat.change(passageStat ())
             dismiss()
            }
+
 
         return view
     }
@@ -56,7 +73,7 @@ class CharacteristicSettingsDialog : DialogFragment(){
     override fun onStart() {
         super.onStart()
         val width = (resources.displayMetrics.widthPixels * 0.85).toInt()
-        val height = (resources.displayMetrics.heightPixels * 0.40).toInt()
+        //val height = (resources.displayMetrics.heightPixels * 0.40).toInt()
         dialog!!.window?.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
 
 

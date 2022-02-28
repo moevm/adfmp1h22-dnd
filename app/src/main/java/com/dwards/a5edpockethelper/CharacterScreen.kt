@@ -1,18 +1,27 @@
 package com.dwards.a5edpockethelper
 
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.FragmentActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
 import com.dwards.a5edpockethelper.databinding.FragmentCharacterScreenBinding
 
-class CharacterScreen : DialogFragment(), ChangeStats{
+
+class CharacterScreen : Fragment(), CharacteristicSettingsDialog.StatChange{
+    private val TAG = "MainFragment"
+
 
     private var _binding: FragmentCharacterScreenBinding? = null
     private val binding get() = _binding!!
+
+    override fun sendStats(statMap:HashMap<String,Int>) {
+        change(statMap)
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,15 +32,22 @@ class CharacterScreen : DialogFragment(), ChangeStats{
         val view = binding.root
 
 
-        return view
+        //val mainLayout =binding.StrengthLayout as ConstraintLayout
+        //val gd = GradientDrawable()
+        //gd.setColor(Color.RED);
+        //gd.setCornerRadius(10F);
+        //gd.setStroke(2, Color.RED);
+        //mainLayout.setBackgroundDrawable(gd);
 
-        //return inflater.inflate(R.layout.fragment_character_screen, container, false)
 
+        //var layer = binding.StrengthLayout.getBackground() as LayerDrawable
+        //layer.mutate()
+        //val drawable = view.background as GradientDrawable
+        //drawable.setStroke(3, Color.RED) // set stroke width and stroke color
 
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        //(resources.getColor(R.color.redColor, null))
+        //layer.setDrawableByLayerId(R.id.StrengthLayout, newl)
+        //layer.invalidateSelf()
 
         binding.StatsLayout.setOnLongClickListener {
 
@@ -41,11 +57,22 @@ class CharacterScreen : DialogFragment(), ChangeStats{
             for (i in stats){
                 args.putString(i.key, i.value.toString())}
             StatsSettingsdialog.setArguments(args)
-            StatsSettingsdialog.show(childFragmentManager, "CharacteristicSettingsDialog")
+
+            StatsSettingsdialog.setTargetFragment(this@CharacterScreen, 1);
+
+            StatsSettingsdialog.show(parentFragmentManager, "CharacteristicSettingsDialog")
             return@setOnLongClickListener true
         }
 
+        return view
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+    }
+
+
 
     fun passageStat ():HashMap<String,Int>{
         val statsMap:HashMap<String,Int> = hashMapOf()
@@ -58,7 +85,7 @@ class CharacterScreen : DialogFragment(), ChangeStats{
         return statsMap
     }
 
-    override fun change(statMap:HashMap<String,Int>) {
+    fun change(statMap:HashMap<String,Int>) {
         val strength = statMap.get("Strength")
         val dexterity = statMap.get("Dexterity")
         val constitution = statMap.get("Constitution")
