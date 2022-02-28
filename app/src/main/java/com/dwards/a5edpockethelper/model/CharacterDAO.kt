@@ -9,17 +9,17 @@ import androidx.room.*
         fun getAll(): List<Character?>?
 
         @Query("SELECT * FROM Character WHERE id = :id")
-        fun getById(id: Int): Character?
+        suspend fun getById(id: Int): Character?
 
         // Добавление в бд
-        @Insert
-        open fun insertChar(character: Character)
+        @Insert(onConflict = OnConflictStrategy.REPLACE)
+        suspend fun insertChar(character: Character)
 
         // Удаление из бд
         @Delete
-        fun delete(character: Character)
+        suspend  fun delete(character: Character)
 
         // Изменение в бд
         @Update
-        fun update(character: Character)
+        suspend  fun update(character: Character)
     }

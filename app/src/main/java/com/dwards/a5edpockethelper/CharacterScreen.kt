@@ -18,7 +18,7 @@ class CharacterScreen : Fragment() {
 
     private var _binding: FragmentCharacterScreenBinding? = null
     private val binding get() = _binding!!
-   // private var viewModel = 0;
+    //private var viewModel: MyViewModel
 
     /*
     override fun sendStats(statMap: HashMap<String, Int>) {
@@ -30,16 +30,7 @@ class CharacterScreen : Fragment() {
     //val viewModel = ViewModelProvider(this, viewModelFactory).get(MyViewModel::class.java)
 
 
-    override fun onCreate(savedInstanceState: Bundle?){
-        super.onCreate(savedInstanceState)
-        var viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
-        viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
-            it?.let {
-                //adapter.refreshUsers(it)
-            }
-        })
-    }
 
 
     override fun onCreateView(
@@ -47,6 +38,13 @@ class CharacterScreen : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        val viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+
+        viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
+            it?.let {
+                refreshChar(it)
+            }
+        })
         /*
         var af: FragmentActivity = requireActivity()
         var viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
@@ -54,6 +52,7 @@ class CharacterScreen : Fragment() {
 
         _binding = FragmentCharacterScreenBinding.inflate(inflater, container, false)
         val view = binding.root
+
 
         /*
         viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
@@ -119,13 +118,13 @@ class CharacterScreen : Fragment() {
     }
     */
 
-    fun refresh(character: MutableLiveData<Character>) {
-        binding.StrengthScoreValue.setText("${character.value?.strength}")
-        binding.DexterityScoreValue.setText("${character.value?.dexterity}")
-        binding.ConstitutionScoreValue.setText("${character.value?.constitution}")
-        binding.IntelligenceScoreValue.setText("${character.value?.intelligence}")
-        binding.WisdomScoreValue.setText("${character.value?.wisdom}")
-        binding.CharismaScoreValue.setText("${character.value?.charisma}")
+    fun refreshChar(character: Character) {
+        binding.StrengthScoreValue.setText("${character.strength}")
+        binding.DexterityScoreValue.setText("${character.dexterity}")
+        binding.ConstitutionScoreValue.setText("${character.constitution}")
+        binding.IntelligenceScoreValue.setText("${character.intelligence}")
+        binding.WisdomScoreValue.setText("${character.wisdom}")
+        binding.CharismaScoreValue.setText("${character.charisma}")
     }
 
     /*

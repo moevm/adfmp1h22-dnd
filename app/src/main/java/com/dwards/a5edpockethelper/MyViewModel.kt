@@ -16,9 +16,9 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
     var currentChar: MutableLiveData<Character> = MutableLiveData()
 
     init {
-        if (character==null){
+        if (character == null) {
             var character = Character()
-            character.id = 1
+            character.id = id
             character.name = "Arno"
             character.strength = 20
             character.dexterity = 20
@@ -26,8 +26,11 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
             character.intelligence = 20
             character.wisdom = 20
             character.charisma = 20
-            characterDao.insertChar(character)
+            viewModelScope.launch{
+                characterDao.insertChar(character)
+            }
         }
+
         fetchData(id)
     }
 
