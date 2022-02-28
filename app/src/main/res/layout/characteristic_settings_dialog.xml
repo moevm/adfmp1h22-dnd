@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_place"
+    android:layout_height="400dp"
+    android:layout_width="300dp"
+    android:layout_marginTop="200dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/StrengthScoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Strength\nScore"
+        app:layout_constraintEnd_toEndOf="@+id/StrengthScoreValue"
+        app:layout_constraintStart_toStartOf="@+id/StrengthScoreValue"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/DexterityScoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Dexterity\nScore"
+        app:layout_constraintEnd_toEndOf="@+id/DexterityScoreValue"
+        app:layout_constraintStart_toStartOf="@+id/DexterityScoreValue"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ConstitutionScoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Constitution\nScore"
+        app:layout_constraintEnd_toEndOf="@+id/ConstitutionScoreValue"
+        app:layout_constraintStart_toStartOf="@+id/ConstitutionScoreValue"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/StrengthScoreValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="4"
+        android:gravity="center"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/StrengthScoreText" />
+
+    <EditText
+        android:id="@+id/DexterityScoreValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="4"
+        android:gravity="center"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/ConstitutionScoreValue"
+        app:layout_constraintStart_toEndOf="@+id/StrengthScoreValue"
+        app:layout_constraintTop_toBottomOf="@+id/DexterityScoreText" />
+
+    <EditText
+        android:id="@+id/ConstitutionScoreValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="4"
+        android:gravity="center"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ConstitutionScoreText" />
+
+    <TextView
+        android:id="@+id/IntelligenceScoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Intelligence\nScore"
+        app:layout_constraintEnd_toEndOf="@+id/IntelligenceScoreValue"
+        app:layout_constraintStart_toStartOf="@+id/IntelligenceScoreValue"
+        app:layout_constraintTop_toBottomOf="@+id/StrengthScoreValue" />
+
+    <TextView
+        android:id="@+id/WisdomScoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Wisdom\nScore"
+        app:layout_constraintEnd_toEndOf="@+id/WisdomScoreValue"
+        app:layout_constraintStart_toStartOf="@+id/WisdomScoreValue"
+        app:layout_constraintTop_toBottomOf="@+id/DexterityScoreValue" />
+
+    <TextView
+        android:id="@+id/CharismaScoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Charisma\nScore"
+        app:layout_constraintEnd_toEndOf="@+id/CharismaScoreValue"
+        app:layout_constraintStart_toStartOf="@+id/CharismaScoreValue"
+        app:layout_constraintTop_toBottomOf="@+id/ConstitutionScoreValue" />
+
+    <EditText
+        android:id="@+id/IntelligenceScoreValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="4"
+        android:gravity="center"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IntelligenceScoreText" />
+
+    <EditText
+        android:id="@+id/WisdomScoreValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="4"
+        android:gravity="center"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/CharismaScoreValue"
+        app:layout_constraintStart_toEndOf="@+id/IntelligenceScoreValue"
+        app:layout_constraintTop_toBottomOf="@+id/WisdomScoreText" />
+
+    <EditText
+        android:id="@+id/CharismaScoreValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="4"
+        android:gravity="center"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CharismaScoreText" />
+
+    <Button
+        android:id="@+id/SaveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WisdomScoreValue" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
