@@ -39,7 +39,8 @@ class ProficiencySettingsDialog : DialogFragment() {
         })
 
         binding.SaveButton.setOnClickListener {
-            viewModel.changeCharactersProficiency(binding.ProficiencyBonusValue.text.toString().toInt())
+            viewModel.changeCharactersProficiency(
+                if (binding.ProficiencyBonusValue.text.toString() != "") binding.ProficiencyBonusValue.text.toString().toInt() else 0)
             dismiss()
         }
 

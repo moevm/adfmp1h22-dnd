@@ -123,10 +123,11 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
 
 
         binding.SaveButton.setOnClickListener {
-            viewModel.changeCharactersArmor(binding.ArmorBonusValue.text.toString().toInt(),
-                binding.ShieldBonusValue.text.toString().toInt(),
-                binding.MaxDexterityBonusValue.text.toString().toInt(),
-                binding.MiscBonusValue.text.toString().toInt(),
+            viewModel.changeCharactersArmor(
+                if (binding.ArmorBonusValue.text.toString() != "") binding.ArmorBonusValue.text.toString().toInt() else 0,
+                if (binding.ShieldBonusValue.text.toString() != "") binding.ShieldBonusValue.text.toString().toInt() else 0,
+                if (binding.MaxDexterityBonusValue.text.toString() != "") binding.MaxDexterityBonusValue.text.toString().toInt() else 0,
+                if (binding.MiscBonusValue.text.toString() != "")  binding.MiscBonusValue.text.toString().toInt() else 0,
                 armorType,
                 additionalStatBonus)
             dismiss()
