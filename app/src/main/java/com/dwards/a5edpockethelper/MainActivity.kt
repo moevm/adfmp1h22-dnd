@@ -6,7 +6,7 @@ import com.dwards.a5edpockethelper.databinding.ActivityMainBinding
 import com.dwards.a5edpockethelper.model.AppDatabase
 
 class MainActivity : AppCompatActivity() {
-    var db: AppDatabase = App.getInstance().getDatabase()
+    var db: AppDatabase? = DnDPocketHelperApp.getInstance().getDatabase()
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
