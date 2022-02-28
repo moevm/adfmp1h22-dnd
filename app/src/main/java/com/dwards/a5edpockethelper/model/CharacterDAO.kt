@@ -6,7 +6,7 @@ import androidx.room.*
     @Dao
     interface CharacterDAO {
         @Query("SELECT * FROM Character")
-        fun getAll(): List<Character?>?
+        suspend fun getAll(): List<Character?>?
 
         @Query("SELECT * FROM Character WHERE id = :id")
         suspend fun getById(id: Int): Character?

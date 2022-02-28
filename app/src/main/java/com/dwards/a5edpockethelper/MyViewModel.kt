@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dwards.a5edpockethelper.model.Character
 import com.dwards.a5edpockethelper.model.CharacterDAO
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+
 
 import kotlinx.coroutines.launch
 
@@ -14,9 +14,11 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
 
     var character: Character = Character()
     var currentChar: MutableLiveData<Character> = MutableLiveData()
+    var characterList: MutableLiveData<List<Character?>> = MutableLiveData()
 
     init {
-        if (character == null) {
+
+        if (character.id == null) {
             var character = Character()
             character.id = id
             character.name = "Arno"
@@ -31,15 +33,33 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
             }
         }
 
+
+
+        character = Character()
+        character.id = id+1
+        character.name = "Gef"
+        character.strength = 10
+        character.dexterity = 10
+        character.constitution = 10
+        character.intelligence = 10
+        character.wisdom = 10
+        character.charisma = 10
+        viewModelScope.launch {
+            characterDao.insertChar(character)
+        }
+
         fetchData(id)
     }
 
     fun getCharacter() = currentChar
 
+    fun getAllCharacters() = characterList
+
     private fun fetchData(id: Int)
     {
         viewModelScope.launch{
             currentChar.value = characterDao.getById(id)
+            characterList.value = characterDao.getAll()
         }
     }
 
@@ -68,6 +88,9 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
         viewModelScope.launch{
             characterDao.updateChar(currentChar.value!!)
         }
-    }
+
+        }
      */
+
+
 }

@@ -13,14 +13,17 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/InitiativeLayout"
-        android:layout_width="@dimen/InitSpeedProf_block_width"
+        android:layout_width="0dp"
         android:layout_height="@dimen/InitSpeedProf_block_height"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="3dp"
+        android:layout_marginEnd="15dp"
         android:background="@drawable/back_10dp"
         android:backgroundTint="#e8e8e8"
         android:foreground="@drawable/corner_10_w2dp"
         android:foregroundTint="#30A905"
+        app:layout_constraintEnd_toStartOf="@+id/ProficiencyLayout"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -51,7 +54,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ProficiencyLayout"
-        android:layout_width="@dimen/InitSpeedProf_block_width"
+        android:layout_width="0dp"
         android:layout_height="@dimen/InitSpeedProf_block_height"
         android:layout_marginTop="3dp"
         android:background="@drawable/back_10dp"
@@ -59,6 +62,7 @@
         android:foreground="@drawable/corner_10_w2dp"
         android:foregroundTint="#7e2d85"
         app:layout_constraintEnd_toStartOf="@+id/SpeedLayout"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/InitiativeLayout"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -90,15 +94,18 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/SpeedLayout"
-        android:layout_width="@dimen/InitSpeedProf_block_width"
+        android:layout_width="0dp"
         android:layout_height="@dimen/InitSpeedProf_block_height"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="3dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/back_10dp"
         android:backgroundTint="#e8e8e8"
         android:foreground="@drawable/corner_10_w2dp"
         android:foregroundTint="#30A905"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ProficiencyLayout"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -129,9 +136,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/HpArmorLayout"
-        android:layout_width="@dimen/HPArmor_table_width"
-        android:layout_height="@dimen/HPArmor_table_height"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="4dp"
+        android:layout_marginEnd="30dp"
         android:background="@drawable/back_30dp"
         android:backgroundTint="#E0C0C0"
         android:foreground="@drawable/corner_30_w2dp"
@@ -150,6 +159,7 @@
             android:foregroundTint="#727272"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/HPLayout"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -184,13 +194,16 @@
             android:id="@+id/HPLayout"
             android:layout_width="90dp"
             android:layout_height="90dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
             android:background="@drawable/back_30dp"
             android:backgroundTint="#e8e8e8"
             android:foreground="@drawable/corner_30_w2dp"
             android:foregroundTint="#940000"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/HitDiceLayout"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/ArmorLayout"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
@@ -230,6 +243,7 @@
             android:foregroundTint="#994D76"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/HPLayout"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -265,9 +279,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/StatsLayout"
-        android:layout_width="@dimen/stat_table_width"
-        android:layout_height="@dimen/stat_table_height"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
         android:background="@drawable/back_10dp"
         android:backgroundTint="#84a680"
         android:foreground="@drawable/corner_10_w2dp"
@@ -279,11 +295,17 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/StrengthLayout"
-            android:layout_width="@dimen/stat_block_width"
+            android:layout_width="0dp"
             android:layout_height="@dimen/stat_block_height"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="2dp"
+            android:layout_weight="1"
             android:background="@drawable/back_10dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/DexterityLayout"
+            app:layout_constraintEnd_toStartOf="@+id/IntelligenceLayout"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -390,12 +412,17 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/IntelligenceLayout"
-            android:layout_width="@dimen/stat_block_width"
+            android:layout_width="0dp"
             android:layout_height="@dimen/stat_block_height"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:layout_weight="1"
             android:background="@drawable/back_10dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/WisdomLayout"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/StrengthLayout"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
@@ -501,13 +528,17 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/DexterityLayout"
-            android:layout_width="@dimen/stat_block_width"
+            android:layout_width="0dp"
             android:layout_height="@dimen/stat_block_height"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="2dp"
             android:background="@drawable/back_10dp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintBottom_toTopOf="@+id/ConstitutionLayout"
+            app:layout_constraintEnd_toStartOf="@+id/WisdomLayout"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/StrengthLayout">
 
             <TextView
                 android:id="@+id/DexterityText"
@@ -612,12 +643,16 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ConstitutionLayout"
-            android:layout_width="@dimen/stat_block_width"
+            android:layout_width="0dp"
             android:layout_height="@dimen/stat_block_height"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="2dp"
             android:background="@drawable/back_10dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/CharismaLayout"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/DexterityLayout">
 
             <TextView
@@ -723,13 +758,16 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/WisdomLayout"
-            android:layout_width="@dimen/stat_block_width"
+            android:layout_width="0dp"
             android:layout_height="@dimen/stat_block_height"
+            android:layout_marginBottom="2dp"
             android:background="@drawable/back_10dp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/CharismaLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/DexterityLayout"
+            app:layout_constraintTop_toBottomOf="@+id/IntelligenceLayout"
             tools:ignore="MissingConstraints">
 
             <TextView
@@ -835,12 +873,15 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/CharismaLayout"
-            android:layout_width="@dimen/stat_block_width"
+            android:layout_width="0dp"
             android:layout_height="@dimen/stat_block_height"
+            android:layout_marginBottom="2dp"
             android:background="@drawable/back_10dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/ConstitutionLayout"
             app:layout_constraintTop_toBottomOf="@+id/WisdomLayout"
             tools:ignore="MissingConstraints">
 
@@ -945,14 +986,22 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="IntelligenceLayout" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/CustomTableLayout"
-        android:layout_width="@dimen/custom_table_width"
-        android:layout_height="@dimen/custom_table_height"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/back_10dp"
         android:backgroundTint="#A8CBDE"
         android:foreground="@drawable/corner_10_w2dp"
@@ -964,13 +1013,18 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/CustomBlock1Layout"
-            android:layout_width="@dimen/custom_block_width"
+            android:layout_width="0dp"
             android:layout_height="@dimen/custom_block_height"
             android:layout_marginTop="1dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="2dp"
             android:background="@drawable/back_20dp"
             android:foreground="@drawable/corner_20_w2dp"
             android:foregroundTint="#3856A3"
             android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/CustomBlock3Layout"
+            app:layout_constraintEnd_toStartOf="@+id/CustomBlock2Layout"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -1006,14 +1060,18 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/CustomBlock2Layout"
-            android:layout_width="@dimen/custom_block_width"
+            android:layout_width="0dp"
             android:layout_height="@dimen/custom_block_height"
             android:layout_marginTop="1dp"
+            android:layout_marginBottom="2dp"
             android:background="@drawable/back_20dp"
             android:foreground="@drawable/corner_20_w2dp"
             android:foregroundTint="#3856A3"
             android:orientation="vertical"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/CustomBlock4Layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/CustomBlock1Layout"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
@@ -1049,15 +1107,19 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/CustomBlock3Layout"
-            android:layout_width="@dimen/custom_block_width"
+            android:layout_width="0dp"
             android:layout_height="@dimen/custom_block_height"
+            android:layout_marginEnd="5dp"
             android:layout_marginBottom="1dp"
             android:background="@drawable/back_20dp"
             android:foreground="@drawable/corner_20_w2dp"
             android:foregroundTint="#3856A3"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent">
+            app:layout_constraintEnd_toStartOf="@+id/CustomBlock4Layout"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CustomBlock1Layout">
 
             <TextView
                 android:id="@+id/CustomBlock3Text"
@@ -1091,7 +1153,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/CustomBlock4Layout"
-            android:layout_width="@dimen/custom_block_width"
+            android:layout_width="0dp"
             android:layout_height="@dimen/custom_block_height"
             android:layout_marginBottom="1dp"
             android:background="@drawable/back_20dp"
@@ -1099,7 +1161,10 @@
             android:foregroundTint="#3856A3"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/CustomBlock3Layout"
+            app:layout_constraintTop_toBottomOf="@+id/CustomBlock2Layout">
 
             <TextView
                 android:id="@+id/CustomBlock4Text"

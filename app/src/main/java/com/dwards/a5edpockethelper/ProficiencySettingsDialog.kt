@@ -14,11 +14,7 @@ class ProficiencySettingsDialog : DialogFragment() {
 
     private val TAG = "MyCustomDialog"
 
-    interface StatChange {
-        fun sendStats(statMap: HashMap<String, Int>)
-    }
 
-    var OnStatChange: StatChange? = null
 
 
     //override fun onAttach(context: Context) {

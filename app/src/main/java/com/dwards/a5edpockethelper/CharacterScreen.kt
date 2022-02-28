@@ -1,42 +1,47 @@
 package com.dwards.a5edpockethelper
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.dwards.a5edpockethelper.databinding.FragmentCharacterScreenBinding
 import com.dwards.a5edpockethelper.model.Character
-import com.dwards.a5edpockethelper.MyViewModelFactory
+
 
 class CharacterScreen : Fragment() {
     private val TAG = "MainFragment"
 
     private var _binding: FragmentCharacterScreenBinding? = null
     private val binding get() = _binding!!
-    //private var viewModel: MyViewModel
 
-    /*
-    override fun sendStats(statMap: HashMap<String, Int>) {
-        change(statMap)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
     }
-    */
 
-    //!!!!
-    //val viewModel = ViewModelProvider(this, viewModelFactory).get(MyViewModel::class.java)
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu, menu)
+    }
 
-
-
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.characterList -> {
+                var CharacterListDialog: CharacterList = CharacterList()
+                CharacterListDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        //создание вью-модел и обсервера
 
         val viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
@@ -45,6 +50,8 @@ class CharacterScreen : Fragment() {
                 refreshChar(it)
             }
         })
+
+
 
 
         _binding = FragmentCharacterScreenBinding.inflate(inflater, container, false)
@@ -62,8 +69,8 @@ class CharacterScreen : Fragment() {
         //редактирование бонуса мастерства
         binding.ProficiencyLayout.setOnLongClickListener {
 
-            val StatsSettingsdialog: ProficiencySettingsDialog = ProficiencySettingsDialog()
-            StatsSettingsdialog.show(parentFragmentManager, "CharacteristicSettingsDialog")
+            val ProficiencySettingsDialog: ProficiencySettingsDialog = ProficiencySettingsDialog()
+            ProficiencySettingsDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
             return@setOnLongClickListener true
         }
 
