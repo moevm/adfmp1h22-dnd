@@ -2,10 +2,9 @@ package com.dwards.a5edpockethelper.model
 
 import androidx.room.*
 
-class CharacterDAO {
 
     @Dao
-    interface CharacterDao {
+    interface CharacterDAO {
         @Query("SELECT * FROM Character")
         fun getAll(): List<Character?>?
 
@@ -14,14 +13,13 @@ class CharacterDAO {
 
         // Добавление в бд
         @Insert
-        open fun insert(character: Character?)
+        open fun insertChar(character: Character)
 
         // Удаление из бд
         @Delete
-        fun delete(character: Character?)
+        fun delete(character: Character)
 
         // Изменение в бд
         @Update
-        fun update(character: Character?)
+        fun update(character: Character)
     }
-}

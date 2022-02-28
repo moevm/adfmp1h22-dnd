@@ -11,10 +11,10 @@ data class Character(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
     var name: String = "",
-    var Strength: Int = 0,
-    var Dexterity: Int = 0,
-    var Constitution: Int = 0,
-    var Intelligence: Int = 0,
-    var Wisdom: Int = 0,
-    var Charisma: Int = 0
+    var strength: Int = 0,
+    var dexterity: Int = 0,
+    var constitution: Int = 0,
+    var intelligence: Int = 0,
+    var wisdom: Int = 0,
+    var charisma: Int = 0
 )
