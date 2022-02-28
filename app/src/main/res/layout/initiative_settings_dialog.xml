@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_place"
+    android:layout_height="400dp"
+    android:layout_width="300dp"
+    android:layout_marginTop="200dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/ProficiencyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Initiative"
+        android:textSize="@dimen/HP_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ProficiencyBonusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Proficiency\nBonus"
+        app:layout_constraintEnd_toEndOf="@+id/ProficiencyBonusValue"
+        app:layout_constraintStart_toStartOf="@+id/ProficiencyBonusValue"
+        app:layout_constraintTop_toBottomOf="@+id/ProficiencyText" />
+
+
+
+    <EditText
+        android:id="@+id/ProficiencyBonusValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="4"
+        android:gravity="center"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ProficiencyBonusText" />
+
+
+    <Button
+        android:id="@+id/SaveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ProficiencyBonusValue" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
