@@ -1,16 +1,18 @@
 package com.dwards.a5edpockethelper
 
+import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.dwards.a5edpockethelper.databinding.CharacterListRecyclerBinding
 import com.dwards.a5edpockethelper.model.Character
 
 
-class CharacterListAdapter(charArrayList: List<Character?>): Adapter<CharacterListAdapter.CharactersViewHolder>() {
+class CharacterListAdapter(charArrayList: List<Character?>, private val listener: RecyclerViewClickListener): Adapter<CharacterListAdapter.CharactersViewHolder>() {
    // private var _binding: CharacterListRecyclerBinding? = null
     //private val binding get() = _binding!!
 
@@ -24,12 +26,13 @@ class CharacterListAdapter(charArrayList: List<Character?>): Adapter<CharacterLi
         val charBinding = CharacterListRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
 
-        return CharactersViewHolder(charBinding)
+        return CharactersViewHolder(charBinding, listener)
     }
 
     override fun onBindViewHolder(holder: CharactersViewHolder, position: Int) {
         var character: Character? = characterArrayList[position]
         holder.bind(character)
+
 
     }
 
@@ -39,15 +42,19 @@ class CharacterListAdapter(charArrayList: List<Character?>): Adapter<CharacterLi
     }
 
 
-    class CharactersViewHolder(private val itemBinding: CharacterListRecyclerBinding) : RecyclerView.ViewHolder(itemBinding.root) {
+    class CharactersViewHolder(private val itemBinding: CharacterListRecyclerBinding, private val listener: RecyclerViewClickListener) : RecyclerView.ViewHolder(itemBinding.root) {
 
         init{
-            //!!!!!!!!!!!! val intent = Intent(itemBinding.root.context, MainActivity::class.java)
-            //!!!!!!!!!!!! itemBinding.root.context.startActivity(intent);
-            //!!!!!!!!!!!! val viewModel =  ViewModelProvider(itemBinding.root.context).get(MyViewModel::class.java)
 
             itemBinding.characterLayout.setOnClickListener{
                 val positionIndex = bindingAdapterPosition
+                listener.onRecyclerViewItemClickListener(itemBinding.characterLayout, positionIndex)
+
+            }
+
+            itemBinding.deleteIcon.setOnClickListener{
+                val positionIndex = bindingAdapterPosition
+                listener.onRecyclerViewItemClickListener(itemBinding.deleteIcon, positionIndex)
 
             }
         }

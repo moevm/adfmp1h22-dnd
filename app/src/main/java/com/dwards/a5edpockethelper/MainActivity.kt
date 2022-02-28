@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         ).build()
         // создание ДАО
         val characterDao: CharacterDAO = db.characterDao()
-        var charID: Int = 1
+        var charID: Int = 0
 
         // создание ViewModel через фабрику
         viewModelFactory = MyViewModelFactory(characterDao, charID)

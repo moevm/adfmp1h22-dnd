@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dwards.a5edpockethelper.databinding.CharacterListBinding
 
 
-class CharacterList : DialogFragment() {
+class CharacterList : DialogFragment(), RecyclerViewClickListener {
 
     private var _binding: CharacterListBinding? = null
     private val binding get() = _binding!!
@@ -22,6 +22,7 @@ class CharacterList : DialogFragment() {
     private lateinit var characterAdapter: CharacterListAdapter
     private val TAG = "Character List Dialog"
 
+    private lateinit var viewModel: MyViewModel
     private lateinit var characterList: RecyclerView
 
 
@@ -39,10 +40,10 @@ class CharacterList : DialogFragment() {
         //var layoutManager: LinearLayoutManager = LinearLayoutManager(activity)
 
 
-        val viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
         viewModel.getAllCharacters().observe(viewLifecycleOwner, Observer {
             it?.let {
-                characterAdapter = CharacterListAdapter(it)
+                characterAdapter = CharacterListAdapter(it, this)
                 characterList.apply{
                 layoutManager = LinearLayoutManager(activity);
                 adapter = characterAdapter
@@ -52,7 +53,29 @@ class CharacterList : DialogFragment() {
             }
         })
 
+        binding.addCharacterButton.setOnClickListener{
+            viewModel.addCharacter()
+        }
+
         return view
+    }
+
+    override fun onRecyclerViewItemClickListener(view: View, id: Int) {
+        when (view.id)
+        {
+            R.id.characterLayout ->{
+                viewModel.chooseCharacter(id)
+            }
+
+            R.id.deleteIcon ->{
+                viewModel.deleteCharacter(id)
+                //if (id!=0)
+                //    viewModel.chooseCharacter(id-1)
+                //if (id==0)
+                //    viewModel.chooseCharacter(id+1)
+            }
+        }
+
     }
 
 
