@@ -28,8 +28,8 @@ class CharacterScreen : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.characterList -> {
-                var CharacterListDialog: CharacterList = CharacterList()
-                CharacterListDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
+                var characterListDialog: CharacterList = CharacterList()
+                characterListDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -78,15 +78,31 @@ class CharacterScreen : Fragment() {
         binding.SpeedLayout.setOnLongClickListener {
 
             val speedSettingsDialog: SpeedSettingsDialog = SpeedSettingsDialog()
-            speedSettingsDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
+            speedSettingsDialog.show(parentFragmentManager, "SpeedSettingsDialog")
             return@setOnLongClickListener true
         }
 
-        //редактирование скорости
+        //редактирование инициативы
         binding.InitiativeLayout.setOnLongClickListener {
 
             val initiativeSettingsDialog: InitiativeSettingsDialog = InitiativeSettingsDialog()
-            initiativeSettingsDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
+            initiativeSettingsDialog.show(parentFragmentManager, "InitiativeSettingsDialog")
+            return@setOnLongClickListener true
+        }
+
+        //редактирование хитдайсов
+        binding.HitDiceLayout.setOnLongClickListener {
+
+            val hitDiceSettingsDialog: HitDiceSettingsDialog = HitDiceSettingsDialog()
+            hitDiceSettingsDialog.show(parentFragmentManager, "HitDiceSettingsDialog")
+            return@setOnLongClickListener true
+        }
+
+        //редактирование максимума здоровья
+        binding.HPLayout.setOnLongClickListener {
+
+            val maxHPSettingsDialog: MaxHPSettingsDialog = MaxHPSettingsDialog()
+            maxHPSettingsDialog.show(parentFragmentManager, "MaxHPSettingsDialog")
             return@setOnLongClickListener true
         }
 
@@ -128,6 +144,8 @@ class CharacterScreen : Fragment() {
         binding.IntelligenceSaveValue.text = viewModel.calcSave(character.intelligence, character.intelligenceSaveProf, character.intelligenceSaveMisc)
         binding.WisdomSaveValue.text = viewModel.calcSave(character.wisdom, character.wisdomSaveProf, character.wisdomSaveMisc)
         binding.CharismaSaveValue.text = viewModel.calcSave(character.charisma, character.charismaSaveProf, character.charismaSaveMisc)
+
+        binding.HitDiceValue.text = (character.hitDiceCount.toString() + "d" + character.hitDiceSize.toString())
 
         when(character.chosenSpeed){
             "Walk" -> {

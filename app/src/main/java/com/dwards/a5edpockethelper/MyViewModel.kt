@@ -144,6 +144,26 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
         fetchData(updatedChar.id!!)
     }
 
+    fun changeCharactersHitDice(hitDiceCount: Int, hitDiceSize: Int){
+        val updatedChar = currentChar.value!!
+        updatedChar.hitDiceCount = hitDiceCount
+        updatedChar.hitDiceSize = hitDiceSize
+
+        pushToDB(updatedChar)
+        fetchData(updatedChar.id!!)
+    }
+
+    fun changeCharactersMaxHP(maxHP: Int){
+        val updatedChar = currentChar.value!!
+        updatedChar.maxHP = maxHP
+        if (updatedChar.currentHP < maxHP){
+            updatedChar.currentHP = maxHP
+        }
+        //А если 0??? Добавить!!!
+        pushToDB(updatedChar)
+        fetchData(updatedChar.id!!)
+    }
+
     fun changeCharactersSpeed(speed: Int, miscBonus: Int, speedType: String){
         val updatedChar = currentChar.value!!
         when(speedType){
@@ -180,6 +200,8 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
     }
 
 
+
+
     private fun pushToDB(updatedChar: Character){
         viewModelScope.launch{
             characterDao.updateChar(updatedChar)
@@ -200,6 +222,7 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
     }
 
     fun calcModifier(value: Int) = when (value) {
+            0 -> "-5"
             1, 2 -> "-4"
             3, 4 -> "-3"
             5, 6 -> "-2"

@@ -73,7 +73,8 @@ class SpeedSettingsDialog : DialogFragment() {
         }
 
         binding.SaveButton.setOnClickListener {
-            viewModel.changeCharactersSpeed(binding.SpeedBaseValue.text.toString().toInt(),binding.SpeedMiscBonusValue.text.toString().toInt(), speedType)
+            viewModel.changeCharactersSpeed(if (binding.SpeedBaseValue.text.toString() != "") binding.SpeedBaseValue.text.toString().toInt() else 0
+                ,if (binding.SpeedMiscBonusValue.text.toString() != "") binding.SpeedMiscBonusValue.text.toString().toInt() else 0, speedType)
             dismiss()
         }
 

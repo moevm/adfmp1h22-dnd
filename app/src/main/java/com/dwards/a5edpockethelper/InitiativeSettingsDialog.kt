@@ -30,6 +30,8 @@ class InitiativeSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedLis
     private lateinit var viewModel: MyViewModel
 
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -144,7 +146,8 @@ class InitiativeSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedLis
 
         binding.SaveButton.setOnClickListener {
             //val test: Int = binding.MiscBonusValue.text.toString().toInt()
-            viewModel.changeCharactersInitiative(binding.MiscBonusValue.text.toString().toInt(), prof, halfProf, doubleProf, additionalStatBonus)
+            viewModel.changeCharactersInitiative(if (binding.MiscBonusValue.text.toString() != "")
+                binding.MiscBonusValue.text.toString().toInt() else 0, prof, halfProf, doubleProf, additionalStatBonus)
             dismiss()
         }
 
