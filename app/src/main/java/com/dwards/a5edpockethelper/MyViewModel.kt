@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 
 class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel() {
 
+    var flag = 0
     var currentId: Int = 0
     var character: Character = Character()
     var currentChar: MutableLiveData<Character> = MutableLiveData()
@@ -21,7 +22,7 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
 
         if (character.id == null) {
             var character = Character()
-            character.id = currentId
+            //character.id = currentId
             character.name = "Arno"
             character.strength = 20
             character.dexterity = 20
@@ -32,13 +33,12 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
             viewModelScope.launch{
                 characterDao.insertChar(character)
             }
-            currentId++
+            //currentId++
         }
 
 
-
         character = Character()
-        character.id = currentId
+        //character.id = currentId
         character.name = "Kostoprav"
         character.strength = 10
         character.dexterity = 10
@@ -49,7 +49,7 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
         viewModelScope.launch {
             characterDao.insertChar(character)
         }
-        currentId++
+        //currentId++
         fetchData(0)
     }
 
@@ -66,7 +66,8 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
     }
 
     fun chooseCharacter(id: Int){
-        fetchData(id)
+        currentId = id
+        fetchData(currentId)
     }
 
     fun deleteCharacter(id: Int){
@@ -74,18 +75,18 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
             var deletedchar: Character? = characterDao.getById(id)
             characterDao.delete(deletedchar!!)
             characterList.value = characterDao.getAll()
+            if (characterList.value?.size != 0 && currentId==id) {
+                chooseCharacter(characterList.value?.get(0)?.id!!)
+            }
         }
-        if (id!=0)
-            chooseCharacter(id-1)
-        else
-            chooseCharacter(id+1)
-        currentId--
+
+
+        //currentId--
     }
 
     //Пока это просто заглушка болванка для проверки добавления в БД, функционала нет
     fun addCharacter(){
         character = Character()
-        character.id = currentId
         character.name = "Molchun"
         character.strength = 18
         character.dexterity = 14
@@ -97,7 +98,7 @@ class MyViewModel(private val characterDao: CharacterDAO, id: Int) : ViewModel()
             characterDao.insertChar(character)
             characterList.value = characterDao.getAll()
         }
-        currentId++
+
     }
 
     fun changeCharacter(statMap: HashMap<String, Int> ){

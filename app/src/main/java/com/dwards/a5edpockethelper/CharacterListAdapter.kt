@@ -15,7 +15,6 @@ import com.dwards.a5edpockethelper.model.Character
 class CharacterListAdapter(charArrayList: List<Character?>, private val listener: RecyclerViewClickListener): Adapter<CharacterListAdapter.CharactersViewHolder>() {
    // private var _binding: CharacterListRecyclerBinding? = null
     //private val binding get() = _binding!!
-
     private var characterArrayList: List<Character?>
     init{
         characterArrayList = charArrayList
@@ -43,18 +42,15 @@ class CharacterListAdapter(charArrayList: List<Character?>, private val listener
 
 
     class CharactersViewHolder(private val itemBinding: CharacterListRecyclerBinding, private val listener: RecyclerViewClickListener) : RecyclerView.ViewHolder(itemBinding.root) {
-
+        private var characterId: Int = 0
         init{
 
             itemBinding.characterLayout.setOnClickListener{
-                val positionIndex = bindingAdapterPosition
-                listener.onRecyclerViewItemClickListener(itemBinding.characterLayout, positionIndex)
-
+                listener.onRecyclerViewItemClickListener(itemBinding.characterLayout, characterId)
             }
 
             itemBinding.deleteIcon.setOnClickListener{
-                val positionIndex = bindingAdapterPosition
-                listener.onRecyclerViewItemClickListener(itemBinding.deleteIcon, positionIndex)
+                listener.onRecyclerViewItemClickListener(itemBinding.deleteIcon, characterId)
 
             }
         }
@@ -64,6 +60,7 @@ class CharacterListAdapter(charArrayList: List<Character?>, private val listener
             itemBinding.characterName.text = (character?.name +',')
             itemBinding.characterClass.text = character?.charClass
             itemBinding.characterLevel.text = "${character?.level}"
+            characterId = character?.id!!
         }
 
 

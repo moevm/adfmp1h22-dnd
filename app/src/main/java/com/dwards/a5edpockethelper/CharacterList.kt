@@ -69,10 +69,7 @@ class CharacterList : DialogFragment(), RecyclerViewClickListener {
 
             R.id.deleteIcon ->{
                 viewModel.deleteCharacter(id)
-                //if (id!=0)
-                //    viewModel.chooseCharacter(id-1)
-                //if (id==0)
-                //    viewModel.chooseCharacter(id+1)
+
             }
         }
 
