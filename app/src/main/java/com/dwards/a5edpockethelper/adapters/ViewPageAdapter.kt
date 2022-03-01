@@ -10,7 +10,7 @@ class ViewPageAdapter(fragment: FragmentActivity) : FragmentStateAdapter(fragmen
 
     override fun createFragment(position: Int): Fragment {
 
-        when(position){
+        when (position) {
             0 -> {
                 return CharacterScreen()
             }
@@ -26,7 +26,7 @@ class ViewPageAdapter(fragment: FragmentActivity) : FragmentStateAdapter(fragmen
             4 -> {
                 return CharacterInventory()
             }
-            else ->{
+            else -> {
                 return CharacterScreen()
             }
         }

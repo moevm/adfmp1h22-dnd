@@ -13,7 +13,8 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 
-class MyViewModel(private val characterDao: CharacterDAO, application: Application) : AndroidViewModel(application) {
+class MyViewModel(private val characterDao: CharacterDAO, application: Application) :
+    AndroidViewModel(application) {
     //временные флаги для создания персонажей
     var flag1: Boolean = false
     var flag2: Boolean = false
@@ -24,21 +25,21 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
     var characterList: MutableLiveData<List<Character?>> = MutableLiveData()
 
     init {
-        viewModelScope.launch{
+        viewModelScope.launch {
             characterList.value = characterDao.getAll()
         }
     }
 
-    fun startDB(){
+    fun startDB() {
         getCharacterID()
 
         viewModelScope.launch {
-            val job: Job = viewModelScope.launch{fetchAll()}
+            val job: Job = viewModelScope.launch { fetchAll() }
             job.join()
             characterList.value = characterDao.getAll()
             if (characterList.value?.size == 0) {
                 addCharacter()
-                val job: Job = viewModelScope.launch{fetchAll()}
+                val job: Job = viewModelScope.launch { fetchAll() }
                 job.join()
                 chooseCharacter(characterList.value?.get(0)?.id!!)
             } else {
@@ -57,48 +58,54 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
 
     fun getAllCharacters() = characterList
 
-    private fun fetchData(id: Int)
-    {
-        viewModelScope.launch{
+    private fun fetchData(id: Int) {
+        viewModelScope.launch {
             currentChar.value = characterDao.getById(id)
             characterList.value = characterDao.getAll()
         }
     }
 
-    private fun fetchAll(){
-        viewModelScope.launch{
+    private fun fetchAll() {
+        viewModelScope.launch {
             characterList.value = characterDao.getAll()
         }
     }
 
 
-
-    fun chooseCharacter(id: Int){
+    fun chooseCharacter(id: Int) {
         currentId = id
         saveCharacterID(id)
         fetchData(currentId)
     }
 
-    private fun saveCharacterID(id: Int){
-        val settings: SharedPreferences = getApplication<Application>().applicationContext.getSharedPreferences("gameSetting", Context.MODE_PRIVATE)
+    private fun saveCharacterID(id: Int) {
+        val settings: SharedPreferences =
+            getApplication<Application>().applicationContext.getSharedPreferences(
+                "gameSetting",
+                Context.MODE_PRIVATE
+            )
         val editor = settings.edit()
         editor.putInt("id", id)
         editor.apply()
     }
 
-    private fun getCharacterID(){
-        val settings: SharedPreferences = getApplication<Application>().applicationContext.getSharedPreferences("gameSetting", Context.MODE_PRIVATE)
-        if (settings!=null){
-            currentId = settings.getInt("id",0)
+    private fun getCharacterID() {
+        val settings: SharedPreferences =
+            getApplication<Application>().applicationContext.getSharedPreferences(
+                "gameSetting",
+                Context.MODE_PRIVATE
+            )
+        if (settings != null) {
+            currentId = settings.getInt("id", 0)
         }
     }
 
-    fun deleteCharacter(id: Int){
-        viewModelScope.launch{
+    fun deleteCharacter(id: Int) {
+        viewModelScope.launch {
             var deletedchar: Character? = characterDao.getById(id)
             characterDao.delete(deletedchar!!)
             characterList.value = characterDao.getAll()
-            if (characterList.value?.size != 0 && currentId==id) {
+            if (characterList.value?.size != 0 && currentId == id) {
                 chooseCharacter(characterList.value?.get(0)?.id!!)
             }
         }
@@ -106,7 +113,7 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
     }
 
     //Пока это просто заглушка болванка для проверки добавления в БД, функционала нет
-    fun addCharacter(){
+    fun addCharacter() {
         character = Character()
         character.name = "Name"
         character.charClass = "Class"
@@ -123,7 +130,7 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
         }
     }
 
-    fun changeCharactersStats(statMap: HashMap<String, Int> ){
+    fun changeCharactersStats(statMap: HashMap<String, Int>) {
         val updatedChar = currentChar.value!!
         updatedChar.strength = statMap["Strength"]!!
         updatedChar.dexterity = statMap["Dexterity"]!!
@@ -151,7 +158,7 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
         fetchData(updatedChar.id!!)
     }
 
-    fun changeCharactersProficiency(proficiency: Int){
+    fun changeCharactersProficiency(proficiency: Int) {
         val updatedChar = currentChar.value!!
         updatedChar.proficiency = proficiency
 
@@ -159,7 +166,7 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
         fetchData(updatedChar.id!!)
     }
 
-    fun changeCharactersHitDice(hitDiceCount: Int, hitDiceSize: Int){
+    fun changeCharactersHitDice(hitDiceCount: Int, hitDiceSize: Int) {
         val updatedChar = currentChar.value!!
         updatedChar.hitDiceCount = hitDiceCount
         updatedChar.hitDiceSize = hitDiceSize
@@ -168,10 +175,10 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
         fetchData(updatedChar.id!!)
     }
 
-    fun changeCharactersMaxHP(maxHP: Int){
+    fun changeCharactersMaxHP(maxHP: Int) {
         val updatedChar = currentChar.value!!
         updatedChar.maxHP = maxHP
-        if (updatedChar.currentHP > maxHP){
+        if (updatedChar.currentHP > maxHP) {
             updatedChar.currentHP = maxHP
         }
         //А если 0??? Добавить!!!
@@ -179,41 +186,40 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
         fetchData(updatedChar.id!!)
     }
 
-    fun changeCharactersCurrentHP(diffHP: Int, mode: Int){
+    fun changeCharactersCurrentHP(diffHP: Int, mode: Int) {
         var changeHP = diffHP
         val updatedChar = currentChar.value!!
-        when (mode){
+        when (mode) {
             //дамаг
-            1 -> if (updatedChar.currentHP+updatedChar.tempHP - changeHP > 0){
+            1 -> if (updatedChar.currentHP + updatedChar.tempHP - changeHP > 0) {
                 //если есть темп хп
-                if (updatedChar.tempHP != 0){
+                if (updatedChar.tempHP != 0) {
                     //если урон больше хп, уменьшаем урон, иначе урон 0
                     if (changeHP > updatedChar.tempHP) {
                         changeHP -= updatedChar.tempHP
                         updatedChar.tempHP = 0
-                    }
-                    else {
+                    } else {
                         updatedChar.tempHP -= changeHP
                         changeHP = 0
                     }
 
                 }
                 updatedChar.currentHP -= changeHP
-            }
-            else {
+            } else {
                 updatedChar.currentHP = 0
                 updatedChar.tempHP = 0
             }
-            2 -> if (updatedChar.currentHP + changeHP < updatedChar.maxHP) updatedChar.currentHP += changeHP else updatedChar.currentHP = updatedChar.maxHP
+            2 -> if (updatedChar.currentHP + changeHP < updatedChar.maxHP) updatedChar.currentHP += changeHP else updatedChar.currentHP =
+                updatedChar.maxHP
             3 -> if (updatedChar.tempHP < changeHP) updatedChar.tempHP = changeHP else 0
         }
         pushToDB(updatedChar)
         fetchData(updatedChar.id!!)
     }
 
-    fun changeCharactersSpeed(speed: Int, miscBonus: Int, speedType: String){
+    fun changeCharactersSpeed(speed: Int, miscBonus: Int, speedType: String) {
         val updatedChar = currentChar.value!!
-        when(speedType){
+        when (speedType) {
             "Walk" -> {
                 updatedChar.baseWalkSpeed = speed
                 updatedChar.miscWalkSpeedBonus = miscBonus
@@ -233,10 +239,16 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
             }
         }
         updatedChar.chosenSpeed = speedType
-            pushToDB(updatedChar)
+        pushToDB(updatedChar)
     }
 
-    fun changeCharactersInitiative(miscBonus: Int, prof: Boolean, halfProf: Boolean, doubleProf: Boolean, additionalStat: Int){
+    fun changeCharactersInitiative(
+        miscBonus: Int,
+        prof: Boolean,
+        halfProf: Boolean,
+        doubleProf: Boolean,
+        additionalStat: Int
+    ) {
         val updatedChar = currentChar.value!!
         updatedChar.miscInitiativeBonus = miscBonus
         updatedChar.initiativeProf = prof
@@ -246,7 +258,14 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
         pushToDB(updatedChar)
     }
 
-    fun changeCharactersArmor(armorBonus: Int, shieldBonus: Int, maxDex: Int, miscBonus: Int, armorType: Int, additionalStatBonus: Int){
+    fun changeCharactersArmor(
+        armorBonus: Int,
+        shieldBonus: Int,
+        maxDex: Int,
+        miscBonus: Int,
+        armorType: Int,
+        additionalStatBonus: Int
+    ) {
         val updatedChar = currentChar.value!!
         updatedChar.armorBonus = armorBonus
         updatedChar.shieldBonus = shieldBonus
@@ -258,10 +277,12 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
         pushToDB(updatedChar)
     }
 
-    fun changeCharactersCustomBlock(customBlock1Value: String, customBlock1Text: String,
-                                    customBlock2Value: String, customBlock2Text: String,
-                                    customBlock3Value: String, customBlock3Text: String,
-                                    customBlock4Value: String, customBlock4Text: String){
+    fun changeCharactersCustomBlock(
+        customBlock1Value: String, customBlock1Text: String,
+        customBlock2Value: String, customBlock2Text: String,
+        customBlock3Value: String, customBlock3Text: String,
+        customBlock4Value: String, customBlock4Text: String
+    ) {
         val updatedChar = currentChar.value!!
         updatedChar.customBlock1Name = customBlock1Text
         updatedChar.customBlock1Value = customBlock1Value
@@ -276,12 +297,21 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
     }
 
 
-    fun calcArmor(armorBonus: Int, shieldBonus: Int, maxDex: Int, miscBonus: Int, armorType: Int, additionalStatBonus: Int): Int{
+    fun calcArmor(
+        armorBonus: Int,
+        shieldBonus: Int,
+        maxDex: Int,
+        miscBonus: Int,
+        armorType: Int,
+        additionalStatBonus: Int
+    ): Int {
         val updatedChar = currentChar.value!!
         var sum: Int = armorBonus + shieldBonus
         sum += miscBonus
-        if (maxDex < calcModifier(updatedChar.dexterity).toInt()) sum += maxDex else sum += calcModifier(updatedChar.dexterity).toInt()
-        when (additionalStatBonus){
+        if (maxDex < calcModifier(updatedChar.dexterity).toInt()) sum += maxDex else sum += calcModifier(
+            updatedChar.dexterity
+        ).toInt()
+        when (additionalStatBonus) {
             0 -> 0
             1 -> sum += calcModifier(updatedChar.strength).toInt()
             2 -> sum += calcModifier(updatedChar.constitution).toInt()
@@ -292,9 +322,9 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
         return sum
     }
 
-    fun stabilizeCharacter(){
+    fun stabilizeCharacter() {
         val updatedChar = currentChar.value!!
-        if(updatedChar.maxHP < 1)
+        if (updatedChar.maxHP < 1)
             updatedChar.maxHP = 1
         updatedChar.currentHP = 1
         updatedChar.failureDeathSave = 0
@@ -303,22 +333,21 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
         pushToDB(updatedChar)
     }
 
-    fun makeDeathSave(result: Boolean){
+    fun makeDeathSave(result: Boolean) {
         val updatedChar = currentChar.value!!
-        when (result){
+        when (result) {
             true -> if (updatedChar.passDeathSave < 3)
                 updatedChar.passDeathSave += 1
             false -> if (updatedChar.failureDeathSave < 3)
                 updatedChar.failureDeathSave += 1
         }
-        if (updatedChar.passDeathSave >= 3){
+        if (updatedChar.passDeathSave >= 3) {
             stabilizeCharacter()
-        }
-        else
+        } else
             pushToDB(updatedChar)
     }
 
-    fun changeCharactersNameClassLevel(name: String, charClass: String, level: Int){
+    fun changeCharactersNameClassLevel(name: String, charClass: String, level: Int) {
         val updatedChar = currentChar.value!!
         updatedChar.name = name
         updatedChar.charClass = charClass
@@ -326,7 +355,13 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
         pushToDB(updatedChar)
     }
 
-    fun changeCharactersSkill(skill: String, miscBonus: Int, prof: Boolean, halfProf: Boolean, doubleProf: Boolean){
+    fun changeCharactersSkill(
+        skill: String,
+        miscBonus: Int,
+        prof: Boolean,
+        halfProf: Boolean,
+        doubleProf: Boolean
+    ) {
         val updatedChar = currentChar.value!!
         when (skill) {
             "Athletics" -> {
@@ -444,93 +479,99 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
         pushToDB(updatedChar)
     }
 
-    fun deleteToolsProficiency(id: Int){
+    fun deleteToolsProficiency(id: Int) {
         val updatedChar = currentChar.value!!
         updatedChar.toolsProficiencyList.removeAt(id)
         pushToDB(updatedChar)
     }
 
-    fun addToolsProficiency(){
+    fun addToolsProficiency() {
         val updatedChar = currentChar.value!!
         updatedChar.toolsProficiencyList.add("Name")
         pushToDB(updatedChar)
     }
 
-    fun changeToolsProficiency(num: Int, value: String){
+    fun changeToolsProficiency(num: Int, value: String) {
         val updatedChar = currentChar.value!!
         updatedChar.toolsProficiencyList[num] = value
         pushToDB(updatedChar)
     }
 
-    fun deleteLanguageProficiency(id: Int){
+    fun deleteLanguageProficiency(id: Int) {
         val updatedChar = currentChar.value!!
         updatedChar.languageProficiencyList.removeAt(id)
         pushToDB(updatedChar)
     }
 
-    fun addLanguageProficiency(){
+    fun addLanguageProficiency() {
         val updatedChar = currentChar.value!!
         updatedChar.languageProficiencyList.add("Name")
         pushToDB(updatedChar)
     }
 
-    fun changeLanguageProficiency(num: Int, value: String){
+    fun changeLanguageProficiency(num: Int, value: String) {
         val updatedChar = currentChar.value!!
         updatedChar.languageProficiencyList[num] = value
         pushToDB(updatedChar)
     }
 
-    private fun pushToDB(updatedChar: Character){
-        viewModelScope.launch{
+    private fun pushToDB(updatedChar: Character) {
+        viewModelScope.launch {
             characterDao.updateChar(updatedChar)
             fetchData(updatedChar.id!!)
         }
     }
 
 
-    fun calcSave(value: Int, saveProf: Boolean, misc: Int): String{
+    fun calcSave(value: Int, saveProf: Boolean, misc: Int): String {
         var sum: Int = calcModifier(value).toInt()
         if (saveProf)
-            sum+=currentChar.value?.proficiency!!
-            sum+= misc
-        return if (sum>0)
+            sum += currentChar.value?.proficiency!!
+        sum += misc
+        return if (sum > 0)
             "+$sum"
         else
             "$sum"
     }
 
     fun calcModifier(value: Int) = when (value) {
-            0 -> "-5"
-            1, 2 -> "-4"
-            3, 4 -> "-3"
-            5, 6 -> "-2"
-            7, 8 -> "-1"
-            9, 10 -> "0"
-            11, 12 -> "+1"
-            13, 14 -> "+2"
-            15, 16 -> "+3"
-            17, 18 -> "+4"
-            19, 20 -> "+5"
-            21, 22 -> "+6"
-            23, 24 -> "+7"
-            25, 26 -> "+8"
-            27, 28 -> "+9"
-            29, 30 -> "+10"
-            else -> "0"
+        0 -> "-5"
+        1, 2 -> "-4"
+        3, 4 -> "-3"
+        5, 6 -> "-2"
+        7, 8 -> "-1"
+        9, 10 -> "0"
+        11, 12 -> "+1"
+        13, 14 -> "+2"
+        15, 16 -> "+3"
+        17, 18 -> "+4"
+        19, 20 -> "+5"
+        21, 22 -> "+6"
+        23, 24 -> "+7"
+        25, 26 -> "+8"
+        27, 28 -> "+9"
+        29, 30 -> "+10"
+        else -> "0"
     }
 
-    fun calcInitiative(dexModifier: Int, miscBonus: Int, prof: Boolean, halfProf: Boolean, doubleProf: Boolean, additionalStat: Int, profBonus: Int): Int{
-        var sum = dexModifier+miscBonus
-        if(doubleProf){
-            sum += profBonus*2
-        }
-        else if(prof){
+    fun calcInitiative(
+        dexModifier: Int,
+        miscBonus: Int,
+        prof: Boolean,
+        halfProf: Boolean,
+        doubleProf: Boolean,
+        additionalStat: Int,
+        profBonus: Int
+    ): Int {
+        var sum = dexModifier + miscBonus
+        if (doubleProf) {
+            sum += profBonus * 2
+        } else if (prof) {
             sum += profBonus
+        } else if (halfProf) {
+            sum += profBonus / 2
         }
-        else if(halfProf){
-            sum += profBonus/2
-        }
-        when (additionalStat){
+        when (additionalStat) {
             1 -> sum += calcModifier(currentChar.value?.strength!!).toInt()
             2 -> sum += calcModifier(currentChar.value?.dexterity!!).toInt()
             3 -> sum += calcModifier(currentChar.value?.constitution!!).toInt()
@@ -541,16 +582,20 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
         return sum
     }
 
-    fun calcStat(statMod: Int, miscBonus: Int, prof: Boolean, halfProf: Boolean, doubleProf: Boolean): Int{
-        var sum = statMod+miscBonus
-        if(doubleProf){
-            sum += character.proficiency*2
-        }
-        else if(prof){
+    fun calcStat(
+        statMod: Int,
+        miscBonus: Int,
+        prof: Boolean,
+        halfProf: Boolean,
+        doubleProf: Boolean
+    ): Int {
+        var sum = statMod + miscBonus
+        if (doubleProf) {
+            sum += character.proficiency * 2
+        } else if (prof) {
             sum += character.proficiency
-        }
-        else if(halfProf){
-            sum += character.proficiency/2
+        } else if (halfProf) {
+            sum += character.proficiency / 2
         }
         return sum
     }

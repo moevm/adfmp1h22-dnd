@@ -48,7 +48,7 @@ class CharacterScreen : Fragment() {
     ): View? {
         //создание вью-модел и обсервера
 
-        val viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
         viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
             it?.let {
                 refreshChar(it)
@@ -145,19 +145,14 @@ class CharacterScreen : Fragment() {
     }
 
 
-
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
     }
 
 
-
-
     private fun refreshChar(character: Character) {
-        val viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
         binding.StrengthScoreValue.text = "${character.strength}"
         binding.DexterityScoreValue.text = "${character.dexterity}"
         binding.ConstitutionScoreValue.text = "${character.constitution}"
@@ -165,8 +160,9 @@ class CharacterScreen : Fragment() {
         binding.WisdomScoreValue.text = "${character.wisdom}"
         binding.CharismaScoreValue.text = "${character.charisma}"
 
-            if (character.proficiency > 0) binding.ProficiencyValue.text = ("+" + character.proficiency.toString())
-            else binding.ProficiencyValue.text = (character.proficiency.toString())
+        if (character.proficiency > 0) binding.ProficiencyValue.text =
+            ("+" + character.proficiency.toString())
+        else binding.ProficiencyValue.text = (character.proficiency.toString())
 
 
 
@@ -177,41 +173,69 @@ class CharacterScreen : Fragment() {
         binding.WisdomModifierValue.text = viewModel.calcModifier(character.wisdom)
         binding.CharismaModifierValue.text = viewModel.calcModifier(character.charisma)
 
-        binding.StrengthSaveValue.text = viewModel.calcSave(character.strength, character.strengthSaveProf, character.strengthSaveMisc)
-        binding.DexteritySaveValue.text = viewModel.calcSave(character.dexterity, character.dexteritySaveProf, character.dexteritySaveMisc)
-        binding.ConstitutionSaveValue.text = viewModel.calcSave(character.constitution, character.constitutionSaveProf, character.constitutionSaveMisc)
-        binding.IntelligenceSaveValue.text = viewModel.calcSave(character.intelligence, character.intelligenceSaveProf, character.intelligenceSaveMisc)
-        binding.WisdomSaveValue.text = viewModel.calcSave(character.wisdom, character.wisdomSaveProf, character.wisdomSaveMisc)
-        binding.CharismaSaveValue.text = viewModel.calcSave(character.charisma, character.charismaSaveProf, character.charismaSaveMisc)
+        binding.StrengthSaveValue.text = viewModel.calcSave(
+            character.strength,
+            character.strengthSaveProf,
+            character.strengthSaveMisc
+        )
+        binding.DexteritySaveValue.text = viewModel.calcSave(
+            character.dexterity,
+            character.dexteritySaveProf,
+            character.dexteritySaveMisc
+        )
+        binding.ConstitutionSaveValue.text = viewModel.calcSave(
+            character.constitution,
+            character.constitutionSaveProf,
+            character.constitutionSaveMisc
+        )
+        binding.IntelligenceSaveValue.text = viewModel.calcSave(
+            character.intelligence,
+            character.intelligenceSaveProf,
+            character.intelligenceSaveMisc
+        )
+        binding.WisdomSaveValue.text =
+            viewModel.calcSave(character.wisdom, character.wisdomSaveProf, character.wisdomSaveMisc)
+        binding.CharismaSaveValue.text = viewModel.calcSave(
+            character.charisma,
+            character.charismaSaveProf,
+            character.charismaSaveMisc
+        )
 
-        binding.HitDiceValue.text = (character.hitDiceCount.toString() + "d" + character.hitDiceSize.toString())
-        binding.HPValue.text = (character.currentHP+character.tempHP).toString()
-        if(character.tempHP > 0)
+        binding.HitDiceValue.text =
+            (character.hitDiceCount.toString() + "d" + character.hitDiceSize.toString())
+        binding.HPValue.text = (character.currentHP + character.tempHP).toString()
+        if (character.tempHP > 0)
             binding.HPValue.setTextColor(Color.parseColor("#2f00ba"))
         else
             binding.HPValue.setTextColor(Color.parseColor("#000000"))
 
-        when(character.chosenSpeed){
+        when (character.chosenSpeed) {
             "Walk" -> {
-                binding.SpeedValue.text = (character.baseWalkSpeed+character.miscWalkSpeedBonus).toString()
+                binding.SpeedValue.text =
+                    (character.baseWalkSpeed + character.miscWalkSpeedBonus).toString()
                 binding.SpeedText.text = "Speed"
             }
             "Fly" -> {
-                binding.SpeedValue.text = (character.baseFlySpeed+character.miscFlySpeedBonus).toString()
+                binding.SpeedValue.text =
+                    (character.baseFlySpeed + character.miscFlySpeedBonus).toString()
                 binding.SpeedText.text = character.chosenSpeed
             }
             "Swim" -> {
-                binding.SpeedValue.text = (character.baseSwimSpeed+character.miscSwimSpeedBonus).toString()
+                binding.SpeedValue.text =
+                    (character.baseSwimSpeed + character.miscSwimSpeedBonus).toString()
                 binding.SpeedText.text = character.chosenSpeed
             }
             "Climb" -> {
-                binding.SpeedValue.text = (character.baseClimbSpeed+character.miscClimbSpeedBonus).toString()
+                binding.SpeedValue.text =
+                    (character.baseClimbSpeed + character.miscClimbSpeedBonus).toString()
                 binding.SpeedText.text = character.chosenSpeed
             }
         }
 
-        binding.InitiativeValue.text = viewModel.calcInitiative(viewModel.calcModifier(
-            character.dexterity).toInt(),
+        binding.InitiativeValue.text = viewModel.calcInitiative(
+            viewModel.calcModifier(
+                character.dexterity
+            ).toInt(),
             character.miscInitiativeBonus,
             character.initiativeProf,
             character.initiativeHalfProf,
@@ -220,12 +244,14 @@ class CharacterScreen : Fragment() {
             character.proficiency
         ).toString()
 
-        binding.ArmorValue.text = viewModel.calcArmor(character.armorBonus,
+        binding.ArmorValue.text = viewModel.calcArmor(
+            character.armorBonus,
             character.shieldBonus,
             character.maxDexterityBonus,
             character.miscArmorBonus,
             character.armorType,
-            character.statBonusArmor).toString()
+            character.statBonusArmor
+        ).toString()
 
         binding.CustomBlock1Text.text = character.customBlock1Name
         binding.CustomBlock1ScoreValue.text = character.customBlock1Value
@@ -236,62 +262,60 @@ class CharacterScreen : Fragment() {
         binding.CustomBlock4Text.text = character.customBlock4Name
         binding.CustomBlock4ScoreValue.text = character.customBlock4Value
 
-        if (character.currentHP <= 0){
+        if (character.currentHP <= 0) {
             binding.HPLayout.visibility = View.INVISIBLE
             binding.DeathsSaveLayout.visibility = View.VISIBLE
-        }
-        else {
+        } else {
             binding.HPLayout.visibility = View.VISIBLE
             binding.DeathsSaveLayout.visibility = View.INVISIBLE
         }
 
-        when (character.passDeathSave){
-            0->{
+        when (character.passDeathSave) {
+            0 -> {
                 binding.Check1.setImageResource(R.drawable.circle)
                 binding.Check2.setImageResource(R.drawable.circle)
                 binding.Check3.setImageResource(R.drawable.circle)
             }
-            1->{
+            1 -> {
                 binding.Check1.setImageResource(R.drawable.check_mark)
                 binding.Check2.setImageResource(R.drawable.circle)
                 binding.Check3.setImageResource(R.drawable.circle)
             }
-            2->{
+            2 -> {
                 binding.Check1.setImageResource(R.drawable.check_mark)
                 binding.Check2.setImageResource(R.drawable.check_mark)
                 binding.Check3.setImageResource(R.drawable.circle)
             }
-            3->{
+            3 -> {
                 binding.Check1.setImageResource(R.drawable.check_mark)
                 binding.Check2.setImageResource(R.drawable.check_mark)
                 binding.Check3.setImageResource(R.drawable.check_mark)
             }
         }
 
-        when (character.failureDeathSave){
-            0->{
+        when (character.failureDeathSave) {
+            0 -> {
                 binding.Cross1.setImageResource(R.drawable.circle)
                 binding.Cross2.setImageResource(R.drawable.circle)
                 binding.Cross3.setImageResource(R.drawable.circle)
             }
-            1->{
+            1 -> {
                 binding.Cross1.setImageResource(R.drawable.cross_mark)
                 binding.Cross2.setImageResource(R.drawable.circle)
                 binding.Cross3.setImageResource(R.drawable.circle)
             }
-            2->{
+            2 -> {
                 binding.Cross1.setImageResource(R.drawable.cross_mark)
                 binding.Cross2.setImageResource(R.drawable.cross_mark)
                 binding.Cross3.setImageResource(R.drawable.circle)
             }
-            3->{
+            3 -> {
                 binding.Cross1.setImageResource(R.drawable.cross_mark)
                 binding.Cross2.setImageResource(R.drawable.cross_mark)
                 binding.Cross3.setImageResource(R.drawable.cross_mark)
             }
         }
     }
-
 
 
     override fun onDestroyView() {

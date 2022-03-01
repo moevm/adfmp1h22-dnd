@@ -20,7 +20,6 @@ class ProficiencySettingsDialog : DialogFragment() {
     private val TAG = "MyCustomDialog"
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,7 +31,7 @@ class ProficiencySettingsDialog : DialogFragment() {
         val view = binding.root
 
         //создание вью-модел и добавление обсервера
-        val viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
         viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -42,7 +41,9 @@ class ProficiencySettingsDialog : DialogFragment() {
 
         binding.SaveButton.setOnClickListener {
             viewModel.changeCharactersProficiency(
-                if (binding.ProficiencyBonusValue.text.toString() != "") binding.ProficiencyBonusValue.text.toString().toInt() else 0)
+                if (binding.ProficiencyBonusValue.text.toString() != "") binding.ProficiencyBonusValue.text.toString()
+                    .toInt() else 0
+            )
             dismiss()
         }
 

@@ -11,11 +11,10 @@ import com.dwards.a5edpockethelper.adapters.ViewPageAdapter
 import com.dwards.a5edpockethelper.databinding.ActivityMainBinding
 import com.dwards.a5edpockethelper.dialogs.NameClassLevelSettingsDialog
 import com.dwards.a5edpockethelper.model.AppDatabase
-import com.dwards.a5edpockethelper.model.CharacterDAO
 import com.dwards.a5edpockethelper.model.Character
+import com.dwards.a5edpockethelper.model.CharacterDAO
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -63,7 +62,8 @@ class MainActivity : AppCompatActivity() {
             when (position) {
                 0 -> {
                     val view1: View = layoutInflater.inflate(R.layout.custom_tab, null)
-                    view1.findViewById<View>(R.id.icon).setBackgroundResource(R.drawable.ic_character)
+                    view1.findViewById<View>(R.id.icon)
+                        .setBackgroundResource(R.drawable.ic_character)
                     tab.customView = view1
                 }
                 1 -> {

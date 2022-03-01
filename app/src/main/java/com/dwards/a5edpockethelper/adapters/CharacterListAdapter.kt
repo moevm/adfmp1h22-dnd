@@ -5,15 +5,19 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
-import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 import com.dwards.a5edpockethelper.databinding.CharacterListRecyclerBinding
+import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 import com.dwards.a5edpockethelper.model.Character
 
 
-class CharacterListAdapter(charArrayList: List<Character?>, private val listener: RecyclerViewClickListener): Adapter<CharacterListAdapter.CharactersViewHolder>() {
+class CharacterListAdapter(
+    charArrayList: List<Character?>,
+    private val listener: RecyclerViewClickListener
+) : Adapter<CharacterListAdapter.CharactersViewHolder>() {
     private var characterArrayList: List<Character?> = charArrayList
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersViewHolder {
-        val charBinding = CharacterListRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val charBinding =
+            CharacterListRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
 
         return CharactersViewHolder(charBinding, listener)
@@ -32,15 +36,19 @@ class CharacterListAdapter(charArrayList: List<Character?>, private val listener
     }
 
 
-    class CharactersViewHolder(private val itemBinding: CharacterListRecyclerBinding, private val listener: RecyclerViewClickListener) : RecyclerView.ViewHolder(itemBinding.root) {
+    class CharactersViewHolder(
+        private val itemBinding: CharacterListRecyclerBinding,
+        private val listener: RecyclerViewClickListener
+    ) : RecyclerView.ViewHolder(itemBinding.root) {
         private var characterId: Int = 0
-        init{
 
-            itemBinding.characterLayout.setOnClickListener{
+        init {
+
+            itemBinding.characterLayout.setOnClickListener {
                 listener.onRecyclerViewItemClickListener(itemBinding.characterLayout, characterId)
             }
 
-            itemBinding.deleteIcon.setOnClickListener{
+            itemBinding.deleteIcon.setOnClickListener {
                 listener.onRecyclerViewItemClickListener(itemBinding.deleteIcon, characterId)
 
             }

@@ -49,7 +49,7 @@ class SkillSettingDialog : DialogFragment() {
         val view = binding.root
 
         //создание вью-модел и добавление обсервера
-        viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
         viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -68,7 +68,8 @@ class SkillSettingDialog : DialogFragment() {
                 binding.SecondProficiencyCheck.text = resources.getString(R.string.doubleProf)
             } else if (binding.AddProficiencyCheck.isChecked && binding.SecondProficiencyCheck.isChecked && binding.SecondProficiencyCheck.text == resources.getString(
                     R.string.doubleProf
-                )){
+                )
+            ) {
                 binding.AddProficiencyCheck.isChecked = false
                 binding.SecondProficiencyCheck.isChecked = false
                 prof = false
@@ -77,7 +78,8 @@ class SkillSettingDialog : DialogFragment() {
                 binding.SecondProficiencyCheck.text = resources.getString(R.string.halfProf)
             } else if (binding.AddProficiencyCheck.isChecked && binding.SecondProficiencyCheck.isChecked && binding.SecondProficiencyCheck.text == resources.getString(
                     R.string.halfProf
-                )){
+                )
+            ) {
                 binding.AddProficiencyCheck.isChecked = true
                 binding.SecondProficiencyCheck.isChecked = false
                 prof = true
@@ -101,31 +103,30 @@ class SkillSettingDialog : DialogFragment() {
                 prof = false
                 halfProf = true
                 doubleProf = false
-            } else if (binding.SecondProficiencyCheck.isChecked && binding.AddProficiencyCheck.isChecked){
+            } else if (binding.SecondProficiencyCheck.isChecked && binding.AddProficiencyCheck.isChecked) {
                 binding.SecondProficiencyCheck.isChecked = true
                 prof = false
                 halfProf = false
                 doubleProf = true
-            }
-            else if(!binding.SecondProficiencyCheck.isChecked && binding.AddProficiencyCheck.isChecked){
+            } else if (!binding.SecondProficiencyCheck.isChecked && binding.AddProficiencyCheck.isChecked) {
                 binding.SecondProficiencyCheck.isChecked = false
                 prof = true
                 doubleProf = false
-            }
-            else if(!binding.SecondProficiencyCheck.isChecked && !binding.AddProficiencyCheck.isChecked){
+            } else if (!binding.SecondProficiencyCheck.isChecked && !binding.AddProficiencyCheck.isChecked) {
                 binding.SecondProficiencyCheck.isChecked = false
                 halfProf = false
             }
             refreshStat()
         }
 
-        binding.MiscBonusValue.addTextChangedListener(object: TextWatcher {
+        binding.MiscBonusValue.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (binding.MiscBonusValue.text.toString() != "") miscStatBonus = binding.MiscBonusValue.text.toString().toInt() else miscStatBonus = 0
+                if (binding.MiscBonusValue.text.toString() != "") miscStatBonus =
+                    binding.MiscBonusValue.text.toString().toInt() else miscStatBonus = 0
                 refreshStat()
             }
 
@@ -136,7 +137,7 @@ class SkillSettingDialog : DialogFragment() {
 
 
         binding.SaveButton.setOnClickListener {
-            viewModel.changeCharactersSkill(skill,miscStatBonus,prof,halfProf,doubleProf)
+            viewModel.changeCharactersSkill(skill, miscStatBonus, prof, halfProf, doubleProf)
             dismiss()
         }
 
@@ -162,9 +163,9 @@ class SkillSettingDialog : DialogFragment() {
         _binding = null
     }
 
-    private fun loadChar(character: Character){
-        when(skill){
-            "Athletics"->{
+    private fun loadChar(character: Character) {
+        when (skill) {
+            "Athletics" -> {
                 binding.SkillNameText.text = resources.getString(R.string.athletic)
                 binding.StatText.text = resources.getString(R.string.strength)
                 binding.StatValue.setText(viewModel.calcModifier(character.strength))
@@ -173,7 +174,7 @@ class SkillSettingDialog : DialogFragment() {
                 halfProf = character.athleticsHalfProf
                 doubleProf = character.athleticsDoubleProf
             }
-            "Acrobatics"->{
+            "Acrobatics" -> {
                 binding.SkillNameText.text = resources.getString(R.string.acrobatics)
                 binding.StatText.text = resources.getString(R.string.dexterity)
                 binding.StatValue.setText(viewModel.calcModifier(character.dexterity))
@@ -182,7 +183,7 @@ class SkillSettingDialog : DialogFragment() {
                 halfProf = character.acrobaticsHalfProf
                 doubleProf = character.acrobaticsDoubleProf
             }
-            "Sleight of Hand"->{
+            "Sleight of Hand" -> {
                 binding.SkillNameText.text = resources.getString(R.string.sleightOfHand)
                 binding.StatText.text = resources.getString(R.string.dexterity)
                 binding.StatValue.setText(viewModel.calcModifier(character.dexterity))
@@ -191,7 +192,7 @@ class SkillSettingDialog : DialogFragment() {
                 halfProf = character.sleightOfHandHalfProf
                 doubleProf = character.sleightOfHandDoubleProf
             }
-            "Stealth"->{
+            "Stealth" -> {
                 binding.SkillNameText.text = resources.getString(R.string.stealth)
                 binding.StatText.text = resources.getString(R.string.dexterity)
                 binding.StatValue.setText(viewModel.calcModifier(character.dexterity))
@@ -200,7 +201,7 @@ class SkillSettingDialog : DialogFragment() {
                 halfProf = character.stealthHalfProf
                 doubleProf = character.stealthDoubleProf
             }
-            "Arcana"->{
+            "Arcana" -> {
                 binding.SkillNameText.text = resources.getString(R.string.arcana)
                 binding.StatText.text = resources.getString(R.string.intelligence)
                 binding.StatValue.setText(viewModel.calcModifier(character.intelligence))
@@ -209,7 +210,7 @@ class SkillSettingDialog : DialogFragment() {
                 halfProf = character.arcanaHalfProf
                 doubleProf = character.arcanaDoubleProf
             }
-            "History"->{
+            "History" -> {
                 binding.SkillNameText.text = resources.getString(R.string.history)
                 binding.StatText.text = resources.getString(R.string.intelligence)
                 binding.StatValue.setText(viewModel.calcModifier(character.intelligence))
@@ -218,7 +219,7 @@ class SkillSettingDialog : DialogFragment() {
                 halfProf = character.historyHalfProf
                 doubleProf = character.historyDoubleProf
             }
-            "Investigation"->{
+            "Investigation" -> {
                 binding.SkillNameText.text = resources.getString(R.string.investigation)
                 binding.StatText.text = resources.getString(R.string.intelligence)
                 binding.StatValue.setText(viewModel.calcModifier(character.intelligence))
@@ -227,7 +228,7 @@ class SkillSettingDialog : DialogFragment() {
                 halfProf = character.investigationHalfProf
                 doubleProf = character.investigationDoubleProf
             }
-            "Nature"->{
+            "Nature" -> {
                 binding.SkillNameText.text = resources.getString(R.string.nature)
                 binding.StatText.text = resources.getString(R.string.intelligence)
                 binding.StatValue.setText(viewModel.calcModifier(character.intelligence))
@@ -236,7 +237,7 @@ class SkillSettingDialog : DialogFragment() {
                 halfProf = character.natureHalfProf
                 doubleProf = character.natureDoubleProf
             }
-            "Religion"->{
+            "Religion" -> {
                 binding.SkillNameText.text = resources.getString(R.string.religion)
                 binding.StatText.text = resources.getString(R.string.intelligence)
                 binding.StatValue.setText(viewModel.calcModifier(character.intelligence))
@@ -245,7 +246,7 @@ class SkillSettingDialog : DialogFragment() {
                 halfProf = character.religionHalfProf
                 doubleProf = character.religionDoubleProf
             }
-            "Animal Handling"->{
+            "Animal Handling" -> {
                 binding.SkillNameText.text = resources.getString(R.string.animalHandling)
                 binding.StatText.text = resources.getString(R.string.wisdom)
                 binding.StatValue.setText(viewModel.calcModifier(character.wisdom))
@@ -254,7 +255,7 @@ class SkillSettingDialog : DialogFragment() {
                 halfProf = character.animalHandlingHalfProf
                 doubleProf = character.animalHandlingDoubleProf
             }
-            "Insight"->{
+            "Insight" -> {
                 binding.SkillNameText.text = resources.getString(R.string.insight)
                 binding.StatText.text = resources.getString(R.string.wisdom)
                 binding.StatValue.setText(viewModel.calcModifier(character.wisdom))
@@ -263,7 +264,7 @@ class SkillSettingDialog : DialogFragment() {
                 halfProf = character.insightHalfProf
                 doubleProf = character.insightDoubleProf
             }
-            "Medicine"->{
+            "Medicine" -> {
                 binding.SkillNameText.text = resources.getString(R.string.medicine)
                 binding.StatText.text = resources.getString(R.string.wisdom)
                 binding.StatValue.setText(viewModel.calcModifier(character.wisdom))
@@ -272,7 +273,7 @@ class SkillSettingDialog : DialogFragment() {
                 halfProf = character.medicineHalfProf
                 doubleProf = character.medicineDoubleProf
             }
-            "Perception"->{
+            "Perception" -> {
                 binding.SkillNameText.text = resources.getString(R.string.perception)
                 binding.StatText.text = resources.getString(R.string.wisdom)
                 binding.StatValue.setText(viewModel.calcModifier(character.wisdom))
@@ -281,7 +282,7 @@ class SkillSettingDialog : DialogFragment() {
                 halfProf = character.perceptionHalfProf
                 doubleProf = character.perceptionDoubleProf
             }
-            "Survival"->{
+            "Survival" -> {
                 binding.SkillNameText.text = resources.getString(R.string.survival)
                 binding.StatText.text = resources.getString(R.string.wisdom)
                 binding.StatValue.setText(viewModel.calcModifier(character.wisdom))
@@ -290,7 +291,7 @@ class SkillSettingDialog : DialogFragment() {
                 halfProf = character.survivalHalfProf
                 doubleProf = character.survivalDoubleProf
             }
-            "Deception"->{
+            "Deception" -> {
                 binding.SkillNameText.text = resources.getString(R.string.deception)
                 binding.StatText.text = resources.getString(R.string.charisma)
                 binding.StatValue.setText(viewModel.calcModifier(character.charisma))
@@ -299,7 +300,7 @@ class SkillSettingDialog : DialogFragment() {
                 halfProf = character.deceptionHalfProf
                 doubleProf = character.deceptionDoubleProf
             }
-            "Intimidation"->{
+            "Intimidation" -> {
                 binding.SkillNameText.text = resources.getString(R.string.intimidation)
                 binding.StatText.text = resources.getString(R.string.charisma)
                 binding.StatValue.setText(viewModel.calcModifier(character.charisma))
@@ -308,7 +309,7 @@ class SkillSettingDialog : DialogFragment() {
                 halfProf = character.intimidationHalfProf
                 doubleProf = character.intimidationDoubleProf
             }
-            "Performance"->{
+            "Performance" -> {
                 binding.SkillNameText.text = resources.getString(R.string.performance)
                 binding.StatText.text = resources.getString(R.string.charisma)
                 binding.StatValue.setText(viewModel.calcModifier(character.charisma))
@@ -317,7 +318,7 @@ class SkillSettingDialog : DialogFragment() {
                 halfProf = character.performanceHalfProf
                 doubleProf = character.performanceDoubleProf
             }
-            "Persuasion"->{
+            "Persuasion" -> {
                 binding.SkillNameText.text = resources.getString(R.string.persuasion)
                 binding.StatText.text = resources.getString(R.string.charisma)
                 binding.StatValue.setText(viewModel.calcModifier(character.charisma))
@@ -330,15 +331,15 @@ class SkillSettingDialog : DialogFragment() {
         }
         binding.MiscBonusValue.setText(miscStatBonus.toString())
         binding.ProfValue.setText(character.proficiency.toString())
-        if (prof){
+        if (prof) {
             binding.AddProficiencyCheck.isChecked = true
             binding.SecondProficiencyCheck.text = resources.getString(R.string.doubleProf)
         }
-        if (halfProf){
+        if (halfProf) {
             binding.SecondProficiencyCheck.isChecked = true
             binding.SecondProficiencyCheck.text = resources.getString(R.string.halfProf)
         }
-        if (doubleProf){
+        if (doubleProf) {
             binding.SecondProficiencyCheck.isChecked = true
             binding.AddProficiencyCheck.isChecked = true
             binding.SecondProficiencyCheck.text = resources.getString(R.string.doubleProf)
@@ -346,11 +347,17 @@ class SkillSettingDialog : DialogFragment() {
         refreshStat()
     }
 
-    private fun refreshStat(){
-        binding.SkillValue.text = (viewModel.calcStat(binding.StatValue.text.toString().toInt(), miscStatBonus,prof,halfProf,doubleProf)).toString()
+    private fun refreshStat() {
+        binding.SkillValue.text = (viewModel.calcStat(
+            binding.StatValue.text.toString().toInt(),
+            miscStatBonus,
+            prof,
+            halfProf,
+            doubleProf
+        )).toString()
     }
 
     private fun refreshChar(character: Character) {
-       // binding.ProficiencyBonusValue.setText(character.proficiency.toString())
+        // binding.ProficiencyBonusValue.setText(character.proficiency.toString())
     }
 }

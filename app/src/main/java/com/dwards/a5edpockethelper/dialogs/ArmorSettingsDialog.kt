@@ -39,7 +39,7 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
         val view = binding.root
 
         //создание вью-модел и добавление обсервера
-        viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
         //грузим данные
         loadChar(viewModel.getCharacter().value!!)
@@ -82,42 +82,50 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
             }
         })
 
-        binding.ArmorBonusValue.addTextChangedListener(object: TextWatcher {
+        binding.ArmorBonusValue.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 refreshArmor()
             }
+
             override fun afterTextChanged(s: Editable?) {
             }
         })
 
-        binding.ShieldBonusValue.addTextChangedListener(object: TextWatcher {
+        binding.ShieldBonusValue.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 refreshArmor()
             }
+
             override fun afterTextChanged(s: Editable?) {
             }
         })
 
-        binding.MiscBonusValue.addTextChangedListener(object: TextWatcher {
+        binding.MiscBonusValue.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 refreshArmor()
             }
+
             override fun afterTextChanged(s: Editable?) {
             }
         })
 
-        binding.MaxDexterityBonusValue.addTextChangedListener(object: TextWatcher {
+        binding.MaxDexterityBonusValue.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 refreshArmor()
             }
+
             override fun afterTextChanged(s: Editable?) {
             }
         })
@@ -126,19 +134,23 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
 
         binding.SaveButton.setOnClickListener {
             viewModel.changeCharactersArmor(
-                if (binding.ArmorBonusValue.text.toString() != "") binding.ArmorBonusValue.text.toString().toInt() else 0,
-                if (binding.ShieldBonusValue.text.toString() != "") binding.ShieldBonusValue.text.toString().toInt() else 0,
-                if (binding.MaxDexterityBonusValue.text.toString() != "") binding.MaxDexterityBonusValue.text.toString().toInt() else 0,
-                if (binding.MiscBonusValue.text.toString() != "")  binding.MiscBonusValue.text.toString().toInt() else 0,
+                if (binding.ArmorBonusValue.text.toString() != "") binding.ArmorBonusValue.text.toString()
+                    .toInt() else 0,
+                if (binding.ShieldBonusValue.text.toString() != "") binding.ShieldBonusValue.text.toString()
+                    .toInt() else 0,
+                if (binding.MaxDexterityBonusValue.text.toString() != "") binding.MaxDexterityBonusValue.text.toString()
+                    .toInt() else 0,
+                if (binding.MiscBonusValue.text.toString() != "") binding.MiscBonusValue.text.toString()
+                    .toInt() else 0,
                 armorType,
-                additionalStatBonus)
+                additionalStatBonus
+            )
             dismiss()
         }
 
 
         return view
     }
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -165,35 +177,40 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
         binding.DexterityBonusValue.setText(viewModel.calcModifier(character.dexterity))
         binding.MaxDexterityBonusValue.setText(character.maxDexterityBonus.toString())
         binding.MiscBonusValue.setText(character.miscArmorBonus.toString())
-        binding.ArmorValue.setText(viewModel.calcArmor(character.armorBonus,
-            character.shieldBonus,
-            character.maxDexterityBonus,
-            character.miscArmorBonus,
-            armorType,
-            additionalStatBonus).toString())
+        binding.ArmorValue.setText(
+            viewModel.calcArmor(
+                character.armorBonus,
+                character.shieldBonus,
+                character.maxDexterityBonus,
+                character.miscArmorBonus,
+                armorType,
+                additionalStatBonus
+            ).toString()
+        )
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        when (parent?.id){
+        when (parent?.id) {
             R.id.ArmorTypeSpinner -> {
                 armorType = position
-                when (armorType){
-                    0-> {
+                when (armorType) {
+                    0 -> {
                         binding.MaxDexterityBonusValue.setText("10")
                         binding.MaxDexterityBonusValue.isEnabled = false
                     }
-                    1-> {
+                    1 -> {
                         binding.MaxDexterityBonusValue.setText("5")
                         binding.MaxDexterityBonusValue.isEnabled = false
                     }
-                    2-> {
+                    2 -> {
                         binding.MaxDexterityBonusValue.setText("2")
                         binding.MaxDexterityBonusValue.isEnabled = false
                     }
-                    3-> {binding.MaxDexterityBonusValue.setText("0")
+                    3 -> {
+                        binding.MaxDexterityBonusValue.setText("0")
                         binding.MaxDexterityBonusValue.isEnabled = false
                     }
-                    4-> binding.MaxDexterityBonusValue.isEnabled = true
+                    4 -> binding.MaxDexterityBonusValue.isEnabled = true
                 }
             }
             R.id.AdditionalStatBonusSpinner -> additionalStatBonus = position
@@ -205,7 +222,6 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
     }
 
 
-
     private fun loadChar(character: Character) {
         armorType = character.armorType
         additionalStatBonus = character.statBonusArmor
@@ -213,12 +229,18 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
 
     }
 
-    private fun refreshArmor(){
-        binding.ArmorValue.text = viewModel.calcArmor(if (binding.ArmorBonusValue.text.toString() != "") binding.ArmorBonusValue.text.toString().toInt() else 0,
-            if (binding.ShieldBonusValue.text.toString() != "") binding.ShieldBonusValue.text.toString().toInt() else 0,
-            if (binding.MaxDexterityBonusValue.text.toString() != "") binding.MaxDexterityBonusValue.text.toString().toInt() else 0,
-            if (binding.MiscBonusValue.text.toString() != "") binding.MiscBonusValue.text.toString().toInt() else 0,
+    private fun refreshArmor() {
+        binding.ArmorValue.text = viewModel.calcArmor(
+            if (binding.ArmorBonusValue.text.toString() != "") binding.ArmorBonusValue.text.toString()
+                .toInt() else 0,
+            if (binding.ShieldBonusValue.text.toString() != "") binding.ShieldBonusValue.text.toString()
+                .toInt() else 0,
+            if (binding.MaxDexterityBonusValue.text.toString() != "") binding.MaxDexterityBonusValue.text.toString()
+                .toInt() else 0,
+            if (binding.MiscBonusValue.text.toString() != "") binding.MiscBonusValue.text.toString()
+                .toInt() else 0,
             armorType,
-            additionalStatBonus).toString()
+            additionalStatBonus
+        ).toString()
     }
 }

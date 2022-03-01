@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dwards.a5edpockethelper.MyViewModel
 import com.dwards.a5edpockethelper.R
-import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 import com.dwards.a5edpockethelper.adapters.LanguageProficiencyListAdapter
 import com.dwards.a5edpockethelper.databinding.LanguageproficiencyListBinding
+import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 
 
 class LanguageProficiencyList : DialogFragment(), RecyclerViewClickListener {
@@ -42,18 +42,18 @@ class LanguageProficiencyList : DialogFragment(), RecyclerViewClickListener {
         languageList = binding.LanguageRecycler
 
 
-        viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
         viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
             it?.let {
                 languageAdapter = LanguageProficiencyListAdapter(it.languageProficiencyList, this)
-                languageList.apply{
+                languageList.apply {
                     layoutManager = LinearLayoutManager(activity);
                     adapter = languageAdapter
                 }
             }
         })
 
-        binding.AddLanguageButton.setOnClickListener{
+        binding.AddLanguageButton.setOnClickListener {
             viewModel.addLanguageProficiency()
         }
 
@@ -61,10 +61,9 @@ class LanguageProficiencyList : DialogFragment(), RecyclerViewClickListener {
     }
 
     override fun onRecyclerViewItemClickListener(view: View, id: Int) {
-        when (view.id)
-        {
+        when (view.id) {
 
-            R.id.DeleteIcon ->{
+            R.id.DeleteIcon -> {
                 viewModel.deleteLanguageProficiency(id)
 
             }

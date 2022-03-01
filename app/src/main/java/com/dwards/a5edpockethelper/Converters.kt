@@ -6,9 +6,9 @@ class StringListConverter {
     @TypeConverter
     fun fromString(stringListString: String): List<String> {
         if (stringListString == "")
-            return  mutableListOf()
+            return mutableListOf()
         else
-        return stringListString.split(",").map { it }
+            return stringListString.split(",").map { it }
     }
 
     @TypeConverter

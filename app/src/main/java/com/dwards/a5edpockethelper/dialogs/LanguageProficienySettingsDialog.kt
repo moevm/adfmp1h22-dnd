@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.dwards.a5edpockethelper.databinding.LanguageproficiencySettingsDialogBinding
 import com.dwards.a5edpockethelper.model.Character
@@ -36,7 +35,7 @@ class LanguageProficiencySettingsDialog : DialogFragment() {
         val view = binding.root
 
         //создание вью-модел и добавление обсервера
-        val viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
         loadString(viewModel.getCharacter().value!!)
 

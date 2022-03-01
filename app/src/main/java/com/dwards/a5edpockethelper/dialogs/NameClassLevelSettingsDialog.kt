@@ -20,7 +20,6 @@ class NameClassLevelSettingsDialog : DialogFragment() {
     private val TAG = "MyCustomDialog"
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,7 +31,7 @@ class NameClassLevelSettingsDialog : DialogFragment() {
         val view = binding.root
 
         //создание вью-модел и добавление обсервера
-        val viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
         viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -41,9 +40,12 @@ class NameClassLevelSettingsDialog : DialogFragment() {
         })
 
         binding.SaveButton.setOnClickListener {
-            viewModel.changeCharactersNameClassLevel(if (binding.NameValue.text.toString() != "") binding.NameValue.text.toString() else "0",
+            viewModel.changeCharactersNameClassLevel(
+                if (binding.NameValue.text.toString() != "") binding.NameValue.text.toString() else "0",
                 if (binding.ClassValue.text.toString() != "") binding.ClassValue.text.toString() else "0",
-                if (binding.LevelValue.text.toString() != "") binding.LevelValue.text.toString().toInt() else 0)
+                if (binding.LevelValue.text.toString() != "") binding.LevelValue.text.toString()
+                    .toInt() else 0
+            )
             dismiss()
         }
 

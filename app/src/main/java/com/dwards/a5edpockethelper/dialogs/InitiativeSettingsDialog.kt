@@ -31,8 +31,6 @@ class InitiativeSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedLis
     private lateinit var viewModel: MyViewModel
 
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,7 +42,7 @@ class InitiativeSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedLis
         val view = binding.root
 
         //создание вью-модел и добавление обсервера
-        viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
 
         //грузим данные
@@ -82,7 +80,8 @@ class InitiativeSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedLis
                 binding.SecondProficiencyCheck.text = resources.getString(R.string.doubleProf)
             } else if (binding.AddProficiencyCheck.isChecked && binding.SecondProficiencyCheck.isChecked && binding.SecondProficiencyCheck.text == resources.getString(
                     R.string.doubleProf
-                )){
+                )
+            ) {
                 binding.AddProficiencyCheck.isChecked = false
                 binding.SecondProficiencyCheck.isChecked = false
                 prof = false
@@ -91,7 +90,8 @@ class InitiativeSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedLis
                 binding.SecondProficiencyCheck.text = resources.getString(R.string.halfProf)
             } else if (binding.AddProficiencyCheck.isChecked && binding.SecondProficiencyCheck.isChecked && binding.SecondProficiencyCheck.text == resources.getString(
                     R.string.halfProf
-                )){
+                )
+            ) {
                 binding.AddProficiencyCheck.isChecked = true
                 binding.SecondProficiencyCheck.isChecked = false
                 prof = true
@@ -115,25 +115,23 @@ class InitiativeSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedLis
                 prof = false
                 halfProf = true
                 doubleProf = false
-            } else if (binding.SecondProficiencyCheck.isChecked && binding.AddProficiencyCheck.isChecked){
+            } else if (binding.SecondProficiencyCheck.isChecked && binding.AddProficiencyCheck.isChecked) {
                 binding.SecondProficiencyCheck.isChecked = true
                 prof = false
                 halfProf = false
                 doubleProf = true
-            }
-            else if(!binding.SecondProficiencyCheck.isChecked && binding.AddProficiencyCheck.isChecked){
+            } else if (!binding.SecondProficiencyCheck.isChecked && binding.AddProficiencyCheck.isChecked) {
                 binding.SecondProficiencyCheck.isChecked = false
                 prof = true
                 doubleProf = false
-            }
-            else if(!binding.SecondProficiencyCheck.isChecked && !binding.AddProficiencyCheck.isChecked){
+            } else if (!binding.SecondProficiencyCheck.isChecked && !binding.AddProficiencyCheck.isChecked) {
                 binding.SecondProficiencyCheck.isChecked = false
                 halfProf = false
             }
             refreshInitiative(viewModel.getCharacter().value!!)
         }
 
-        binding.MiscBonusValue.addTextChangedListener(object: TextWatcher{
+        binding.MiscBonusValue.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
@@ -150,8 +148,14 @@ class InitiativeSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedLis
 
         binding.SaveButton.setOnClickListener {
             //val test: Int = binding.MiscBonusValue.text.toString().toInt()
-            viewModel.changeCharactersInitiative(if (binding.MiscBonusValue.text.toString() != "")
-                binding.MiscBonusValue.text.toString().toInt() else 0, prof, halfProf, doubleProf, additionalStatBonus)
+            viewModel.changeCharactersInitiative(
+                if (binding.MiscBonusValue.text.toString() != "")
+                    binding.MiscBonusValue.text.toString().toInt() else 0,
+                prof,
+                halfProf,
+                doubleProf,
+                additionalStatBonus
+            )
             dismiss()
         }
 
@@ -183,12 +187,15 @@ class InitiativeSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedLis
 
     }
 
-    private fun refreshInitiative(character: Character){
+    private fun refreshInitiative(character: Character) {
 
-        binding.InitiativeValue.text = viewModel.calcInitiative(viewModel.calcModifier(
-            character.dexterity).toInt(),
+        binding.InitiativeValue.text = viewModel.calcInitiative(
+            viewModel.calcModifier(
+                character.dexterity
+            ).toInt(),
             //ИСПРАВИТЬ ВЕЗДЕ ЕСЛИ ПУСТОТА ТО КРАШ
-            if(binding.MiscBonusValue.text.toString() != "") binding.MiscBonusValue.text.toString().toInt() else 0,
+            if (binding.MiscBonusValue.text.toString() != "") binding.MiscBonusValue.text.toString()
+                .toInt() else 0,
             prof,
             halfProf,
             doubleProf,
@@ -205,15 +212,15 @@ class InitiativeSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedLis
         additionalStatBonus = character.initiativeAdditionalAbility
 
 
-        if (prof){
+        if (prof) {
             binding.AddProficiencyCheck.isChecked = true
             binding.SecondProficiencyCheck.text = resources.getString(R.string.doubleProf)
         }
-        if (halfProf){
+        if (halfProf) {
             binding.SecondProficiencyCheck.isChecked = true
             binding.SecondProficiencyCheck.text = resources.getString(R.string.halfProf)
         }
-        if (doubleProf){
+        if (doubleProf) {
             binding.SecondProficiencyCheck.isChecked = true
             binding.AddProficiencyCheck.isChecked = true
             binding.SecondProficiencyCheck.text = resources.getString(R.string.doubleProf)

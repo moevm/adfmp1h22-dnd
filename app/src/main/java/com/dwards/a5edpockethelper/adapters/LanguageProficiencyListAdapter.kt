@@ -11,16 +11,26 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.dwards.a5edpockethelper.LanguageProficiencySettingsDialog
-import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 import com.dwards.a5edpockethelper.databinding.LanguageproficiencyListRecyclerBinding
+import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 
 
-class LanguageProficiencyListAdapter(languageList: List<String>, private val listener: RecyclerViewClickListener): Adapter<LanguageProficiencyListAdapter.LanguageProficiencyViewHolder>() {
+class LanguageProficiencyListAdapter(
+    languageList: List<String>,
+    private val listener: RecyclerViewClickListener
+) : Adapter<LanguageProficiencyListAdapter.LanguageProficiencyViewHolder>() {
     private var languageArrayList: List<String> = languageList
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LanguageProficiencyViewHolder {
-        val languageBinding = LanguageproficiencyListRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): LanguageProficiencyViewHolder {
+        val languageBinding = LanguageproficiencyListRecyclerBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return LanguageProficiencyViewHolder(languageBinding, listener)
     }
 
@@ -31,26 +41,36 @@ class LanguageProficiencyListAdapter(languageList: List<String>, private val lis
 
 
     override fun getItemCount(): Int {
-        return  languageArrayList.size;
+        return languageArrayList.size;
     }
 
 
-    class LanguageProficiencyViewHolder(private val itemBinding: LanguageproficiencyListRecyclerBinding, private val listener: RecyclerViewClickListener) : RecyclerView.ViewHolder(itemBinding.root) {
-        init{
+    class LanguageProficiencyViewHolder(
+        private val itemBinding: LanguageproficiencyListRecyclerBinding,
+        private val listener: RecyclerViewClickListener
+    ) : RecyclerView.ViewHolder(itemBinding.root) {
+        init {
 
-            itemBinding.LanguageLayout.setOnLongClickListener{
+            itemBinding.LanguageLayout.setOnLongClickListener {
 
-                val languageProficiencySettingsDialog: LanguageProficiencySettingsDialog = LanguageProficiencySettingsDialog()
+                val languageProficiencySettingsDialog: LanguageProficiencySettingsDialog =
+                    LanguageProficiencySettingsDialog()
                 val args = Bundle()
                 args.putInt("num", absoluteAdapterPosition)
                 languageProficiencySettingsDialog.arguments = args
-                languageProficiencySettingsDialog.show((unwrap(itemView.context) as FragmentActivity).supportFragmentManager, "StatSettingsDialog")
+                languageProficiencySettingsDialog.show(
+                    (unwrap(itemView.context) as FragmentActivity).supportFragmentManager,
+                    "StatSettingsDialog"
+                )
                 //listener.onRecyclerViewItemClickListener(itemBinding.LanguageLayout, absoluteAdapterPosition)
                 return@setOnLongClickListener true
             }
 
-            itemBinding.DeleteIcon.setOnClickListener{
-                listener.onRecyclerViewItemClickListener(itemBinding.DeleteIcon, absoluteAdapterPosition)
+            itemBinding.DeleteIcon.setOnClickListener {
+                listener.onRecyclerViewItemClickListener(
+                    itemBinding.DeleteIcon,
+                    absoluteAdapterPosition
+                )
             }
         }
 
