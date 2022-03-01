@@ -1,4 +1,4 @@
-package com.dwards.a5edpockethelper
+package com.dwards.a5edpockethelper.dialogs
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,10 +10,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.dwards.a5edpockethelper.MyViewModel
+import com.dwards.a5edpockethelper.R
+import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
+import com.dwards.a5edpockethelper.adapters.CharacterListAdapter
 import com.dwards.a5edpockethelper.databinding.CharacterListBinding
 
 
-class CharacterList : DialogFragment(), RecyclerViewClickListener {
+class CharacterListDialog : DialogFragment(), RecyclerViewClickListener {
 
     private var _binding: CharacterListBinding? = null
     private val binding get() = _binding!!

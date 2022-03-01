@@ -1,18 +1,18 @@
-package com.dwards.a5edpockethelper
+package com.dwards.a5edpockethelper.dialogs
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.dwards.a5edpockethelper.databinding.HitdiceSettingsDialogBinding
-import com.dwards.a5edpockethelper.model.Character
+import com.dwards.a5edpockethelper.MyViewModel
+import com.dwards.a5edpockethelper.R
+import com.dwards.a5edpockethelper.databinding.DeathsavesDialogBinding
 
-class HitDiceSettingsDialog : DialogFragment() {
+class DeathSavesDialog : DialogFragment() {
 
-    private var _binding: HitdiceSettingsDialogBinding? = null
+    private var _binding: DeathsavesDialogBinding? = null
     private val binding get() = _binding!!
 
     private val TAG = "MyCustomDialog"
@@ -26,23 +26,23 @@ class HitDiceSettingsDialog : DialogFragment() {
     ): View? {
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner);
 
-        _binding = HitdiceSettingsDialogBinding.inflate(inflater, container, false)
+        _binding = DeathsavesDialogBinding.inflate(inflater, container, false)
         val view = binding.root
 
         //создание вью-модел и добавление обсервера
         val viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
-        viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
-            it?.let {
-                refreshChar(it)
-            }
-        })
+        binding.PassButton.setOnClickListener {
+            viewModel.makeDeathSave(true)
+            dismiss()
+        }
 
+        binding.FailButton.setOnClickListener {
+            viewModel.makeDeathSave(false)
+            dismiss()
+        }
 
-
-        binding.SaveButton.setOnClickListener {
-            viewModel.changeCharactersHitDice(if (binding.HitDiceCountValue.text.toString() != "") binding.HitDiceCountValue.text.toString().toInt() else 0
-                , if (binding.HitDiceSizeValue.text.toString() != "") binding.HitDiceSizeValue.text.toString().toInt() else 0)
+        binding.CancelButton.setOnClickListener {
             dismiss()
         }
 
@@ -68,8 +68,4 @@ class HitDiceSettingsDialog : DialogFragment() {
         _binding = null
     }
 
-    private fun refreshChar(character: Character) {
-        binding.HitDiceCountValue.setText(character.hitDiceCount.toString())
-        binding.HitDiceSizeValue.setText(character.hitDiceSize.toString())
-    }
 }

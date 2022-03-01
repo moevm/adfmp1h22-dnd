@@ -1,23 +1,30 @@
-package com.dwards.a5edpockethelper
+package com.dwards.a5edpockethelper.dialogs
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.dwards.a5edpockethelper.databinding.DeathsavesDialogBinding
+import com.dwards.a5edpockethelper.MyViewModel
+import com.dwards.a5edpockethelper.R
+import com.dwards.a5edpockethelper.databinding.ToolsproficiencySettingsDialogBinding
 import com.dwards.a5edpockethelper.model.Character
 
-class DeathSavesDialog : DialogFragment() {
+class ToolsProficiencySettingsDialog : DialogFragment() {
 
-    private var _binding: DeathsavesDialogBinding? = null
+    private var _binding: ToolsproficiencySettingsDialogBinding? = null
     private val binding get() = _binding!!
-
+    private var num: Int = 0
     private val TAG = "MyCustomDialog"
 
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (arguments != null) {
+            val mArgs = arguments
+            num = mArgs?.getInt("num")!!
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,23 +33,17 @@ class DeathSavesDialog : DialogFragment() {
     ): View? {
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner);
 
-        _binding = DeathsavesDialogBinding.inflate(inflater, container, false)
+        _binding = ToolsproficiencySettingsDialogBinding.inflate(inflater, container, false)
         val view = binding.root
 
         //создание вью-модел и добавление обсервера
         val viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
-        binding.PassButton.setOnClickListener {
-            viewModel.makeDeathSave(true)
-            dismiss()
-        }
+        loadString(viewModel.getCharacter().value!!)
 
-        binding.FailButton.setOnClickListener {
-            viewModel.makeDeathSave(false)
-            dismiss()
-        }
 
-        binding.CancelButton.setOnClickListener {
+        binding.SaveButton.setOnClickListener {
+            viewModel.changeToolsProficiency(num, binding.ProficiencyName.text.toString())
             dismiss()
         }
 
@@ -68,4 +69,8 @@ class DeathSavesDialog : DialogFragment() {
         _binding = null
     }
 
+    private fun loadString(character: Character) {
+        binding.ProficiencyName.setText(character.toolsProficiencyList[num])
+
+    }
 }

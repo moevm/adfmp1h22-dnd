@@ -1,4 +1,4 @@
-package com.dwards.a5edpockethelper
+package com.dwards.a5edpockethelper.dialogs
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.dwards.a5edpockethelper.MyViewModel
+import com.dwards.a5edpockethelper.R
+import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
+import com.dwards.a5edpockethelper.adapters.LanguageProficiencyListAdapter
 import com.dwards.a5edpockethelper.databinding.LanguageproficiencyListBinding
 
 
@@ -19,7 +22,7 @@ class LanguageProficiencyList : DialogFragment(), RecyclerViewClickListener {
     private val binding get() = _binding!!
 
 
-    private lateinit var languageAdapter:LanguageProficiencyListAdapter
+    private lateinit var languageAdapter: LanguageProficiencyListAdapter
     private val TAG = "Character List Dialog"
 
     private lateinit var viewModel: MyViewModel

@@ -1,29 +1,23 @@
-package com.dwards.a5edpockethelper
+package com.dwards.a5edpockethelper.dialogs
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.dwards.a5edpockethelper.databinding.ToolsproficiencySettingsDialogBinding
-import com.dwards.a5edpockethelper.model.Character
+import com.dwards.a5edpockethelper.MyViewModel
+import com.dwards.a5edpockethelper.R
+import com.dwards.a5edpockethelper.databinding.StabilizeSettingsDialogBinding
 
-class ToolsProficiencySettingsDialog : DialogFragment() {
+class StabilizeSettingsDialog : DialogFragment() {
 
-    private var _binding: ToolsproficiencySettingsDialogBinding? = null
+    private var _binding: StabilizeSettingsDialogBinding? = null
     private val binding get() = _binding!!
-    private var num: Int = 0
+
     private val TAG = "MyCustomDialog"
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        if (arguments != null) {
-            val mArgs = arguments
-            num = mArgs?.getInt("num")!!
-        }
-    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,17 +26,19 @@ class ToolsProficiencySettingsDialog : DialogFragment() {
     ): View? {
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner);
 
-        _binding = ToolsproficiencySettingsDialogBinding.inflate(inflater, container, false)
+        _binding = StabilizeSettingsDialogBinding.inflate(inflater, container, false)
         val view = binding.root
 
         //создание вью-модел и добавление обсервера
         val viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
-        loadString(viewModel.getCharacter().value!!)
+        binding.StabilizeButton.setOnClickListener {
+            viewModel.stabilizeCharacter()
+            dismiss()
+        }
 
 
-        binding.SaveButton.setOnClickListener {
-            viewModel.changeToolsProficiency(num, binding.ProficiencyName.text.toString())
+        binding.CancelButton.setOnClickListener {
             dismiss()
         }
 
@@ -68,8 +64,4 @@ class ToolsProficiencySettingsDialog : DialogFragment() {
         _binding = null
     }
 
-    private fun loadString(character: Character) {
-        binding.ProficiencyName.setText(character.toolsProficiencyList[num])
-
-    }
 }

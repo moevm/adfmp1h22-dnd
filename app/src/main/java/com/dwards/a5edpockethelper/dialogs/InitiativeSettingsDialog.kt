@@ -1,6 +1,5 @@
-package com.dwards.a5edpockethelper
+package com.dwards.a5edpockethelper.dialogs
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,6 +12,8 @@ import android.widget.Spinner
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.dwards.a5edpockethelper.MyViewModel
+import com.dwards.a5edpockethelper.R
 import com.dwards.a5edpockethelper.databinding.InitiativeSettingsDialogBinding
 import com.dwards.a5edpockethelper.model.Character
 
@@ -79,14 +80,18 @@ class InitiativeSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedLis
                 halfProf = false
                 doubleProf = false
                 binding.SecondProficiencyCheck.text = resources.getString(R.string.doubleProf)
-            } else if (binding.AddProficiencyCheck.isChecked && binding.SecondProficiencyCheck.isChecked && binding.SecondProficiencyCheck.text == resources.getString(R.string.doubleProf)){
+            } else if (binding.AddProficiencyCheck.isChecked && binding.SecondProficiencyCheck.isChecked && binding.SecondProficiencyCheck.text == resources.getString(
+                    R.string.doubleProf
+                )){
                 binding.AddProficiencyCheck.isChecked = false
                 binding.SecondProficiencyCheck.isChecked = false
                 prof = false
                 halfProf = false
                 doubleProf = false
                 binding.SecondProficiencyCheck.text = resources.getString(R.string.halfProf)
-            } else if (binding.AddProficiencyCheck.isChecked && binding.SecondProficiencyCheck.isChecked && binding.SecondProficiencyCheck.text == resources.getString(R.string.halfProf)){
+            } else if (binding.AddProficiencyCheck.isChecked && binding.SecondProficiencyCheck.isChecked && binding.SecondProficiencyCheck.text == resources.getString(
+                    R.string.halfProf
+                )){
                 binding.AddProficiencyCheck.isChecked = true
                 binding.SecondProficiencyCheck.isChecked = false
                 prof = true

@@ -1,4 +1,4 @@
-package com.dwards.a5edpockethelper
+package com.dwards.a5edpockethelper.fragments
 
 
 import android.os.Bundle
@@ -6,7 +6,10 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.dwards.a5edpockethelper.MyViewModel
+import com.dwards.a5edpockethelper.R
 import com.dwards.a5edpockethelper.databinding.FragmentCharacterWeaponBinding
+import com.dwards.a5edpockethelper.dialogs.CharacterListDialog
 
 
 class CharacterWeapon : Fragment() {
@@ -28,7 +31,7 @@ class CharacterWeapon : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.characterList -> {
-                var characterListDialog: CharacterList = CharacterList()
+                var characterListDialog: CharacterListDialog = CharacterListDialog()
                 characterListDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
                 true
             }

@@ -9,7 +9,7 @@
     android:background="#272727"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CharacterSkills">
+    tools:context=".fragments.CharacterSkills">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/StrengthLayout"

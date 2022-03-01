@@ -1,4 +1,4 @@
-package com.dwards.a5edpockethelper
+package com.dwards.a5edpockethelper.dialogs
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.dwards.a5edpockethelper.databinding.StabilizeSettingsDialogBinding
+import com.dwards.a5edpockethelper.MyViewModel
+import com.dwards.a5edpockethelper.R
+import com.dwards.a5edpockethelper.databinding.HitdiceSettingsDialogBinding
 import com.dwards.a5edpockethelper.model.Character
 
-class StabilizeSettingsDialog : DialogFragment() {
+class HitDiceSettingsDialog : DialogFragment() {
 
-    private var _binding: StabilizeSettingsDialogBinding? = null
+    private var _binding: HitdiceSettingsDialogBinding? = null
     private val binding get() = _binding!!
 
     private val TAG = "MyCustomDialog"
@@ -26,19 +28,23 @@ class StabilizeSettingsDialog : DialogFragment() {
     ): View? {
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner);
 
-        _binding = StabilizeSettingsDialogBinding.inflate(inflater, container, false)
+        _binding = HitdiceSettingsDialogBinding.inflate(inflater, container, false)
         val view = binding.root
 
         //создание вью-модел и добавление обсервера
         val viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
-        binding.StabilizeButton.setOnClickListener {
-            viewModel.stabilizeCharacter()
-            dismiss()
-        }
+        viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
+            it?.let {
+                refreshChar(it)
+            }
+        })
 
 
-        binding.CancelButton.setOnClickListener {
+
+        binding.SaveButton.setOnClickListener {
+            viewModel.changeCharactersHitDice(if (binding.HitDiceCountValue.text.toString() != "") binding.HitDiceCountValue.text.toString().toInt() else 0
+                , if (binding.HitDiceSizeValue.text.toString() != "") binding.HitDiceSizeValue.text.toString().toInt() else 0)
             dismiss()
         }
 
@@ -64,4 +70,8 @@ class StabilizeSettingsDialog : DialogFragment() {
         _binding = null
     }
 
+    private fun refreshChar(character: Character) {
+        binding.HitDiceCountValue.setText(character.hitDiceCount.toString())
+        binding.HitDiceSizeValue.setText(character.hitDiceSize.toString())
+    }
 }

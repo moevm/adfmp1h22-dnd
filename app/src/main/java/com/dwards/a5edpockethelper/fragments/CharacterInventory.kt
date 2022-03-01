@@ -1,4 +1,4 @@
-package com.dwards.a5edpockethelper
+package com.dwards.a5edpockethelper.fragments
 
 
 import android.os.Bundle
@@ -6,12 +6,16 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.dwards.a5edpockethelper.databinding.FragmentCharacterSpellBinding
+import com.dwards.a5edpockethelper.MyViewModel
+import com.dwards.a5edpockethelper.R
+import com.dwards.a5edpockethelper.databinding.FragmentCharacterInventoryBinding
+import com.dwards.a5edpockethelper.dialogs.CharacterListDialog
 
-class CharacterSpell : Fragment() {
+
+class CharacterInventory : Fragment() {
     private val TAG = "MainFragment"
 
-    private var _binding: FragmentCharacterSpellBinding? = null
+    private var _binding: FragmentCharacterInventoryBinding? = null
     private val binding get() = _binding!!
 
 
@@ -27,7 +31,7 @@ class CharacterSpell : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.characterList -> {
-                var characterListDialog: CharacterList = CharacterList()
+                var characterListDialog: CharacterListDialog = CharacterListDialog()
                 characterListDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
                 true
             }
@@ -50,7 +54,7 @@ class CharacterSpell : Fragment() {
             }
         })
 
-        _binding = FragmentCharacterSpellBinding.inflate(inflater, container, false)
+        _binding = FragmentCharacterInventoryBinding.inflate(inflater, container, false)
         return binding.root
     }
 

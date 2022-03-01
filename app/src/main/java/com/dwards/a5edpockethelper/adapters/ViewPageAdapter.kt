@@ -1,10 +1,9 @@
-package com.dwards.a5edpockethelper
+package com.dwards.a5edpockethelper.adapters
 
-import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.dwards.a5edpockethelper.model.Character
+import com.dwards.a5edpockethelper.fragments.*
 
 class ViewPageAdapter(fragment: FragmentActivity) : FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int = 5

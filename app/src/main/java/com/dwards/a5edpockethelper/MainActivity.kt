@@ -1,18 +1,15 @@
 package com.dwards.a5edpockethelper
 
 import android.os.Bundle
-import android.view.GestureDetector
-import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GestureDetectorCompat
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.viewpager2.widget.ViewPager2
+import com.dwards.a5edpockethelper.adapters.ViewPageAdapter
 import com.dwards.a5edpockethelper.databinding.ActivityMainBinding
+import com.dwards.a5edpockethelper.dialogs.NameClassLevelSettingsDialog
 import com.dwards.a5edpockethelper.model.AppDatabase
 import com.dwards.a5edpockethelper.model.CharacterDAO
 import com.dwards.a5edpockethelper.model.Character

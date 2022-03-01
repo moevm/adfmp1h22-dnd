@@ -1,4 +1,4 @@
-package com.dwards.a5edpockethelper
+package com.dwards.a5edpockethelper.dialogs
 
 import android.os.Bundle
 import android.text.Editable
@@ -12,6 +12,8 @@ import android.widget.Spinner
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.dwards.a5edpockethelper.MyViewModel
+import com.dwards.a5edpockethelper.R
 import com.dwards.a5edpockethelper.databinding.ArmorSettingsDialogBinding
 import com.dwards.a5edpockethelper.model.Character
 

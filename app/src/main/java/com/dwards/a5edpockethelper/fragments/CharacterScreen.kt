@@ -1,4 +1,4 @@
-package com.dwards.a5edpockethelper
+package com.dwards.a5edpockethelper.fragments
 
 
 import android.graphics.Color
@@ -7,7 +7,10 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.dwards.a5edpockethelper.MyViewModel
+import com.dwards.a5edpockethelper.R
 import com.dwards.a5edpockethelper.databinding.FragmentCharacterScreenBinding
+import com.dwards.a5edpockethelper.dialogs.*
 import com.dwards.a5edpockethelper.model.Character
 
 
@@ -30,7 +33,7 @@ class CharacterScreen : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.characterList -> {
-                var characterListDialog: CharacterList = CharacterList()
+                var characterListDialog: CharacterListDialog = CharacterListDialog()
                 characterListDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
                 true
             }

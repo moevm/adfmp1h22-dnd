@@ -1,4 +1,4 @@
-package com.dwards.a5edpockethelper
+package com.dwards.a5edpockethelper.adapters
 
 
 import android.app.Activity
@@ -10,7 +10,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
+import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 import com.dwards.a5edpockethelper.databinding.ToolsproficiencyListRecyclerBinding
+import com.dwards.a5edpockethelper.dialogs.ToolsProficiencySettingsDialog
 
 
 class ToolsProficiencyListAdapter(toolsList: List<String>, private val listener: RecyclerViewClickListener): Adapter<ToolsProficiencyListAdapter.ToolsProficiencyViewHolder>() {
