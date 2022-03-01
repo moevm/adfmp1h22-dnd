@@ -41,8 +41,9 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
                 addCharacter()
                 val job: Job = viewModelScope.launch { fetchAll() }
                 job.join()
-                chooseCharacter(characterList.value?.get(0)?.id!!)
-            } else {
+                //chooseCharacter(characterList.value?.get(0)?.id!!)
+            }
+            else {
                 if (currentId != 0) {
                     fetchData(currentId)
                     chooseCharacter(currentId)
