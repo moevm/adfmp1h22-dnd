@@ -9,8 +9,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.dwards.a5edpockethelper.model.Character
 import com.dwards.a5edpockethelper.model.CharacterDAO
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 
 class MyViewModel(private val characterDao: CharacterDAO, application: Application) :
@@ -33,25 +33,20 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
     fun startDB() {
         getCharacterID()
 
-        viewModelScope.launch {
-            val job: Job = viewModelScope.launch { fetchAll() }
-            job.join()
+        runBlocking {
+            addCharacter()
+            fetchAll()
             characterList.value = characterDao.getAll()
-            if (characterList.value?.size == 0) {
-                addCharacter()
-                val job: Job = viewModelScope.launch { fetchAll() }
-                job.join()
-                //chooseCharacter(characterList.value?.get(0)?.id!!)
-            }
-            else {
-                if (currentId != 0) {
-                    fetchData(currentId)
-                    chooseCharacter(currentId)
-                } else
-                    chooseCharacter(characterList.value?.get(0)?.id!!)
-            }
         }
-
+        if (characterList.value?.size == 0) {
+            chooseCharacter(characterList.value?.firstOrNull()?.id!!)
+        } else {
+            if (currentId != 0) {
+                fetchData(currentId)
+                chooseCharacter(currentId)
+            } else
+                chooseCharacter(characterList.value?.get(0)?.id!!)
+        }
 
     }
 
@@ -96,15 +91,13 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
                 "gameSetting",
                 Context.MODE_PRIVATE
             )
-        if (settings != null) {
-            currentId = settings.getInt("id", 0)
-        }
+        currentId = settings.getInt("id", 0)
     }
 
     fun deleteCharacter(id: Int) {
         viewModelScope.launch {
-            var deletedchar: Character? = characterDao.getById(id)
-            characterDao.delete(deletedchar!!)
+            val deletedChar: Character? = characterDao.getById(id)
+            characterDao.delete(deletedChar!!)
             characterList.value = characterDao.getAll()
             if (characterList.value?.size != 0 && currentId == id) {
                 chooseCharacter(characterList.value?.get(0)?.id!!)
