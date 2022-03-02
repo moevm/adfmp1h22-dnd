@@ -76,6 +76,16 @@ class MainActivity : AppCompatActivity() {
                     view3.findViewById<View>(R.id.icon).setBackgroundResource(R.drawable.ic_weapon)
                     tab.customView = view3
                 }
+                3 -> {
+                    val view3: View = layoutInflater.inflate(R.layout.custom_tab, null)
+                    view3.findViewById<View>(R.id.icon).setBackgroundResource(R.drawable.ic_magic)
+                    tab.customView = view3
+                }
+                4 -> {
+                    val view3: View = layoutInflater.inflate(R.layout.custom_tab, null)
+                    view3.findViewById<View>(R.id.icon).setBackgroundResource(R.drawable.ic_inventory)
+                    tab.customView = view3
+                }
             }
         }.attach()
 
