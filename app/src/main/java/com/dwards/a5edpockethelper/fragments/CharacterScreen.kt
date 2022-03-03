@@ -13,13 +13,11 @@ import com.dwards.a5edpockethelper.databinding.FragmentCharacterScreenBinding
 import com.dwards.a5edpockethelper.dialogs.*
 import com.dwards.a5edpockethelper.model.Character
 
-
 class CharacterScreen : Fragment() {
     private val TAG = "MainFragment"
 
     private var _binding: FragmentCharacterScreenBinding? = null
     private val binding get() = _binding!!
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +31,7 @@ class CharacterScreen : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.characterList -> {
-                var characterListDialog: CharacterListDialog = CharacterListDialog()
+                val characterListDialog = CharacterListDialog()
                 characterListDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
                 true
             }
@@ -41,198 +39,192 @@ class CharacterScreen : Fragment() {
         }
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         //создание вью-модел и обсервера
 
-        val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        val viewModel = ViewModelProvider(requireActivity())[MyViewModel::class.java]
         viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
             it?.let {
                 refreshChar(it)
             }
         })
 
-
-
-
         _binding = FragmentCharacterScreenBinding.inflate(inflater, container, false)
         val view = binding.root
 
         // редактирование характеристик
-        binding.StatsLayout.setOnLongClickListener {
-            val statsSettingsDialog: CharacteristicSettingsDialog = CharacteristicSettingsDialog()
+        binding.characteristicsBlock.StatsLayout.setOnLongClickListener {
+            val statsSettingsDialog = CharacteristicSettingsDialog()
 
             statsSettingsDialog.show(parentFragmentManager, "CharacteristicSettingsDialog")
             return@setOnLongClickListener true
         }
 
         //редактирование бонуса мастерства
-        binding.ProficiencyLayout.setOnLongClickListener {
+        binding.topCharacteristicsBlock.ProficiencyLayout.setOnLongClickListener {
 
-            val proficiencySettingsDialog: ProficiencySettingsDialog = ProficiencySettingsDialog()
+            val proficiencySettingsDialog = ProficiencySettingsDialog()
             proficiencySettingsDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
             return@setOnLongClickListener true
         }
 
         //редактирование скорости
-        binding.SpeedLayout.setOnLongClickListener {
+        binding.topCharacteristicsBlock.SpeedLayout.setOnLongClickListener {
 
-            val speedSettingsDialog: SpeedSettingsDialog = SpeedSettingsDialog()
+            val speedSettingsDialog = SpeedSettingsDialog()
             speedSettingsDialog.show(parentFragmentManager, "SpeedSettingsDialog")
             return@setOnLongClickListener true
         }
 
         //редактирование инициативы
-        binding.InitiativeLayout.setOnLongClickListener {
+        binding.topCharacteristicsBlock.InitiativeLayout.setOnLongClickListener {
 
-            val initiativeSettingsDialog: InitiativeSettingsDialog = InitiativeSettingsDialog()
+            val initiativeSettingsDialog = InitiativeSettingsDialog()
             initiativeSettingsDialog.show(parentFragmentManager, "InitiativeSettingsDialog")
             return@setOnLongClickListener true
         }
 
         //редактирование хитдайсов
-        binding.HitDiceLayout.setOnLongClickListener {
-
-            val hitDiceSettingsDialog: HitDiceSettingsDialog = HitDiceSettingsDialog()
+        binding.mainCharacterInfoBlock.HitDiceLayout.setOnLongClickListener {
+            val hitDiceSettingsDialog = HitDiceSettingsDialog()
             hitDiceSettingsDialog.show(parentFragmentManager, "HitDiceSettingsDialog")
             return@setOnLongClickListener true
         }
 
         //редактирование максимума здоровья
-        binding.HPLayout.setOnLongClickListener {
+        binding.mainCharacterInfoBlock.HPLayout.setOnLongClickListener {
 
-            val maxHPSettingsDialog: MaxHPSettingsDialog = MaxHPSettingsDialog()
+            val maxHPSettingsDialog = MaxHPSettingsDialog()
             maxHPSettingsDialog.show(parentFragmentManager, "MaxHPSettingsDialog")
             return@setOnLongClickListener true
         }
 
         //редактирование максимума здоровья
-        binding.HPLayout.setOnClickListener {
-            val currentHpSettingsDialog: CurrentHpSettingsDialog = CurrentHpSettingsDialog()
+        binding.mainCharacterInfoBlock.HPLayout.setOnClickListener {
+            val currentHpSettingsDialog = CurrentHpSettingsDialog()
             currentHpSettingsDialog.show(parentFragmentManager, "MaxHPSettingsDialog")
         }
 
         //редактирование Брони
-        binding.ArmorLayout.setOnLongClickListener {
-            val armorSettingsDialog: ArmorSettingsDialog = ArmorSettingsDialog()
+        binding.mainCharacterInfoBlock.ArmorLayout.setOnLongClickListener {
+            val armorSettingsDialog = ArmorSettingsDialog()
             armorSettingsDialog.show(parentFragmentManager, "MaxHPSettingsDialog")
             return@setOnLongClickListener true
         }
 
         //редактирование кастом блоков
-        binding.CustomTableLayout.setOnLongClickListener {
-            val customBlockSettingsDialog: CustomBlockSettingsDialog = CustomBlockSettingsDialog()
+        binding.customFieldsCharacteristics.CustomTableLayout.setOnLongClickListener {
+            val customBlockSettingsDialog = CustomBlockSettingsDialog()
             customBlockSettingsDialog.show(parentFragmentManager, "MaxHPSettingsDialog")
             return@setOnLongClickListener true
         }
 
         //стабилизировать персонажа
-        binding.DeathsSaveLayout.setOnLongClickListener {
-            val stabilizeSettingsDialog: StabilizeSettingsDialog = StabilizeSettingsDialog()
+        binding.mainCharacterInfoBlock.DeathsSaveLayout.setOnLongClickListener {
+            val stabilizeSettingsDialog = StabilizeSettingsDialog()
             stabilizeSettingsDialog.show(parentFragmentManager, "MaxHPSettingsDialog")
             return@setOnLongClickListener true
         }
 
         //спасбросок от смерти
-        binding.DeathsSaveLayout.setOnClickListener {
-            val deathSavesDialog: DeathSavesDialog = DeathSavesDialog()
+        binding.mainCharacterInfoBlock.DeathsSaveLayout.setOnClickListener {
+            val deathSavesDialog = DeathSavesDialog()
             deathSavesDialog.show(parentFragmentManager, "MaxHPSettingsDialog")
         }
         return view
     }
 
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
-
-
     private fun refreshChar(character: Character) {
         val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
-        binding.StrengthScoreValue.text = "${character.strength}"
-        binding.DexterityScoreValue.text = "${character.dexterity}"
-        binding.ConstitutionScoreValue.text = "${character.constitution}"
-        binding.IntelligenceScoreValue.text = "${character.intelligence}"
-        binding.WisdomScoreValue.text = "${character.wisdom}"
-        binding.CharismaScoreValue.text = "${character.charisma}"
+        binding.characteristicsBlock.StrengthScoreValue.text = "${character.strength}"
+        binding.characteristicsBlock.DexterityScoreValue.text = "${character.dexterity}"
+        binding.characteristicsBlock.ConstitutionScoreValue.text = "${character.constitution}"
+        binding.characteristicsBlock.IntelligenceScoreValue.text = "${character.intelligence}"
+        binding.characteristicsBlock.WisdomScoreValue.text = "${character.wisdom}"
+        binding.characteristicsBlock.CharismaScoreValue.text = "${character.charisma}"
 
-        if (character.proficiency > 0) binding.ProficiencyValue.text =
+        if (character.proficiency > 0) binding.topCharacteristicsBlock.ProficiencyValue.text =
             ("+" + character.proficiency.toString())
-        else binding.ProficiencyValue.text = (character.proficiency.toString())
+        else binding.topCharacteristicsBlock.ProficiencyValue.text =
+            (character.proficiency.toString())
 
+        binding.characteristicsBlock.StrengthModifierValue.text =
+            viewModel.calcModifier(character.strength)
+        binding.characteristicsBlock.DexterityModifierValue.text =
+            viewModel.calcModifier(character.dexterity)
+        binding.characteristicsBlock.ConstitutionModifierValue.text =
+            viewModel.calcModifier(character.constitution)
+        binding.characteristicsBlock.IntelligenceModifierValue.text =
+            viewModel.calcModifier(character.intelligence)
+        binding.characteristicsBlock.WisdomModifierValue.text =
+            viewModel.calcModifier(character.wisdom)
+        binding.characteristicsBlock.CharismaModifierValue.text =
+            viewModel.calcModifier(character.charisma)
 
-
-        binding.StrengthModifierValue.text = viewModel.calcModifier(character.strength)
-        binding.DexterityModifierValue.text = viewModel.calcModifier(character.dexterity)
-        binding.ConstitutionModifierValue.text = viewModel.calcModifier(character.constitution)
-        binding.IntelligenceModifierValue.text = viewModel.calcModifier(character.intelligence)
-        binding.WisdomModifierValue.text = viewModel.calcModifier(character.wisdom)
-        binding.CharismaModifierValue.text = viewModel.calcModifier(character.charisma)
-
-        binding.StrengthSaveValue.text = viewModel.calcSave(
+        binding.characteristicsBlock.StrengthSaveValue.text = viewModel.calcSave(
             character.strength,
             character.strengthSaveProf,
             character.strengthSaveMisc
         )
-        binding.DexteritySaveValue.text = viewModel.calcSave(
+        binding.characteristicsBlock.DexteritySaveValue.text = viewModel.calcSave(
             character.dexterity,
             character.dexteritySaveProf,
             character.dexteritySaveMisc
         )
-        binding.ConstitutionSaveValue.text = viewModel.calcSave(
+        binding.characteristicsBlock.ConstitutionSaveValue.text = viewModel.calcSave(
             character.constitution,
             character.constitutionSaveProf,
             character.constitutionSaveMisc
         )
-        binding.IntelligenceSaveValue.text = viewModel.calcSave(
+        binding.characteristicsBlock.IntelligenceSaveValue.text = viewModel.calcSave(
             character.intelligence,
             character.intelligenceSaveProf,
             character.intelligenceSaveMisc
         )
-        binding.WisdomSaveValue.text =
+        binding.characteristicsBlock.WisdomSaveValue.text =
             viewModel.calcSave(character.wisdom, character.wisdomSaveProf, character.wisdomSaveMisc)
-        binding.CharismaSaveValue.text = viewModel.calcSave(
+        binding.characteristicsBlock.CharismaSaveValue.text = viewModel.calcSave(
             character.charisma,
             character.charismaSaveProf,
             character.charismaSaveMisc
         )
 
-        binding.HitDiceValue.text =
+        binding.mainCharacterInfoBlock.HitDiceValue.text =
             (character.hitDiceCount.toString() + "d" + character.hitDiceSize.toString())
-        binding.HPValue.text = (character.currentHP + character.tempHP).toString()
+        binding.mainCharacterInfoBlock.HPValue.text =
+            (character.currentHP + character.tempHP).toString()
         if (character.tempHP > 0)
-            binding.HPValue.setTextColor(Color.parseColor("#2f00ba"))
+            binding.mainCharacterInfoBlock.HPValue.setTextColor(Color.parseColor("#2f00ba"))
         else
-            binding.HPValue.setTextColor(Color.parseColor("#000000"))
+            binding.mainCharacterInfoBlock.HPValue.setTextColor(Color.parseColor("#000000"))
 
         when (character.chosenSpeed) {
             "Walk" -> {
-                binding.SpeedValue.text =
+                binding.topCharacteristicsBlock.SpeedValue.text =
                     (character.baseWalkSpeed + character.miscWalkSpeedBonus).toString()
-                binding.SpeedText.text = "Speed"
+                binding.topCharacteristicsBlock.SpeedText.text = "Speed"
             }
             "Fly" -> {
-                binding.SpeedValue.text =
+                binding.topCharacteristicsBlock.SpeedValue.text =
                     (character.baseFlySpeed + character.miscFlySpeedBonus).toString()
-                binding.SpeedText.text = character.chosenSpeed
+                binding.topCharacteristicsBlock.SpeedText.text = character.chosenSpeed
             }
             "Swim" -> {
-                binding.SpeedValue.text =
+                binding.topCharacteristicsBlock.SpeedValue.text =
                     (character.baseSwimSpeed + character.miscSwimSpeedBonus).toString()
-                binding.SpeedText.text = character.chosenSpeed
+                binding.topCharacteristicsBlock.SpeedText.text = character.chosenSpeed
             }
             "Climb" -> {
-                binding.SpeedValue.text =
+                binding.topCharacteristicsBlock.SpeedValue.text =
                     (character.baseClimbSpeed + character.miscClimbSpeedBonus).toString()
-                binding.SpeedText.text = character.chosenSpeed
+                binding.topCharacteristicsBlock.SpeedText.text = character.chosenSpeed
             }
         }
 
-        binding.InitiativeValue.text = viewModel.calcInitiative(
+        binding.topCharacteristicsBlock.InitiativeValue.text = viewModel.calcInitiative(
             viewModel.calcModifier(
                 character.dexterity
             ).toInt(),
@@ -244,7 +236,7 @@ class CharacterScreen : Fragment() {
             character.proficiency
         ).toString()
 
-        binding.ArmorValue.text = viewModel.calcArmor(
+        binding.mainCharacterInfoBlock.ArmorValue.text = viewModel.calcArmor(
             character.armorBonus,
             character.shieldBonus,
             character.maxDexterityBonus,
@@ -253,70 +245,73 @@ class CharacterScreen : Fragment() {
             character.statBonusArmor
         ).toString()
 
-        binding.CustomBlock1Text.text = character.customBlock1Name
-        binding.CustomBlock1ScoreValue.text = character.customBlock1Value
-        binding.CustomBlock2Text.text = character.customBlock2Name
-        binding.CustomBlock2ScoreValue.text = character.customBlock2Value
-        binding.CustomBlock3Text.text = character.customBlock3Name
-        binding.CustomBlock3ScoreValue.text = character.customBlock3Value
-        binding.CustomBlock4Text.text = character.customBlock4Name
-        binding.CustomBlock4ScoreValue.text = character.customBlock4Value
+        binding.customFieldsCharacteristics.CustomBlock1Text.text = character.customBlock1Name
+        binding.customFieldsCharacteristics.CustomBlock1ScoreValue.text =
+            character.customBlock1Value
+        binding.customFieldsCharacteristics.CustomBlock2Text.text = character.customBlock2Name
+        binding.customFieldsCharacteristics.CustomBlock2ScoreValue.text =
+            character.customBlock2Value
+        binding.customFieldsCharacteristics.CustomBlock3Text.text = character.customBlock3Name
+        binding.customFieldsCharacteristics.CustomBlock3ScoreValue.text =
+            character.customBlock3Value
+        binding.customFieldsCharacteristics.CustomBlock4Text.text = character.customBlock4Name
+        binding.customFieldsCharacteristics.CustomBlock4ScoreValue.text =
+            character.customBlock4Value
 
         if (character.currentHP <= 0) {
-            binding.HPLayout.visibility = View.INVISIBLE
-            binding.DeathsSaveLayout.visibility = View.VISIBLE
+            binding.mainCharacterInfoBlock.HPLayout.visibility = View.INVISIBLE
+            binding.mainCharacterInfoBlock.DeathsSaveLayout.visibility = View.VISIBLE
         } else {
-            binding.HPLayout.visibility = View.VISIBLE
-            binding.DeathsSaveLayout.visibility = View.INVISIBLE
+            binding.mainCharacterInfoBlock.HPLayout.visibility = View.VISIBLE
+            binding.mainCharacterInfoBlock.DeathsSaveLayout.visibility = View.INVISIBLE
         }
 
         when (character.passDeathSave) {
             0 -> {
-                binding.Check1.setImageResource(R.drawable.circle)
-                binding.Check2.setImageResource(R.drawable.circle)
-                binding.Check3.setImageResource(R.drawable.circle)
+                binding.mainCharacterInfoBlock.Check1.setImageResource(R.drawable.circle)
+                binding.mainCharacterInfoBlock.Check2.setImageResource(R.drawable.circle)
+                binding.mainCharacterInfoBlock.Check3.setImageResource(R.drawable.circle)
             }
             1 -> {
-                binding.Check1.setImageResource(R.drawable.check_mark)
-                binding.Check2.setImageResource(R.drawable.circle)
-                binding.Check3.setImageResource(R.drawable.circle)
+                binding.mainCharacterInfoBlock.Check1.setImageResource(R.drawable.check_mark)
+                binding.mainCharacterInfoBlock.Check2.setImageResource(R.drawable.circle)
+                binding.mainCharacterInfoBlock.Check3.setImageResource(R.drawable.circle)
             }
             2 -> {
-                binding.Check1.setImageResource(R.drawable.check_mark)
-                binding.Check2.setImageResource(R.drawable.check_mark)
-                binding.Check3.setImageResource(R.drawable.circle)
+                binding.mainCharacterInfoBlock.Check1.setImageResource(R.drawable.check_mark)
+                binding.mainCharacterInfoBlock.Check2.setImageResource(R.drawable.check_mark)
+                binding.mainCharacterInfoBlock.Check3.setImageResource(R.drawable.circle)
             }
             3 -> {
-                binding.Check1.setImageResource(R.drawable.check_mark)
-                binding.Check2.setImageResource(R.drawable.check_mark)
-                binding.Check3.setImageResource(R.drawable.check_mark)
+                binding.mainCharacterInfoBlock.Check1.setImageResource(R.drawable.check_mark)
+                binding.mainCharacterInfoBlock.Check2.setImageResource(R.drawable.check_mark)
+                binding.mainCharacterInfoBlock.Check3.setImageResource(R.drawable.check_mark)
             }
         }
 
         when (character.failureDeathSave) {
             0 -> {
-                binding.Cross1.setImageResource(R.drawable.circle)
-                binding.Cross2.setImageResource(R.drawable.circle)
-                binding.Cross3.setImageResource(R.drawable.circle)
+                binding.mainCharacterInfoBlock.Cross1.setImageResource(R.drawable.circle)
+                binding.mainCharacterInfoBlock.Cross2.setImageResource(R.drawable.circle)
+                binding.mainCharacterInfoBlock.Cross3.setImageResource(R.drawable.circle)
             }
             1 -> {
-                binding.Cross1.setImageResource(R.drawable.cross_mark)
-                binding.Cross2.setImageResource(R.drawable.circle)
-                binding.Cross3.setImageResource(R.drawable.circle)
+                binding.mainCharacterInfoBlock.Cross1.setImageResource(R.drawable.cross_mark)
+                binding.mainCharacterInfoBlock.Cross2.setImageResource(R.drawable.circle)
+                binding.mainCharacterInfoBlock.Cross3.setImageResource(R.drawable.circle)
             }
             2 -> {
-                binding.Cross1.setImageResource(R.drawable.cross_mark)
-                binding.Cross2.setImageResource(R.drawable.cross_mark)
-                binding.Cross3.setImageResource(R.drawable.circle)
+                binding.mainCharacterInfoBlock.Cross1.setImageResource(R.drawable.cross_mark)
+                binding.mainCharacterInfoBlock.Cross2.setImageResource(R.drawable.cross_mark)
+                binding.mainCharacterInfoBlock.Cross3.setImageResource(R.drawable.circle)
             }
             3 -> {
-                binding.Cross1.setImageResource(R.drawable.cross_mark)
-                binding.Cross2.setImageResource(R.drawable.cross_mark)
-                binding.Cross3.setImageResource(R.drawable.cross_mark)
+                binding.mainCharacterInfoBlock.Cross1.setImageResource(R.drawable.cross_mark)
+                binding.mainCharacterInfoBlock.Cross2.setImageResource(R.drawable.cross_mark)
+                binding.mainCharacterInfoBlock.Cross3.setImageResource(R.drawable.cross_mark)
             }
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/HpArmorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/back_30dp"
+    android:backgroundTint="#E0C0C0"
+    android:foreground="@drawable/corner_30_w2dp"
+    android:foregroundTint="#945050">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ArmorLayout"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="6dp"
+        android:background="@drawable/back_20dp"
+        android:backgroundTint="#e8e8e8"
+        android:foreground="@drawable/corner_20_w2dp"
+        android:foregroundTint="#727272"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/HPLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/ArmorText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ac"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_name_size"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/ArmorValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="@dimen/Armor_number_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ArmorText"
+            app:layout_constraintVertical_bias="0.75"
+            tools:text="16" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/DeathsSaveLayout"
+        android:layout_width="105dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/back_30dp"
+        android:backgroundTint="#e8e8e8"
+        android:foreground="@drawable/corner_30_w2dp"
+        android:foregroundTint="#242424"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/HitDiceLayout"
+        app:layout_constraintStart_toEndOf="@+id/ArmorLayout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/Check1"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="3dp"
+            android:contentDescription="@string/no_description"
+            android:src="@drawable/circle"
+            app:layout_constraintEnd_toStartOf="@+id/Check2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/DeathsSaveText"
+            app:tint="@color/check_green" />
+
+        <ImageView
+            android:id="@+id/Check2"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="3dp"
+            android:contentDescription="@string/no_description"
+            android:src="@drawable/circle"
+            app:layout_constraintEnd_toStartOf="@+id/Check3"
+            app:layout_constraintStart_toEndOf="@+id/Check1"
+            app:layout_constraintTop_toBottomOf="@+id/DeathsSaveText"
+            app:tint="@color/check_green" />
+
+        <ImageView
+            android:id="@+id/Check3"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="3dp"
+            android:contentDescription="@string/no_description"
+            android:src="@drawable/circle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/Check2"
+            app:layout_constraintTop_toBottomOf="@+id/DeathsSaveText"
+            app:tint="@color/check_green" />
+
+        <ImageView
+            android:id="@+id/Cross1"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="3dp"
+            android:contentDescription="@string/no_description"
+            android:src="@drawable/circle"
+            app:layout_constraintEnd_toStartOf="@+id/Cross2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Check1"
+            app:tint="@color/cross_red" />
+
+        <ImageView
+            android:id="@+id/Cross2"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="3dp"
+            android:contentDescription="@string/no_description"
+            android:src="@drawable/circle"
+            app:layout_constraintEnd_toStartOf="@+id/Cross3"
+            app:layout_constraintStart_toEndOf="@+id/Cross1"
+            app:layout_constraintTop_toBottomOf="@+id/Check1"
+            app:tint="@color/cross_red" />
+
+        <ImageView
+            android:id="@+id/Cross3"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="3dp"
+            android:contentDescription="@string/no_description"
+            android:src="@drawable/circle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/Cross2"
+            app:layout_constraintTop_toBottomOf="@+id/Check1"
+            app:tint="@color/cross_red" />
+
+        <TextView
+            android:id="@+id/DeathsSaveText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/death_saves"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/HPLayout"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/back_30dp"
+        android:backgroundTint="#e8e8e8"
+        android:foreground="@drawable/corner_30_w2dp"
+        android:foregroundTint="#940000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/HitDiceLayout"
+        app:layout_constraintStart_toEndOf="@+id/ArmorLayout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/HPText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hp"
+            android:textColor="#000000"
+            android:textSize="@dimen/HP_text_size"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/HPValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="@dimen/HP_number_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/HPText"
+            app:layout_constraintVertical_bias="0.9"
+            tools:text="56" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/HitDiceLayout"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="6dp"
+        android:background="@drawable/back_20dp"
+        android:backgroundTint="#e8e8e8"
+        android:foreground="@drawable/corner_20_w2dp"
+        android:foregroundTint="#994D76"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/HPLayout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/HitDiceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/hit_dice"
+            android:textColor="#000000"
+            android:textSize="@dimen/HitDice_text_size"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/HitDiceValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="@dimen/HitDice_number_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/HitDiceText"
+            app:layout_constraintVertical_bias="0.75"
+            tools:text="3d6" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

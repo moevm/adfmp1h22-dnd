@@ -117,4 +117,7 @@
     <string name="custom4_value">Custom4 Value:</string>
     <string name="custom_block_hint">custom block hint</string>
 
+    <!--  Change in later  -->
+    <string name="no_description">No Description</string>
+
 </resources>

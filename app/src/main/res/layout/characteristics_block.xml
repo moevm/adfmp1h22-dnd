@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/StatsLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/back_10dp"
+    android:backgroundTint="#84a680"
+    android:foreground="@drawable/corner_10_w2dp"
+    android:foregroundTint="#00521d"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/StrengthLayout"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/stat_block_height"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="2dp"
+        android:layout_weight="1"
+        android:background="@drawable/back_10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/DexterityLayout"
+        app:layout_constraintEnd_toStartOf="@+id/IntelligenceLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/StrengthText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/strength_full"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_name_size"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/StrengthModifierText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/modifier"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_text_size"
+            app:layout_constraintLeft_toRightOf="@+id/StrengthScoreText"
+            app:layout_constraintRight_toLeftOf="@+id/StrengthSaveText"
+            app:layout_constraintTop_toBottomOf="@+id/StrengthText" />
+
+        <TextView
+            android:id="@+id/StrengthScoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_very_small"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/score"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_text_size"
+            app:layout_constraintLeft_toLeftOf="@+id/StrengthText"
+            app:layout_constraintTop_toBottomOf="@+id/StrengthText" />
+
+        <TextView
+            android:id="@+id/StrengthSaveText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/padding_very_small"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/save"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_text_size"
+            app:layout_constraintRight_toRightOf="@+id/StrengthText"
+            app:layout_constraintTop_toBottomOf="@+id/StrengthText" />
+
+        <TextView
+            android:id="@+id/StrengthSaveValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_number_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/StrengthSaveText"
+            app:layout_constraintRight_toRightOf="@+id/StrengthSaveText"
+            app:layout_constraintTop_toBottomOf="@+id/StrengthSaveText"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="-1" />
+
+        <TextView
+            android:id="@+id/StrengthModifierValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_number_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/StrengthModifierText"
+            app:layout_constraintRight_toRightOf="@+id/StrengthModifierText"
+            app:layout_constraintTop_toBottomOf="@+id/StrengthModifierText"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="-1" />
+
+        <TextView
+            android:id="@+id/StrengthScoreValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_number_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/StrengthScoreText"
+            app:layout_constraintRight_toRightOf="@+id/StrengthScoreText"
+            app:layout_constraintTop_toBottomOf="@+id/StrengthScoreText"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="8" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/IntelligenceLayout"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/stat_block_height"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:layout_weight="1"
+        android:background="@drawable/back_10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/WisdomLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/StrengthLayout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/IntelligenceText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/intelligence_full"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_name_size"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/IntelligenceModifierText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/modifier"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_text_size"
+            app:layout_constraintLeft_toRightOf="@+id/IntelligenceScoreText"
+            app:layout_constraintRight_toLeftOf="@+id/IntelligenceSaveText"
+            app:layout_constraintTop_toBottomOf="@+id/IntelligenceText" />
+
+        <TextView
+            android:id="@+id/IntelligenceScoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_very_small"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/score"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_text_size"
+            app:layout_constraintLeft_toLeftOf="@+id/IntelligenceText"
+            app:layout_constraintTop_toBottomOf="@+id/IntelligenceText" />
+
+        <TextView
+            android:id="@+id/IntelligenceSaveText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/padding_very_small"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/save"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_text_size"
+            app:layout_constraintRight_toRightOf="@+id/IntelligenceText"
+            app:layout_constraintTop_toBottomOf="@+id/IntelligenceText" />
+
+        <TextView
+            android:id="@+id/IntelligenceSaveValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_number_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/IntelligenceSaveText"
+            app:layout_constraintRight_toRightOf="@+id/IntelligenceSaveText"
+            app:layout_constraintTop_toBottomOf="@+id/IntelligenceSaveText"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="-1" />
+
+        <TextView
+            android:id="@+id/IntelligenceModifierValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_number_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/IntelligenceModifierText"
+            app:layout_constraintRight_toRightOf="@+id/IntelligenceModifierText"
+            app:layout_constraintTop_toBottomOf="@+id/IntelligenceModifierText"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="-1" />
+
+        <TextView
+            android:id="@+id/IntelligenceScoreValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_number_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/IntelligenceScoreText"
+            app:layout_constraintRight_toRightOf="@+id/IntelligenceScoreText"
+            app:layout_constraintTop_toBottomOf="@+id/IntelligenceScoreText"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="12" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/DexterityLayout"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/stat_block_height"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/back_10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/ConstitutionLayout"
+        app:layout_constraintEnd_toStartOf="@+id/WisdomLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/StrengthLayout">
+
+        <TextView
+            android:id="@+id/DexterityText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/dexterity_full"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_name_size"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/DexterityModifierText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/modifier"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_text_size"
+            app:layout_constraintLeft_toRightOf="@+id/DexterityScoreText"
+            app:layout_constraintRight_toLeftOf="@+id/DexteritySaveText"
+            app:layout_constraintTop_toBottomOf="@+id/DexterityText" />
+
+        <TextView
+            android:id="@+id/DexterityScoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_very_small"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/score"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_text_size"
+            app:layout_constraintLeft_toLeftOf="@+id/DexterityText"
+            app:layout_constraintTop_toBottomOf="@+id/DexterityText" />
+
+        <TextView
+            android:id="@+id/DexteritySaveText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/padding_very_small"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/save"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_text_size"
+            app:layout_constraintRight_toRightOf="@+id/DexterityText"
+            app:layout_constraintTop_toBottomOf="@+id/DexterityText" />
+
+        <TextView
+            android:id="@+id/DexteritySaveValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_number_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/DexteritySaveText"
+            app:layout_constraintRight_toRightOf="@+id/DexteritySaveText"
+            app:layout_constraintTop_toBottomOf="@+id/DexteritySaveText"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="-1" />
+
+        <TextView
+            android:id="@+id/DexterityModifierValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_number_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/DexterityModifierText"
+            app:layout_constraintRight_toRightOf="@+id/DexterityModifierText"
+            app:layout_constraintTop_toBottomOf="@+id/DexterityModifierText"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="-1" />
+
+        <TextView
+            android:id="@+id/DexterityScoreValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_number_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/DexterityScoreText"
+            app:layout_constraintRight_toRightOf="@+id/DexterityScoreText"
+            app:layout_constraintTop_toBottomOf="@+id/DexterityScoreText"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="20" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ConstitutionLayout"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/stat_block_height"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/back_10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/CharismaLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DexterityLayout">
+
+        <TextView
+            android:id="@+id/ConstitutionText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/constitution_full"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_name_size"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/ConstitutionModifierText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/modifier"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_text_size"
+            app:layout_constraintLeft_toRightOf="@+id/ConstitutionScoreText"
+            app:layout_constraintRight_toLeftOf="@+id/ConstitutionSaveText"
+            app:layout_constraintTop_toBottomOf="@+id/ConstitutionText" />
+
+        <TextView
+            android:id="@+id/ConstitutionScoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_very_small"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/score"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_text_size"
+            app:layout_constraintLeft_toLeftOf="@+id/ConstitutionText"
+            app:layout_constraintTop_toBottomOf="@+id/ConstitutionText" />
+
+        <TextView
+            android:id="@+id/ConstitutionSaveText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/padding_very_small"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/save"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_text_size"
+            app:layout_constraintRight_toRightOf="@+id/ConstitutionText"
+            app:layout_constraintTop_toBottomOf="@+id/ConstitutionText" />
+
+        <TextView
+            android:id="@+id/ConstitutionSaveValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_number_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/ConstitutionSaveText"
+            app:layout_constraintRight_toRightOf="@+id/ConstitutionSaveText"
+            app:layout_constraintTop_toBottomOf="@+id/ConstitutionSaveText"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="-1" />
+
+        <TextView
+            android:id="@+id/ConstitutionModifierValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_number_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/ConstitutionModifierText"
+            app:layout_constraintRight_toRightOf="@+id/ConstitutionModifierText"
+            app:layout_constraintTop_toBottomOf="@+id/ConstitutionModifierText"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="-1" />
+
+        <TextView
+            android:id="@+id/ConstitutionScoreValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_number_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/ConstitutionScoreText"
+            app:layout_constraintRight_toRightOf="@+id/ConstitutionScoreText"
+            app:layout_constraintTop_toBottomOf="@+id/ConstitutionScoreText"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="16" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/WisdomLayout"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/stat_block_height"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/back_10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/CharismaLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/DexterityLayout"
+        app:layout_constraintTop_toBottomOf="@+id/IntelligenceLayout"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/WisdomText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/wisdom_full"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_name_size"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/WisdomModifierText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/modifier"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_text_size"
+            app:layout_constraintLeft_toRightOf="@+id/WisdomScoreText"
+            app:layout_constraintRight_toLeftOf="@+id/WisdomSaveText"
+            app:layout_constraintTop_toBottomOf="@+id/WisdomText" />
+
+        <TextView
+            android:id="@+id/WisdomScoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_very_small"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/score"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_text_size"
+            app:layout_constraintLeft_toLeftOf="@+id/WisdomText"
+            app:layout_constraintTop_toBottomOf="@+id/WisdomText" />
+
+        <TextView
+            android:id="@+id/WisdomSaveText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/padding_very_small"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/save"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_text_size"
+            app:layout_constraintRight_toRightOf="@+id/WisdomText"
+            app:layout_constraintTop_toBottomOf="@+id/WisdomText" />
+
+        <TextView
+            android:id="@+id/WisdomSaveValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_number_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/WisdomSaveText"
+            app:layout_constraintRight_toRightOf="@+id/WisdomSaveText"
+            app:layout_constraintTop_toBottomOf="@+id/WisdomSaveText"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="-1" />
+
+        <TextView
+            android:id="@+id/WisdomModifierValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_number_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/WisdomModifierText"
+            app:layout_constraintRight_toRightOf="@+id/WisdomModifierText"
+            app:layout_constraintTop_toBottomOf="@+id/WisdomModifierText"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="-1" />
+
+        <TextView
+            android:id="@+id/WisdomScoreValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_number_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/WisdomScoreText"
+            app:layout_constraintRight_toRightOf="@+id/WisdomScoreText"
+            app:layout_constraintTop_toBottomOf="@+id/WisdomScoreText"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="14" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/CharismaLayout"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/stat_block_height"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/back_10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ConstitutionLayout"
+        app:layout_constraintTop_toBottomOf="@+id/WisdomLayout"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/CharismaText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/charisma_full"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_name_size"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/CharismaModifierText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/modifier"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_text_size"
+            app:layout_constraintLeft_toRightOf="@+id/CharismaScoreText"
+            app:layout_constraintRight_toLeftOf="@+id/CharismaSaveText"
+            app:layout_constraintTop_toBottomOf="@+id/CharismaText" />
+
+        <TextView
+            android:id="@+id/CharismaScoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_very_small"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/score"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_text_size"
+            app:layout_constraintLeft_toLeftOf="@+id/CharismaText"
+            app:layout_constraintTop_toBottomOf="@+id/CharismaText" />
+
+        <TextView
+            android:id="@+id/CharismaSaveText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/padding_very_small"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/save"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_text_size"
+            app:layout_constraintRight_toRightOf="@+id/CharismaText"
+            app:layout_constraintTop_toBottomOf="@+id/CharismaText" />
+
+        <TextView
+            android:id="@+id/CharismaSaveValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_number_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/CharismaSaveText"
+            app:layout_constraintRight_toRightOf="@+id/CharismaSaveText"
+            app:layout_constraintTop_toBottomOf="@+id/CharismaSaveText"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="-1" />
+
+        <TextView
+            android:id="@+id/CharismaModifierValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_number_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/CharismaModifierText"
+            app:layout_constraintRight_toRightOf="@+id/CharismaModifierText"
+            app:layout_constraintTop_toBottomOf="@+id/CharismaModifierText"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="-1" />
+
+        <TextView
+            android:id="@+id/CharismaScoreValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="@dimen/stat_number_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/CharismaScoreText"
+            app:layout_constraintRight_toRightOf="@+id/CharismaScoreText"
+            app:layout_constraintTop_toBottomOf="@+id/CharismaScoreText"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="16" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
