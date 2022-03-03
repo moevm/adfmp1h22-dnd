@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dialog_place"
@@ -26,20 +25,20 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-    <EditText
-        android:id="@+id/CustomBlock1NameValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="8"
-        android:gravity="center"
-        android:text="CustomBlock1"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/CustomBlock1NameText"
-        app:layout_constraintEnd_toEndOf="@+id/PlusButton1"
-        app:layout_constraintStart_toStartOf="@+id/MinusButton1"
-        app:layout_constraintTop_toTopOf="@+id/CustomBlock1NameText"
-        app:layout_constraintVertical_bias="0.7" />
+        <EditText
+            android:id="@+id/CustomBlock1NameValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="8"
+            android:gravity="center"
+            android:text="CustomBlock1"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/CustomBlock1NameText"
+            app:layout_constraintEnd_toEndOf="@+id/PlusButton1"
+            app:layout_constraintStart_toStartOf="@+id/MinusButton1"
+            app:layout_constraintTop_toTopOf="@+id/CustomBlock1NameText"
+            app:layout_constraintVertical_bias="0.7" />
 
         <TextView
             android:id="@+id/CustomBlock1NameText"
@@ -63,55 +62,55 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/CustomBlock1NameText" />
 
-    <EditText
-        android:id="@+id/CustomBlock1Value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_weight="1"
-        android:ems="5"
-        android:gravity="center"
-        android:text="0"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/CustomBlock1ValueText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/CustomBlock1ValueText"
-        app:layout_constraintTop_toTopOf="@+id/CustomBlock1ValueText"
-        app:layout_constraintVertical_bias="0.57" />
+        <EditText
+            android:id="@+id/CustomBlock1Value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:ems="5"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/CustomBlock1ValueText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/CustomBlock1ValueText"
+            app:layout_constraintTop_toTopOf="@+id/CustomBlock1ValueText"
+            app:layout_constraintVertical_bias="0.57" />
 
-    <Button
-        android:id="@+id/MinusButton1"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="2dp"
-        android:background="@drawable/custom_btn_remove"
-        app:layout_constraintBottom_toBottomOf="@+id/CustomBlock1Value"
-        app:layout_constraintEnd_toStartOf="@+id/CustomBlock1Value"
-        app:layout_constraintTop_toTopOf="@+id/CustomBlock1Value" />
+        <Button
+            android:id="@+id/MinusButton1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="2dp"
+            android:background="@drawable/custom_btn_remove"
+            app:layout_constraintBottom_toBottomOf="@+id/CustomBlock1Value"
+            app:layout_constraintEnd_toStartOf="@+id/CustomBlock1Value"
+            app:layout_constraintTop_toTopOf="@+id/CustomBlock1Value" />
 
-    <Button
-        android:id="@+id/PlusButton1"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="2dp"
-        android:background="@drawable/custom_btn_add"
-        app:layout_constraintStart_toEndOf="@+id/CustomBlock1Value"
-        app:layout_constraintTop_toTopOf="@+id/MinusButton1" />
+        <Button
+            android:id="@+id/PlusButton1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="2dp"
+            android:background="@drawable/custom_btn_add"
+            app:layout_constraintStart_toEndOf="@+id/CustomBlock1Value"
+            app:layout_constraintTop_toTopOf="@+id/MinusButton1" />
 
-    <EditText
-        android:id="@+id/CustomBlock2NameValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="8"
-        android:gravity="center"
-        android:text="CustomBlock2"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/CustomBlock2NameText"
-        app:layout_constraintEnd_toEndOf="@+id/PlusButton2"
-        app:layout_constraintStart_toStartOf="@+id/MinusButton2"
-        app:layout_constraintTop_toTopOf="@+id/CustomBlock2NameText"
-        app:layout_constraintVertical_bias="0.7" />
+        <EditText
+            android:id="@+id/CustomBlock2NameValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="8"
+            android:gravity="center"
+            android:text="CustomBlock2"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/CustomBlock2NameText"
+            app:layout_constraintEnd_toEndOf="@+id/PlusButton2"
+            app:layout_constraintStart_toStartOf="@+id/MinusButton2"
+            app:layout_constraintTop_toTopOf="@+id/CustomBlock2NameText"
+            app:layout_constraintVertical_bias="0.7" />
 
         <TextView
             android:id="@+id/CustomBlock2NameText"
@@ -135,55 +134,55 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/CustomBlock2NameText" />
 
-    <EditText
-        android:id="@+id/CustomBlock2Value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_weight="1"
-        android:ems="5"
-        android:gravity="center"
-        android:text="0"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/CustomBlock2ValueText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/CustomBlock2ValueText"
-        app:layout_constraintTop_toTopOf="@+id/CustomBlock2ValueText"
-        app:layout_constraintVertical_bias="0.57" />
+        <EditText
+            android:id="@+id/CustomBlock2Value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:ems="5"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/CustomBlock2ValueText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/CustomBlock2ValueText"
+            app:layout_constraintTop_toTopOf="@+id/CustomBlock2ValueText"
+            app:layout_constraintVertical_bias="0.57" />
 
-    <Button
-        android:id="@+id/MinusButton2"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="2dp"
-        android:background="@drawable/custom_btn_remove"
-        app:layout_constraintBottom_toBottomOf="@+id/CustomBlock2Value"
-        app:layout_constraintEnd_toStartOf="@+id/CustomBlock2Value"
-        app:layout_constraintTop_toTopOf="@+id/CustomBlock2Value" />
+        <Button
+            android:id="@+id/MinusButton2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="2dp"
+            android:background="@drawable/custom_btn_remove"
+            app:layout_constraintBottom_toBottomOf="@+id/CustomBlock2Value"
+            app:layout_constraintEnd_toStartOf="@+id/CustomBlock2Value"
+            app:layout_constraintTop_toTopOf="@+id/CustomBlock2Value" />
 
-    <Button
-        android:id="@+id/PlusButton2"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="2dp"
-        android:background="@drawable/custom_btn_add"
-        app:layout_constraintStart_toEndOf="@+id/CustomBlock2Value"
-        app:layout_constraintTop_toTopOf="@+id/MinusButton2" />
+        <Button
+            android:id="@+id/PlusButton2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="2dp"
+            android:background="@drawable/custom_btn_add"
+            app:layout_constraintStart_toEndOf="@+id/CustomBlock2Value"
+            app:layout_constraintTop_toTopOf="@+id/MinusButton2" />
 
-    <EditText
-        android:id="@+id/CustomBlock3NameValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="8"
-        android:gravity="center"
-        android:text="CustomBlock3"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/CustomBlock3NameText"
-        app:layout_constraintEnd_toEndOf="@+id/PlusButton3"
-        app:layout_constraintStart_toStartOf="@+id/MinusButton3"
-        app:layout_constraintTop_toTopOf="@+id/CustomBlock3NameText"
-        app:layout_constraintVertical_bias="0.7" />
+        <EditText
+            android:id="@+id/CustomBlock3NameValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="8"
+            android:gravity="center"
+            android:text="CustomBlock3"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/CustomBlock3NameText"
+            app:layout_constraintEnd_toEndOf="@+id/PlusButton3"
+            app:layout_constraintStart_toStartOf="@+id/MinusButton3"
+            app:layout_constraintTop_toTopOf="@+id/CustomBlock3NameText"
+            app:layout_constraintVertical_bias="0.7" />
 
         <TextView
             android:id="@+id/CustomBlock3NameText"
@@ -191,8 +190,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="30dp"
-            android:textColor="@color/black"
             android:text="Custom3 Name:"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/CustomBlock2ValueText" />
 
@@ -202,60 +201,60 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="24dp"
-            android:textColor="@color/black"
             android:text="Custom3 Value:"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/CustomBlock3NameText" />
 
-    <EditText
-        android:id="@+id/CustomBlock3Value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_weight="1"
-        android:ems="5"
-        android:gravity="center"
-        android:text="0"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/CustomBlock3ValueText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/CustomBlock3ValueText"
-        app:layout_constraintTop_toTopOf="@+id/CustomBlock3ValueText"
-        app:layout_constraintVertical_bias="0.57" />
+        <EditText
+            android:id="@+id/CustomBlock3Value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:ems="5"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/CustomBlock3ValueText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/CustomBlock3ValueText"
+            app:layout_constraintTop_toTopOf="@+id/CustomBlock3ValueText"
+            app:layout_constraintVertical_bias="0.57" />
 
-    <Button
-        android:id="@+id/MinusButton3"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="2dp"
-        android:background="@drawable/custom_btn_remove"
-        app:layout_constraintBottom_toBottomOf="@+id/CustomBlock3Value"
-        app:layout_constraintEnd_toStartOf="@+id/CustomBlock3Value"
-        app:layout_constraintTop_toTopOf="@+id/CustomBlock3Value" />
+        <Button
+            android:id="@+id/MinusButton3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="2dp"
+            android:background="@drawable/custom_btn_remove"
+            app:layout_constraintBottom_toBottomOf="@+id/CustomBlock3Value"
+            app:layout_constraintEnd_toStartOf="@+id/CustomBlock3Value"
+            app:layout_constraintTop_toTopOf="@+id/CustomBlock3Value" />
 
-    <Button
-        android:id="@+id/PlusButton3"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="2dp"
-        android:background="@drawable/custom_btn_add"
-        app:layout_constraintStart_toEndOf="@+id/CustomBlock3Value"
-        app:layout_constraintTop_toTopOf="@+id/MinusButton3" />
+        <Button
+            android:id="@+id/PlusButton3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="2dp"
+            android:background="@drawable/custom_btn_add"
+            app:layout_constraintStart_toEndOf="@+id/CustomBlock3Value"
+            app:layout_constraintTop_toTopOf="@+id/MinusButton3" />
 
-    <EditText
-        android:id="@+id/CustomBlock4NameValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="8"
-        android:gravity="center"
-        android:text="CustomBlock4"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/CustomBlock4NameText"
-        app:layout_constraintEnd_toEndOf="@+id/PlusButton4"
-        app:layout_constraintStart_toStartOf="@+id/MinusButton4"
-        app:layout_constraintTop_toTopOf="@+id/CustomBlock4NameText"
-        app:layout_constraintVertical_bias="0.7" />
+        <EditText
+            android:id="@+id/CustomBlock4NameValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="8"
+            android:gravity="center"
+            android:text="CustomBlock4"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/CustomBlock4NameText"
+            app:layout_constraintEnd_toEndOf="@+id/PlusButton4"
+            app:layout_constraintStart_toStartOf="@+id/MinusButton4"
+            app:layout_constraintTop_toTopOf="@+id/CustomBlock4NameText"
+            app:layout_constraintVertical_bias="0.7" />
 
         <TextView
             android:id="@+id/CustomBlock4NameText"
@@ -263,8 +262,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="30dp"
-            android:textColor="@color/black"
             android:text="Custom4 Name:"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/CustomBlock3ValueText" />
 
@@ -274,67 +273,67 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="24dp"
-            android:textColor="@color/black"
             android:text="Custom4 Value:"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/CustomBlock4NameText" />
 
-    <EditText
-        android:id="@+id/CustomBlock4Value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_weight="1"
-        android:ems="5"
-        android:gravity="center"
-        android:text="0"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/CustomBlock4ValueText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/CustomBlock4ValueText"
-        app:layout_constraintTop_toTopOf="@+id/CustomBlock4ValueText"
-        app:layout_constraintVertical_bias="0.57" />
+        <EditText
+            android:id="@+id/CustomBlock4Value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:ems="5"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/CustomBlock4ValueText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/CustomBlock4ValueText"
+            app:layout_constraintTop_toTopOf="@+id/CustomBlock4ValueText"
+            app:layout_constraintVertical_bias="0.57" />
 
-    <Button
-        android:id="@+id/MinusButton4"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="2dp"
-        android:background="@drawable/custom_btn_remove"
-        app:layout_constraintBottom_toBottomOf="@+id/CustomBlock4Value"
-        app:layout_constraintEnd_toStartOf="@+id/CustomBlock4Value"
-        app:layout_constraintTop_toTopOf="@+id/CustomBlock4Value" />
+        <Button
+            android:id="@+id/MinusButton4"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="2dp"
+            android:background="@drawable/custom_btn_remove"
+            app:layout_constraintBottom_toBottomOf="@+id/CustomBlock4Value"
+            app:layout_constraintEnd_toStartOf="@+id/CustomBlock4Value"
+            app:layout_constraintTop_toTopOf="@+id/CustomBlock4Value" />
 
-    <Button
-        android:id="@+id/PlusButton4"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="2dp"
-        android:background="@drawable/custom_btn_add"
-        app:layout_constraintStart_toEndOf="@+id/CustomBlock4Value"
-        app:layout_constraintTop_toTopOf="@+id/MinusButton4" />
+        <Button
+            android:id="@+id/PlusButton4"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="2dp"
+            android:background="@drawable/custom_btn_add"
+            app:layout_constraintStart_toEndOf="@+id/CustomBlock4Value"
+            app:layout_constraintTop_toTopOf="@+id/MinusButton4" />
 
 
         <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/separator_gray"
-        app:layout_constraintBottom_toTopOf="@+id/SaveButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/separator_gray"
+            app:layout_constraintBottom_toTopOf="@+id/SaveButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/SaveButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/custom_button"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:text="@string/save_button_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CustomBlock4Value" />
+            android:id="@+id/SaveButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/custom_button"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="@string/save_button_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CustomBlock4Value" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

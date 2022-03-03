@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/characterLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minWidth="270dp"
     android:minHeight="48dp"
-    android:paddingTop="2dp"
-    android:paddingBottom="2dp"
     android:paddingStart="14dp"
+    android:paddingTop="2dp"
     android:paddingEnd="14dp"
-    android:id="@+id/characterLayout">
+    android:paddingBottom="2dp">
 
     <TextView
         android:id="@+id/characterLevel"

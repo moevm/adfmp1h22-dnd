@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_place"
-    android:background="#272727"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#272727"
     tools:context=".fragments.CharacterScreen">
 
 
@@ -230,7 +229,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/Check1"
                 app:layout_constraintTop_toBottomOf="@+id/DeathsSaveText"
-                app:tint="@color/check_green"/>
+                app:tint="@color/check_green" />
 
             <ImageView
                 android:id="@+id/Check3"
@@ -242,7 +241,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/Check2"
                 app:layout_constraintTop_toBottomOf="@+id/DeathsSaveText"
-                app:tint="@color/check_green"/>
+                app:tint="@color/check_green" />
 
             <ImageView
                 android:id="@+id/Cross1"
@@ -254,7 +253,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Check1"
-                app:tint="@color/cross_red"/>
+                app:tint="@color/cross_red" />
 
             <ImageView
                 android:id="@+id/Cross2"
@@ -266,7 +265,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/Cross1"
                 app:layout_constraintTop_toBottomOf="@+id/Check1"
-                app:tint="@color/cross_red"/>
+                app:tint="@color/cross_red" />
 
             <ImageView
                 android:id="@+id/Cross3"
@@ -278,7 +277,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/Cross2"
                 app:layout_constraintTop_toBottomOf="@+id/Check1"
-                app:tint="@color/cross_red"/>
+                app:tint="@color/cross_red" />
 
             <TextView
                 android:id="@+id/DeathsSaveText"
@@ -388,8 +387,8 @@
         android:id="@+id/StatsLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:background="@drawable/back_10dp"
         android:backgroundTint="#84a680"
