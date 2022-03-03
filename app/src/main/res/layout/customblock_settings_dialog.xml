@@ -10,29 +10,31 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/CustomBlockHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Custom Blocks"
+            android:text="@string/custom_blocks"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <EditText
             android:id="@+id/CustomBlock1NameValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:autofillHints=""
             android:ems="8"
             android:gravity="center"
-            android:text="CustomBlock1"
+            android:hint="@string/custom_block_hint"
+            android:inputType="text"
+            android:text="@string/customblock1"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/CustomBlock1NameText"
             app:layout_constraintEnd_toEndOf="@+id/PlusButton1"
@@ -46,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="30dp"
-            android:text="Custom1 Name:"
+            android:text="@string/custom1_name"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/CustomBlockHeader" />
@@ -57,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="24dp"
-            android:text="Custom1 Value:"
+            android:text="@string/custom1_value"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/CustomBlock1NameText" />
@@ -68,15 +70,17 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
+            android:autofillHints=""
             android:ems="5"
             android:gravity="center"
-            android:text="0"
+            android:inputType="number"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/CustomBlock1ValueText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/CustomBlock1ValueText"
             app:layout_constraintTop_toTopOf="@+id/CustomBlock1ValueText"
-            app:layout_constraintVertical_bias="0.57" />
+            app:layout_constraintVertical_bias="0.57"
+            tools:text="0" />
 
         <Button
             android:id="@+id/MinusButton1"
@@ -102,9 +106,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:autofillHints=""
             android:ems="8"
             android:gravity="center"
-            android:text="CustomBlock2"
+            android:text="@string/customblock2"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/CustomBlock2NameText"
             app:layout_constraintEnd_toEndOf="@+id/PlusButton2"
@@ -118,7 +123,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="30dp"
-            android:text="Custom2 Name:"
+            android:text="@string/custom2_name"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/CustomBlock1ValueText" />
@@ -129,7 +134,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="24dp"
-            android:text="Custom2 Value:"
+            android:text="@string/custom2_value"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/CustomBlock2NameText" />
@@ -140,15 +145,17 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
+            android:autofillHints=""
             android:ems="5"
             android:gravity="center"
-            android:text="0"
+            android:inputType="number"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/CustomBlock2ValueText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/CustomBlock2ValueText"
             app:layout_constraintTop_toTopOf="@+id/CustomBlock2ValueText"
-            app:layout_constraintVertical_bias="0.57" />
+            app:layout_constraintVertical_bias="0.57"
+            tools:text="0" />
 
         <Button
             android:id="@+id/MinusButton2"
@@ -174,9 +181,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:autofillHints=""
             android:ems="8"
             android:gravity="center"
-            android:text="CustomBlock3"
+            android:inputType="text"
+            android:text="@string/customblock3"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/CustomBlock3NameText"
             app:layout_constraintEnd_toEndOf="@+id/PlusButton3"
@@ -190,7 +199,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="30dp"
-            android:text="Custom3 Name:"
+            android:text="@string/custom3_name"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/CustomBlock2ValueText" />
@@ -201,7 +210,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="24dp"
-            android:text="Custom3 Value:"
+            android:text="@string/custom3_value"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/CustomBlock3NameText" />
@@ -212,15 +221,17 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
+            android:autofillHints=""
             android:ems="5"
             android:gravity="center"
-            android:text="0"
+            android:inputType="number"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/CustomBlock3ValueText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/CustomBlock3ValueText"
             app:layout_constraintTop_toTopOf="@+id/CustomBlock3ValueText"
-            app:layout_constraintVertical_bias="0.57" />
+            app:layout_constraintVertical_bias="0.57"
+            tools:text="0" />
 
         <Button
             android:id="@+id/MinusButton3"
@@ -246,9 +257,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:autofillHints=""
             android:ems="8"
             android:gravity="center"
-            android:text="CustomBlock4"
+            android:inputType="text"
+            android:text="@string/customblock4"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/CustomBlock4NameText"
             app:layout_constraintEnd_toEndOf="@+id/PlusButton4"
@@ -262,7 +275,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="30dp"
-            android:text="Custom4 Name:"
+            android:text="@string/custom4_name"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/CustomBlock3ValueText" />
@@ -273,7 +286,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="24dp"
-            android:text="Custom4 Value:"
+            android:text="@string/custom4_value"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/CustomBlock4NameText" />
@@ -284,15 +297,17 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
+            android:autofillHints=""
             android:ems="5"
             android:gravity="center"
-            android:text="0"
+            android:inputType="number"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/CustomBlock4ValueText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/CustomBlock4ValueText"
             app:layout_constraintTop_toTopOf="@+id/CustomBlock4ValueText"
-            app:layout_constraintVertical_bias="0.57" />
+            app:layout_constraintVertical_bias="0.57"
+            tools:text="0" />
 
         <Button
             android:id="@+id/MinusButton4"

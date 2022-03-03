@@ -11,4 +11,5 @@
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@color/navigation_icon_selector"
         android:scaleType="fitCenter" />
+
 </LinearLayout>
