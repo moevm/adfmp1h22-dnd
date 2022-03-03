@@ -38,16 +38,15 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
             fetchAll()
             characterList.value = characterDao.getAll()
         }
-        if (characterList.value?.size == 0) {
-            chooseCharacter(characterList.value?.firstOrNull()?.id!!)
-        } else {
-            if (currentId != 0) {
+        val firstCharacterId = characterList.value?.firstOrNull()?.id
+        when {
+            firstCharacterId == null -> return
+            currentId != 0 -> {
                 fetchData(currentId)
                 chooseCharacter(currentId)
-            } else
-                chooseCharacter(characterList.value?.get(0)?.id!!)
+            }
+            else -> chooseCharacter(firstCharacterId)
         }
-
     }
 
     fun getCharacter() = currentChar
@@ -103,11 +102,10 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
                 chooseCharacter(characterList.value?.get(0)?.id!!)
             }
         }
-
     }
 
-    //Пока это просто заглушка болванка для проверки добавления в БД, функционала нет
-    fun addCharacter() {
+    // Пока это просто заглушка болванка для проверки добавления в БД, функционала нет
+    suspend fun addCharacter() {
         character = Character()
         character.name = "Name"
         character.charClass = "Class"
@@ -118,10 +116,9 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
         character.intelligence = 10
         character.wisdom = 10
         character.charisma = 10
-        viewModelScope.launch {
-            characterDao.insertChar(character)
-            characterList.value = characterDao.getAll()
-        }
+
+        characterDao.insertChar(character)
+        characterList.value = characterDao.getAll()
     }
 
     fun changeCharactersStats(statMap: HashMap<String, Int>) {

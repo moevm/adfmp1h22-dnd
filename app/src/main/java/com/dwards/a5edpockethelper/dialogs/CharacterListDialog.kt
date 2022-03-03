@@ -15,6 +15,7 @@ import com.dwards.a5edpockethelper.R
 import com.dwards.a5edpockethelper.adapters.CharacterListAdapter
 import com.dwards.a5edpockethelper.databinding.CharacterListBinding
 import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
+import kotlinx.coroutines.runBlocking
 
 
 class CharacterListDialog : DialogFragment(), RecyclerViewClickListener {
@@ -34,7 +35,7 @@ class CharacterListDialog : DialogFragment(), RecyclerViewClickListener {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner);
         _binding = CharacterListBinding.inflate(inflater, container, false)
@@ -62,7 +63,9 @@ class CharacterListDialog : DialogFragment(), RecyclerViewClickListener {
         })
 
         binding.AddCharacterButton.setOnClickListener {
-            viewModel.addCharacter()
+            runBlocking {
+                viewModel.addCharacter()
+            }
         }
 
         return view
