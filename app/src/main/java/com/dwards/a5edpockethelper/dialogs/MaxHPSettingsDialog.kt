@@ -21,7 +21,6 @@ class MaxHPSettingsDialog : DialogFragment() {
     private val TAG = "MyCustomDialog"
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,7 +32,7 @@ class MaxHPSettingsDialog : DialogFragment() {
         val view = binding.root
 
         //создание вью-модел и добавление обсервера
-        val viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
         viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -42,7 +41,10 @@ class MaxHPSettingsDialog : DialogFragment() {
         })
 
         binding.SaveButton.setOnClickListener {
-            viewModel.changeCharactersMaxHP(if (binding.MaxHPValue.text.toString() != "") binding.MaxHPValue.text.toString().toInt() else 0)
+            viewModel.changeCharactersMaxHP(
+                if (binding.MaxHPValue.text.toString() != "") binding.MaxHPValue.text.toString()
+                    .toInt() else 0
+            )
             dismiss()
         }
 
@@ -70,10 +72,10 @@ class MaxHPSettingsDialog : DialogFragment() {
 
     private fun refreshChar(character: Character) {
         binding.MaxHPValue.setText(character.maxHP.toString())
-        if(character.tempHP > 0)
+        if (character.tempHP > 0)
             binding.HPValue.setTextColor(Color.parseColor("#2f00ba"))
         else
             binding.HPValue.setTextColor(Color.parseColor("#000000"))
-        binding.HPValue.text = (character.currentHP+character.tempHP).toString()
+        binding.HPValue.text = (character.currentHP + character.tempHP).toString()
     }
 }

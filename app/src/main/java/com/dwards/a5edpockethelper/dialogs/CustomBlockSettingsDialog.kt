@@ -38,7 +38,7 @@ class CustomBlockSettingsDialog : DialogFragment() {
         val view = binding.root
 
         //создание вью-модел и добавление обсервера
-        val viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
         viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -46,15 +46,14 @@ class CustomBlockSettingsDialog : DialogFragment() {
             }
         })
 
-        binding.PlusButton1.setOnClickListener{
-            if (customBlock1Value.toIntOrNull() != null){
-                customBlock1Value = (customBlock1Value.toInt()+1).toString()
-            }
-            else {
+        binding.PlusButton1.setOnClickListener {
+            if (customBlock1Value.toIntOrNull() != null) {
+                customBlock1Value = (customBlock1Value.toInt() + 1).toString()
+            } else {
                 val match = Regex("[^0-9 -]").find(customBlock1Value)
-                var num = match?.range?.start?.let {customBlock1Value.substring(0, it)}
-                if(num != ""){
-                    customBlock1Value =customBlock1Value.drop(num?.length!!)
+                var num = match?.range?.start?.let { customBlock1Value.substring(0, it) }
+                if (num != "") {
+                    customBlock1Value = customBlock1Value.drop(num?.length!!)
                     num = (num.toInt().plus(1)).toString()
                     customBlock1Value = num.plus(customBlock1Value)
                 }
@@ -62,15 +61,14 @@ class CustomBlockSettingsDialog : DialogFragment() {
             binding.CustomBlock1Value.setText(customBlock1Value)
         }
 
-        binding.MinusButton1.setOnClickListener{
-            if (customBlock1Value.toIntOrNull() != null){
-                customBlock1Value = (customBlock1Value.toInt()-1).toString()
-            }
-            else {
+        binding.MinusButton1.setOnClickListener {
+            if (customBlock1Value.toIntOrNull() != null) {
+                customBlock1Value = (customBlock1Value.toInt() - 1).toString()
+            } else {
                 val match = Regex("[^0-9 -]").find(customBlock1Value)
-                var num = match?.range?.start?.let {customBlock1Value.substring(0, it)}
-                if(num != ""){
-                    customBlock1Value =customBlock1Value.drop(num?.length!!)
+                var num = match?.range?.start?.let { customBlock1Value.substring(0, it) }
+                if (num != "") {
+                    customBlock1Value = customBlock1Value.drop(num?.length!!)
                     num = (num?.toInt()?.minus(1)).toString()
                     customBlock1Value = num.plus(customBlock1Value)
                 }
@@ -78,15 +76,14 @@ class CustomBlockSettingsDialog : DialogFragment() {
             binding.CustomBlock1Value.setText(customBlock1Value)
         }
 
-        binding.PlusButton2.setOnClickListener{
-            if (customBlock2Value.toIntOrNull() != null){
-                customBlock2Value = (customBlock2Value.toInt()+1).toString()
-            }
-            else {
+        binding.PlusButton2.setOnClickListener {
+            if (customBlock2Value.toIntOrNull() != null) {
+                customBlock2Value = (customBlock2Value.toInt() + 1).toString()
+            } else {
                 val match = Regex("[^0-9 -]").find(customBlock2Value)
-                var num = match?.range?.start?.let {customBlock2Value.substring(0, it)}
-                if(num != ""){
-                    customBlock2Value =customBlock2Value.drop(num?.length!!)
+                var num = match?.range?.start?.let { customBlock2Value.substring(0, it) }
+                if (num != "") {
+                    customBlock2Value = customBlock2Value.drop(num?.length!!)
                     num = (num?.toInt()?.plus(1)).toString()
                     customBlock2Value = num.plus(customBlock2Value)
                 }
@@ -94,15 +91,14 @@ class CustomBlockSettingsDialog : DialogFragment() {
             binding.CustomBlock2Value.setText(customBlock2Value)
         }
 
-        binding.MinusButton2.setOnClickListener{
-            if (customBlock2Value.toIntOrNull() != null){
-                customBlock2Value = (customBlock2Value.toInt()-1).toString()
-            }
-            else {
+        binding.MinusButton2.setOnClickListener {
+            if (customBlock2Value.toIntOrNull() != null) {
+                customBlock2Value = (customBlock2Value.toInt() - 1).toString()
+            } else {
                 val match = Regex("[^0-9 -]").find(customBlock2Value)
-                var num = match?.range?.start?.let {customBlock2Value.substring(0, it)}
-                if(num != ""){
-                    customBlock2Value =customBlock2Value.drop(num?.length!!)
+                var num = match?.range?.start?.let { customBlock2Value.substring(0, it) }
+                if (num != "") {
+                    customBlock2Value = customBlock2Value.drop(num?.length!!)
                     num = (num?.toInt()?.minus(1)).toString()
                     customBlock2Value = num.plus(customBlock2Value)
                 }
@@ -110,15 +106,14 @@ class CustomBlockSettingsDialog : DialogFragment() {
             binding.CustomBlock2Value.setText(customBlock2Value)
         }
 
-        binding.PlusButton3.setOnClickListener{
-            if (customBlock3Value.toIntOrNull() != null){
-                customBlock3Value = (customBlock3Value.toInt()-1).toString()
-            }
-            else {
+        binding.PlusButton3.setOnClickListener {
+            if (customBlock3Value.toIntOrNull() != null) {
+                customBlock3Value = (customBlock3Value.toInt() - 1).toString()
+            } else {
                 val match = Regex("[^0-9 -]").find(customBlock3Value)
-                var num = match?.range?.start?.let {customBlock3Value.substring(0, it)}
-                if(num != ""){
-                    customBlock3Value =customBlock3Value.drop(num?.length!!)
+                var num = match?.range?.start?.let { customBlock3Value.substring(0, it) }
+                if (num != "") {
+                    customBlock3Value = customBlock3Value.drop(num?.length!!)
                     num = (num?.toInt()?.plus(1)).toString()
                     customBlock3Value = num.plus(customBlock3Value)
                 }
@@ -126,15 +121,14 @@ class CustomBlockSettingsDialog : DialogFragment() {
             binding.CustomBlock3Value.setText(customBlock3Value)
         }
 
-        binding.MinusButton3.setOnClickListener{
-            if (customBlock3Value.toIntOrNull() != null){
-                customBlock3Value = (customBlock3Value.toInt()-1).toString()
-            }
-            else {
+        binding.MinusButton3.setOnClickListener {
+            if (customBlock3Value.toIntOrNull() != null) {
+                customBlock3Value = (customBlock3Value.toInt() - 1).toString()
+            } else {
                 val match = Regex("[^0-9 -]").find(customBlock3Value)
-                var num = match?.range?.start?.let {customBlock3Value.substring(0, it)}
-                if(num != ""){
-                    customBlock3Value =customBlock3Value.drop(num?.length!!)
+                var num = match?.range?.start?.let { customBlock3Value.substring(0, it) }
+                if (num != "") {
+                    customBlock3Value = customBlock3Value.drop(num?.length!!)
                     num = (num?.toInt()?.minus(1)).toString()
                     customBlock3Value = num.plus(customBlock3Value)
                 }
@@ -142,15 +136,14 @@ class CustomBlockSettingsDialog : DialogFragment() {
             binding.CustomBlock3Value.setText(customBlock3Value)
         }
 
-        binding.PlusButton4.setOnClickListener{
-            if (customBlock4Value.toIntOrNull() != null){
-                customBlock4Value = (customBlock4Value.toInt()+1).toString()
-            }
-            else {
+        binding.PlusButton4.setOnClickListener {
+            if (customBlock4Value.toIntOrNull() != null) {
+                customBlock4Value = (customBlock4Value.toInt() + 1).toString()
+            } else {
                 val match = Regex("[^0-9 -]").find(customBlock4Value)
-                var num = match?.range?.start?.let {customBlock4Value.substring(0, it)}
-                if(num != ""){
-                    customBlock4Value =customBlock4Value.drop(num?.length!!)
+                var num = match?.range?.start?.let { customBlock4Value.substring(0, it) }
+                if (num != "") {
+                    customBlock4Value = customBlock4Value.drop(num?.length!!)
                     num = (num?.toInt()?.plus(1)).toString()
                     customBlock4Value = num.plus(customBlock4Value)
                 }
@@ -158,15 +151,14 @@ class CustomBlockSettingsDialog : DialogFragment() {
             binding.CustomBlock4Value.setText(customBlock4Value)
         }
 
-        binding.MinusButton4.setOnClickListener{
-            if (customBlock4Value.toIntOrNull() != null){
-                customBlock4Value = (customBlock4Value.toInt()-1).toString()
-            }
-            else {
+        binding.MinusButton4.setOnClickListener {
+            if (customBlock4Value.toIntOrNull() != null) {
+                customBlock4Value = (customBlock4Value.toInt() - 1).toString()
+            } else {
                 val match = Regex("[^0-9 -]").find(customBlock4Value)
-                var num = match?.range?.start?.let {customBlock4Value.substring(0, it)}
-                if(num != ""){
-                    customBlock4Value =customBlock4Value.drop(num?.length!!)
+                var num = match?.range?.start?.let { customBlock4Value.substring(0, it) }
+                if (num != "") {
+                    customBlock4Value = customBlock4Value.drop(num?.length!!)
                     num = (num?.toInt()?.minus(1)).toString()
                     customBlock4Value = num.plus(customBlock4Value)
                 }
@@ -174,42 +166,50 @@ class CustomBlockSettingsDialog : DialogFragment() {
             binding.CustomBlock4Value.setText(customBlock4Value)
         }
 
-        binding.CustomBlock1Value.addTextChangedListener(object: TextWatcher {
+        binding.CustomBlock1Value.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 customBlock1Value = binding.CustomBlock1Value.text.toString()
             }
+
             override fun afterTextChanged(s: Editable?) {
             }
         })
 
-        binding.CustomBlock2Value.addTextChangedListener(object: TextWatcher {
+        binding.CustomBlock2Value.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 customBlock2Value = binding.CustomBlock2Value.text.toString()
             }
+
             override fun afterTextChanged(s: Editable?) {
             }
         })
 
-        binding.CustomBlock3Value.addTextChangedListener(object: TextWatcher {
+        binding.CustomBlock3Value.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 customBlock3Value = binding.CustomBlock3Value.text.toString()
             }
+
             override fun afterTextChanged(s: Editable?) {
             }
         })
 
-        binding.CustomBlock4Value.addTextChangedListener(object: TextWatcher {
+        binding.CustomBlock4Value.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 customBlock4Value = binding.CustomBlock4Value.text.toString()
             }
+
             override fun afterTextChanged(s: Editable?) {
             }
         })
@@ -227,7 +227,8 @@ class CustomBlockSettingsDialog : DialogFragment() {
                 if (customBlock3Value != "") customBlock3Value else "0",
                 if (binding.CustomBlock3NameValue.text.toString() != "") binding.CustomBlock3NameValue.text.toString() else "0",
                 if (customBlock4Value != "") customBlock4Value else "0",
-                if (binding.CustomBlock4NameValue.text.toString() != "") binding.CustomBlock4NameValue.text.toString() else "0")
+                if (binding.CustomBlock4NameValue.text.toString() != "") binding.CustomBlock4NameValue.text.toString() else "0"
+            )
             dismiss()
         }
 

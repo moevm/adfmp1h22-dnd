@@ -22,6 +22,7 @@ class CurrentHpSettingsDialog : DialogFragment() {
     private val TAG = "MyCustomDialog"
 
     private var changeMode: Int = 1
+
     //private var damageMode: Boolean = true
     //private var healMode: Boolean = false
     //private var tempHPMode: Boolean = false
@@ -39,7 +40,7 @@ class CurrentHpSettingsDialog : DialogFragment() {
         val view = binding.root
 
         //создание вью-модел и добавление обсервера
-        val viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
         viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -50,50 +51,54 @@ class CurrentHpSettingsDialog : DialogFragment() {
         binding.MinusButton.isEnabled = false
         binding.DamageCheck.isChecked = true
 
-        binding.DamageCheck.setOnClickListener{
+        binding.DamageCheck.setOnClickListener {
             binding.DamageCheck.isChecked = true
             binding.HealCheck.isChecked = false
             binding.TempHPCheck.isChecked = false
             changeMode = 1
         }
 
-        binding.HealCheck.setOnClickListener{
+        binding.HealCheck.setOnClickListener {
             binding.DamageCheck.isChecked = false
             binding.HealCheck.isChecked = true
             binding.TempHPCheck.isChecked = false
             changeMode = 2
         }
 
-        binding.TempHPCheck.setOnClickListener{
+        binding.TempHPCheck.setOnClickListener {
             binding.DamageCheck.isChecked = false
             binding.HealCheck.isChecked = false
             binding.TempHPCheck.isChecked = true
             changeMode = 3
         }
 
-        binding.ChangeHPValue.addTextChangedListener(object: TextWatcher {
+        binding.ChangeHPValue.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                changeHP = if (binding.ChangeHPValue.text.toString() != "") binding.ChangeHPValue.text.toString().toInt() else 0
-                binding.MinusButton.isEnabled = changeHP!=0
+                changeHP =
+                    if (binding.ChangeHPValue.text.toString() != "") binding.ChangeHPValue.text.toString()
+                        .toInt() else 0
+                binding.MinusButton.isEnabled = changeHP != 0
             }
+
             override fun afterTextChanged(s: Editable?) {
             }
         })
 
-        binding.PlusButton.setOnClickListener{
+        binding.PlusButton.setOnClickListener {
             changeHP += 1
             //закрываем кнопку -, если 0
-            binding.MinusButton.isEnabled = changeHP!=0
+            binding.MinusButton.isEnabled = changeHP != 0
             binding.ChangeHPValue.setText(changeHP.toString())
         }
 
-        binding.MinusButton.setOnClickListener{
-            if (changeHP>0)
-            changeHP -= 1
+        binding.MinusButton.setOnClickListener {
+            if (changeHP > 0)
+                changeHP -= 1
             //закрываем кнопку -, если 0
-            binding.MinusButton.isEnabled = changeHP!=0
+            binding.MinusButton.isEnabled = changeHP != 0
             binding.ChangeHPValue.setText(changeHP.toString())
         }
 
@@ -127,8 +132,8 @@ class CurrentHpSettingsDialog : DialogFragment() {
 
 
     private fun refreshChar(character: Character) {
-        binding.HPValue.text = (character.currentHP+character.tempHP).toString()
-        if(character.tempHP > 0)
+        binding.HPValue.text = (character.currentHP + character.tempHP).toString()
+        if (character.tempHP > 0)
             binding.HPValue.setTextColor(Color.parseColor("#2f00ba"))
         else
             binding.HPValue.setTextColor(Color.parseColor("#000000"))

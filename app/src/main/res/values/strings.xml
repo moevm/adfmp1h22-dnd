@@ -67,6 +67,57 @@
     <string name="save_button_text">Save</string>
     <string name="tools_proficiency">Tools Proficiency</string>
     <string name="language_proficiency">Language Proficiency</string>
+    <string name="strength_score">Strength\nScore</string>
+    <string name="dexterity_score">Dexterity\nScore</string>
+    <string name="constitution_score">Constitution\nScore</string>
+    <string name="intelligence_score">Intelligence\nScore</string>
+    <string name="charisma_score">Charisma\nScore</string>
+    <string name="wisdom_score">Wisdom\nScore</string>
+    <string name="cha_save_misc_bonus">Cha Save\nMisc Bonus</string>
+    <string name="wis_save_misc_bonus">Wis Save\nMisc Bonus</string>
+    <string name="int_save_misc_bonus">Int Save\nMisc Bonus</string>
+    <string name="con_save_misc_bonus">Con Save\nMisc Bonus</string>
+    <string name="misc_save_bonus">Misc Save Bonus:</string>
+    <string name="str_save_misc_bonus">Str Save\nMisc Bonus</string>
+    <string name="con">Con</string>
+    <string name="dex">Dex</string>
+    <string name="str">Str</string>
+    <string name="cha">Cha</string>
+    <string name="wis">Wis</string>
+    <string name="int_param">Int</string>
+    <string name="save_proficiency">Save Proficiency:</string>
+    <string name="hp">HP</string>
+    <string name="heal">Heal</string>
+    <string name="temp_hp">Temp HP</string>
+    <string name="damage">Damage</string>
+    <string name="customblock1">CustomBlock1</string>
+    <string name="custom_blocks">Custom Blocks</string>
+    <string name="custom1_name">Custom1 Name:</string>
+    <string name="custom1_value">Custom1 Value:</string>
+    <string name="initiative">Initiative</string>
+    <string name="proficiency">Proficiency</string>
+    <string name="speed">Speed</string>
+    <string name="ac">AC</string>
+    <string name="hit_dice">Hit Dice</string>
+    <string name="strength_full">Strength</string>
+    <string name="death_saves">Death Saves</string>
+    <string name="intelligence_full">Intelligence</string>
+    <string name="dexterity_full">Dexterity</string>
+    <string name="constitution_full">Constitution</string>
+    <string name="wisdom_full">Wisdom</string>
+    <string name="charisma_full">Charisma</string>
+    <string name="customblock2">CustomBlock2</string>
+    <string name="customblock3">CustomBlock3</string>
+    <string name="customblock4">CustomBlock4</string>
+    <string name="custom2_name">Custom2 Name:</string>
+    <string name="custom2_value">Custom2 Value:</string>
+    <string name="custom3_name">Custom3 Name:</string>
+    <string name="custom3_value">Custom3 Value:</string>
+    <string name="custom4_name">Custom4 Name:</string>
+    <string name="custom4_value">Custom4 Value:</string>
+    <string name="custom_block_hint">custom block hint</string>
 
+    <!--  Change in later  -->
+    <string name="no_description">No Description</string>
 
 </resources>

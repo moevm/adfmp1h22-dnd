@@ -25,7 +25,7 @@
             android:id="@+id/HPText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="HP"
+            android:text="@string/hp"
             android:textColor="#000000"
             android:textSize="@dimen/HP_text_size"
             android:textStyle="bold"
@@ -37,7 +37,6 @@
             android:id="@+id/HPValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="56"
             android:textColor="#000000"
             android:textSize="@dimen/HP_number_size"
             android:textStyle="bold"
@@ -45,9 +44,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/HPText"
-            app:layout_constraintVertical_bias="0.9" />
+            app:layout_constraintVertical_bias="0.9"
+            tools:text="56" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <EditText
         android:id="@+id/ChangeHPValue"
@@ -56,20 +55,19 @@
         android:layout_marginTop="14dp"
         android:layout_weight="1"
         android:ems="3"
-        android:text = "0"
         android:gravity="center"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/HealCheck" />
-
+        app:layout_constraintTop_toBottomOf="@+id/HealCheck"
+        tools:text="0" />
 
     <RadioButton
         android:id="@+id/DamageCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
-        android:text="Damage"
+        android:text="@string/damage"
         app:layout_constraintEnd_toStartOf="@+id/HealCheck"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +77,7 @@
         android:id="@+id/HealCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Heal"
+        android:text="@string/heal"
         app:layout_constraintEnd_toStartOf="@+id/TempHPCheck"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/DamageCheck"
@@ -89,7 +87,7 @@
         android:id="@+id/TempHPCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Temp HP"
+        android:text="@string/temp_hp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/HealCheck"

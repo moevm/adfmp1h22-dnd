@@ -12,9 +12,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dwards.a5edpockethelper.MyViewModel
 import com.dwards.a5edpockethelper.R
-import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 import com.dwards.a5edpockethelper.adapters.CharacterListAdapter
 import com.dwards.a5edpockethelper.databinding.CharacterListBinding
+import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
+import kotlinx.coroutines.runBlocking
 
 
 class CharacterListDialog : DialogFragment(), RecyclerViewClickListener {
@@ -34,7 +35,7 @@ class CharacterListDialog : DialogFragment(), RecyclerViewClickListener {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner);
         _binding = CharacterListBinding.inflate(inflater, container, false)
@@ -43,34 +44,40 @@ class CharacterListDialog : DialogFragment(), RecyclerViewClickListener {
         characterList = binding.charRecycler
 
 
-        viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
         viewModel.getAllCharacters().observe(viewLifecycleOwner, Observer {
             it?.let {
                 characterAdapter = CharacterListAdapter(it, this)
-                characterList.apply{
-                layoutManager = LinearLayoutManager(activity);
-                adapter = characterAdapter
-                    addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
+                characterList.apply {
+                    layoutManager = LinearLayoutManager(activity);
+                    adapter = characterAdapter
+                    addItemDecoration(
+                        DividerItemDecoration(
+                            activity,
+                            DividerItemDecoration.VERTICAL
+                        )
+                    )
                 }
                 //refreshChar(it)
             }
         })
 
-        binding.AddCharacterButton.setOnClickListener{
-            viewModel.addCharacter()
+        binding.AddCharacterButton.setOnClickListener {
+            runBlocking {
+                viewModel.addCharacter()
+            }
         }
 
         return view
     }
 
     override fun onRecyclerViewItemClickListener(view: View, id: Int) {
-        when (view.id)
-        {
-            R.id.characterLayout ->{
+        when (view.id) {
+            R.id.characterLayout -> {
                 viewModel.chooseCharacter(id)
             }
 
-            R.id.deleteIcon ->{
+            R.id.deleteIcon -> {
                 viewModel.deleteCharacter(id)
 
             }

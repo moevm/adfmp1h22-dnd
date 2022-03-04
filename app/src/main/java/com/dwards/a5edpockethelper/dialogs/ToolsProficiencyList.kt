@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dwards.a5edpockethelper.MyViewModel
 import com.dwards.a5edpockethelper.R
-import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
-import com.dwards.a5edpockethelper.databinding.ToolsproficiencyListBinding
 import com.dwards.a5edpockethelper.adapters.ToolsProficiencyListAdapter
+import com.dwards.a5edpockethelper.databinding.ToolsproficiencyListBinding
+import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 
 
 class ToolsProficiencyList : DialogFragment(), RecyclerViewClickListener {
@@ -42,18 +42,18 @@ class ToolsProficiencyList : DialogFragment(), RecyclerViewClickListener {
         toolsList = binding.ToolsRecycler
 
 
-        viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
         viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
             it?.let {
                 toolsAdapter = ToolsProficiencyListAdapter(it.toolsProficiencyList, this)
-                toolsList.apply{
+                toolsList.apply {
                     layoutManager = LinearLayoutManager(activity);
                     adapter = toolsAdapter
                 }
             }
         })
 
-        binding.AddToolsButton.setOnClickListener{
+        binding.AddToolsButton.setOnClickListener {
             viewModel.addToolsProficiency()
         }
 
@@ -61,10 +61,9 @@ class ToolsProficiencyList : DialogFragment(), RecyclerViewClickListener {
     }
 
     override fun onRecyclerViewItemClickListener(view: View, id: Int) {
-        when (view.id)
-        {
+        when (view.id) {
 
-            R.id.DeleteIcon ->{
+            R.id.DeleteIcon -> {
                 viewModel.deleteToolsProficiency(id)
 
             }

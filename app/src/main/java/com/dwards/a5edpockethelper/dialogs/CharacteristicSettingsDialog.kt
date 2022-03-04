@@ -20,7 +20,6 @@ class CharacteristicSettingsDialog : DialogFragment() {
     private val TAG = "MyCustomDialog"
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,7 +31,7 @@ class CharacteristicSettingsDialog : DialogFragment() {
         val view = binding.root
 
         //создание вью-модел и добавление обсервера
-        val viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
         viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -93,19 +92,43 @@ class CharacteristicSettingsDialog : DialogFragment() {
 
     private fun packageStat(): HashMap<String, Int> {
         val statsMap: HashMap<String, Int> = hashMapOf()
-        statsMap["Strength"] = if (binding.StrengthScoreValue.text.toString() != "") binding.StrengthScoreValue.text.toString().toInt() else 0
-        statsMap["Dexterity"] = if (binding.DexterityScoreValue.text.toString() != "") binding.DexterityScoreValue.text.toString().toInt() else 0
-        statsMap["Constitution"] = if (binding.ConstitutionScoreValue.text.toString() != "") binding.ConstitutionScoreValue.text.toString().toInt() else 0
-        statsMap["Intelligence"] = if (binding.IntelligenceScoreValue.text.toString() != "") binding.IntelligenceScoreValue.text.toString().toInt() else 0
-        statsMap["Wisdom"] = if (binding.WisdomScoreValue.text.toString() != "") binding.WisdomScoreValue.text.toString().toInt() else 0
-        statsMap["Charisma"] = if (binding.CharismaScoreValue.text.toString() != "") binding.CharismaScoreValue.text.toString().toInt() else 0
+        statsMap["Strength"] =
+            if (binding.StrengthScoreValue.text.toString() != "") binding.StrengthScoreValue.text.toString()
+                .toInt() else 0
+        statsMap["Dexterity"] =
+            if (binding.DexterityScoreValue.text.toString() != "") binding.DexterityScoreValue.text.toString()
+                .toInt() else 0
+        statsMap["Constitution"] =
+            if (binding.ConstitutionScoreValue.text.toString() != "") binding.ConstitutionScoreValue.text.toString()
+                .toInt() else 0
+        statsMap["Intelligence"] =
+            if (binding.IntelligenceScoreValue.text.toString() != "") binding.IntelligenceScoreValue.text.toString()
+                .toInt() else 0
+        statsMap["Wisdom"] =
+            if (binding.WisdomScoreValue.text.toString() != "") binding.WisdomScoreValue.text.toString()
+                .toInt() else 0
+        statsMap["Charisma"] =
+            if (binding.CharismaScoreValue.text.toString() != "") binding.CharismaScoreValue.text.toString()
+                .toInt() else 0
 
-        statsMap["StrengthSaveMisc"] = if (binding.StrengthSaveMiscValue.text.toString() != "") binding.StrengthSaveMiscValue.text.toString().toInt() else 0
-        statsMap["DexteritySaveMisc"] = if (binding.DexteritySaveMiscValue.text.toString() != "") binding.DexteritySaveMiscValue.text.toString().toInt() else 0
-        statsMap["ConstitutionSaveMisc"] = if (binding.ConstitutionSaveMiscValue.text.toString() != "") binding.ConstitutionSaveMiscValue.text.toString().toInt() else 0
-        statsMap["IntelligenceSaveMisc"] = if (binding.IntelligenceSaveMiscValue.text.toString() != "") binding.IntelligenceSaveMiscValue.text.toString().toInt() else 0
-        statsMap["WisdomSaveMisc"] = if (binding.WisdomSaveMiscValue.text.toString() != "") binding.WisdomSaveMiscValue.text.toString().toInt() else 0
-        statsMap["CharismaSaveMisc"] = if (binding.CharismaSaveMiscValue.text.toString() != "") binding.CharismaSaveMiscValue.text.toString().toInt() else 0
+        statsMap["StrengthSaveMisc"] =
+            if (binding.StrengthSaveMiscValue.text.toString() != "") binding.StrengthSaveMiscValue.text.toString()
+                .toInt() else 0
+        statsMap["DexteritySaveMisc"] =
+            if (binding.DexteritySaveMiscValue.text.toString() != "") binding.DexteritySaveMiscValue.text.toString()
+                .toInt() else 0
+        statsMap["ConstitutionSaveMisc"] =
+            if (binding.ConstitutionSaveMiscValue.text.toString() != "") binding.ConstitutionSaveMiscValue.text.toString()
+                .toInt() else 0
+        statsMap["IntelligenceSaveMisc"] =
+            if (binding.IntelligenceSaveMiscValue.text.toString() != "") binding.IntelligenceSaveMiscValue.text.toString()
+                .toInt() else 0
+        statsMap["WisdomSaveMisc"] =
+            if (binding.WisdomSaveMiscValue.text.toString() != "") binding.WisdomSaveMiscValue.text.toString()
+                .toInt() else 0
+        statsMap["CharismaSaveMisc"] =
+            if (binding.CharismaSaveMiscValue.text.toString() != "") binding.CharismaSaveMiscValue.text.toString()
+                .toInt() else 0
 
         statsMap["StrengthSaveProf"] = binding.StrengthSaveProf.isChecked.compareTo(false)
         statsMap["DexteritySaveProf"] = binding.DexteritySaveProf.isChecked.compareTo(false)

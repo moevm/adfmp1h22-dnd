@@ -1,6 +1,8 @@
 package com.dwards.a5edpockethelper.model
 
-import androidx.room.*
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import com.dwards.a5edpockethelper.StringListConverter
 
 
@@ -182,4 +184,4 @@ data class Character(
     //@TypeConverters(Converters::class)
     //var weaponList: List<Int>,
 
-    )
+)

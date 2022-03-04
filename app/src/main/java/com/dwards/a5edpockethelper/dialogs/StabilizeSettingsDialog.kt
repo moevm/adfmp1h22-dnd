@@ -18,7 +18,6 @@ class StabilizeSettingsDialog : DialogFragment() {
     private val TAG = "MyCustomDialog"
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,7 +29,7 @@ class StabilizeSettingsDialog : DialogFragment() {
         val view = binding.root
 
         //создание вью-модел и добавление обсервера
-        val viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
         binding.StabilizeButton.setOnClickListener {
             viewModel.stabilizeCharacter()

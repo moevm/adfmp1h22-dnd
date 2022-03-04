@@ -10,47 +10,64 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
-import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 import com.dwards.a5edpockethelper.databinding.ToolsproficiencyListRecyclerBinding
 import com.dwards.a5edpockethelper.dialogs.ToolsProficiencySettingsDialog
+import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 
 
-class ToolsProficiencyListAdapter(toolsList: List<String>, private val listener: RecyclerViewClickListener): Adapter<ToolsProficiencyListAdapter.ToolsProficiencyViewHolder>() {
+class ToolsProficiencyListAdapter(
+    toolsList: List<String>,
+    private val listener: RecyclerViewClickListener
+) : Adapter<ToolsProficiencyListAdapter.ToolsProficiencyViewHolder>() {
     private var toolsArrayList: List<String> = toolsList
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToolsProficiencyViewHolder {
-        val toolsBinding = ToolsproficiencyListRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val toolsBinding = ToolsproficiencyListRecyclerBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return ToolsProficiencyViewHolder(toolsBinding, listener)
     }
 
     override fun onBindViewHolder(holder: ToolsProficiencyViewHolder, position: Int) {
-            var tool: String = toolsArrayList[position]
-            holder.bind(tool)
+        var tool: String = toolsArrayList[position]
+        holder.bind(tool)
     }
 
 
     override fun getItemCount(): Int {
-        return  toolsArrayList.size;
+        return toolsArrayList.size;
     }
 
 
-    class ToolsProficiencyViewHolder(private val itemBinding: ToolsproficiencyListRecyclerBinding, private val listener: RecyclerViewClickListener) : RecyclerView.ViewHolder(itemBinding.root) {
-        init{
+    class ToolsProficiencyViewHolder(
+        private val itemBinding: ToolsproficiencyListRecyclerBinding,
+        private val listener: RecyclerViewClickListener
+    ) : RecyclerView.ViewHolder(itemBinding.root) {
+        init {
 
-            itemBinding.ToolsLayout.setOnLongClickListener{
+            itemBinding.ToolsLayout.setOnLongClickListener {
 
-                val toolsProficiencySettingsDialog: ToolsProficiencySettingsDialog = ToolsProficiencySettingsDialog()
+                val toolsProficiencySettingsDialog: ToolsProficiencySettingsDialog =
+                    ToolsProficiencySettingsDialog()
                 val args = Bundle()
                 args.putInt("num", absoluteAdapterPosition)
                 toolsProficiencySettingsDialog.arguments = args
-                toolsProficiencySettingsDialog.show((unwrap(itemView.context) as FragmentActivity).supportFragmentManager, "StatSettingsDialog")
+                toolsProficiencySettingsDialog.show(
+                    (unwrap(itemView.context) as FragmentActivity).supportFragmentManager,
+                    "StatSettingsDialog"
+                )
                 //listener.onRecyclerViewItemClickListener(itemBinding.ToolsLayout, absoluteAdapterPosition)
                 return@setOnLongClickListener true
             }
 
-            itemBinding.DeleteIcon.setOnClickListener{
-                listener.onRecyclerViewItemClickListener(itemBinding.DeleteIcon, absoluteAdapterPosition)
+            itemBinding.DeleteIcon.setOnClickListener {
+                listener.onRecyclerViewItemClickListener(
+                    itemBinding.DeleteIcon,
+                    absoluteAdapterPosition
+                )
             }
         }
 

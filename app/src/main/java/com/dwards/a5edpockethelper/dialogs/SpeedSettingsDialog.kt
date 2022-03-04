@@ -32,7 +32,7 @@ class SpeedSettingsDialog : DialogFragment() {
         val view = binding.root
 
         //создание вью-модел и добавление обсервера
-        val viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
         viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -42,7 +42,7 @@ class SpeedSettingsDialog : DialogFragment() {
         //вылет если не выбрать персонажа
         //switchSpeed(viewModel.getCharacter().value!!, speedType)
 
-        binding.WalkCheck.setOnClickListener{
+        binding.WalkCheck.setOnClickListener {
             speedType = changeChosenSpeed(1)
             binding.FlyCheck.isChecked = false
             binding.SwimCheck.isChecked = false
@@ -50,7 +50,7 @@ class SpeedSettingsDialog : DialogFragment() {
             switchSpeed(viewModel.getCharacter().value!!, speedType)
         }
 
-        binding.FlyCheck.setOnClickListener{
+        binding.FlyCheck.setOnClickListener {
             speedType = changeChosenSpeed(2)
             binding.WalkCheck.isChecked = false
             binding.SwimCheck.isChecked = false
@@ -58,7 +58,7 @@ class SpeedSettingsDialog : DialogFragment() {
             switchSpeed(viewModel.getCharacter().value!!, speedType)
         }
 
-        binding.SwimCheck.setOnClickListener{
+        binding.SwimCheck.setOnClickListener {
             speedType = changeChosenSpeed(3)
             binding.FlyCheck.isChecked = false
             binding.WalkCheck.isChecked = false
@@ -66,7 +66,7 @@ class SpeedSettingsDialog : DialogFragment() {
             switchSpeed(viewModel.getCharacter().value!!, speedType)
         }
 
-        binding.ClimbCheck.setOnClickListener{
+        binding.ClimbCheck.setOnClickListener {
             speedType = changeChosenSpeed(4)
             binding.FlyCheck.isChecked = false
             binding.SwimCheck.isChecked = false
@@ -75,8 +75,13 @@ class SpeedSettingsDialog : DialogFragment() {
         }
 
         binding.SaveButton.setOnClickListener {
-            viewModel.changeCharactersSpeed(if (binding.SpeedBaseValue.text.toString() != "") binding.SpeedBaseValue.text.toString().toInt() else 0
-                ,if (binding.SpeedMiscBonusValue.text.toString() != "") binding.SpeedMiscBonusValue.text.toString().toInt() else 0, speedType)
+            viewModel.changeCharactersSpeed(
+                if (binding.SpeedBaseValue.text.toString() != "") binding.SpeedBaseValue.text.toString()
+                    .toInt() else 0,
+                if (binding.SpeedMiscBonusValue.text.toString() != "") binding.SpeedMiscBonusValue.text.toString()
+                    .toInt() else 0,
+                speedType
+            )
             dismiss()
         }
 
@@ -103,7 +108,7 @@ class SpeedSettingsDialog : DialogFragment() {
     }
 
     private fun refreshChar(character: Character) {
-        when(character.chosenSpeed){
+        when (character.chosenSpeed) {
             "Walk" -> {
                 binding.SpeedBaseValue.setText(character.baseWalkSpeed.toString())
                 binding.SpeedMiscBonusValue.setText(character.miscWalkSpeedBonus.toString())
@@ -138,7 +143,7 @@ class SpeedSettingsDialog : DialogFragment() {
     }
 
     private fun switchSpeed(character: Character, type: String) {
-        when(type){
+        when (type) {
             "Walk" -> {
                 binding.SpeedBaseValue.setText(character.baseWalkSpeed.toString())
                 binding.SpeedMiscBonusValue.setText(character.miscWalkSpeedBonus.toString())
@@ -174,7 +179,7 @@ class SpeedSettingsDialog : DialogFragment() {
                 binding.WalkCheck.isChecked = true
             }
 
-            else ->{
+            else -> {
                 binding.SpeedBaseValue.setText(character.baseClimbSpeed.toString())
                 binding.SpeedMiscBonusValue.setText(character.miscClimbSpeedBonus.toString())
                 binding.SpeedText.text = "Speed"
@@ -183,11 +188,11 @@ class SpeedSettingsDialog : DialogFragment() {
         }
     }
 
-    private fun changeChosenSpeed(type: Int) = when (type){
-        1 ->  "Walk"
-        2 ->  "Fly"
-        3 ->  "Swim"
-        4 ->  "Climb"
+    private fun changeChosenSpeed(type: Int) = when (type) {
+        1 -> "Walk"
+        2 -> "Fly"
+        3 -> "Swim"
+        4 -> "Climb"
         else -> "Walk"
     }
 }

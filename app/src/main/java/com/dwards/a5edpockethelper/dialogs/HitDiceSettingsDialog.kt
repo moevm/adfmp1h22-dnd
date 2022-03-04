@@ -20,7 +20,6 @@ class HitDiceSettingsDialog : DialogFragment() {
     private val TAG = "MyCustomDialog"
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,7 +31,7 @@ class HitDiceSettingsDialog : DialogFragment() {
         val view = binding.root
 
         //создание вью-модел и добавление обсервера
-        val viewModel =  ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
         viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -43,8 +42,12 @@ class HitDiceSettingsDialog : DialogFragment() {
 
 
         binding.SaveButton.setOnClickListener {
-            viewModel.changeCharactersHitDice(if (binding.HitDiceCountValue.text.toString() != "") binding.HitDiceCountValue.text.toString().toInt() else 0
-                , if (binding.HitDiceSizeValue.text.toString() != "") binding.HitDiceSizeValue.text.toString().toInt() else 0)
+            viewModel.changeCharactersHitDice(
+                if (binding.HitDiceCountValue.text.toString() != "") binding.HitDiceCountValue.text.toString()
+                    .toInt() else 0,
+                if (binding.HitDiceSizeValue.text.toString() != "") binding.HitDiceSizeValue.text.toString()
+                    .toInt() else 0
+            )
             dismiss()
         }
 
