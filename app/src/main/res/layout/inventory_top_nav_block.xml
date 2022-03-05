@@ -1,0 +1,84 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/CustomTableLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="3dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginRight="3dp"
+    android:background="@drawable/back_10dp"
+    android:backgroundTint="#B7A577"
+    android:foreground="@drawable/corner_10_w2dp"
+    android:foregroundTint="#734F2F"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/CustomBlock1Value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="8"
+        android:gravity="center"
+        android:text="Search"
+        android:textColor="#6B5030"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/filterButton"
+        app:layout_constraintStart_toEndOf="@+id/addSpellButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/addSpellButton"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:src="@drawable/ic_book"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/checkBox"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/filterButton"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:src="@drawable/ic_filter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/checkBox2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:buttonTint="#9A7337"
+        android:text="Favorite"
+        android:textColor="#6B4D30"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/checkBox2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/addSpellButton"
+        app:layout_constraintTop_toBottomOf="@+id/CustomBlock1Value" />
+
+    <CheckBox
+        android:id="@+id/checkBox2"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:buttonTint="#9A7337"
+        android:text="Prepared"
+        android:textColor="#6B4D30"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/filterButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/checkBox"
+        app:layout_constraintTop_toBottomOf="@+id/CustomBlock1Value" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

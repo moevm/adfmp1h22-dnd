@@ -9,94 +9,27 @@
     android:background="#272727"
     tools:context=".fragments.CharacterScreen">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/CustomTableLayout"
+    <include
+        android:id="@+id/spell_top_nav_block"
+        layout="@layout/spell_top_nav_block"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="3dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="2dp"
-        android:layout_marginRight="3dp"
-        android:background="@drawable/back_10dp"
-        android:backgroundTint="#A8CBDE"
-        android:foreground="@drawable/corner_10_w2dp"
-        android:foregroundTint="#37688B"
-        android:orientation="vertical"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginEnd="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/CustomBlock1Value"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginTop="4dp"
-            android:layout_weight="1"
-            android:ems="8"
-            android:gravity="center"
-            android:text="Search"
-            android:textColor="#304F6B"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/filterButton"
-            app:layout_constraintStart_toEndOf="@+id/addSpellButton"
-            app:layout_constraintTop_toTopOf="parent" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/WeaponRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spell_top_nav_block" />
 
-        <ImageView
-            android:id="@+id/addSpellButton"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/ic_book"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/filterButton"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/ic_filter"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="4dp"
-            android:buttonTint="#3055B4"
-            android:text="Favorite"
-            android:textColor="#304F6B"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/filterButton"
-            app:layout_constraintHorizontal_bias="0.15"
-            app:layout_constraintStart_toEndOf="@+id/addSpellButton"
-            app:layout_constraintTop_toBottomOf="@+id/CustomBlock1Value" />
-
-        <CheckBox
-            android:id="@+id/checkBox2"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_marginBottom="4dp"
-            android:buttonTint="#3055B4"
-            android:text="Prepared"
-            android:textColor="#304F6B"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/filterButton"
-            app:layout_constraintHorizontal_bias="0.85"
-            app:layout_constraintStart_toEndOf="@+id/addSpellButton"
-            app:layout_constraintTop_toTopOf="@+id/checkBox" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/WeaponRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CustomTableLayout" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
