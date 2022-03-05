@@ -119,5 +119,25 @@
 
     <!--  Change in later  -->
     <string name="no_description">No Description</string>
+    <string name="athletics_full">Athletics</string>
+    <string name="acrobatics_full">Acrobatics</string>
+    <string name="sleight_of_hand_full">Sleight of Hand</string>
+    <string name="stealth_full">Stealth</string>
+    <string name="arcana_full">Arcana</string>
+    <string name="history_full">History</string>
+    <string name="investigation_full">Investigation</string>
+    <string name="nature_full">Nature</string>
+    <string name="religion_full">Religion</string>
+    <string name="animal_handling_full">Animal Handling</string>
+    <string name="insight_full">Insight</string>
+    <string name="medicine_full">Medicine</string>
+    <string name="perception_full">Perception</string>
+    <string name="survival_full">Survival</string>
+    <string name="deception_full">Deception</string>
+    <string name="intimidation_full">Intimidation</string>
+    <string name="performance_full">Performance</string>
+    <string name="persuasion_full">Persuasion</string>
+    <string name="tools_proficiency_full">Tools Proficiency</string>
+    <string name="language_proficiency_full">Language Proficiency</string>
 
 </resources>

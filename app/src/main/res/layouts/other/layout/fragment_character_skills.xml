@@ -28,7 +28,7 @@
             android:id="@+id/StrengthText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Strength"
+            android:text="@string/strength_full"
             android:textColor="#000000"
             android:textSize="@dimen/stat_name_size"
             android:textStyle="bold"
@@ -42,14 +42,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="0"
             android:textColor="#000000"
             android:textSize="@dimen/stat_name_size"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/StrengthText"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="0" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/AthleticsLayout"
@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:text="Athletics"
+                android:text="@string/athletics_full"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -83,13 +83,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="2dp"
-                android:text="0"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/AthleticsText"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -114,7 +114,7 @@
             android:id="@+id/DexterityText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dexterity"
+            android:text="@string/dexterity_full"
             android:textColor="#000000"
             android:textSize="@dimen/stat_name_size"
             android:textStyle="bold"
@@ -156,7 +156,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:text="Acrobatics"
+                android:text="@string/acrobatics_full"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -169,13 +169,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="2dp"
-                android:text="0"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/AcrobaticsText"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -198,7 +198,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:text="Sleight of Hand"
+                android:text="@string/sleight_of_hand_full"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -211,13 +211,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="2dp"
-                android:text="0"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/SleightofHandText"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -240,7 +240,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:text="Stealth"
+                android:text="@string/stealth_full"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -253,13 +253,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="2dp"
-                android:text="0"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/StealthText"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -283,7 +283,7 @@
             android:id="@+id/IntelligenceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Intelligence"
+            android:text="@string/intelligence_full"
             android:textColor="#000000"
             android:textSize="@dimen/stat_name_size"
             android:textStyle="bold"
@@ -297,14 +297,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="0"
             android:textColor="#000000"
             android:textSize="@dimen/stat_name_size"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/IntelligenceText"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="0" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ArcanaLayout"
@@ -325,7 +325,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:text="Arcana"
+                android:text="@string/arcana_full"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -338,13 +338,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="2dp"
-                android:text="0"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/ArcanaText"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -367,7 +367,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:text="History"
+                android:text="@string/history_full"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -380,13 +380,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="2dp"
-                android:text="0"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/HistoryText"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -409,7 +409,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:text="Investigation"
+                android:text="@string/investigation_full"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -422,13 +422,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="2dp"
-                android:text="0"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/InvestigationText"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -451,7 +451,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:text="Nature"
+                android:text="@string/nature_full"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -464,13 +464,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="2dp"
-                android:text="0"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/NatureText"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -493,7 +493,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:text="Religion"
+                android:text="@string/religion_full"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -506,13 +506,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="2dp"
-                android:text="0"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/ReligionText"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -538,7 +538,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="Wisdom"
+            android:text="@string/wisdom_full"
             android:textColor="#000000"
             android:textSize="@dimen/stat_name_size"
             android:textStyle="bold"
@@ -552,14 +552,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="0"
             android:textColor="#000000"
             android:textSize="@dimen/stat_name_size"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/WisdomText"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="0" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/AnimalHandlingLayout"
@@ -580,7 +580,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:text="Animal Handling"
+                android:text="@string/animal_handling_full"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -593,13 +593,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="2dp"
-                android:text="0"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/AnimalHandlingText"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -622,7 +622,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:text="Insight"
+                android:text="@string/insight_full"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -635,13 +635,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="2dp"
-                android:text="0"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/InsightText"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -664,7 +664,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:text="Medicine"
+                android:text="@string/medicine_full"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -677,13 +677,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="2dp"
-                android:text="0"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/MedicineText"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -706,7 +706,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:text="Perception"
+                android:text="@string/perception_full"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -719,13 +719,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="2dp"
-                android:text="0"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/PerceptionText"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -748,7 +748,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:text="Survival"
+                android:text="@string/survival_full"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -761,13 +761,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="2dp"
-                android:text="0"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/SurvivalText"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -792,7 +792,7 @@
             android:id="@+id/CharismaText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Charisma"
+            android:text="@string/charisma_full"
             android:textColor="#000000"
             android:textSize="@dimen/stat_name_size"
             android:textStyle="bold"
@@ -806,14 +806,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="0"
             android:textColor="#000000"
             android:textSize="@dimen/stat_name_size"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/CharismaText"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="0" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/DeceptionLayout"
@@ -834,7 +834,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:text="Deception"
+                android:text="@string/deception_full"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -847,13 +847,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="2dp"
-                android:text="0"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/DeceptionText"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -876,7 +876,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:text="Intimidation"
+                android:text="@string/intimidation_full"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -889,13 +889,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="2dp"
-                android:text="0"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/IntimidationText"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -918,7 +918,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:text="Performance"
+                android:text="@string/performance_full"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -931,13 +931,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="2dp"
-                android:text="0"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/PerformanceText"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -960,7 +960,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:text="Persuasion"
+                android:text="@string/persuasion_full"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -973,13 +973,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="2dp"
-                android:text="0"
                 android:textColor="#000000"
                 android:textSize="@dimen/Skills_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/PersuasionText"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -996,7 +996,7 @@
         android:backgroundTint="#e8e8e8"
         android:foreground="?android:attr/selectableItemBackground"
         android:orientation="vertical"
-        android:text="Tools Proficiency"
+        android:text="@string/tools_proficiency_full"
         android:textAppearance="@style/Theme.5edPocketHelper"
         android:textColor="#000000"
         android:textSize="@dimen/stat_name_size"
@@ -1018,7 +1018,7 @@
         android:backgroundTint="#e8e8e8"
         android:foreground="?android:attr/selectableItemBackground"
         android:orientation="vertical"
-        android:text="Language Proficiency"
+        android:text="@string/language_proficiency_full"
         android:textAppearance="@style/Theme.5edPocketHelper"
         android:textColor="#000000"
         android:textSize="@dimen/stat_name_size"
