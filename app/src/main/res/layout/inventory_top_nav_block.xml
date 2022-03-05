@@ -22,6 +22,7 @@
         android:gravity="center"
         android:text="Search"
         android:textColor="#6B5030"
+        app:backgroundTint="#957A51"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/filterButton"
         app:layout_constraintStart_toEndOf="@+id/addSpellButton"
