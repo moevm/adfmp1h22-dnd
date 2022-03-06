@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/StrengthLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/back_10dp_w1dp"
+    android:backgroundTint="#e8e8e8"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/StrengthText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/strength_full"
+        android:textColor="#000000"
+        android:textSize="@dimen/stat_name_size"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/StrengthModifier"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/StrengthModifier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textColor="#000000"
+        android:textSize="@dimen/stat_name_size"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/StrengthText"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="0" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/AthleticsLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/back_10dp_w1dp"
+        android:backgroundTint="#e8e8e8"
+        android:foreground="@drawable/corner_10_w1dp"
+        android:foregroundTint="#56626A"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/StrengthText">
+
+        <TextView
+            android:id="@+id/AthleticsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="@string/athletics_full"
+            android:textColor="#000000"
+            android:textSize="@dimen/Skills_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/AthleticsModifier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="2dp"
+            android:textColor="#000000"
+            android:textSize="@dimen/Skills_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/AthleticsText"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

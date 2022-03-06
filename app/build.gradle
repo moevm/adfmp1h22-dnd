@@ -40,9 +40,9 @@ android {
     sourceSets {
         main {
             res.srcDirs = [
-                    'src/main/res',
-                    file("src/main/res/layout/").listFiles(),
-                    'src/main/res/layout',
+                    file("src/main/res/layouts/").listFiles(),
+                    'src/main/res/layouts',
+                    'src/main/res'
             ]
         }
     }

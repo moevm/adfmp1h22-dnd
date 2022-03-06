@@ -1,6 +1,5 @@
 package com.dwards.a5edpockethelper.fragments
 
-
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.*
@@ -16,7 +15,6 @@ import com.dwards.a5edpockethelper.dialogs.LanguageProficiencyList
 import com.dwards.a5edpockethelper.dialogs.SkillSettingDialog
 import com.dwards.a5edpockethelper.dialogs.ToolsProficiencyList
 import com.dwards.a5edpockethelper.model.Character
-
 
 class CharacterSkills : Fragment() {
     private val TAG = "MainFragment"
@@ -37,7 +35,7 @@ class CharacterSkills : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.characterList -> {
-                var characterListDialog: CharacterListDialog = CharacterListDialog()
+                val characterListDialog = CharacterListDialog()
                 characterListDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
                 true
             }
@@ -49,9 +47,7 @@ class CharacterSkills : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        //создание вью-модел и обсервера
-
+    ): View {
         val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
         viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
@@ -60,15 +56,11 @@ class CharacterSkills : Fragment() {
             }
         })
 
-
-
-
         _binding = FragmentCharacterSkillsBinding.inflate(inflater, container, false)
         val view = binding.root
 
-
-        binding.AthleticsLayout.setOnLongClickListener {
-            val skillSettingDialog: SkillSettingDialog = SkillSettingDialog()
+        binding.strengthBlock.AthleticsLayout.setOnLongClickListener {
+            val skillSettingDialog = SkillSettingDialog()
             val args = Bundle()
             args.putString("skill", "Athletics")
             skillSettingDialog.arguments = args
@@ -76,8 +68,8 @@ class CharacterSkills : Fragment() {
             return@setOnLongClickListener true
         }
 
-        binding.AcrobaticsLayout.setOnLongClickListener {
-            val skillSettingDialog: SkillSettingDialog = SkillSettingDialog()
+        binding.dexterityBlock.AcrobaticsLayout.setOnLongClickListener {
+            val skillSettingDialog = SkillSettingDialog()
             val args = Bundle()
             args.putString("skill", "Acrobatics")
             skillSettingDialog.arguments = args
@@ -85,8 +77,8 @@ class CharacterSkills : Fragment() {
             return@setOnLongClickListener true
         }
 
-        binding.SleightofHandLayout.setOnLongClickListener {
-            val skillSettingDialog: SkillSettingDialog = SkillSettingDialog()
+        binding.dexterityBlock.SleightofHandLayout.setOnLongClickListener {
+            val skillSettingDialog = SkillSettingDialog()
             val args = Bundle()
             args.putString("skill", "Sleight of Hand")
             skillSettingDialog.arguments = args
@@ -94,8 +86,8 @@ class CharacterSkills : Fragment() {
             return@setOnLongClickListener true
         }
 
-        binding.StealthLayout.setOnLongClickListener {
-            val skillSettingDialog: SkillSettingDialog = SkillSettingDialog()
+        binding.dexterityBlock.StealthLayout.setOnLongClickListener {
+            val skillSettingDialog = SkillSettingDialog()
             val args = Bundle()
             args.putString("skill", "Stealth")
             skillSettingDialog.arguments = args
@@ -103,8 +95,8 @@ class CharacterSkills : Fragment() {
             return@setOnLongClickListener true
         }
 
-        binding.ArcanaLayout.setOnLongClickListener {
-            val skillSettingDialog: SkillSettingDialog = SkillSettingDialog()
+        binding.intelligenceBlock.ArcanaLayout.setOnLongClickListener {
+            val skillSettingDialog = SkillSettingDialog()
             val args = Bundle()
             args.putString("skill", "Arcana")
             skillSettingDialog.arguments = args
@@ -112,8 +104,8 @@ class CharacterSkills : Fragment() {
             return@setOnLongClickListener true
         }
 
-        binding.HistoryLayout.setOnLongClickListener {
-            val skillSettingDialog: SkillSettingDialog = SkillSettingDialog()
+        binding.intelligenceBlock.HistoryLayout.setOnLongClickListener {
+            val skillSettingDialog = SkillSettingDialog()
             val args = Bundle()
             args.putString("skill", "History")
             skillSettingDialog.arguments = args
@@ -121,8 +113,8 @@ class CharacterSkills : Fragment() {
             return@setOnLongClickListener true
         }
 
-        binding.InvestigationLayout.setOnLongClickListener {
-            val skillSettingDialog: SkillSettingDialog = SkillSettingDialog()
+        binding.intelligenceBlock.InvestigationLayout.setOnLongClickListener {
+            val skillSettingDialog = SkillSettingDialog()
             val args = Bundle()
             args.putString("skill", "Investigation")
             skillSettingDialog.arguments = args
@@ -130,8 +122,8 @@ class CharacterSkills : Fragment() {
             return@setOnLongClickListener true
         }
 
-        binding.NatureLayout.setOnLongClickListener {
-            val skillSettingDialog: SkillSettingDialog = SkillSettingDialog()
+        binding.intelligenceBlock.NatureLayout.setOnLongClickListener {
+            val skillSettingDialog = SkillSettingDialog()
             val args = Bundle()
             args.putString("skill", "Nature")
             skillSettingDialog.arguments = args
@@ -139,8 +131,8 @@ class CharacterSkills : Fragment() {
             return@setOnLongClickListener true
         }
 
-        binding.ReligionLayout.setOnLongClickListener {
-            val skillSettingDialog: SkillSettingDialog = SkillSettingDialog()
+        binding.intelligenceBlock.ReligionLayout.setOnLongClickListener {
+            val skillSettingDialog = SkillSettingDialog()
             val args = Bundle()
             args.putString("skill", "Religion")
             skillSettingDialog.arguments = args
@@ -148,8 +140,8 @@ class CharacterSkills : Fragment() {
             return@setOnLongClickListener true
         }
 
-        binding.AnimalHandlingLayout.setOnLongClickListener {
-            val skillSettingDialog: SkillSettingDialog = SkillSettingDialog()
+        binding.wisdomBlock.AnimalHandlingLayout.setOnLongClickListener {
+            val skillSettingDialog = SkillSettingDialog()
             val args = Bundle()
             args.putString("skill", "Animal Handling")
             skillSettingDialog.arguments = args
@@ -157,8 +149,8 @@ class CharacterSkills : Fragment() {
             return@setOnLongClickListener true
         }
 
-        binding.InsightLayout.setOnLongClickListener {
-            val skillSettingDialog: SkillSettingDialog = SkillSettingDialog()
+        binding.wisdomBlock.InsightLayout.setOnLongClickListener {
+            val skillSettingDialog = SkillSettingDialog()
             val args = Bundle()
             args.putString("skill", "Insight")
             skillSettingDialog.arguments = args
@@ -166,8 +158,8 @@ class CharacterSkills : Fragment() {
             return@setOnLongClickListener true
         }
 
-        binding.MedicineLayout.setOnLongClickListener {
-            val skillSettingDialog: SkillSettingDialog = SkillSettingDialog()
+        binding.wisdomBlock.MedicineLayout.setOnLongClickListener {
+            val skillSettingDialog = SkillSettingDialog()
             val args = Bundle()
             args.putString("skill", "Medicine")
             skillSettingDialog.arguments = args
@@ -175,8 +167,8 @@ class CharacterSkills : Fragment() {
             return@setOnLongClickListener true
         }
 
-        binding.PerceptionLayout.setOnLongClickListener {
-            val skillSettingDialog: SkillSettingDialog = SkillSettingDialog()
+        binding.wisdomBlock.PerceptionLayout.setOnLongClickListener {
+            val skillSettingDialog = SkillSettingDialog()
             val args = Bundle()
             args.putString("skill", "Perception")
             skillSettingDialog.arguments = args
@@ -184,8 +176,8 @@ class CharacterSkills : Fragment() {
             return@setOnLongClickListener true
         }
 
-        binding.SurvivalLayout.setOnLongClickListener {
-            val skillSettingDialog: SkillSettingDialog = SkillSettingDialog()
+        binding.wisdomBlock.SurvivalLayout.setOnLongClickListener {
+            val skillSettingDialog = SkillSettingDialog()
             val args = Bundle()
             args.putString("skill", "Survival")
             skillSettingDialog.arguments = args
@@ -193,8 +185,8 @@ class CharacterSkills : Fragment() {
             return@setOnLongClickListener true
         }
 
-        binding.DeceptionLayout.setOnLongClickListener {
-            val skillSettingDialog: SkillSettingDialog = SkillSettingDialog()
+        binding.charismaBlock.DeceptionLayout.setOnLongClickListener {
+            val skillSettingDialog = SkillSettingDialog()
             val args = Bundle()
             args.putString("skill", "Deception")
             skillSettingDialog.arguments = args
@@ -202,8 +194,8 @@ class CharacterSkills : Fragment() {
             return@setOnLongClickListener true
         }
 
-        binding.IntimidationLayout.setOnLongClickListener {
-            val skillSettingDialog: SkillSettingDialog = SkillSettingDialog()
+        binding.charismaBlock.IntimidationLayout.setOnLongClickListener {
+            val skillSettingDialog = SkillSettingDialog()
             val args = Bundle()
             args.putString("skill", "Intimidation")
             skillSettingDialog.arguments = args
@@ -211,8 +203,8 @@ class CharacterSkills : Fragment() {
             return@setOnLongClickListener true
         }
 
-        binding.PerformanceLayout.setOnLongClickListener {
-            val skillSettingDialog: SkillSettingDialog = SkillSettingDialog()
+        binding.charismaBlock.PerformanceLayout.setOnLongClickListener {
+            val skillSettingDialog = SkillSettingDialog()
             val args = Bundle()
             args.putString("skill", "Performance")
             skillSettingDialog.arguments = args
@@ -220,8 +212,8 @@ class CharacterSkills : Fragment() {
             return@setOnLongClickListener true
         }
 
-        binding.PersuasionLayout.setOnLongClickListener {
-            val skillSettingDialog: SkillSettingDialog = SkillSettingDialog()
+        binding.charismaBlock.PersuasionLayout.setOnLongClickListener {
+            val skillSettingDialog = SkillSettingDialog()
             val args = Bundle()
             args.putString("skill", "Persuasion")
             skillSettingDialog.arguments = args
@@ -229,35 +221,29 @@ class CharacterSkills : Fragment() {
             return@setOnLongClickListener true
         }
 
-        binding.ToolsProficiencyLayout.setOnClickListener {
-            val toolsProficiencyListDialog: ToolsProficiencyList = ToolsProficiencyList()
+        binding.secondScreenBtn.ToolsProficiencyLayout.setOnClickListener {
+            val toolsProficiencyListDialog = ToolsProficiencyList()
             toolsProficiencyListDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
         }
 
-        binding.LanguageProficiencyLayout.setOnClickListener {
-            val languageProficiencyListDialog: LanguageProficiencyList = LanguageProficiencyList()
+        binding.secondScreenBtn.LanguageProficiencyLayout.setOnClickListener {
+            val languageProficiencyListDialog = LanguageProficiencyList()
             languageProficiencyListDialog.show(parentFragmentManager, "LanguageSettingsDialog")
         }
 
         return view
     }
 
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
-
-
     private fun refreshChar(character: Character) {
         val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
-        binding.StrengthModifier.text = viewModel.calcModifier(character.strength)
-        binding.DexterityModifier.text = viewModel.calcModifier(character.dexterity)
-        binding.IntelligenceModifier.text = viewModel.calcModifier(character.intelligence)
-        binding.WisdomModifier.text = viewModel.calcModifier(character.wisdom)
-        binding.CharismaModifier.text = viewModel.calcModifier(character.charisma)
+        binding.strengthBlock.StrengthModifier.text = viewModel.calcModifier(character.strength)
+        binding.dexterityBlock.DexterityModifier.text = viewModel.calcModifier(character.dexterity)
+        binding.intelligenceBlock.IntelligenceModifier.text =
+            viewModel.calcModifier(character.intelligence)
+        binding.wisdomBlock.WisdomModifier.text = viewModel.calcModifier(character.wisdom)
+        binding.charismaBlock.CharismaModifier.text = viewModel.calcModifier(character.charisma)
 
-        binding.AthleticsModifier.text = viewModel.calcStat(
+        binding.strengthBlock.AthleticsModifier.text = viewModel.calcStat(
             viewModel.calcModifier(character.strength).toInt(),
             character.athleticsMiscBonus,
             character.athleticsProf,
@@ -265,35 +251,36 @@ class CharacterSkills : Fragment() {
             character.athleticsDoubleProf
         ).toString()
         when {
-            character.athleticsProf -> binding.AthleticsLayout.backgroundTintList =
+            character.athleticsProf -> binding.strengthBlock.AthleticsLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_prof
                     )
                 )
-            character.athleticsHalfProf -> binding.AthleticsLayout.backgroundTintList =
+            character.athleticsHalfProf -> binding.strengthBlock.AthleticsLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_half_prof
                     )
                 )
-            character.athleticsDoubleProf -> binding.AthleticsLayout.backgroundTintList =
+            character.athleticsDoubleProf -> binding.strengthBlock.AthleticsLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_double_prof
                     )
                 )
-            else -> binding.AthleticsLayout.backgroundTintList = ColorStateList.valueOf(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.block_grey
+            else -> binding.strengthBlock.AthleticsLayout.backgroundTintList =
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.block_grey
+                    )
                 )
-            )
         }
-        binding.AcrobaticsModifier.text = viewModel.calcStat(
+        binding.dexterityBlock.AcrobaticsModifier.text = viewModel.calcStat(
             viewModel.calcModifier(character.dexterity).toInt(),
             character.acrobaticsMiscBonus,
             character.acrobaticsProf,
@@ -301,35 +288,36 @@ class CharacterSkills : Fragment() {
             character.acrobaticsDoubleProf
         ).toString()
         when {
-            character.acrobaticsProf -> binding.AcrobaticsLayout.backgroundTintList =
+            character.acrobaticsProf -> binding.dexterityBlock.AcrobaticsLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_prof
                     )
                 )
-            character.acrobaticsHalfProf -> binding.AcrobaticsLayout.backgroundTintList =
+            character.acrobaticsHalfProf -> binding.dexterityBlock.AcrobaticsLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_half_prof
                     )
                 )
-            character.acrobaticsDoubleProf -> binding.AcrobaticsLayout.backgroundTintList =
+            character.acrobaticsDoubleProf -> binding.dexterityBlock.AcrobaticsLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_double_prof
                     )
                 )
-            else -> binding.AcrobaticsLayout.backgroundTintList = ColorStateList.valueOf(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.block_grey
+            else -> binding.dexterityBlock.AcrobaticsLayout.backgroundTintList =
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.block_grey
+                    )
                 )
-            )
         }
-        binding.SleightofHandModifier.text = viewModel.calcStat(
+        binding.dexterityBlock.SleightofHandModifier.text = viewModel.calcStat(
             viewModel.calcModifier(character.dexterity).toInt(),
             character.sleightOfHandMiscBonus,
             character.sleightOfHandProf,
@@ -337,35 +325,36 @@ class CharacterSkills : Fragment() {
             character.sleightOfHandDoubleProf
         ).toString()
         when {
-            character.sleightOfHandProf -> binding.SleightofHandLayout.backgroundTintList =
+            character.sleightOfHandProf -> binding.dexterityBlock.SleightofHandLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_prof
                     )
                 )
-            character.sleightOfHandHalfProf -> binding.SleightofHandLayout.backgroundTintList =
+            character.sleightOfHandHalfProf -> binding.dexterityBlock.SleightofHandLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_half_prof
                     )
                 )
-            character.sleightOfHandDoubleProf -> binding.SleightofHandLayout.backgroundTintList =
+            character.sleightOfHandDoubleProf -> binding.dexterityBlock.SleightofHandLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_double_prof
                     )
                 )
-            else -> binding.SleightofHandLayout.backgroundTintList = ColorStateList.valueOf(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.block_grey
+            else -> binding.dexterityBlock.SleightofHandLayout.backgroundTintList =
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.block_grey
+                    )
                 )
-            )
         }
-        binding.StealthModifier.text = viewModel.calcStat(
+        binding.dexterityBlock.StealthModifier.text = viewModel.calcStat(
             viewModel.calcModifier(character.dexterity).toInt(),
             character.stealthMiscBonus,
             character.stealthProf,
@@ -373,35 +362,36 @@ class CharacterSkills : Fragment() {
             character.stealthDoubleProf
         ).toString()
         when {
-            character.stealthProf -> binding.StealthLayout.backgroundTintList =
+            character.stealthProf -> binding.dexterityBlock.StealthLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_prof
                     )
                 )
-            character.stealthHalfProf -> binding.StealthLayout.backgroundTintList =
+            character.stealthHalfProf -> binding.dexterityBlock.StealthLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_half_prof
                     )
                 )
-            character.stealthDoubleProf -> binding.StealthLayout.backgroundTintList =
+            character.stealthDoubleProf -> binding.dexterityBlock.StealthLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_double_prof
                     )
                 )
-            else -> binding.StealthLayout.backgroundTintList = ColorStateList.valueOf(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.block_grey
+            else -> binding.dexterityBlock.StealthLayout.backgroundTintList =
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.block_grey
+                    )
                 )
-            )
         }
-        binding.ArcanaModifier.text = viewModel.calcStat(
+        binding.intelligenceBlock.ArcanaModifier.text = viewModel.calcStat(
             viewModel.calcModifier(character.intelligence).toInt(),
             character.arcanaMiscBonus,
             character.arcanaProf,
@@ -409,35 +399,36 @@ class CharacterSkills : Fragment() {
             character.arcanaDoubleProf
         ).toString()
         when {
-            character.arcanaProf -> binding.ArcanaLayout.backgroundTintList =
+            character.arcanaProf -> binding.intelligenceBlock.ArcanaLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_prof
                     )
                 )
-            character.arcanaHalfProf -> binding.ArcanaLayout.backgroundTintList =
+            character.arcanaHalfProf -> binding.intelligenceBlock.ArcanaLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_half_prof
                     )
                 )
-            character.arcanaDoubleProf -> binding.ArcanaLayout.backgroundTintList =
+            character.arcanaDoubleProf -> binding.intelligenceBlock.ArcanaLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_double_prof
                     )
                 )
-            else -> binding.ArcanaLayout.backgroundTintList = ColorStateList.valueOf(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.block_grey
+            else -> binding.intelligenceBlock.ArcanaLayout.backgroundTintList =
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.block_grey
+                    )
                 )
-            )
         }
-        binding.HistoryModifier.text = viewModel.calcStat(
+        binding.intelligenceBlock.HistoryModifier.text = viewModel.calcStat(
             viewModel.calcModifier(character.intelligence).toInt(),
             character.historyMiscBonus,
             character.historyProf,
@@ -445,35 +436,36 @@ class CharacterSkills : Fragment() {
             character.historyDoubleProf
         ).toString()
         when {
-            character.historyProf -> binding.HistoryLayout.backgroundTintList =
+            character.historyProf -> binding.intelligenceBlock.HistoryLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_prof
                     )
                 )
-            character.historyHalfProf -> binding.HistoryLayout.backgroundTintList =
+            character.historyHalfProf -> binding.intelligenceBlock.HistoryLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_half_prof
                     )
                 )
-            character.historyDoubleProf -> binding.HistoryLayout.backgroundTintList =
+            character.historyDoubleProf -> binding.intelligenceBlock.HistoryLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_double_prof
                     )
                 )
-            else -> binding.HistoryLayout.backgroundTintList = ColorStateList.valueOf(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.block_grey
+            else -> binding.intelligenceBlock.HistoryLayout.backgroundTintList =
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.block_grey
+                    )
                 )
-            )
         }
-        binding.InvestigationModifier.text = viewModel.calcStat(
+        binding.intelligenceBlock.InvestigationModifier.text = viewModel.calcStat(
             viewModel.calcModifier(character.intelligence).toInt(),
             character.investigationMiscBonus,
             character.investigationProf,
@@ -481,35 +473,36 @@ class CharacterSkills : Fragment() {
             character.investigationDoubleProf
         ).toString()
         when {
-            character.investigationProf -> binding.InvestigationLayout.backgroundTintList =
+            character.investigationProf -> binding.intelligenceBlock.InvestigationLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_prof
                     )
                 )
-            character.investigationHalfProf -> binding.InvestigationLayout.backgroundTintList =
+            character.investigationHalfProf -> binding.intelligenceBlock.InvestigationLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_half_prof
                     )
                 )
-            character.investigationDoubleProf -> binding.InvestigationLayout.backgroundTintList =
+            character.investigationDoubleProf -> binding.intelligenceBlock.InvestigationLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_double_prof
                     )
                 )
-            else -> binding.InvestigationLayout.backgroundTintList = ColorStateList.valueOf(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.block_grey
+            else -> binding.intelligenceBlock.InvestigationLayout.backgroundTintList =
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.block_grey
+                    )
                 )
-            )
         }
-        binding.NatureModifier.text = viewModel.calcStat(
+        binding.intelligenceBlock.NatureModifier.text = viewModel.calcStat(
             viewModel.calcModifier(character.intelligence).toInt(),
             character.natureMiscBonus,
             character.natureProf,
@@ -517,35 +510,36 @@ class CharacterSkills : Fragment() {
             character.natureDoubleProf
         ).toString()
         when {
-            character.natureProf -> binding.NatureLayout.backgroundTintList =
+            character.natureProf -> binding.intelligenceBlock.NatureLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_prof
                     )
                 )
-            character.natureHalfProf -> binding.NatureLayout.backgroundTintList =
+            character.natureHalfProf -> binding.intelligenceBlock.NatureLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_half_prof
                     )
                 )
-            character.natureDoubleProf -> binding.NatureLayout.backgroundTintList =
+            character.natureDoubleProf -> binding.intelligenceBlock.NatureLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_double_prof
                     )
                 )
-            else -> binding.NatureLayout.backgroundTintList = ColorStateList.valueOf(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.block_grey
+            else -> binding.intelligenceBlock.NatureLayout.backgroundTintList =
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.block_grey
+                    )
                 )
-            )
         }
-        binding.ReligionModifier.text = viewModel.calcStat(
+        binding.intelligenceBlock.ReligionModifier.text = viewModel.calcStat(
             viewModel.calcModifier(character.intelligence).toInt(),
             character.religionMiscBonus,
             character.religionProf,
@@ -553,35 +547,36 @@ class CharacterSkills : Fragment() {
             character.religionDoubleProf
         ).toString()
         when {
-            character.religionProf -> binding.ReligionLayout.backgroundTintList =
+            character.religionProf -> binding.intelligenceBlock.ReligionLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_prof
                     )
                 )
-            character.religionHalfProf -> binding.ReligionLayout.backgroundTintList =
+            character.religionHalfProf -> binding.intelligenceBlock.ReligionLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_half_prof
                     )
                 )
-            character.religionDoubleProf -> binding.ReligionLayout.backgroundTintList =
+            character.religionDoubleProf -> binding.intelligenceBlock.ReligionLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_double_prof
                     )
                 )
-            else -> binding.ReligionLayout.backgroundTintList = ColorStateList.valueOf(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.block_grey
+            else -> binding.intelligenceBlock.ReligionLayout.backgroundTintList =
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.block_grey
+                    )
                 )
-            )
         }
-        binding.AnimalHandlingModifier.text = viewModel.calcStat(
+        binding.wisdomBlock.AnimalHandlingModifier.text = viewModel.calcStat(
             viewModel.calcModifier(character.wisdom).toInt(),
             character.animalHandlingMiscBonus,
             character.animalHandlingProf,
@@ -589,35 +584,36 @@ class CharacterSkills : Fragment() {
             character.animalHandlingDoubleProf
         ).toString()
         when {
-            character.animalHandlingProf -> binding.AnimalHandlingLayout.backgroundTintList =
+            character.animalHandlingProf -> binding.wisdomBlock.AnimalHandlingLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_prof
                     )
                 )
-            character.animalHandlingHalfProf -> binding.AnimalHandlingLayout.backgroundTintList =
+            character.animalHandlingHalfProf -> binding.wisdomBlock.AnimalHandlingLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_half_prof
                     )
                 )
-            character.animalHandlingDoubleProf -> binding.AnimalHandlingLayout.backgroundTintList =
+            character.animalHandlingDoubleProf -> binding.wisdomBlock.AnimalHandlingLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_double_prof
                     )
                 )
-            else -> binding.AnimalHandlingLayout.backgroundTintList = ColorStateList.valueOf(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.block_grey
+            else -> binding.wisdomBlock.AnimalHandlingLayout.backgroundTintList =
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.block_grey
+                    )
                 )
-            )
         }
-        binding.InsightModifier.text = viewModel.calcStat(
+        binding.wisdomBlock.InsightModifier.text = viewModel.calcStat(
             viewModel.calcModifier(character.wisdom).toInt(),
             character.insightMiscBonus,
             character.insightProf,
@@ -625,35 +621,35 @@ class CharacterSkills : Fragment() {
             character.insightDoubleProf
         ).toString()
         when {
-            character.insightProf -> binding.InsightLayout.backgroundTintList =
+            character.insightProf -> binding.wisdomBlock.InsightLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_prof
                     )
                 )
-            character.insightHalfProf -> binding.InsightLayout.backgroundTintList =
+            character.insightHalfProf -> binding.wisdomBlock.InsightLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_half_prof
                     )
                 )
-            character.insightDoubleProf -> binding.InsightLayout.backgroundTintList =
+            character.insightDoubleProf -> binding.wisdomBlock.InsightLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_double_prof
                     )
                 )
-            else -> binding.InsightLayout.backgroundTintList = ColorStateList.valueOf(
+            else -> binding.wisdomBlock.InsightLayout.backgroundTintList = ColorStateList.valueOf(
                 ContextCompat.getColor(
                     requireContext(),
                     R.color.block_grey
                 )
             )
         }
-        binding.MedicineModifier.text = viewModel.calcStat(
+        binding.wisdomBlock.MedicineModifier.text = viewModel.calcStat(
             viewModel.calcModifier(character.wisdom).toInt(),
             character.medicineMiscBonus,
             character.medicineProf,
@@ -661,35 +657,35 @@ class CharacterSkills : Fragment() {
             character.medicineDoubleProf
         ).toString()
         when {
-            character.medicineProf -> binding.MedicineLayout.backgroundTintList =
+            character.medicineProf -> binding.wisdomBlock.MedicineLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_prof
                     )
                 )
-            character.medicineHalfProf -> binding.MedicineLayout.backgroundTintList =
+            character.medicineHalfProf -> binding.wisdomBlock.MedicineLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_half_prof
                     )
                 )
-            character.medicineDoubleProf -> binding.MedicineLayout.backgroundTintList =
+            character.medicineDoubleProf -> binding.wisdomBlock.MedicineLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_double_prof
                     )
                 )
-            else -> binding.MedicineLayout.backgroundTintList = ColorStateList.valueOf(
+            else -> binding.wisdomBlock.MedicineLayout.backgroundTintList = ColorStateList.valueOf(
                 ContextCompat.getColor(
                     requireContext(),
                     R.color.block_grey
                 )
             )
         }
-        binding.PerceptionModifier.text = viewModel.calcStat(
+        binding.wisdomBlock.PerceptionModifier.text = viewModel.calcStat(
             viewModel.calcModifier(character.wisdom).toInt(),
             character.perceptionMiscBonus,
             character.perceptionProf,
@@ -697,35 +693,36 @@ class CharacterSkills : Fragment() {
             character.perceptionDoubleProf
         ).toString()
         when {
-            character.perceptionProf -> binding.PerceptionLayout.backgroundTintList =
+            character.perceptionProf -> binding.wisdomBlock.PerceptionLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_prof
                     )
                 )
-            character.perceptionHalfProf -> binding.PerceptionLayout.backgroundTintList =
+            character.perceptionHalfProf -> binding.wisdomBlock.PerceptionLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_half_prof
                     )
                 )
-            character.perceptionDoubleProf -> binding.PerceptionLayout.backgroundTintList =
+            character.perceptionDoubleProf -> binding.wisdomBlock.PerceptionLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_double_prof
                     )
                 )
-            else -> binding.PerceptionLayout.backgroundTintList = ColorStateList.valueOf(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.block_grey
+            else -> binding.wisdomBlock.PerceptionLayout.backgroundTintList =
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.block_grey
+                    )
                 )
-            )
         }
-        binding.SurvivalModifier.text = viewModel.calcStat(
+        binding.wisdomBlock.SurvivalModifier.text = viewModel.calcStat(
             viewModel.calcModifier(character.wisdom).toInt(),
             character.survivalMiscBonus,
             character.survivalProf,
@@ -733,35 +730,35 @@ class CharacterSkills : Fragment() {
             character.survivalDoubleProf
         ).toString()
         when {
-            character.survivalProf -> binding.SurvivalLayout.backgroundTintList =
+            character.survivalProf -> binding.wisdomBlock.SurvivalLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_prof
                     )
                 )
-            character.survivalHalfProf -> binding.SurvivalLayout.backgroundTintList =
+            character.survivalHalfProf -> binding.wisdomBlock.SurvivalLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_half_prof
                     )
                 )
-            character.survivalDoubleProf -> binding.SurvivalLayout.backgroundTintList =
+            character.survivalDoubleProf -> binding.wisdomBlock.SurvivalLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_double_prof
                     )
                 )
-            else -> binding.SurvivalLayout.backgroundTintList = ColorStateList.valueOf(
+            else -> binding.wisdomBlock.SurvivalLayout.backgroundTintList = ColorStateList.valueOf(
                 ContextCompat.getColor(
                     requireContext(),
                     R.color.block_grey
                 )
             )
         }
-        binding.DeceptionModifier.text = viewModel.calcStat(
+        binding.charismaBlock.DeceptionModifier.text = viewModel.calcStat(
             viewModel.calcModifier(character.charisma).toInt(),
             character.deceptionMiscBonus,
             character.deceptionProf,
@@ -769,35 +766,36 @@ class CharacterSkills : Fragment() {
             character.deceptionDoubleProf
         ).toString()
         when {
-            character.deceptionProf -> binding.DeceptionLayout.backgroundTintList =
+            character.deceptionProf -> binding.charismaBlock.DeceptionLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_prof
                     )
                 )
-            character.deceptionHalfProf -> binding.DeceptionLayout.backgroundTintList =
+            character.deceptionHalfProf -> binding.charismaBlock.DeceptionLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_half_prof
                     )
                 )
-            character.deceptionDoubleProf -> binding.DeceptionLayout.backgroundTintList =
+            character.deceptionDoubleProf -> binding.charismaBlock.DeceptionLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_double_prof
                     )
                 )
-            else -> binding.DeceptionLayout.backgroundTintList = ColorStateList.valueOf(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.block_grey
+            else -> binding.charismaBlock.DeceptionLayout.backgroundTintList =
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.block_grey
+                    )
                 )
-            )
         }
-        binding.IntimidationModifier.text = viewModel.calcStat(
+        binding.charismaBlock.IntimidationModifier.text = viewModel.calcStat(
             viewModel.calcModifier(character.charisma).toInt(),
             character.intimidationMiscBonus,
             character.intimidationProf,
@@ -805,35 +803,36 @@ class CharacterSkills : Fragment() {
             character.intimidationDoubleProf
         ).toString()
         when {
-            character.intimidationProf -> binding.IntimidationLayout.backgroundTintList =
+            character.intimidationProf -> binding.charismaBlock.IntimidationLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_prof
                     )
                 )
-            character.intimidationHalfProf -> binding.IntimidationLayout.backgroundTintList =
+            character.intimidationHalfProf -> binding.charismaBlock.IntimidationLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_half_prof
                     )
                 )
-            character.intimidationDoubleProf -> binding.IntimidationLayout.backgroundTintList =
+            character.intimidationDoubleProf -> binding.charismaBlock.IntimidationLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_double_prof
                     )
                 )
-            else -> binding.IntimidationLayout.backgroundTintList = ColorStateList.valueOf(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.block_grey
+            else -> binding.charismaBlock.IntimidationLayout.backgroundTintList =
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.block_grey
+                    )
                 )
-            )
         }
-        binding.PerformanceModifier.text = viewModel.calcStat(
+        binding.charismaBlock.PerformanceModifier.text = viewModel.calcStat(
             viewModel.calcModifier(character.charisma).toInt(),
             character.performanceMiscBonus,
             character.performanceProf,
@@ -841,35 +840,36 @@ class CharacterSkills : Fragment() {
             character.performanceDoubleProf
         ).toString()
         when {
-            character.performanceProf -> binding.PerformanceLayout.backgroundTintList =
+            character.performanceProf -> binding.charismaBlock.PerformanceLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_prof
                     )
                 )
-            character.performanceHalfProf -> binding.PerformanceLayout.backgroundTintList =
+            character.performanceHalfProf -> binding.charismaBlock.PerformanceLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_half_prof
                     )
                 )
-            character.performanceDoubleProf -> binding.PerformanceLayout.backgroundTintList =
+            character.performanceDoubleProf -> binding.charismaBlock.PerformanceLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_double_prof
                     )
                 )
-            else -> binding.PerformanceLayout.backgroundTintList = ColorStateList.valueOf(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.block_grey
+            else -> binding.charismaBlock.PerformanceLayout.backgroundTintList =
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.block_grey
+                    )
                 )
-            )
         }
-        binding.PersuasionModifier.text = viewModel.calcStat(
+        binding.charismaBlock.PersuasionModifier.text = viewModel.calcStat(
             viewModel.calcModifier(character.charisma).toInt(),
             character.persuasionMiscBonus,
             character.persuasionProf,
@@ -877,36 +877,36 @@ class CharacterSkills : Fragment() {
             character.persuasionDoubleProf
         ).toString()
         when {
-            character.persuasionProf -> binding.PersuasionLayout.backgroundTintList =
+            character.persuasionProf -> binding.charismaBlock.PersuasionLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_prof
                     )
                 )
-            character.persuasionHalfProf -> binding.PersuasionLayout.backgroundTintList =
+            character.persuasionHalfProf -> binding.charismaBlock.PersuasionLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_half_prof
                     )
                 )
-            character.persuasionDoubleProf -> binding.PersuasionLayout.backgroundTintList =
+            character.persuasionDoubleProf -> binding.charismaBlock.PersuasionLayout.backgroundTintList =
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.skill_double_prof
                     )
                 )
-            else -> binding.PersuasionLayout.backgroundTintList = ColorStateList.valueOf(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.block_grey
+            else -> binding.charismaBlock.PersuasionLayout.backgroundTintList =
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.block_grey
+                    )
                 )
-            )
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
