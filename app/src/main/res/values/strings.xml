@@ -119,6 +119,7 @@
 
     <!--  Change in later  -->
     <string name="no_description">No Description</string>
+    <string name="no_hint">No hint</string>
     <string name="athletics_full">Athletics</string>
     <string name="acrobatics_full">Acrobatics</string>
     <string name="sleight_of_hand_full">Sleight of Hand</string>

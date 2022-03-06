@@ -9,7 +9,6 @@
     android:background="#272727"
     tools:context=".fragments.CharacterScreen">
 
-
     <include
         android:id="@+id/inventory_top_nav_block"
         layout="@layout/inventory_top_nav_block"

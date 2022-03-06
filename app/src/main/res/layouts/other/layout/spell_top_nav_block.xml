@@ -1,6 +1,5 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/CustomTableLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -20,7 +19,7 @@
         android:layout_weight="1"
         android:ems="8"
         android:gravity="center"
-        android:text="Search"
+        android:text="@string/search"
         android:textColor="#304F6B"
         android:textSize="18sp"
         app:backgroundTint="#6592BB"
@@ -28,29 +27,43 @@
         app:layout_constraintStart_toEndOf="@+id/addSpellButton"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.02" />
+
     <ImageView
         android:id="@+id/addSpellButton"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
+        android:contentDescription="@string/no_description"
         android:src="@drawable/ic_book"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/checkBox"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.96" />
 
     <ImageView
         android:id="@+id/filterButton"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
+        android:contentDescription="@string/no_description"
         android:src="@drawable/ic_filter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toEndOf="@+id/checkBox2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,11 +72,10 @@
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:buttonTint="#3055B4"
-        android:text="Favorite"
+        android:text="@string/favorite"
         android:textColor="#304F6B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/checkBox2"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/addSpellButton"
         app:layout_constraintTop_toBottomOf="@+id/CustomBlock1Value" />
 
@@ -72,14 +84,11 @@
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:buttonTint="#3055B4"
-        android:text="Prepared"
+        android:text="@string/prepared"
         android:textColor="#304F6B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/filterButton"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/checkBox"
         app:layout_constraintTop_toBottomOf="@+id/CustomBlock1Value" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
