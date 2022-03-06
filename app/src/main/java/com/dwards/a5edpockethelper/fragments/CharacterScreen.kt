@@ -196,10 +196,14 @@ class CharacterScreen : Fragment() {
             (character.hitDiceCount.toString() + "d" + character.hitDiceSize.toString())
         binding.mainCharacterInfoBlock.HPValue.text =
             (character.currentHP + character.tempHP).toString()
-        if (character.tempHP > 0)
+        if (character.tempHP > 0) {
             binding.mainCharacterInfoBlock.HPValue.setTextColor(Color.parseColor("#2f00ba"))
-        else
-            binding.mainCharacterInfoBlock.HPValue.setTextColor(Color.parseColor("#000000"))
+        } else {
+            val ctx = context
+            if (ctx != null) {
+                binding.mainCharacterInfoBlock.HPValue.setTextColor(ctx.getColor(R.color.black))
+            }
+        }
 
         when (character.chosenSpeed) {
             "Walk" -> {

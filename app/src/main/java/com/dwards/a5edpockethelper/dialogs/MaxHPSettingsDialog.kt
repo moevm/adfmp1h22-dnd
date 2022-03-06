@@ -72,10 +72,14 @@ class MaxHPSettingsDialog : DialogFragment() {
 
     private fun refreshChar(character: Character) {
         binding.MaxHPValue.setText(character.maxHP.toString())
-        if (character.tempHP > 0)
+        if (character.tempHP > 0) {
             binding.HPValue.setTextColor(Color.parseColor("#2f00ba"))
-        else
-            binding.HPValue.setTextColor(Color.parseColor("#000000"))
+        } else {
+            val ctx = context
+            if (ctx != null) {
+                binding.HPValue.setTextColor(ctx.getColor(R.color.black))
+            }
+        }
         binding.HPValue.text = (character.currentHP + character.tempHP).toString()
     }
 }

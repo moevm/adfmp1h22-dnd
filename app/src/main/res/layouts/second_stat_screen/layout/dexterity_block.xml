@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/dexterity_full"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         android:textSize="@dimen/stat_name_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/DexterityModifier"
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         android:textSize="@dimen/stat_name_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:text="@string/acrobatics_full"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="@dimen/Skills_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="2dp"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="@dimen/Skills_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -91,15 +91,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AcrobaticsLayout">
 
-        <TextView
-            android:id="@+id/SleightofHandText"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/name_guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.90" />
+
+        <TextView
+            android:id="@+id/SleightofHandText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
+            android:ellipsize="end"
+            android:singleLine="true"
             android:text="@string/sleight_of_hand_full"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="@dimen/Skills_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/name_guideline"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -109,11 +120,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="2dp"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="@dimen/Skills_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/SleightofHandText"
+            app:layout_constraintStart_toEndOf="@+id/name_guideline"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="0" />
 
@@ -139,7 +150,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:text="@string/stealth_full"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="@dimen/Skills_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -151,7 +162,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="2dp"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="@dimen/Skills_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
