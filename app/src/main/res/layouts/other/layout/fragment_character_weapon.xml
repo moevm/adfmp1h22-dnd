@@ -14,7 +14,7 @@
         android:id="@+id/ArmorLayout"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginEnd="6dp"
+        android:layout_marginTop="6dp"
         android:background="@drawable/back_20dp"
         android:backgroundTint="#DBB999"
         android:foreground="@drawable/corner_20_w2dp"
