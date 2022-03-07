@@ -1,18 +1,16 @@
 package com.dwards.a5edpockethelper.model
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
+import androidx.room.*
 import com.dwards.a5edpockethelper.StringListConverter
 
 
-@Entity(tableName = "character")
+@Entity(tableName = "Character")
 @TypeConverters(StringListConverter::class)
 data class Character(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
-    var name: String = "",
-    var charClass: String = "",
+    var name: String = "Name",
+    var charClass: String = "Class",
     var level: Int = 1,
 
     var maxHP: Int = 10,
@@ -22,12 +20,12 @@ data class Character(
     var passDeathSave: Int = 0,
     var failureDeathSave: Int = 0,
     //stats
-    var strength: Int = 0,
-    var dexterity: Int = 0,
-    var constitution: Int = 0,
-    var intelligence: Int = 0,
-    var wisdom: Int = 0,
-    var charisma: Int = 0,
+    var strength: Int = 10,
+    var dexterity: Int = 10,
+    var constitution: Int = 10,
+    var intelligence: Int = 10,
+    var wisdom: Int = 10,
+    var charisma: Int = 10,
     //save proficiency
     var strengthSaveProf: Boolean = false,
     var dexteritySaveProf: Boolean = false,
@@ -181,7 +179,7 @@ data class Character(
     @TypeConverters(StringListConverter::class)
     var languageProficiencyList: MutableList<String> = mutableListOf(),
     //Weapon id list
-    //@TypeConverters(Converters::class)
-    //var weaponList: List<Int>,
+    //@TypeConverters(StringListConverter::class)
+    //var weaponList: MutableList<String> = mutableListOf(),
 
 )

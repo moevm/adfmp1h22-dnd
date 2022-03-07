@@ -7,45 +7,56 @@ import android.content.SharedPreferences
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.dwards.a5edpockethelper.model.Character
-import com.dwards.a5edpockethelper.model.CharacterDAO
+import com.dwards.a5edpockethelper.model.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 
-class MyViewModel(private val characterDao: CharacterDAO, application: Application) :
+class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, private val weaponDao: WeaponDAO, private val characterDao: CharacterDAO, application: Application) :
     AndroidViewModel(application) {
-    //временные флаги для создания персонажей
-    var flag1: Boolean = false
-    var flag2: Boolean = false
-
     var currentId: Int = 0
     var character: Character = Character()
+    var weapon: Weapon = Weapon()
     var currentChar: MutableLiveData<Character> = MutableLiveData()
     var characterList: MutableLiveData<List<Character?>> = MutableLiveData()
+    var currentWeapon: MutableLiveData<Weapon> = MutableLiveData()
+    var weaponList: MutableLiveData<List<Weapon?>> = MutableLiveData()
 
     init {
-        viewModelScope.launch {
-            characterList.value = characterDao.getAll()
+        viewModelScope.launch{
+            viewModelScope.async{fetchAll()}.await()
+            //characterList.value = characterDao.getAll()
+            //fetchAllWeapons()
         }
     }
 
     fun startDB() {
         getCharacterID()
-
         runBlocking {
-            addCharacter()
             fetchAll()
-            characterList.value = characterDao.getAll()
+            //fetchAllWeapons()//todo ????
+        }
+        if (characterList.value?.size == 0) {
+            runBlocking {
+                addCharacter()
+            }
         }
         val firstCharacterId = characterList.value?.firstOrNull()?.id
-        when {
-            firstCharacterId == null -> return
-            currentId != 0 -> {
+        if (firstCharacterId == null){
+            runBlocking{
                 fetchData(currentId)
                 chooseCharacter(currentId)
+                fetchAllWeapons(currentId)
             }
-            else -> chooseCharacter(firstCharacterId)
+        }
+        else {
+            runBlocking{
+                fetchData(currentId)
+                chooseCharacter(firstCharacterId)
+                fetchAllWeapons(currentId)
+            }
         }
     }
 
@@ -53,15 +64,19 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
 
     fun getAllCharacters() = characterList
 
+    fun getWeapon() = currentWeapon
+
+    fun getAllWeapons() = weaponList
+
     private fun fetchData(id: Int) {
-        viewModelScope.launch {
+        runBlocking {
             currentChar.value = characterDao.getById(id)
-            characterList.value = characterDao.getAll()
+            //characterList.value = characterDao.getAll()
         }
     }
 
     private fun fetchAll() {
-        viewModelScope.launch {
+        runBlocking {
             characterList.value = characterDao.getAll()
         }
     }
@@ -71,6 +86,7 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
         currentId = id
         saveCharacterID(id)
         fetchData(currentId)
+        fetchAllWeapons(currentId)
     }
 
     private fun saveCharacterID(id: Int) {
@@ -105,7 +121,7 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
     }
 
     // Пока это просто заглушка болванка для проверки добавления в БД, функционала нет
-    suspend fun addCharacter() {
+    public fun addCharacter() {
         character = Character()
         character.name = "Name"
         character.charClass = "Class"
@@ -116,9 +132,59 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
         character.intelligence = 10
         character.wisdom = 10
         character.charisma = 10
+        runBlocking{
+            characterDao.insertChar(character)
+            characterList.value = characterDao.getAll()
+        }
 
-        characterDao.insertChar(character)
-        characterList.value = characterDao.getAll()
+    }
+
+    private fun fetchWeapon(id: Int){
+        runBlocking {
+            currentWeapon.value = weaponDao.getById(id)
+        }
+    }
+
+
+
+    private fun fetchAllWeapons(id: Int){
+        //var flag = true //todo не помню зачем этот флаг
+        var charAndWeaponList:List<CharacterAndWeapons> = listOf()
+        //if (flag) {
+            runBlocking {
+                charAndWeaponList = characterAndWeaponsDao.getCharacterAndWeapons()
+                //currentWeapon.value = weaponDao.getById(id)
+                //charAndWeaponList.forEach {//todo shit
+                //    weaponList.value = it.weapons
+                //}
+                weaponList.value =  characterAndWeaponsDao.getWeaponListById(id)
+            }
+        //}
+        //else
+        //    viewModelScope.launch {
+        //        weaponList.value = weaponDao.getAll()
+        //    }
+    }
+
+    private fun pushToDB(updatedWeapon: Weapon){
+        viewModelScope.launch{
+            weaponDao.updateWeapon(updatedWeapon)
+            fetchWeapon(updatedWeapon.id)
+            fetchAllWeapons(currentId)
+        }
+    }
+
+    fun addWeapon(){
+        //val updatedChar = currentChar.value!!
+        val weapon = Weapon()
+        weapon.name = "Weapon2"
+        weapon.charOwnerID = currentId
+        //updatedChar.weaponList.add(weapon.id.toString())
+        //pushToDB(updatedChar)
+        runBlocking {
+            weaponDao.insertWeapon(weapon)
+            fetchAllWeapons(currentId)
+        }
     }
 
     fun changeCharactersStats(statMap: HashMap<String, Int>) {
@@ -514,12 +580,12 @@ class MyViewModel(private val characterDao: CharacterDAO, application: Applicati
     }
 
 
-    fun calcSave(value: Int, saveProf: Boolean, misc: Int): String {
+    fun calcSave(value: Int, saveProf: Boolean, misc: Int): String{
         var sum: Int = calcModifier(value).toInt()
         if (saveProf)
-            sum += currentChar.value?.proficiency!!
-        sum += misc
-        return if (sum > 0)
+            sum+=currentChar.value?.proficiency!!
+            sum+= misc
+        return if (sum>0)
             "+$sum"
         else
             "$sum"

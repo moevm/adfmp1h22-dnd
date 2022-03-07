@@ -10,9 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.dwards.a5edpockethelper.adapters.ViewPageAdapter
 import com.dwards.a5edpockethelper.databinding.ActivityMainBinding
 import com.dwards.a5edpockethelper.dialogs.NameClassLevelSettingsDialog
-import com.dwards.a5edpockethelper.model.AppDatabase
-import com.dwards.a5edpockethelper.model.Character
-import com.dwards.a5edpockethelper.model.CharacterDAO
+import com.dwards.a5edpockethelper.model.*
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -41,11 +39,13 @@ class MainActivity : AppCompatActivity() {
         //var db = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "character").build()
 
         // создание ДАО
+        val weaponDao: WeaponDAO = db!!.weaponDao()
+        val characterAndWeaponsDao: CharacterAndWeaponsDAO = db!!.characterAndWeaponsDao()
         val characterDao: CharacterDAO = db!!.characterDao()
         var charID: Int = 0
 
         // создание ViewModel через фабрику
-        viewModelFactory = MyViewModelFactory(characterDao, application)
+        viewModelFactory = MyViewModelFactory(characterAndWeaponsDao, weaponDao, characterDao, application)
         val viewModel = ViewModelProvider(this, viewModelFactory).get(MyViewModel::class.java)
         viewModel.startDB()
 
