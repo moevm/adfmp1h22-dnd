@@ -14,13 +14,11 @@ import com.dwards.a5edpockethelper.LanguageProficiencySettingsDialog
 import com.dwards.a5edpockethelper.databinding.LanguageproficiencyListRecyclerBinding
 import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 
-
 class LanguageProficiencyListAdapter(
     languageList: List<String>,
     private val listener: RecyclerViewClickListener
 ) : Adapter<LanguageProficiencyListAdapter.LanguageProficiencyViewHolder>() {
     private var languageArrayList: List<String> = languageList
-
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -35,15 +33,12 @@ class LanguageProficiencyListAdapter(
     }
 
     override fun onBindViewHolder(holder: LanguageProficiencyViewHolder, position: Int) {
-        var language: String = languageArrayList[position]
-        holder.bind(language)
+        holder.bind(languageArrayList[position])
     }
-
 
     override fun getItemCount(): Int {
         return languageArrayList.size;
     }
-
 
     class LanguageProficiencyViewHolder(
         private val itemBinding: LanguageproficiencyListRecyclerBinding,
@@ -79,13 +74,12 @@ class LanguageProficiencyListAdapter(
         }
 
         private fun unwrap(context: Context): Activity? {
-            var context: Context? = context
-            while (context !is Activity && context is ContextWrapper) {
-                context = context.baseContext
+            var ctx: Context? = context
+            while (ctx !is Activity && ctx is ContextWrapper) {
+                ctx = ctx.baseContext
             }
-            return context as Activity?
+            return ctx as Activity?
         }
     }
-
 
 }

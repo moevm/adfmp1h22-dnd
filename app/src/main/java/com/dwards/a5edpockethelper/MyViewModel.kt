@@ -8,10 +8,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.dwards.a5edpockethelper.model.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 
 class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, private val weaponDao: WeaponDAO, private val characterDao: CharacterDAO, application: Application) :
@@ -26,7 +25,7 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
 
     init {
         viewModelScope.launch{
-            viewModelScope.async{fetchAll()}.await()
+            withContext(viewModelScope.coroutineContext) { fetchAll() }
             //characterList.value = characterDao.getAll()
             //fetchAllWeapons()
         }

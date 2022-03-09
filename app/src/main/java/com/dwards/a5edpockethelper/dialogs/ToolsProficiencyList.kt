@@ -33,7 +33,7 @@ class ToolsProficiencyList : DialogFragment(), RecyclerViewClickListener {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner);
         _binding = ToolsproficiencyListBinding.inflate(inflater, container, false)

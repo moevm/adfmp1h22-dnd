@@ -18,7 +18,6 @@ class CharacterInventory : Fragment() {
     private var _binding: FragmentCharacterInventoryBinding? = null
     private val binding get() = _binding!!
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -31,19 +30,17 @@ class CharacterInventory : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.characterList -> {
-                var characterListDialog: CharacterListDialog = CharacterListDialog()
-                characterListDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
+                CharacterListDialog().show(parentFragmentManager, "ProficiencySettingsDialog")
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         //создание вью-модел и обсервера
 
         val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
@@ -57,7 +54,6 @@ class CharacterInventory : Fragment() {
         _binding = FragmentCharacterInventoryBinding.inflate(inflater, container, false)
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

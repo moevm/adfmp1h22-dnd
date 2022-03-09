@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModelFactory: MyViewModelFactory
 
-
     private lateinit var navController: NavController
 
     private lateinit var adapter: ViewPageAdapter

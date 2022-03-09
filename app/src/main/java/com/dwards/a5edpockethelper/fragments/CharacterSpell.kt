@@ -30,8 +30,7 @@ class CharacterSpell : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.characterList -> {
-                var characterListDialog: CharacterListDialog = CharacterListDialog()
-                characterListDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
+                CharacterListDialog().show(parentFragmentManager, "ProficiencySettingsDialog")
                 true
             }
             else -> super.onOptionsItemSelected(item)

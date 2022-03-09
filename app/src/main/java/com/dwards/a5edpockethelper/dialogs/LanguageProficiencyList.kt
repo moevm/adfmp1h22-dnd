@@ -33,7 +33,7 @@ class LanguageProficiencyList : DialogFragment(), RecyclerViewClickListener {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner);
         _binding = LanguageproficiencyListBinding.inflate(inflater, container, false)
@@ -76,8 +76,6 @@ class LanguageProficiencyList : DialogFragment(), RecyclerViewClickListener {
         val width = (resources.displayMetrics.widthPixels * 0.85).toInt()
         //val height = (resources.displayMetrics.heightPixels * 0.40).toInt()
         dialog!!.window?.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
-
-
     }
 
 }

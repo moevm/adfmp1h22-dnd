@@ -32,8 +32,7 @@ class ToolsProficiencyListAdapter(
     }
 
     override fun onBindViewHolder(holder: ToolsProficiencyViewHolder, position: Int) {
-        var tool: String = toolsArrayList[position]
-        holder.bind(tool)
+        holder.bind(toolsArrayList[position])
     }
 
 

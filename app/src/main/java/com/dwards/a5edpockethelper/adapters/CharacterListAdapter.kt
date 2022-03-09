@@ -9,12 +9,13 @@ import com.dwards.a5edpockethelper.databinding.CharacterListRecyclerBinding
 import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 import com.dwards.a5edpockethelper.model.Character
 
-
 class CharacterListAdapter(
     charArrayList: List<Character?>,
     private val listener: RecyclerViewClickListener
 ) : Adapter<CharacterListAdapter.CharactersViewHolder>() {
+
     private var characterArrayList: List<Character?> = charArrayList
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersViewHolder {
         val charBinding =
             CharacterListRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -24,17 +25,13 @@ class CharacterListAdapter(
     }
 
     override fun onBindViewHolder(holder: CharactersViewHolder, position: Int) {
-        var character: Character? = characterArrayList[position]
-        holder.bind(character)
-
-
+        holder.bind(characterArrayList[position])
     }
 
 
     override fun getItemCount(): Int {
         return characterArrayList.size;
     }
-
 
     class CharactersViewHolder(
         private val itemBinding: CharacterListRecyclerBinding,
@@ -55,8 +52,8 @@ class CharacterListAdapter(
         }
 
         fun bind(character: Character?) {
-            itemBinding.characterName.text = (character?.name + ", ")
-            itemBinding.characterClass.text = character?.charClass + " "
+            itemBinding.characterName.text = "${character?.name}, "
+            itemBinding.characterClass.text = "${character?.charClass} "
             itemBinding.characterLevel.text = "${character?.level}"
             characterId = character?.id!!
         }

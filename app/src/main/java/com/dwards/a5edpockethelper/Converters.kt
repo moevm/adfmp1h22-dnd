@@ -5,10 +5,11 @@ import androidx.room.TypeConverter
 class StringListConverter {
     @TypeConverter
     fun fromString(stringListString: String): List<String> {
-        if (stringListString == "")
-            return mutableListOf()
-        else
-            return stringListString.split(",").map { it }
+        return if (stringListString.isBlank()) {
+            mutableListOf()
+        } else {
+            stringListString.split(",").map { it }
+        }
     }
 
     @TypeConverter

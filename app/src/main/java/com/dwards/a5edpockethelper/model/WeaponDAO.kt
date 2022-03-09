@@ -21,5 +21,5 @@ interface WeaponDAO {
 
     // Изменение в бд
     @Update
-    suspend  fun updateWeapon(weapon: Weapon)
+    suspend fun updateWeapon(weapon: Weapon)
 }

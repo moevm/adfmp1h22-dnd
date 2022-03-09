@@ -22,15 +22,12 @@ class WeaponListAdapter(private var weaponArrayList: List<Weapon?>, private val 
     override fun onBindViewHolder(holder: WeaponViewHolder, position: Int) {
         val weapon: Weapon? = weaponArrayList[position]
         holder.bind(weapon)
-
-
     }
 
 
     override fun getItemCount(): Int {
         return weaponArrayList.size;
     }
-
 
     class WeaponViewHolder(private val itemBinding: WeaponListBinding, private val listener: RecyclerViewClickListener) : RecyclerView.ViewHolder(itemBinding.root) {
         private var weaponId: Int = 0

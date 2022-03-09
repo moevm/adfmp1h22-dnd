@@ -30,7 +30,6 @@ class CharacterListDialog : DialogFragment(), RecyclerViewClickListener {
     private lateinit var viewModel: MyViewModel
     private lateinit var characterList: RecyclerView
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,9 +42,8 @@ class CharacterListDialog : DialogFragment(), RecyclerViewClickListener {
 
         characterList = binding.charRecycler
 
-
-        viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
-        viewModel.getAllCharacters().observe(viewLifecycleOwner, Observer {
+        viewModel = ViewModelProvider(requireActivity())[MyViewModel::class.java]
+        viewModel.getAllCharacters().observe(viewLifecycleOwner) {
             it?.let {
                 characterAdapter = CharacterListAdapter(it, this)
                 characterList.apply {
@@ -60,7 +58,7 @@ class CharacterListDialog : DialogFragment(), RecyclerViewClickListener {
                 }
                 //refreshChar(it)
             }
-        })
+        }
 
         binding.AddCharacterButton.setOnClickListener {
             runBlocking {

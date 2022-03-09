@@ -27,12 +27,11 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
     private var additionalStatBonus: Int = 0
     private lateinit var viewModel: MyViewModel
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner);
 
         _binding = ArmorSettingsDialogBinding.inflate(inflater, container, false)
