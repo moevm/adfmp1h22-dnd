@@ -140,5 +140,8 @@
     <string name="persuasion_full">Persuasion</string>
     <string name="tools_proficiency_full">Tools Proficiency</string>
     <string name="language_proficiency_full">Language Proficiency</string>
+    <string name="new_elements">New</string>
 
+    <!-- FOR DEVELOPMENT   -->
+    <string name="really_long_text">Integer eget libero ac lorem viverra luctus. Sed lacus turpis, aliquet ut placerat et, lacinia ut nunc. Quisque sodales mi enim. Integer auctor nibh libero, sit amet consequat ex efficitur tincidunt. Donec at dui laoreet, laoreet justo id, lobortis leo. Duis ac finibus augue. Nulla vel ultricies ipsum. Cras ornare risus nec ligula ultricies sagittis. Pellentesque aliquet sed massa vitae tincidunt. Aliquam vel dui vitae orci imperdiet accumsan. Sed ultricies ut velit vitae maximus. Aliquam porttitor ipsum ac accumsan efficitur. Nunc interdum dolor mi, at mattis nulla sagittis in. Nullam erat leo, pellentesque eget enim eu, vestibulum ullamcorper orci. Fusce dapibus augue lacus, a lobortis dolor aliquam ac.</string>
 </resources>

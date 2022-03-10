@@ -36,28 +36,26 @@ class CharacterWeapon : Fragment(), RecyclerViewClickListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.characterList -> {
-                var characterListDialog: CharacterListDialog = CharacterListDialog()
-                characterListDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
+                CharacterListDialog().show(parentFragmentManager, "ProficiencySettingsDialog")
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentCharacterWeaponBinding.inflate(inflater, container, false)
         //создание вью-модел и обсервера
         weaponList = binding.WeaponRecycler
-        val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        val viewModel = ViewModelProvider(requireActivity())[MyViewModel::class.java]
 
         viewModel.getAllWeapons().observe(viewLifecycleOwner, Observer {
             it?.let {
                 weaponAdapter = WeaponListAdapter(it, this)
-                weaponList.apply{
+                weaponList.apply {
                     layoutManager = LinearLayoutManager(activity);
                     adapter = weaponAdapter
                     //addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
@@ -66,17 +64,12 @@ class CharacterWeapon : Fragment(), RecyclerViewClickListener {
             }
         })
 
-
-
-        binding.StatLayout.setOnClickListener{
+        binding.StatLayout.setOnClickListener {
             viewModel.addWeapon()
         }
+
         return binding.root
     }
-
-
-
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
