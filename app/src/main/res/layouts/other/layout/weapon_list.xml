@@ -48,7 +48,7 @@
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/AttackDamage"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view4"
         tools:text="+1" />
@@ -60,7 +60,7 @@
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/DamageType"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toEndOf="@+id/AttackBonus"
         app:layout_constraintTop_toBottomOf="@+id/view4"
         tools:text="1d8+3" />
@@ -72,7 +72,7 @@
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/AttackRange"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toEndOf="@+id/AttackDamage"
         app:layout_constraintTop_toBottomOf="@+id/view4"
         tools:text="Slashing" />
@@ -84,7 +84,7 @@
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toEndOf="@+id/DamageType"
         app:layout_constraintTop_toBottomOf="@+id/view4"
         tools:text="5 ft." />

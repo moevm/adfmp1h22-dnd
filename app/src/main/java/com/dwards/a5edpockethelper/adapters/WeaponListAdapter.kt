@@ -10,7 +10,6 @@ import com.dwards.a5edpockethelper.databinding.WeaponListBinding
 import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 import com.dwards.a5edpockethelper.model.Weapon
 
-
 class WeaponListAdapter(
     private var weaponArrayList: List<Weapon?>,
     private val listener: RecyclerViewClickListener
@@ -18,8 +17,6 @@ class WeaponListAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeaponViewHolder {
         val charBinding =
             WeaponListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-
-
         return WeaponViewHolder(charBinding, listener)
     }
 

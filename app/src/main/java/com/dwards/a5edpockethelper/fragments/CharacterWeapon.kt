@@ -15,7 +15,6 @@ import com.dwards.a5edpockethelper.databinding.FragmentCharacterWeaponBinding
 import com.dwards.a5edpockethelper.dialogs.CharacterListDialog
 import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 
-
 class CharacterWeapon : Fragment(), RecyclerViewClickListener {
     private val TAG = "MainFragment"
 
