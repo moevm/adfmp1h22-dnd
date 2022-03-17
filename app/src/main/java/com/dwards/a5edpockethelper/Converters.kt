@@ -17,3 +17,19 @@ class StringListConverter {
         return stringList.joinToString(separator = ",")
     }
 }
+
+class StringIntListConverter {
+    @TypeConverter
+    fun fromString(intListString: String): List<Int> {
+        return if (intListString.isBlank()) {
+            mutableListOf()
+        } else {
+            intListString.split(",").map { it.toInt() }
+        }
+    }
+
+    @TypeConverter
+    fun toString(intList: List<Int>): String {
+        return intList.joinToString(separator = ",")
+    }
+}

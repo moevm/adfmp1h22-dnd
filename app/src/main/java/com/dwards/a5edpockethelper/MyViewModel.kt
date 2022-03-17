@@ -4,6 +4,7 @@ package com.dwards.a5edpockethelper
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.res.AssetManager
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -11,9 +12,10 @@ import com.dwards.a5edpockethelper.model.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.*
+import kotlinx.serialization.json.*
 
-
-class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, private val weaponDao: WeaponDAO, private val characterDao: CharacterDAO, application: Application) :
+class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, private val weaponDao: WeaponDAO, private val characterDao: CharacterDAO, private val spellDao: SpellDAO, application: Application) :
     AndroidViewModel(application) {
     var currentId: Int = 0
     var character: Character = Character()
@@ -22,6 +24,7 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
     var characterList: MutableLiveData<List<Character?>> = MutableLiveData()
     var currentWeapon: MutableLiveData<Weapon> = MutableLiveData()
     var weaponList: MutableLiveData<List<Weapon?>> = MutableLiveData()
+    var spellList: MutableLiveData<List<Spell?>> = MutableLiveData()
 
     init {
         viewModelScope.launch{
@@ -42,6 +45,10 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
                 addCharacter()
             }
         }
+        if (spellList.value?.size == 0){
+            runBlocking { addSpells() }
+        }
+
         val firstCharacterId = characterList.value?.firstOrNull()?.id
         if (firstCharacterId == null){
             runBlocking{
@@ -67,6 +74,8 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
 
     fun getAllWeapons() = weaponList
 
+    fun getAllSpells() = spellList
+
     private fun fetchData(id: Int) {
         runBlocking {
             currentChar.value = characterDao.getById(id)
@@ -77,6 +86,7 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
     private fun fetchAll() {
         runBlocking {
             characterList.value = characterDao.getAll()
+            spellList.value = spellDao.getAll()
         }
     }
 
@@ -660,5 +670,22 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         return b == 1
     }
 
+    private fun AssetManager.readFile(fileName: String) = open(fileName)
+        .bufferedReader()
+        .use { it.readText() }
+
+    private fun addSpells() {
+        val context = getApplication<Application>().applicationContext
+        val jsonString = context.assets.readFile("DnD5e_spells_BD_prepared.json")
+        val decodedSpellList = Json.decodeFromString<List<Spell>>(jsonString)
+        runBlocking {
+            //for (spell in decodedSpellList) {
+            //    spellDao.insertSpell(spell)
+            //}
+            spellDao.insertAll(decodedSpellList)
+            spellList.value = spellDao.getAll()
+        }
+
+    }
 }
 

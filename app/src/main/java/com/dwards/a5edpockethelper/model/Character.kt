@@ -1,6 +1,7 @@
 package com.dwards.a5edpockethelper.model
 
 import androidx.room.*
+import com.dwards.a5edpockethelper.StringIntListConverter
 import com.dwards.a5edpockethelper.StringListConverter
 
 
@@ -182,4 +183,8 @@ data class Character(
     //@TypeConverters(StringListConverter::class)
     //var weaponList: MutableList<String> = mutableListOf(),
 
+    //@TypeConverters(StringIntListConverter::class)
+    //var spellsFavorite: MutableList<Int> = mutableListOf(),
+    //@TypeConverters(StringIntListConverter::class)
+    //var spellsPrepared: MutableList<Int> = mutableListOf(),
 )
