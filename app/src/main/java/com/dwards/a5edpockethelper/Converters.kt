@@ -20,11 +20,11 @@ class StringListConverter {
 
 class StringIntListConverter {
     @TypeConverter
-    fun fromString(intListString: String): List<Int> {
-        return if (intListString.isBlank()) {
+    fun fromString(stringListInt: String): List<Int> {
+        return if (stringListInt.isBlank()) {
             mutableListOf()
         } else {
-            intListString.split(",").map { it.toInt() }
+            stringListInt.split(",").map { it.toInt() }
         }
     }
 

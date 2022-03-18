@@ -141,9 +141,14 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         character.intelligence = 10
         character.wisdom = 10
         character.charisma = 10
+        character.spellsFavorite = mutableListOf(1)
+        character.spellsPrepared = mutableListOf(2)
+
         runBlocking{
             characterDao.insertChar(character)
             characterList.value = characterDao.getAll()
+            val a = characterList.value?.get(0)?.spellsFavorite
+            print(a)
         }
 
     }

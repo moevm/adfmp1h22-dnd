@@ -6,17 +6,24 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.dwards.a5edpockethelper.MyViewModel
 import com.dwards.a5edpockethelper.R
+import com.dwards.a5edpockethelper.adapters.SpellListAdapter
+import com.dwards.a5edpockethelper.adapters.WeaponListAdapter
 import com.dwards.a5edpockethelper.databinding.FragmentCharacterSpellBinding
+import com.dwards.a5edpockethelper.databinding.FragmentCharacterWeaponBinding
 import com.dwards.a5edpockethelper.dialogs.CharacterListDialog
+import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 
-class CharacterSpell : Fragment() {
+class CharacterSpell : Fragment(), RecyclerViewClickListener {
     private val TAG = "MainFragment"
 
     private var _binding: FragmentCharacterSpellBinding? = null
     private val binding get() = _binding!!
-
+    private lateinit var spellAdapter: SpellListAdapter
+    private lateinit var spellList: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,17 +49,31 @@ class CharacterSpell : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        _binding = FragmentCharacterSpellBinding.inflate(inflater, container, false)
+        spellList = binding.WeaponRecycler
         //создание вью-модел и обсервера
 
         val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
-        viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
+        //viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
+        //    it?.let {
+                //refreshChar(it)
+        //    }
+        //})
+
+        viewModel.getAllSpells().observe(viewLifecycleOwner, Observer {
             it?.let {
+                spellAdapter = SpellListAdapter(it, this)
+                spellList.apply {
+                    layoutManager = LinearLayoutManager(activity);
+                    adapter = spellAdapter
+                    //addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
+                }
                 //refreshChar(it)
             }
         })
 
-        _binding = FragmentCharacterSpellBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -65,6 +86,10 @@ class CharacterSpell : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onRecyclerViewItemClickListener(view: View, id: Int) {
+        TODO("Not yet implemented")
     }
 
 }

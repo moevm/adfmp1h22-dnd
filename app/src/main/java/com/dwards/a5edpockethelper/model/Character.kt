@@ -6,7 +6,7 @@ import com.dwards.a5edpockethelper.StringListConverter
 
 
 @Entity(tableName = "Character")
-@TypeConverters(StringListConverter::class)
+@TypeConverters(StringListConverter::class, StringIntListConverter::class)
 data class Character(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
@@ -183,8 +183,8 @@ data class Character(
     //@TypeConverters(StringListConverter::class)
     //var weaponList: MutableList<String> = mutableListOf(),
 
-    //@TypeConverters(StringIntListConverter::class)
-    //var spellsFavorite: MutableList<Int> = mutableListOf(),
-    //@TypeConverters(StringIntListConverter::class)
-    //var spellsPrepared: MutableList<Int> = mutableListOf(),
+    @TypeConverters(StringIntListConverter::class)
+    var spellsFavorite: MutableList<Int> = mutableListOf(),
+    @TypeConverters(StringIntListConverter::class)
+    var spellsPrepared: MutableList<Int> = mutableListOf(),
 )
