@@ -74,6 +74,30 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
             }
         })
 
+        binding.spellTopNavBlock.checkBox.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked && binding.spellTopNavBlock.checkBox2.isChecked) {
+                viewModel.showFavoritePreparedSpells()
+            }
+            else if (isChecked) {
+                viewModel.showFavoriteSpells()
+            }
+            else {
+                viewModel.showAllSpells()
+            }
+        }
+
+        binding.spellTopNavBlock.checkBox2.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked && binding.spellTopNavBlock.checkBox.isChecked) {
+                viewModel.showFavoritePreparedSpells()
+            }
+            else if (isChecked) {
+                viewModel.showPreparedSpells()
+            }
+            else {
+                viewModel.showAllSpells()
+            }
+        }
+
         return binding.root
     }
 
