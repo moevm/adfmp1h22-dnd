@@ -1,6 +1,5 @@
 package com.dwards.a5edpockethelper.fragments
 
-
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -16,7 +15,6 @@ import com.dwards.a5edpockethelper.dialogs.CharacterListDialog
 import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 
 class CharacterWeapon : Fragment(), RecyclerViewClickListener {
-    private val TAG = "MainFragment"
 
     private var _binding: FragmentCharacterWeaponBinding? = null
     private val binding get() = _binding!!

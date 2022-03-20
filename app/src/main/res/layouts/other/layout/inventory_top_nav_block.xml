@@ -27,7 +27,7 @@
         android:textSize="18sp"
         app:backgroundTint="#957A51"
         app:layout_constraintEnd_toStartOf="@+id/filterButton"
-        app:layout_constraintStart_toEndOf="@+id/addSpellButton"
+        app:layout_constraintStart_toEndOf="@+id/addInventoryItemButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -38,7 +38,7 @@
         app:layout_constraintGuide_percent="0.02" />
 
     <ImageView
-        android:id="@+id/addSpellButton"
+        android:id="@+id/addInventoryItemButton"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_marginTop="5dp"
@@ -79,7 +79,7 @@
         android:textColor="#6B4D30"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/checkBox2"
-        app:layout_constraintStart_toEndOf="@+id/addSpellButton"
+        app:layout_constraintStart_toEndOf="@+id/addInventoryItemButton"
         app:layout_constraintTop_toBottomOf="@+id/CustomBlock1Value" />
 
     <CheckBox

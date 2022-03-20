@@ -1,6 +1,5 @@
 package com.dwards.a5edpockethelper.fragments
 
-
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -11,9 +10,7 @@ import com.dwards.a5edpockethelper.R
 import com.dwards.a5edpockethelper.databinding.FragmentCharacterInventoryBinding
 import com.dwards.a5edpockethelper.dialogs.CharacterListDialog
 
-
 class CharacterInventory : Fragment() {
-    private val TAG = "MainFragment"
 
     private var _binding: FragmentCharacterInventoryBinding? = null
     private val binding get() = _binding!!
@@ -41,9 +38,8 @@ class CharacterInventory : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        //создание вью-модел и обсервера
 
-        val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        val viewModel = ViewModelProvider(requireActivity())[MyViewModel::class.java]
 
         viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
             it?.let {
