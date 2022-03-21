@@ -193,7 +193,7 @@ class InitiativeSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedLis
             viewModel.calcModifier(
                 character.dexterity
             ).toInt(),
-            //ИСПРАВИТЬ ВЕЗДЕ ЕСЛИ ПУСТОТА ТО КРАШ
+            //todo ИСПРАВИТЬ ВЕЗДЕ ЕСЛИ ПУСТОТА ТО КРАШ
             if (binding.MiscBonusValue.text.toString() != "") binding.MiscBonusValue.text.toString()
                 .toInt() else 0,
             prof,

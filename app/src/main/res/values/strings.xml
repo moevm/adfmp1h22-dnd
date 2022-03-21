@@ -24,6 +24,35 @@
         <item>Custom</item>
     </string-array>
 
+    <string-array name="DamageTypeList">
+        <item>None</item>
+        <item>Bludgeoning</item>
+        <item>Piercing</item>
+        <item>Slashing</item>
+        <item>Acid</item>
+        <item>Cold</item>
+        <item>Fire</item>
+        <item>Force</item>
+        <item>Lightning</item>
+        <item>Necrotic</item>
+        <item>Poison</item>
+        <item>Psychic</item>
+        <item>Radiant</item>
+        <item>Thunder</item>
+    </string-array>
+
+    <string-array name="AttackRangeType">
+        <item>None</item>
+        <item>Melee</item>
+        <item>Ranged</item>
+    </string-array>
+
+    <string-array name="WeaponHandedType">
+        <item>None</item>
+        <item>One Handed</item>
+        <item>Two Handed</item>
+    </string-array>
+
     <string-array name="StatsForArmorList">
         <item>None</item>
         <item>Strength</item>

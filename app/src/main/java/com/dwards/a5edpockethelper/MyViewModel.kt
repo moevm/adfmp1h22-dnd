@@ -656,6 +656,12 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         return sum
     }
 
+
+
+
+
+
+
     private fun intToBoolean(b: Int): Boolean {
         return b == 1
     }
