@@ -49,6 +49,7 @@ class SpellListAdapter(
                 MainSpellLayout.setOnClickListener {
                     //isExpanded = !isExpanded
                     //spellDescription.isVisible = isExpanded
+                    listener.onRecyclerViewItemClickListener(MainSpellLayout, spellId)
                 }
             }
 
@@ -65,7 +66,7 @@ class SpellListAdapter(
         }
 
         fun bind(spell: Spell?) {
-            itemBinding.spellName.text = spell?.name + spell?.id.toString()
+            itemBinding.spellName.text = spell?.name
             itemBinding.spellSchool.text = spell?.school
             itemBinding.spellCastingType.text = spell?.castingTime
             itemBinding.spellLevel.text = spell?.level.toString()

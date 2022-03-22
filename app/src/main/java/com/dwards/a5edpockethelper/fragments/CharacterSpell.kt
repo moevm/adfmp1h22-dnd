@@ -14,6 +14,7 @@ import com.dwards.a5edpockethelper.R
 import com.dwards.a5edpockethelper.adapters.SpellListAdapter
 import com.dwards.a5edpockethelper.databinding.FragmentCharacterSpellBinding
 import com.dwards.a5edpockethelper.dialogs.CharacterListDialog
+import com.dwards.a5edpockethelper.dialogs.SpellInfoDialog
 import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 
 class CharacterSpell : Fragment(), RecyclerViewClickListener {
@@ -121,6 +122,12 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
     override fun onRecyclerViewItemClickListener(view: View, id: Int) {
         //val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
         when (view.id) {
+            R.id.MainSpellLayout -> {
+                viewModel.getSpellById(id)?.let {
+                    val dialog = SpellInfoDialog(it)
+                    dialog.show(parentFragmentManager, "spellInfoDialog")
+                }
+            }
             R.id.favoriteIcon -> {
                 if (viewModel.isFavoriteSpell(id)){
                     viewModel.removeFavoriteSpell(id)
