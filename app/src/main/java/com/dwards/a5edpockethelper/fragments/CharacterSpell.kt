@@ -1,6 +1,7 @@
 package com.dwards.a5edpockethelper.fragments
 
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -11,9 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dwards.a5edpockethelper.MyViewModel
 import com.dwards.a5edpockethelper.R
 import com.dwards.a5edpockethelper.adapters.SpellListAdapter
-import com.dwards.a5edpockethelper.adapters.WeaponListAdapter
 import com.dwards.a5edpockethelper.databinding.FragmentCharacterSpellBinding
-import com.dwards.a5edpockethelper.databinding.FragmentCharacterWeaponBinding
 import com.dwards.a5edpockethelper.dialogs.CharacterListDialog
 import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 
@@ -24,6 +23,7 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
     private val binding get() = _binding!!
     private lateinit var spellAdapter: SpellListAdapter
     private lateinit var spellList: RecyclerView
+    private lateinit var viewModel: MyViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +54,7 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
         spellList = binding.WeaponRecycler
         //создание вью-модел и обсервера
 
-        val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[MyViewModel::class.java]
 
         //viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
         //    it?.let {
@@ -81,6 +81,9 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
             else if (isChecked) {
                 viewModel.showFavoriteSpells()
             }
+            else if (binding.spellTopNavBlock.checkBox2.isChecked) {
+                viewModel.showPreparedSpells()
+            }
             else {
                 viewModel.showAllSpells()
             }
@@ -92,6 +95,9 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
             }
             else if (isChecked) {
                 viewModel.showPreparedSpells()
+            }
+            else if (binding.spellTopNavBlock.checkBox.isChecked) {
+                viewModel.showFavoriteSpells()
             }
             else {
                 viewModel.showAllSpells()
@@ -113,7 +119,31 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
     }
 
     override fun onRecyclerViewItemClickListener(view: View, id: Int) {
-        TODO("Not yet implemented")
+        //val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        when (view.id) {
+            R.id.favoriteIcon -> {
+                if (viewModel.isFavoriteSpell(id)){
+                    viewModel.removeFavoriteSpell(id)
+                    view.setBackgroundColor(Color.rgb(255,255,255))
+
+                }
+                else {
+                    viewModel.addFavoriteSpell(id)
+                    view.setBackgroundColor(Color.rgb(255,0,0))
+                }
+            }
+
+            R.id.preparedIcon -> {
+                if (viewModel.isPreparedSpell(id)){
+                    viewModel.removePreparedSpell(id)
+                    view.setBackgroundColor(Color.rgb(255,255,255))
+                }
+                else {
+                    viewModel.addPreparedSpell(id)
+                    view.setBackgroundColor(Color.rgb(255,0,0))
+                }
+            }
+        }
     }
 
 }

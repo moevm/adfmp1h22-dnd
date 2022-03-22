@@ -29,6 +29,7 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
     var allSpellList: MutableLiveData<List<Spell?>> = MutableLiveData()
     var favoriteSpellList: MutableLiveData<List<Spell?>> = MutableLiveData()
     var preparedSpellList: MutableLiveData<List<Spell?>> = MutableLiveData()
+    var currentSpellListName: String = "all"
 
     init {
         viewModelScope.launch{
@@ -87,6 +88,12 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
             currentChar.value = characterDao.getById(id)
             fetchCharacterSpells()
             //characterList.value = characterDao.getAll()
+            when (currentSpellListName) {
+                "all" -> showAllSpells()
+                "favorite" -> showFavoriteSpells()
+                "prepared" -> showPreparedSpells()
+                "favoritePrepared" -> showFavoritePreparedSpells()
+            }
         }
     }
 
@@ -109,8 +116,12 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
     }
 
     fun fetchCharacterSpells(){
+        if (currentChar.value == null){
+            favoriteSpellList.value = mutableListOf()
+            preparedSpellList.value = mutableListOf()
+            return
+        }
         val tempFavoriteSpell = mutableListOf<Spell>()
-
         for (v in currentChar.value?.spellsFavorite!!){
             if (getSpellById(v) != null){
                 tempFavoriteSpell.add(getSpellById(v)!!)
@@ -129,18 +140,90 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
 
     fun showAllSpells(){
         currentSpellList.value = allSpellList.value?.toMutableList()
+        currentSpellListName = "all"
     }
 
     fun showFavoriteSpells(){
         currentSpellList.value = favoriteSpellList.value
+        currentSpellListName = "favorite"
     }
 
     fun showPreparedSpells(){
         currentSpellList.value = preparedSpellList.value
+        currentSpellListName = "prepared"
     }
 
     fun showFavoritePreparedSpells(){
-        //TODO
+        if (favoriteSpellList.value != null && preparedSpellList.value != null)
+            currentSpellList.value = favoriteSpellList.value?.intersect(preparedSpellList.value!!)
+                ?.toMutableList()
+        else
+            currentSpellList.value = mutableListOf()
+        currentSpellListName = "favoritePrepared"
+    }
+
+    fun isFavoriteSpell(spellId: Int) : Boolean {
+        if (currentChar.value == null)
+            return false
+        for (v in currentChar.value!!.spellsFavorite){
+            if (v == spellId) {
+                return true
+            }
+        }
+        return false
+    }
+
+    fun isPreparedSpell(spellId: Int) : Boolean {
+        if (currentChar.value == null)
+            return false
+        for (v in currentChar.value!!.spellsPrepared){
+            if (v == spellId) {
+                return true
+            }
+        }
+        return false
+    }
+
+    fun addFavoriteSpell(spellId: Int){
+        if (currentChar.value != null){
+            currentChar.value!!.spellsFavorite.add(spellId)
+            currentChar.value!!.spellsFavorite.sort() //может стоит ручками вставлять значение в нужное место
+            runBlocking {
+                characterDao.updateChar(currentChar.value!!)
+                currentChar.value!!.id?.let { fetchData(it) } //может стоит ручками добавлять в favoriteSpellList
+            }
+        }
+    }
+
+    fun removeFavoriteSpell(spellId: Int){
+        if (currentChar.value != null){
+            currentChar.value!!.spellsFavorite.remove(spellId)
+            runBlocking {
+                characterDao.updateChar(currentChar.value!!)
+                currentChar.value!!.id?.let { fetchData(it) }
+            }
+        }
+    }
+
+    fun addPreparedSpell(spellId: Int){
+        if (currentChar.value != null){
+            currentChar.value!!.spellsPrepared.add(spellId)
+            currentChar.value!!.spellsPrepared.sort()
+            runBlocking {
+                characterDao.updateChar(currentChar.value!!)
+                currentChar.value!!.id?.let { fetchData(it) }
+            }
+        }
+    }
+
+    fun removePreparedSpell(spellId: Int){
+        if (currentChar.value != null){
+            currentChar.value!!.spellsPrepared.remove(spellId)
+            runBlocking {
+                characterDao.updateChar(currentChar.value!!)
+                currentChar.value!!.id?.let { fetchData(it) }
+            }
+        }
     }
 
     fun chooseCharacter(id: Int) {
@@ -193,8 +276,10 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         character.intelligence = 10
         character.wisdom = 10
         character.charisma = 10
-        character.spellsFavorite = mutableListOf(1)
-        character.spellsPrepared = mutableListOf(2)
+        character.spellsFavorite = mutableListOf()
+        character.spellsFavorite.add(1)
+        character.spellsPrepared = mutableListOf()
+        character.spellsPrepared.add(2)
 
         runBlocking{
             characterDao.insertChar(character)

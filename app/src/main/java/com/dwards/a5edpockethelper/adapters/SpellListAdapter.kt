@@ -1,11 +1,17 @@
 package com.dwards.a5edpockethelper.adapters
 
 
+import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.isVisible
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
+import com.dwards.a5edpockethelper.MyViewModel
 import com.dwards.a5edpockethelper.databinding.SpellListBinding
 import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 import com.dwards.a5edpockethelper.model.Spell
@@ -35,26 +41,52 @@ class SpellListAdapter(
         private val itemBinding: SpellListBinding,
         private val listener: RecyclerViewClickListener
     ) : RecyclerView.ViewHolder(itemBinding.root) {
-        private var spellId: Int = 0
+        private var spellId: Int = 1
         private var isExpanded = false
 
         init {
             itemBinding.apply {
                 MainSpellLayout.setOnClickListener {
-                    isExpanded = !isExpanded
-                    spellDescription.isVisible = isExpanded
+                    //isExpanded = !isExpanded
+                    //spellDescription.isVisible = isExpanded
                 }
             }
 
-//            itemBinding.deleteIcon.setOnClickListener {
-//                listener.onRecyclerViewItemClickListener(itemBinding.deleteIcon, characterId)
-//
-//            }
+            itemBinding.favoriteIcon.setOnClickListener {
+                listener.onRecyclerViewItemClickListener(itemBinding.favoriteIcon, spellId)
+
+            }
+            itemBinding.preparedIcon.setOnClickListener {
+                listener.onRecyclerViewItemClickListener(itemBinding.preparedIcon, spellId)
+
+            }
+
+
         }
 
         fun bind(spell: Spell?) {
-            itemBinding.SpellName.text = spell?.name
-            itemBinding.DamageType.text = spell?.school
+            itemBinding.spellName.text = spell?.name + spell?.id.toString()
+            itemBinding.spellSchool.text = spell?.school
+            itemBinding.spellCastingType.text = spell?.castingTime
+            itemBinding.spellLevel.text = spell?.level.toString()
+            itemBinding.spellComponents.text = spell?.components
+            spellId = spell?.id!!
+            val viewModel = ViewModelProvider(unwrap(itemView.context) as FragmentActivity)[MyViewModel::class.java]
+
+            if (viewModel.isFavoriteSpell(spellId)){
+                itemBinding.favoriteIcon.setBackgroundColor(Color.rgb(255,0,0))
+            }
+            if (viewModel.isPreparedSpell(spellId)){
+                itemBinding.preparedIcon.setBackgroundColor(Color.rgb(255,0,0))
+            }
+        }
+
+        private fun unwrap(context: Context): Activity? {
+            var ctx: Context? = context
+            while (ctx !is Activity && ctx is ContextWrapper) {
+                ctx = ctx.baseContext
+            }
+            return ctx as Activity?
         }
     }
 
