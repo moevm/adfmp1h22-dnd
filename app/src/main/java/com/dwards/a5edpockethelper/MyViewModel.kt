@@ -108,6 +108,12 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
     fun fetchSpells(){
         runBlocking {
             allSpellList.value = spellDao.getAll()
+            when (currentSpellListName) {
+                "all" -> showAllSpells()
+                "favorite" -> showFavoriteSpells()
+                "prepared" -> showPreparedSpells()
+                "favoritePrepared" -> showFavoritePreparedSpells()
+            }
         }
     }
 
@@ -224,6 +230,14 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
                 currentChar.value!!.id?.let { fetchData(it) }
             }
         }
+    }
+
+    fun addEmptySpell(){
+        runBlocking {
+            spellDao.insertSpell(Spell(source = "HB"))
+            fetchSpells()
+        }
+
     }
 
     fun chooseCharacter(id: Int) {

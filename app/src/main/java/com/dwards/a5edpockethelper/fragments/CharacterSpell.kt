@@ -4,6 +4,7 @@ package com.dwards.a5edpockethelper.fragments
 import android.graphics.Color
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -103,6 +104,11 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
             else {
                 viewModel.showAllSpells()
             }
+        }
+
+        binding.spellTopNavBlock.addSpellButton.setOnClickListener{
+            viewModel.addEmptySpell()
+            Toast.makeText(context, "You created empty spell with HB source", Toast.LENGTH_SHORT).show()
         }
 
         return binding.root
