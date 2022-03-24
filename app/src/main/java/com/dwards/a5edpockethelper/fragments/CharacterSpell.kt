@@ -15,6 +15,7 @@ import com.dwards.a5edpockethelper.R
 import com.dwards.a5edpockethelper.adapters.SpellListAdapter
 import com.dwards.a5edpockethelper.databinding.FragmentCharacterSpellBinding
 import com.dwards.a5edpockethelper.dialogs.CharacterListDialog
+import com.dwards.a5edpockethelper.dialogs.SpellEditDialog
 import com.dwards.a5edpockethelper.dialogs.SpellInfoDialog
 import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 
@@ -157,6 +158,18 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
                 }
             }
         }
+    }
+
+    override fun onRecyclerViewItemLongClickListener(view: View, id: Int) {
+        when (view.id) {
+            R.id.MainSpellLayout -> {
+                viewModel.getSpellById(id)?.let {
+                    val dialog = SpellEditDialog(it)
+                    dialog.show(parentFragmentManager, "spellEditDialog")
+                }
+            }
+        }
+
     }
 
 }

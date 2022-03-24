@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.dwards.a5edpockethelper.MyViewModel
 import com.dwards.a5edpockethelper.databinding.SpellListBinding
+import com.dwards.a5edpockethelper.dialogs.SpeedSettingsDialog
+import com.dwards.a5edpockethelper.dialogs.SpellEditDialog
 import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 import com.dwards.a5edpockethelper.model.Spell
 
@@ -51,6 +53,12 @@ class SpellListAdapter(
                     //spellDescription.isVisible = isExpanded
                     listener.onRecyclerViewItemClickListener(MainSpellLayout, spellId)
                 }
+                MainSpellLayout.setOnLongClickListener{
+                    listener.onRecyclerViewItemLongClickListener(MainSpellLayout, spellId)
+                    return@setOnLongClickListener true
+                }
+
+
             }
 
             itemBinding.favoriteIcon.setOnClickListener {
