@@ -12,10 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dwards.a5edpockethelper.MyViewModel
 import com.dwards.a5edpockethelper.R
+import com.dwards.a5edpockethelper.SpellListNames
 import com.dwards.a5edpockethelper.adapters.SpellListAdapter
 import com.dwards.a5edpockethelper.databinding.FragmentCharacterSpellBinding
 import com.dwards.a5edpockethelper.dialogs.CharacterListDialog
 import com.dwards.a5edpockethelper.dialogs.SpellEditDialog
+import com.dwards.a5edpockethelper.dialogs.SpellFilterDialog
 import com.dwards.a5edpockethelper.dialogs.SpellInfoDialog
 import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 
@@ -79,37 +81,42 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
 
         binding.spellTopNavBlock.checkBox.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked && binding.spellTopNavBlock.checkBox2.isChecked) {
-                viewModel.showFavoritePreparedSpells()
+                viewModel.showSpells(newCurrentSpellListName = SpellListNames.FAVORITE_PREPARED)
             }
             else if (isChecked) {
-                viewModel.showFavoriteSpells()
+                viewModel.showSpells(newCurrentSpellListName = SpellListNames.FAVORITE)
             }
             else if (binding.spellTopNavBlock.checkBox2.isChecked) {
-                viewModel.showPreparedSpells()
+                viewModel.showSpells(newCurrentSpellListName = SpellListNames.PREPARED)
             }
             else {
-                viewModel.showAllSpells()
+                viewModel.showSpells(newCurrentSpellListName = SpellListNames.ALL)
             }
         }
 
         binding.spellTopNavBlock.checkBox2.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked && binding.spellTopNavBlock.checkBox.isChecked) {
-                viewModel.showFavoritePreparedSpells()
+                viewModel.showSpells(newCurrentSpellListName = SpellListNames.FAVORITE_PREPARED)
             }
             else if (isChecked) {
-                viewModel.showPreparedSpells()
+                viewModel.showSpells(newCurrentSpellListName = SpellListNames.PREPARED)
             }
             else if (binding.spellTopNavBlock.checkBox.isChecked) {
-                viewModel.showFavoriteSpells()
+                viewModel.showSpells(newCurrentSpellListName = SpellListNames.FAVORITE)
             }
             else {
-                viewModel.showAllSpells()
+                viewModel.showSpells(newCurrentSpellListName = SpellListNames.ALL)
             }
         }
 
         binding.spellTopNavBlock.addSpellButton.setOnClickListener{
             viewModel.addEmptySpell()
             Toast.makeText(context, "You created empty spell with HB source", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.spellTopNavBlock.filterButton.setOnClickListener{
+            val dialog = SpellFilterDialog(viewModel.currentFilter)
+            dialog.show(parentFragmentManager, "spellFilterDialog")
         }
 
         return binding.root

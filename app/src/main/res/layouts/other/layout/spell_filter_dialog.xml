@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_place"
+    android:layout_width="300dp"
+    android:layout_height="500dp"
+    android:layout_marginTop="200dp"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:id="@+id/levelValueSpinner"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/levelText"
+            app:layout_constraintStart_toEndOf="@+id/levelText"
+            app:layout_constraintTop_toTopOf="@+id/levelText"
+            app:layout_constraintVertical_bias="0.7" />
+
+        <TextView
+            android:id="@+id/levelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="10dp"
+            android:text="Level:"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/schoolText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="10dp"
+            android:text="School:"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/levelText" />
+
+        <Spinner
+            android:id="@+id/schoolValueSpinner"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/schoolText"
+            app:layout_constraintStart_toEndOf="@+id/schoolText"
+            app:layout_constraintTop_toTopOf="@+id/schoolText"
+            app:layout_constraintVertical_bias="0.57" />
+
+        <TextView
+            android:id="@+id/ritualText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="10dp"
+            android:text="Ritual:"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/schoolText" />
+
+        <TextView
+            android:id="@+id/sourceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="10dp"
+            android:text="Source:"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ritualText" />
+
+        <Spinner
+            android:id="@+id/ritualValueSpinner"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toBottomOf="@+id/ritualText"
+            app:layout_constraintStart_toEndOf="@+id/ritualText"
+            app:layout_constraintTop_toTopOf="@+id/ritualText"
+            app:layout_constraintVertical_bias="0.57" />
+
+
+        <Spinner
+            android:id="@+id/sourceValueSpinner"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/sourceText"
+            app:layout_constraintStart_toEndOf="@+id/sourceText"
+            app:layout_constraintTop_toTopOf="@+id/sourceText" />
+
+        <View
+            android:id="@+id/view5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/separator_gray"
+            app:layout_constraintBottom_toTopOf="@+id/FilterButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/FilterButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/custom_button"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="Filter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sourceText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

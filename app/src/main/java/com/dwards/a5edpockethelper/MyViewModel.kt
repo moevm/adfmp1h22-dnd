@@ -29,7 +29,9 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
     var allSpellList: MutableLiveData<List<Spell?>> = MutableLiveData()
     var favoriteSpellList: MutableLiveData<List<Spell?>> = MutableLiveData()
     var preparedSpellList: MutableLiveData<List<Spell?>> = MutableLiveData()
-    var currentSpellListName: String = "all"
+    var currentSpellListName: SpellListNames = SpellListNames.ALL
+
+    var currentFilter: SpellFilter = SpellFilter()
 
     init {
         viewModelScope.launch{
@@ -88,12 +90,7 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
             currentChar.value = characterDao.getById(id)
             fetchCharacterSpells()
             //characterList.value = characterDao.getAll()
-            when (currentSpellListName) {
-                "all" -> showAllSpells()
-                "favorite" -> showFavoriteSpells()
-                "prepared" -> showPreparedSpells()
-                "favoritePrepared" -> showFavoritePreparedSpells()
-            }
+            showSpells()
         }
     }
 
@@ -108,12 +105,7 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
     fun fetchSpells(){
         runBlocking {
             allSpellList.value = spellDao.getAll()
-            when (currentSpellListName) {
-                "all" -> showAllSpells()
-                "favorite" -> showFavoriteSpells()
-                "prepared" -> showPreparedSpells()
-                "favoritePrepared" -> showFavoritePreparedSpells()
-            }
+            showSpells()
         }
     }
 
@@ -144,28 +136,39 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         preparedSpellList.value = tempPreparedSpell
     }
 
-    fun showAllSpells(){
+    fun showSpells(newCurrentSpellListName: SpellListNames = currentSpellListName, newFilter: SpellFilter = currentFilter){
+        if (newFilter != currentFilter)
+            currentFilter = newFilter
+        if (newCurrentSpellListName != currentSpellListName)
+            currentSpellListName = newCurrentSpellListName
+        when (currentSpellListName) {
+            SpellListNames.ALL -> showAllSpells()
+            SpellListNames.FAVORITE -> showFavoriteSpells()
+            SpellListNames.PREPARED -> showPreparedSpells()
+            SpellListNames.FAVORITE_PREPARED -> showFavoritePreparedSpells()
+        }
+        filterSpells()
+    }
+
+
+    private fun showAllSpells(){
         currentSpellList.value = allSpellList.value?.toMutableList()
-        currentSpellListName = "all"
     }
 
-    fun showFavoriteSpells(){
+    private fun showFavoriteSpells(){
         currentSpellList.value = favoriteSpellList.value
-        currentSpellListName = "favorite"
     }
 
-    fun showPreparedSpells(){
+    private fun showPreparedSpells(){
         currentSpellList.value = preparedSpellList.value
-        currentSpellListName = "prepared"
     }
 
-    fun showFavoritePreparedSpells(){
+    private fun showFavoritePreparedSpells(){
         if (favoriteSpellList.value != null && preparedSpellList.value != null)
             currentSpellList.value = favoriteSpellList.value?.intersect(preparedSpellList.value!!)
                 ?.toMutableList()
         else
             currentSpellList.value = mutableListOf()
-        currentSpellListName = "favoritePrepared"
     }
 
     fun isFavoriteSpell(spellId: Int) : Boolean {
@@ -245,6 +248,24 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
             spellDao.updateSpell(spell)
             fetchSpells()
         }
+    }
+
+    private fun filterSpells(){
+        currentSpellList.value = currentSpellList.value?.filter {
+            var result = true
+            if (it != null){
+                if (currentFilter.level != null)
+                    result = result && (currentFilter.level == it.level)
+                if (currentFilter.school != null)
+                    result = result && (currentFilter.school == it.school)
+                if (currentFilter.ritual != null)
+                    result = result && (currentFilter.ritual == it.ritual)
+                if (currentFilter.source != null)
+                    result = result && (currentFilter.source == it.source)
+            }
+            result
+        }
+
     }
 
     fun chooseCharacter(id: Int) {
@@ -848,5 +869,9 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         }
 
     }
+}
+
+enum class SpellListNames {
+    ALL, FAVORITE, PREPARED, FAVORITE_PREPARED
 }
 
