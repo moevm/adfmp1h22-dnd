@@ -240,6 +240,13 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
 
     }
 
+    fun updateSpell(spell: Spell){
+        runBlocking {
+            spellDao.updateSpell(spell)
+            fetchSpells()
+        }
+    }
+
     fun chooseCharacter(id: Int) {
         currentId = id
         saveCharacterID(id)

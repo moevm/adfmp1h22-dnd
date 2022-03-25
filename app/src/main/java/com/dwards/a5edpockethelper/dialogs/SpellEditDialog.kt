@@ -1,7 +1,8 @@
 package com.dwards.a5edpockethelper.dialogs
 
 import android.os.Bundle
-import android.util.Log
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,8 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProvider
+import com.dwards.a5edpockethelper.MyViewModel
 import com.dwards.a5edpockethelper.R
 import com.dwards.a5edpockethelper.databinding.SpellEditDialogBinding
 import com.dwards.a5edpockethelper.model.Spell
@@ -16,6 +19,7 @@ import com.dwards.a5edpockethelper.model.Spell
 class SpellEditDialog(private val spell: Spell): DialogFragment(), AdapterView.OnItemSelectedListener {
     private var _binding: SpellEditDialogBinding? = null
     private val binding get() = _binding!!
+    private var editedSpell: Spell = spell.copy()
 
     private val TAG = "MyCustomDialog"
 
@@ -29,7 +33,8 @@ class SpellEditDialog(private val spell: Spell): DialogFragment(), AdapterView.O
         _binding = SpellEditDialogBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        //val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        val viewModel = ViewModelProvider(requireActivity())[MyViewModel::class.java]
+
         val levels = listOf(
             0,1,2,3,4,5,6,7,8,9
         )
@@ -101,7 +106,66 @@ class SpellEditDialog(private val spell: Spell): DialogFragment(), AdapterView.O
         sourceSpinner.onItemSelectedListener = this
         sourceSpinner.setSelection(sources.indexOf(spell.source))
 
+        binding.spellNameText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                editedSpell.name = binding.spellNameText.text.toString()
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
+        binding.castingTimeTextValue.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                editedSpell.castingTime = binding.castingTimeTextValue.text.toString()
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
+        binding.rangeTextValue.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                editedSpell.range = binding.rangeTextValue.text.toString()
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
+        binding.materialsTextValue.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                editedSpell.materials = binding.materialsTextValue.text.toString()
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
+        binding.componentsTextValue.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                editedSpell.components = binding.componentsTextValue.text.toString()
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
+        binding.durationTextValue.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                editedSpell.duration = binding.durationTextValue.text.toString()
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
+        binding.spellDescription.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                editedSpell.text = binding.spellDescription.text.toString()
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
         binding.SaveButton.setOnClickListener {
+            if (spell != editedSpell){
+                viewModel.updateSpell(editedSpell)
+            }
             dismiss()
         }
 
@@ -128,12 +192,21 @@ class SpellEditDialog(private val spell: Spell): DialogFragment(), AdapterView.O
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        //parent?.getItemAtPosition(position)
         when (parent?.id) {
             R.id.levelValueSpinner -> {
-                val level = position
-                when (level) {
-                }
+                editedSpell.level = position
+            }
+            R.id.schoolValueSpinner -> {
+                val school: String = parent.getItemAtPosition(position).toString()
+                editedSpell.school = school
+            }
+            R.id.ritualValueSpinner -> {
+                val ritual: Boolean = position == 0
+                editedSpell.ritual = ritual
+            }
+            R.id.sourceValueSpinner -> {
+                val source: String = parent.getItemAtPosition(position).toString()
+                editedSpell.source = source
             }
 
         }
