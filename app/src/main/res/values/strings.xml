@@ -62,6 +62,31 @@
         <item>Charisma</item>
     </string-array>
 
+    <string-array name="SpellSchoolList">
+        <item>Conjuration</item>
+        <item>Abjuration</item>
+        <item>Necromancy</item>
+        <item>Evocation</item>
+        <item>Enchantment</item>
+        <item>Transmutation</item>
+        <item>Illusion</item>
+        <item>Divination</item>
+    </string-array>
+
+    <string-array name="SpellRitualList">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="SpellSourceList">
+        <item>PHB</item>
+        <item>TOEE</item>
+        <item>SCAG</item>
+        <item>SCPC</item>
+        <item>XGTE</item>
+        <item>TCoE</item>
+        <item>HB</item>
+    </string-array>
 
     <string name="strength">Str</string>
     <string name="dexterity">Dex</string>
