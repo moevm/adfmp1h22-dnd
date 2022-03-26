@@ -254,6 +254,8 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         currentSpellList.value = currentSpellList.value?.filter {
             var result = true
             if (it != null){
+                if (currentFilter.name != null)
+                    result = result && (it.name.lowercase().contains(currentFilter.name!!.lowercase()))
                 if (currentFilter.level != null)
                     result = result && (currentFilter.level == it.level)
                 if (currentFilter.school != null)

@@ -3,6 +3,8 @@ package com.dwards.a5edpockethelper.fragments
 
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -118,6 +120,19 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
             val dialog = SpellFilterDialog(viewModel.currentFilter)
             dialog.show(parentFragmentManager, "spellFilterDialog")
         }
+
+        binding.spellTopNavBlock.searchValue.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (binding.spellTopNavBlock.searchValue.text.toString().length > 0){
+                    viewModel.showSpells(newFilter = viewModel.currentFilter.copy(name = binding.spellTopNavBlock.searchValue.text.toString()))
+                }
+                else if (binding.spellTopNavBlock.searchValue.text.toString().isEmpty()){
+                    viewModel.showSpells(newFilter = viewModel.currentFilter.copy(name = null))
+                }
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
 
         return binding.root
     }
