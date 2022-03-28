@@ -259,6 +259,14 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         }
     }
 
+    fun deleteSpell(spell: Spell){
+        runBlocking {
+            spellDao.delete(spell)
+            fetchSpells()
+            fetchCharacterSpells()
+        }
+    }
+
     private fun filterSpells(){
         currentSpellList.value = currentSpellList.value?.filter {
             var result = true

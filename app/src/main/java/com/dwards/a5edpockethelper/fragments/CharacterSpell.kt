@@ -164,6 +164,7 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
                 if (viewModel.isFavoriteSpell(id)){
                     viewModel.removeFavoriteSpell(id)
                     view.setBackgroundColor(Color.rgb(255,255,255))
+
                     //(view as ImageView).drawableTint()
                     //ImageViewCompat.setImageTintList(view as ImageView, ColorStateList.valueOf(Color.rgb(255,255,255)));
 
@@ -171,6 +172,9 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
                 else {
                     viewModel.addFavoriteSpell(id)
                     view.setBackgroundColor(Color.rgb(255,0,0))
+                    //(view as ImageView).setColorFilter(Color.rgb(255,0,0))
+                    //(view as ImageView).backgroundTintList = ColorStateList.valueOf(Color.rgb(255,0,0))
+
                 }
             }
 
