@@ -128,18 +128,20 @@ class WeaponNameRangeTypesDialog : DialogFragment(), AdapterView.OnItemSelectedL
 
         binding.SaveButton.setOnClickListener {
             viewModel.changeWeapon(
-                if (binding.weaponNameValue.text.toString() != "")  binding.weaponNameValue.text.toString() else "0",
+                if (binding.weaponNameValue.text.toString() != "")  binding.weaponNameValue.text.toString() else "Weapon",
                 if (binding.weaponRangeValue.text.toString() != "")  binding.weaponRangeValue.text.toString() else "0",
                 damageType,
                 attackAbility,
                 rangedType,
                 handedType,
-                if (binding.attackMagicBonusValue.text.toString() != "") binding.attackMagicBonusValue.text.toString() else "0",
-                if (binding.attackMiscBonusValue.text.toString() != "") binding.attackMiscBonusValue.text.toString() else "0",
-                if (binding.addProficiencyToAttackCheck.isChecked) true else false,
-                if (binding.damageMagicBonusValue.text.toString() != "") binding.damageMagicBonusValue.text.toString() else "0",
-                if (binding.damageMiscBonusValue.text.toString() != "") binding.damageMiscBonusValue.text.toString() else "0",
-                if (binding.addAbilityModToDamage.isChecked) true else false,
+                if (binding.attackMagicBonusValue.text.toString() != "") binding.attackMagicBonusValue.text.toString().toInt() else 0,
+                if (binding.attackMiscBonusValue.text.toString() != "") binding.attackMiscBonusValue.text.toString().toInt() else 0,
+                binding.addProficiencyToAttackCheck.isChecked,
+                if (binding.damageMagicBonusValue.text.toString() != "") binding.damageMagicBonusValue.text.toString().toInt() else 0,
+                if (binding.damageMiscBonusValue.text.toString() != "") binding.damageMiscBonusValue.text.toString().toInt() else 0,
+                binding.addAbilityModToDamage.isChecked,
+                if (binding.damageDice1CountValue.text.toString() != "") binding.damageDice1CountValue.text.toString().toInt() else 0,
+                if (binding.damageDice1ValueValue.text.toString() != "") binding.damageDice1ValueValue.text.toString().toInt() else 0,
             )
             dismiss()
         }

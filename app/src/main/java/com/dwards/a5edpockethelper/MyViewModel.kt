@@ -850,8 +850,20 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         return sum
     }
 
-    fun changeWeapon(){
-    currentWeapon.value.name
+    fun changeWeapon(name: String,
+                    range: String,
+                     damageType: Int,
+                     attackAbility: Int,
+                     rangedType: Int,
+                     handedType: Int,
+                     attackMagicBonusValue: Int,
+                     attackMiscBonusValue: Int,
+                     addProficiencyToAttackCheck: Boolean,
+                     damageMagicBonusValue: Int,
+                     damageMiscBonusValue: Int,
+                     addAbilityModToDamage: Boolean,
+                     damageDice1CountValue: Int,
+                     damageDice1ValueValue: Int){
     }
 
     private fun intToBoolean(b: Int): Boolean {
