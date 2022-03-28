@@ -13,7 +13,7 @@
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/CustomBlock1Value"
+        android:id="@+id/searchValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -35,7 +35,7 @@
         app:layout_constraintGuide_percent="0.02" />
 
     <ImageView
-        android:id="@+id/addInventoryItemButton"
+        android:id="@+id/addSpellButton"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_marginTop="5dp"
@@ -76,8 +76,8 @@
         android:textColor="#304F6B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/checkBox2"
-        app:layout_constraintStart_toEndOf="@+id/addInventoryItemButton"
-        app:layout_constraintTop_toBottomOf="@+id/CustomBlock1Value" />
+        app:layout_constraintStart_toEndOf="@+id/addSpellButton"
+        app:layout_constraintTop_toBottomOf="@+id/searchValue" />
 
     <CheckBox
         android:id="@+id/checkBox2"
@@ -89,6 +89,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/filterButton"
         app:layout_constraintStart_toEndOf="@+id/checkBox"
-        app:layout_constraintTop_toBottomOf="@+id/CustomBlock1Value" />
+        app:layout_constraintTop_toBottomOf="@+id/searchValue" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

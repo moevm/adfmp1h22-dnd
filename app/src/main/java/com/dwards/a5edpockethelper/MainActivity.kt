@@ -41,10 +41,11 @@ class MainActivity : AppCompatActivity() {
         val weaponDao: WeaponDAO = db!!.weaponDao()
         val characterAndWeaponsDao: CharacterAndWeaponsDAO = db!!.characterAndWeaponsDao()
         val characterDao: CharacterDAO = db!!.characterDao()
+        val spellDao: SpellDAO = db!!.spellDao()
         var charID: Int = 0
 
         // создание ViewModel через фабрику
-        viewModelFactory = MyViewModelFactory(characterAndWeaponsDao, weaponDao, characterDao, application)
+        viewModelFactory = MyViewModelFactory(characterAndWeaponsDao, weaponDao, characterDao, spellDao, application)
         val viewModel = ViewModelProvider(this, viewModelFactory).get(MyViewModel::class.java)
         viewModel.startDB()
 
