@@ -110,7 +110,16 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
     }
 
     fun getSpellById(id: Int): Spell? {
-        return allSpellList.value?.get(id-1) //id - позиция в базе, id-1 - позиция в списке. Не сработает при добавлении и удалении заклинаний!!!
+        if (allSpellList.value == null){
+            return null
+        }
+        for (v in allSpellList.value!!){
+            if (v?.id == id){
+                return v
+            }
+        }
+        return null
+        //return allSpellList.value?.get(id-1) //id - позиция в базе, id-1 - позиция в списке. Не сработает при добавлении и удалении заклинаний!!!
     }
 
     fun fetchCharacterSpells(){

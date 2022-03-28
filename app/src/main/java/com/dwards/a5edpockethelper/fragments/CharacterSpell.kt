@@ -1,12 +1,15 @@
 package com.dwards.a5edpockethelper.fragments
 
 
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.widget.ImageViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -124,7 +127,7 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
         binding.spellTopNavBlock.searchValue.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (binding.spellTopNavBlock.searchValue.text.toString().length > 0){
+                if (binding.spellTopNavBlock.searchValue.text.toString().isNotEmpty()){
                     viewModel.showSpells(newFilter = viewModel.currentFilter.copy(name = binding.spellTopNavBlock.searchValue.text.toString()))
                 }
                 else if (binding.spellTopNavBlock.searchValue.text.toString().isEmpty()){
@@ -161,6 +164,8 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
                 if (viewModel.isFavoriteSpell(id)){
                     viewModel.removeFavoriteSpell(id)
                     view.setBackgroundColor(Color.rgb(255,255,255))
+                    //(view as ImageView).drawableTint()
+                    //ImageViewCompat.setImageTintList(view as ImageView, ColorStateList.valueOf(Color.rgb(255,255,255)));
 
                 }
                 else {
