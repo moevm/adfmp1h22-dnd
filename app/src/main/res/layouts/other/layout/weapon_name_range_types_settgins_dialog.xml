@@ -1,149 +1,458 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/dialog_place"
-    android:layout_width="300dp"
-    android:layout_height="350dp"
-    android:layout_marginTop="200dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="100dp"
+    android:layout_marginBottom="100dp"
+    android:maxHeight="400dp"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/handedTypeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Handed Type"
-        app:layout_constraintEnd_toStartOf="@+id/HandedTypeSpinner"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rangedTypeText" />
-
-    <TextView
-        android:id="@+id/rangedTypeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Ranged Type"
-        app:layout_constraintEnd_toStartOf="@+id/RangedTypeSpinner"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/attackStatValue" />
-
-    <EditText
-        android:id="@+id/weaponNameValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:autofillHints=""
-        android:ems="8"
-        android:gravity="center"
-        android:hint="@string/custom_block_hint"
-        android:inputType="text"
-        android:text="@string/customblock1"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/weaponRangeValue"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <EditText
-        android:id="@+id/weaponRangeValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:autofillHints=""
-        android:ems="8"
-        android:gravity="center"
-        android:hint="@string/custom_block_hint"
-        android:inputType="text"
-        android:text="@string/customblock1"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/weaponNameValue"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <Spinner
-        android:id="@+id/DamageTypeSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/damageTypeText"
-        app:layout_constraintTop_toTopOf="@+id/damageTypeText" />
-
-    <Spinner
-        android:id="@+id/AttackAbilitySpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/attackStatValue"
-        app:layout_constraintTop_toTopOf="@+id/attackStatValue" />
-
-    <Spinner
-        android:id="@+id/RangedTypeSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/rangedTypeText"
-        app:layout_constraintTop_toTopOf="@+id/rangedTypeText" />
-
-    <Spinner
-        android:id="@+id/HandedTypeSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/handedTypeText"
-        app:layout_constraintTop_toTopOf="@+id/handedTypeText" />
-
-    <View
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/separator_gray"
-        app:layout_constraintBottom_toTopOf="@+id/SaveButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/SaveButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_button"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:text="@string/save_button_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/handedTypeText" />
+        <EditText
+            android:id="@+id/damageDice1ValueValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="2"
+            android:gravity="center"
+            android:inputType="number"
+            android:text="0"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/diceText"
+            app:layout_constraintTop_toTopOf="@+id/damageDice1CountValue" />
 
-    <TextView
-        android:id="@+id/damageTypeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Damage Type"
-        app:layout_constraintEnd_toStartOf="@+id/DamageTypeSpinner"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weaponNameValue" />
+        <TextView
+            android:id="@+id/diceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="d"
+            android:textColor="@color/black"
+            android:textSize="@dimen/HP_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/damageDice1CountValue"
+            app:layout_constraintStart_toEndOf="@+id/damageDice1CountValue"
+            app:layout_constraintTop_toTopOf="@+id/damageDice1CountValue" />
 
-    <TextView
-        android:id="@+id/attackStatValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Attack Ability"
-        app:layout_constraintEnd_toStartOf="@+id/AttackAbilitySpinner"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/damageTypeText" />
+        <EditText
+            android:id="@+id/damageDice1CountValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:ems="2"
+            android:gravity="center"
+            android:inputType="number"
+            android:text="0"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/damageDieText"
+            app:layout_constraintTop_toBottomOf="@+id/addAbilityModToDamage" />
+
+        <TextView
+            android:id="@+id/damageMagicBonusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:text="Magic\nBonus"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/damageMagicBonusValue"
+            app:layout_constraintStart_toStartOf="@+id/damageMagicBonusValue"
+            app:layout_constraintTop_toTopOf="@+id/damageProfBonusText" />
+
+        <EditText
+            android:id="@+id/damageMiscBonusValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="2"
+            android:gravity="center"
+            android:inputType="number"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/damageMagicBonusValue"
+            app:layout_constraintTop_toBottomOf="@+id/damageMiscBonusText" />
+
+        <TextView
+            android:id="@+id/damageProfBonusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:text="Prof.\nBonus"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/damageProfBonusValue"
+            app:layout_constraintStart_toStartOf="@+id/damageProfBonusValue"
+            app:layout_constraintTop_toBottomOf="@+id/attackBonusText4" />
+
+        <TextView
+            android:id="@+id/damageDieText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:text="Weapon Damage Die"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/damageDice1CountValue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/damageDice1CountValue" />
+
+        <EditText
+            android:id="@+id/damageMagicBonusValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="2"
+            android:gravity="center"
+            android:inputType="number"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/damageMiscBonusValue"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/damageProfBonusValue"
+            app:layout_constraintTop_toBottomOf="@+id/damageMiscBonusText" />
+
+        <EditText
+            android:id="@+id/attackProfBonusValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="2"
+            android:gravity="center"
+            android:inputType="number"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/attackAbilityBonusValue"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/attackProfBonusText" />
+
+        <TextView
+            android:id="@+id/damageMiscBonusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:text="Misc.\nBonus"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/damageMiscBonusValue"
+            app:layout_constraintStart_toStartOf="@+id/damageMiscBonusValue"
+            app:layout_constraintTop_toTopOf="@+id/damageProfBonusText" />
+
+        <CheckBox
+            android:id="@+id/addProficiencyToAttackCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Proficient with Weapon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/attackAbilityBonusValue" />
+
+        <CheckBox
+            android:id="@+id/addAbilityModToDamage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Add Ability Mod to Damage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/damageMagicBonusValue" />
+
+        <TextView
+            android:id="@+id/attackMagicBonusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:text="Magic\nBonus"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/attackMagicBonusValue"
+            app:layout_constraintStart_toStartOf="@+id/attackMagicBonusValue"
+            app:layout_constraintTop_toTopOf="@+id/attackAbilityBonusText" />
+
+        <EditText
+            android:id="@+id/attackMiscBonusValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="2"
+            android:gravity="center"
+            android:inputType="number"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/attackMagicBonusValue"
+            app:layout_constraintTop_toBottomOf="@+id/attackMiscBonusText" />
+
+        <TextView
+            android:id="@+id/attackAbilityBonusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:text="Abilit.\nBonus"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/attackAbilityBonusValue"
+            app:layout_constraintStart_toStartOf="@+id/attackAbilityBonusValue"
+            app:layout_constraintTop_toTopOf="@+id/attackProfBonusText" />
+
+        <EditText
+            android:id="@+id/attackMagicBonusValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="2"
+            android:gravity="center"
+            android:inputType="number"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/attackMiscBonusValue"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/attackAbilityBonusValue"
+            app:layout_constraintTop_toBottomOf="@+id/attackMiscBonusText" />
+
+        <EditText
+            android:id="@+id/attackAbilityBonusValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="2"
+            android:gravity="center"
+            android:inputType="number"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/attackMagicBonusValue"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/damageProfBonusValue"
+            app:layout_constraintTop_toBottomOf="@+id/attackAbilityBonusText" />
+
+        <TextView
+            android:id="@+id/attackProfBonusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:text="Prof.\nBonus"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/attackProfBonusValue"
+            app:layout_constraintStart_toStartOf="@+id/attackProfBonusValue"
+            app:layout_constraintTop_toBottomOf="@+id/attackBonusText" />
+
+        <EditText
+            android:id="@+id/damageProfBonusValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="2"
+            android:gravity="center"
+            android:inputType="number"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/damageMagicBonusValue"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/damageMiscBonusText" />
+
+        <TextView
+            android:id="@+id/attackMiscBonusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:text="Misc\nBonus"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/attackMiscBonusValue"
+            app:layout_constraintStart_toStartOf="@+id/attackMiscBonusValue"
+            app:layout_constraintTop_toTopOf="@+id/attackAbilityBonusText" />
+
+        <TextView
+            android:id="@+id/attackBonusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Attack Bonus"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/HandedTypeSpinner" />
+
+        <TextView
+            android:id="@+id/attackBonusText4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Attack Damage"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addProficiencyToAttackCheck" />
+
+        <TextView
+            android:id="@+id/handedTypeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Handed Type"
+            app:layout_constraintBottom_toBottomOf="@+id/HandedTypeSpinner"
+            app:layout_constraintStart_toStartOf="@+id/rangedTypeText"
+            app:layout_constraintTop_toTopOf="@+id/HandedTypeSpinner" />
+
+        <TextView
+            android:id="@+id/rangedTypeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ranged Type"
+            app:layout_constraintBottom_toBottomOf="@+id/RangedTypeSpinner"
+            app:layout_constraintStart_toStartOf="@+id/attackStatValue"
+            app:layout_constraintTop_toTopOf="@+id/RangedTypeSpinner" />
+
+        <EditText
+            android:id="@+id/weaponNameValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_weight="1"
+            android:autofillHints=""
+            android:ems="6"
+            android:gravity="center"
+            android:hint="@string/custom_block_hint"
+            android:inputType="text"
+            android:text="Name"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/damageTypeText"
+            app:layout_constraintStart_toStartOf="@+id/damageTypeText"
+            app:layout_constraintTop_toBottomOf="@+id/weaponNameText" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/weaponRangeValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_weight="1"
+            android:autofillHints=""
+            android:ems="4"
+            android:gravity="center"
+            android:hint="@string/custom_block_hint"
+            android:inputType="text"
+            android:text="20/60"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/DamageTypeSpinner"
+            app:layout_constraintStart_toStartOf="@+id/DamageTypeSpinner"
+            app:layout_constraintTop_toBottomOf="@+id/weaponRangeText" />
+
+
+        <Spinner
+            android:id="@+id/DamageTypeSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/damageTypeText"
+            app:layout_constraintTop_toBottomOf="@+id/weaponRangeValue" />
+
+        <Spinner
+            android:id="@+id/AttackAbilitySpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="@+id/DamageTypeSpinner"
+            app:layout_constraintTop_toBottomOf="@+id/DamageTypeSpinner" />
+
+        <Spinner
+            android:id="@+id/RangedTypeSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            app:layout_constraintStart_toStartOf="@+id/AttackAbilitySpinner"
+            app:layout_constraintTop_toBottomOf="@+id/AttackAbilitySpinner" />
+
+        <Spinner
+            android:id="@+id/HandedTypeSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="@+id/RangedTypeSpinner"
+            app:layout_constraintTop_toBottomOf="@+id/RangedTypeSpinner" />
+
+        <View
+            android:id="@+id/view6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/separator_gray"
+            app:layout_constraintBottom_toTopOf="@+id/SaveButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/SaveButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:background="@drawable/custom_button"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="@string/save_button_text"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addAbilityModToDamage" />
+
+        <TextView
+            android:id="@+id/damageTypeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Damage Type"
+            app:layout_constraintBottom_toBottomOf="@+id/DamageTypeSpinner"
+            app:layout_constraintEnd_toStartOf="@+id/DamageTypeSpinner"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/DamageTypeSpinner" />
+
+        <TextView
+            android:id="@+id/attackStatValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Attack Ability"
+            app:layout_constraintBottom_toBottomOf="@+id/AttackAbilitySpinner"
+            app:layout_constraintStart_toStartOf="@+id/damageTypeText"
+            app:layout_constraintTop_toTopOf="@+id/AttackAbilitySpinner" />
+
+        <TextView
+            android:id="@+id/weaponNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weapon Name"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/weaponRangeText"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/weaponRangeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Range"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/weaponNameText"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

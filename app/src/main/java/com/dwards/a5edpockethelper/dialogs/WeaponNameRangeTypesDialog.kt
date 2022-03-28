@@ -52,11 +52,12 @@ class WeaponNameRangeTypesDialog : DialogFragment(), AdapterView.OnItemSelectedL
         //создание вью-модел и добавление обсервера
         viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
+
         //грузим данные
-        loadChar(viewModel.weaponList.value?.get(num)!!)
+        loadChar(viewModel.weaponList.value?.get(num)!!, viewModel.getCharacter().value!!)
 
         //Выпадающий список Урон
-        val armorTypeList: Spinner = binding.DamageTypeSpinner
+        val damageTypeList: Spinner = binding.DamageTypeSpinner
         ArrayAdapter.createFromResource(
             requireActivity(),
             R.array.DamageTypeList,
@@ -65,14 +66,14 @@ class WeaponNameRangeTypesDialog : DialogFragment(), AdapterView.OnItemSelectedL
             // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             // Apply the adapter to the spinner
-            armorTypeList.adapter = adapter
+            damageTypeList.adapter = adapter
         }
-        armorTypeList.onItemSelectedListener = this
-        armorTypeList.setSelection(damageType)
+        damageTypeList.onItemSelectedListener = this
+        damageTypeList.setSelection(damageType)
 
 
         //Выпадающий список Бонус от Характеристики
-        val additionalStatTypeList: Spinner = binding.AttackAbilitySpinner
+        val attackAbilityList: Spinner = binding.AttackAbilitySpinner
         ArrayAdapter.createFromResource(
             requireActivity(),
             R.array.StatsList,
@@ -81,10 +82,10 @@ class WeaponNameRangeTypesDialog : DialogFragment(), AdapterView.OnItemSelectedL
             // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             // Apply the adapter to the spinner
-            additionalStatTypeList.adapter = adapter
+            attackAbilityList.adapter = adapter
         }
-        additionalStatTypeList.onItemSelectedListener = this
-        additionalStatTypeList.setSelection(attackAbility)
+        attackAbilityList.onItemSelectedListener = this
+        attackAbilityList.setSelection(attackAbility)
 
 
         //Выпадающий список Дальность
@@ -97,10 +98,10 @@ class WeaponNameRangeTypesDialog : DialogFragment(), AdapterView.OnItemSelectedL
             // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             // Apply the adapter to the spinner
-            additionalStatTypeList.adapter = adapter
+            rangedTypeList.adapter = adapter
         }
-        additionalStatTypeList.onItemSelectedListener = this
-        additionalStatTypeList.setSelection(rangedType)
+        rangedTypeList.onItemSelectedListener = this
+        rangedTypeList.setSelection(rangedType)
 
 
         //Выпадающий список Тип хвата
@@ -113,10 +114,10 @@ class WeaponNameRangeTypesDialog : DialogFragment(), AdapterView.OnItemSelectedL
             // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             // Apply the adapter to the spinner
-            additionalStatTypeList.adapter = adapter
+            HandedTypeList.adapter = adapter
         }
-        additionalStatTypeList.onItemSelectedListener = this
-        additionalStatTypeList.setSelection(handedType)
+        HandedTypeList.onItemSelectedListener = this
+        HandedTypeList.setSelection(handedType)
 
 
         viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
@@ -125,11 +126,21 @@ class WeaponNameRangeTypesDialog : DialogFragment(), AdapterView.OnItemSelectedL
             }
         })
 
-
-
-
         binding.SaveButton.setOnClickListener {
-            //todo
+            viewModel.changeWeapon(
+                if (binding.weaponNameValue.text.toString() != "")  binding.weaponNameValue.text.toString() else "0",
+                if (binding.weaponRangeValue.text.toString() != "")  binding.weaponRangeValue.text.toString() else "0",
+                damageType,
+                attackAbility,
+                rangedType,
+                handedType,
+                if (binding.attackMagicBonusValue.text.toString() != "") binding.attackMagicBonusValue.text.toString() else "0",
+                if (binding.attackMiscBonusValue.text.toString() != "") binding.attackMiscBonusValue.text.toString() else "0",
+                if (binding.addProficiencyToAttackCheck.isChecked) true else false,
+                if (binding.damageMagicBonusValue.text.toString() != "") binding.damageMagicBonusValue.text.toString() else "0",
+                if (binding.damageMiscBonusValue.text.toString() != "") binding.damageMiscBonusValue.text.toString() else "0",
+                if (binding.addAbilityModToDamage.isChecked) true else false,
+            )
             dismiss()
         }
 
@@ -156,33 +167,12 @@ class WeaponNameRangeTypesDialog : DialogFragment(), AdapterView.OnItemSelectedL
         _binding = null
     }
 
-    /* todo
-     private fun refreshChar(character: Character) {
-        binding.ArmorBonusValue.setText(character.armorBonus.toString())
-        binding.ShieldBonusValue.setText(character.shieldBonus.toString())
-        binding.DexterityBonusValue.setText(viewModel.calcModifier(character.dexterity))
-        binding.MaxDexterityBonusValue.setText(character.maxDexterityBonus.toString())
-        binding.MiscBonusValue.setText(character.miscArmorBonus.toString())
-        binding.ArmorValue.setText(
-            viewModel.calcArmor(
-                character.armorBonus,
-                character.shieldBonus,
-                character.maxDexterityBonus,
-                character.miscArmorBonus,
-                armorType,
-                additionalStatBonus
-            ).toString()
-        )
-    }
-     */
-
-
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         when (parent?.id) {
-            R.id.DamageTypeSpinner -> {
-                damageType = position
-            }
-            R.id.AdditionalStatBonusSpinner -> damageType = position
+            R.id.DamageTypeSpinner -> damageType = position
+            R.id.AttackAbilitySpinner -> attackAbility = position
+            R.id.RangedTypeSpinner -> rangedType = position
+            R.id.HandedTypeSpinner -> handedType = position
         }
         //refreshArmor()
     }
@@ -191,12 +181,36 @@ class WeaponNameRangeTypesDialog : DialogFragment(), AdapterView.OnItemSelectedL
     }
 
 
-    private fun loadChar(weapon: Weapon) {
+    private fun loadChar(weapon: Weapon, character: Character) {
         damageType = weapon.damageTypePosition
         attackAbility = weapon.statAttackBonus
         rangedType = weapon.rangeType
         handedType = weapon.handedType
         binding.weaponNameValue.setText(weapon.name)
+        binding.weaponRangeText.setText(weapon.range)
+        binding.attackProfBonusValue.setText(character.proficiency.toString())
+        binding.attackAbilityBonusValue.setText( when (attackAbility) {
+            1 -> viewModel.calcModifier(character.strength)
+            2 -> viewModel.calcModifier(character.dexterity)
+            3 -> viewModel.calcModifier(character.constitution)
+            4 -> viewModel.calcModifier(character.intelligence)
+            5 -> viewModel.calcModifier(character.wisdom)
+            6 -> viewModel.calcModifier(character.charisma)
+            else -> "0"
+        })
+        binding.attackMagicBonusValue.setText(weapon.magicAttackBonus.toString())
+        binding.attackMiscBonusValue.setText(weapon.miscAttackBonus.toString())
+        if (weapon.weaponProf) {
+            binding.addProficiencyToAttackCheck.isChecked = true
+        }
+        binding.damageProfBonusValue.setText(character.proficiency.toString())
+        binding.damageMagicBonusValue.setText(weapon.magicDamageBonus.toString())
+        binding.damageMiscBonusValue.setText(weapon.miscDamageBonus.toString())
+        if (weapon.statApplyToDmg) {
+            binding.addAbilityModToDamage.isChecked = true
+        }
+        binding.damageDice1CountValue.setText(weapon.damageDice1Count.toString())
+        binding.damageDice1ValueValue.setText(weapon.damageDice1Count.toString())
     }
 
     /* todo

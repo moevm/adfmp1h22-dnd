@@ -11,7 +11,7 @@ data class Weapon(
     var id: Int = 0,
     var charOwnerID: Int = 0,
     var name: String = "Magnolia",
-    var reach: Int = 0,
+    var range: String = "0",
     var damageType: String = "Slashing",
     var damageTypePosition: Int = 0,
     var attackStat: String = "",
@@ -32,14 +32,14 @@ data class Weapon(
     var magicDamageBonus: Int = 3,
     var miscDamageBonus: Int = 0,
 
-    var hitDice1Count: Int = 0,
-    var hitDice1Size: Int = 0,
-    var hitDice2Have: Boolean = false,
-    var hitDice2Count: Int = 0,
-    var hitDice2Size: Int = 0,
-    var hitDice3Have: Boolean = false,
-    var hitDice3Count: Int = 0,
-    var hitDice3Size: Int = 0,
+    var damageDice1Count: Int = 0,
+    var damageDice1Size: Int = 0,
+    var damageDice2Have: Boolean = false,
+    var damageDice2Count: Int = 0,
+    var damageDice2Size: Int = 0,
+    var damageDice3Have: Boolean = false,
+    var damageDice3Count: Int = 0,
+    var damageDice3Size: Int = 0,
 )
 
 

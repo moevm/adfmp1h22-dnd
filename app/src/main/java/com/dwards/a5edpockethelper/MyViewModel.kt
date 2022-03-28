@@ -109,7 +109,7 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
     }
 
     fun deleteCharacter(id: Int) {
-        viewModelScope.launch {
+        runBlocking {
             val deletedChar: Character? = characterDao.getById(id)
             characterDao.delete(deletedChar!!)
             characterList.value = characterDao.getAll()
@@ -656,11 +656,9 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         return sum
     }
 
-
-
-
-
-
+    fun changeWeapon(){
+    currentWeapon.value.name
+    }
 
     private fun intToBoolean(b: Int): Boolean {
         return b == 1
