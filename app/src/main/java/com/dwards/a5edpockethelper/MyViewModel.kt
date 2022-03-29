@@ -260,7 +260,12 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
     }
 
     fun deleteSpell(spell: Spell){
+        if (currentChar.value != null){
+            currentChar.value!!.spellsFavorite.remove(spell.id)
+            currentChar.value!!.spellsPrepared.remove(spell.id)
+        }
         runBlocking {
+
             spellDao.delete(spell)
             fetchSpells()
             fetchCharacterSpells()
