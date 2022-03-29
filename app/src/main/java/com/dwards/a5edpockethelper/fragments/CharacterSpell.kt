@@ -9,6 +9,7 @@ import android.text.TextWatcher
 import android.view.*
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.widget.ImageViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -163,15 +164,16 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
             R.id.favoriteIcon -> {
                 if (viewModel.isFavoriteSpell(id)){
                     viewModel.removeFavoriteSpell(id)
-                    view.setBackgroundColor(Color.rgb(255,255,255))
-
+                    //view.setBackgroundColor(Color.rgb(255,255,255))
+                    (view as ImageView).setImageDrawable(ContextCompat.getDrawable(view.context, R.drawable.ic_star))
                     //(view as ImageView).drawableTint()
                     //ImageViewCompat.setImageTintList(view as ImageView, ColorStateList.valueOf(Color.rgb(255,255,255)));
 
                 }
                 else {
                     viewModel.addFavoriteSpell(id)
-                    view.setBackgroundColor(Color.rgb(255,0,0))
+                    (view as ImageView).setImageDrawable(ContextCompat.getDrawable(view.context, R.drawable.ic_star_active))
+                    //view.setBackgroundColor(Color.rgb(255,0,0))
                     //(view as ImageView).setColorFilter(Color.rgb(255,0,0))
                     //(view as ImageView).backgroundTintList = ColorStateList.valueOf(Color.rgb(255,0,0))
 
@@ -181,11 +183,13 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
             R.id.preparedIcon -> {
                 if (viewModel.isPreparedSpell(id)){
                     viewModel.removePreparedSpell(id)
-                    view.setBackgroundColor(Color.rgb(255,255,255))
+                    (view as ImageView).setImageDrawable(ContextCompat.getDrawable(view.context, R.drawable.ic_book))
+                    //view.setBackgroundColor(Color.rgb(255,255,255))
                 }
                 else {
                     viewModel.addPreparedSpell(id)
-                    view.setBackgroundColor(Color.rgb(255,0,0))
+                    (view as ImageView).setImageDrawable(ContextCompat.getDrawable(view.context, R.drawable.ic_book_active))
+                    //view.setBackgroundColor(Color.rgb(255,0,0))
                 }
             }
         }
