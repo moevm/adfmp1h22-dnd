@@ -3,7 +3,6 @@
     <item
         android:id="@+id/characterScreen"
         android:icon="@drawable/ic_character"
-
         android:title="" />
     <item
         android:id="@+id/characterSkills"

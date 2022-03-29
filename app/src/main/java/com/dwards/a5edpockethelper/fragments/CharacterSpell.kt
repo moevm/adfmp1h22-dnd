@@ -1,15 +1,12 @@
 package com.dwards.a5edpockethelper.fragments
 
 
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
-import android.widget.ImageView
 import android.widget.Toast
-import androidx.core.widget.ImageViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -27,7 +24,6 @@ import com.dwards.a5edpockethelper.dialogs.SpellInfoDialog
 import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 
 class CharacterSpell : Fragment(), RecyclerViewClickListener {
-    private val TAG = "MainFragment"
 
     private var _binding: FragmentCharacterSpellBinding? = null
     private val binding get() = _binding!!
@@ -42,6 +38,8 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main_menu, menu)
+        inflater.inflate(R.menu.import_export_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -50,15 +48,21 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
                 CharacterListDialog().show(parentFragmentManager, "ProficiencySettingsDialog")
                 true
             }
+            R.id.export_data -> {
+                true
+            }
+            R.id.import_data -> {
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+        setHasOptionsMenu(true)
 
         _binding = FragmentCharacterSpellBinding.inflate(inflater, container, false)
         spellList = binding.WeaponRecycler
@@ -68,7 +72,7 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
 
         //viewModel.getCharacter().observe(viewLifecycleOwner, Observer {
         //    it?.let {
-                //refreshChar(it)
+        //refreshChar(it)
         //    }
         //})
 
@@ -87,14 +91,11 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
         binding.spellTopNavBlock.checkBox.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked && binding.spellTopNavBlock.checkBox2.isChecked) {
                 viewModel.showSpells(newCurrentSpellListName = SpellListNames.FAVORITE_PREPARED)
-            }
-            else if (isChecked) {
+            } else if (isChecked) {
                 viewModel.showSpells(newCurrentSpellListName = SpellListNames.FAVORITE)
-            }
-            else if (binding.spellTopNavBlock.checkBox2.isChecked) {
+            } else if (binding.spellTopNavBlock.checkBox2.isChecked) {
                 viewModel.showSpells(newCurrentSpellListName = SpellListNames.PREPARED)
-            }
-            else {
+            } else {
                 viewModel.showSpells(newCurrentSpellListName = SpellListNames.ALL)
             }
         }
@@ -102,24 +103,22 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
         binding.spellTopNavBlock.checkBox2.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked && binding.spellTopNavBlock.checkBox.isChecked) {
                 viewModel.showSpells(newCurrentSpellListName = SpellListNames.FAVORITE_PREPARED)
-            }
-            else if (isChecked) {
+            } else if (isChecked) {
                 viewModel.showSpells(newCurrentSpellListName = SpellListNames.PREPARED)
-            }
-            else if (binding.spellTopNavBlock.checkBox.isChecked) {
+            } else if (binding.spellTopNavBlock.checkBox.isChecked) {
                 viewModel.showSpells(newCurrentSpellListName = SpellListNames.FAVORITE)
-            }
-            else {
+            } else {
                 viewModel.showSpells(newCurrentSpellListName = SpellListNames.ALL)
             }
         }
 
-        binding.spellTopNavBlock.addSpellButton.setOnClickListener{
+        binding.spellTopNavBlock.addSpellButton.setOnClickListener {
             viewModel.addEmptySpell()
-            Toast.makeText(context, "You created empty spell with HB source", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "You created empty spell with HB source", Toast.LENGTH_SHORT)
+                .show()
         }
 
-        binding.spellTopNavBlock.filterButton.setOnClickListener{
+        binding.spellTopNavBlock.filterButton.setOnClickListener {
             val dialog = SpellFilterDialog(viewModel.currentFilter)
             dialog.show(parentFragmentManager, "spellFilterDialog")
         }
@@ -127,13 +126,13 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
         binding.spellTopNavBlock.searchValue.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (binding.spellTopNavBlock.searchValue.text.toString().isNotEmpty()){
+                if (binding.spellTopNavBlock.searchValue.text.toString().isNotEmpty()) {
                     viewModel.showSpells(newFilter = viewModel.currentFilter.copy(name = binding.spellTopNavBlock.searchValue.text.toString()))
-                }
-                else if (binding.spellTopNavBlock.searchValue.text.toString().isEmpty()){
+                } else if (binding.spellTopNavBlock.searchValue.text.toString().isEmpty()) {
                     viewModel.showSpells(newFilter = viewModel.currentFilter.copy(name = null))
                 }
             }
+
             override fun afterTextChanged(s: Editable?) {}
         })
 
@@ -161,17 +160,16 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
                 }
             }
             R.id.favoriteIcon -> {
-                if (viewModel.isFavoriteSpell(id)){
+                if (viewModel.isFavoriteSpell(id)) {
                     viewModel.removeFavoriteSpell(id)
-                    view.setBackgroundColor(Color.rgb(255,255,255))
+                    view.setBackgroundColor(Color.rgb(255, 255, 255))
 
                     //(view as ImageView).drawableTint()
                     //ImageViewCompat.setImageTintList(view as ImageView, ColorStateList.valueOf(Color.rgb(255,255,255)));
 
-                }
-                else {
+                } else {
                     viewModel.addFavoriteSpell(id)
-                    view.setBackgroundColor(Color.rgb(255,0,0))
+                    view.setBackgroundColor(Color.rgb(255, 0, 0))
                     //(view as ImageView).setColorFilter(Color.rgb(255,0,0))
                     //(view as ImageView).backgroundTintList = ColorStateList.valueOf(Color.rgb(255,0,0))
 
@@ -179,13 +177,12 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
             }
 
             R.id.preparedIcon -> {
-                if (viewModel.isPreparedSpell(id)){
+                if (viewModel.isPreparedSpell(id)) {
                     viewModel.removePreparedSpell(id)
-                    view.setBackgroundColor(Color.rgb(255,255,255))
-                }
-                else {
+                    view.setBackgroundColor(Color.rgb(255, 255, 255))
+                } else {
                     viewModel.addPreparedSpell(id)
-                    view.setBackgroundColor(Color.rgb(255,0,0))
+                    view.setBackgroundColor(Color.rgb(255, 0, 0))
                 }
             }
         }

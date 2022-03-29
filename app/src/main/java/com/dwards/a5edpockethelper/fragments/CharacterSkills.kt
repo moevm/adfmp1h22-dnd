@@ -17,7 +17,6 @@ import com.dwards.a5edpockethelper.dialogs.ToolsProficiencyList
 import com.dwards.a5edpockethelper.model.Character
 
 class CharacterSkills : Fragment() {
-    private val TAG = "MainFragment"
 
     private var _binding: FragmentCharacterSkillsBinding? = null
     private val binding get() = _binding!!
@@ -35,8 +34,7 @@ class CharacterSkills : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.characterList -> {
-                val characterListDialog = CharacterListDialog()
-                characterListDialog.show(parentFragmentManager, "ProficiencySettingsDialog")
+                CharacterListDialog().show(parentFragmentManager, "ProficiencySettingsDialog")
                 true
             }
             else -> super.onOptionsItemSelected(item)
