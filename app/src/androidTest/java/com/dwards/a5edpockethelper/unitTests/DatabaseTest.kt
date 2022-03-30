@@ -1,4 +1,4 @@
-package com.dwards.a5edpockethelper
+package com.dwards.a5edpockethelper.unitTests
 
 import android.content.Context
 import androidx.room.Room

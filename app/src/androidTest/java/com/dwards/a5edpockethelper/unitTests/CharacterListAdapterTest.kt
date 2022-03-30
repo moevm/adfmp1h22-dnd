@@ -1,4 +1,4 @@
-package com.dwards.a5edpockethelper
+package com.dwards.a5edpockethelper.unitTests
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.dwards.a5edpockethelper.adapters.CharacterListAdapter
