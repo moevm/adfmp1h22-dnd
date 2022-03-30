@@ -1,5 +1,6 @@
 package com.dwards.a5edpockethelper.dialogs
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -20,7 +21,7 @@ class SpellEditDialog(private val spell: Spell): DialogFragment(), AdapterView.O
     private var _binding: SpellEditDialogBinding? = null
     private val binding get() = _binding!!
     private var editedSpell: Spell = spell.copy()
-
+    private val this_ = this
     private val TAG = "MyCustomDialog"
 
     override fun onCreateView(
@@ -167,6 +168,24 @@ class SpellEditDialog(private val spell: Spell): DialogFragment(), AdapterView.O
                 viewModel.updateSpell(editedSpell)
             }
             dismiss()
+        }
+
+        binding.deleteButton.setOnClickListener{
+            val alertDialog = AlertDialog.Builder(context)
+
+            alertDialog.apply {
+                setTitle("Delete Spell")
+                setMessage("Are you sure?")
+                setPositiveButton("Yes") { _, _ ->
+                    dismiss()
+                    this_.dismiss()
+                    viewModel.deleteSpell(spell)
+                }
+                setNegativeButton("No") { _, _ ->
+                    dismiss()
+                }
+            }.create().show()
+
         }
 
 

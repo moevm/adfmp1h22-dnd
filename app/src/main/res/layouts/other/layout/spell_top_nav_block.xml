@@ -19,7 +19,7 @@
         android:layout_weight="1"
         android:ems="8"
         android:gravity="center"
-        android:text="@string/search"
+        android:hint="@string/search"
         android:textColor="#304F6B"
         android:textSize="18sp"
         app:backgroundTint="#6592BB"
