@@ -332,13 +332,6 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
 
     }
 
-    private fun fetchWeapon(id: Int){
-        runBlocking {
-            currentWeapon.value = weaponDao.getById(id)
-        }
-    }
-
-
 
     private fun fetchAllWeapons(id: Int){
         //var flag = true //todo не помню зачем этот флаг
@@ -359,13 +352,6 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         //    }
     }
 
-    private fun pushToDB(updatedWeapon: Weapon){
-        viewModelScope.launch{
-            weaponDao.updateWeapon(updatedWeapon)
-            fetchWeapon(updatedWeapon.id)
-            fetchAllWeapons(currentId)
-        }
-    }
 
     fun addWeapon(){
         //val updatedChar = currentChar.value!!
@@ -851,7 +837,7 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
     }
 
     fun changeWeapon(name: String,
-                    range: String,
+                     range: String,
                      damageType: Int,
                      attackAbility: Int,
                      rangedType: Int,
@@ -863,7 +849,41 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
                      damageMiscBonusValue: Int,
                      addAbilityModToDamage: Boolean,
                      damageDice1CountValue: Int,
-                     damageDice1ValueValue: Int){
+                     damageDice1SizeValue: Int,
+                     description: String){
+        currentWeapon.value?.name  = name
+        currentWeapon.value?.range = range
+        currentWeapon.value?.damageTypePosition = damageType
+        currentWeapon.value?.attackStatType = attackAbility
+        currentWeapon.value?.rangeType = rangedType
+        currentWeapon.value?.handedType = handedType
+        currentWeapon.value?.magicAttackBonus = attackMagicBonusValue
+        currentWeapon.value?.miscAttackBonus = attackMiscBonusValue
+        currentWeapon.value?.weaponProf = addProficiencyToAttackCheck
+        currentWeapon.value?.magicDamageBonus = damageMagicBonusValue
+        currentWeapon.value?.miscDamageBonus = damageMiscBonusValue
+        currentWeapon.value?.statApplyToDmg = addAbilityModToDamage
+        currentWeapon.value?.damageDice1Count = damageDice1CountValue
+        currentWeapon.value?.damageDice1Size = damageDice1SizeValue
+        currentWeapon.value?.description = description
+        pushToDB(currentWeapon.value!!)
+    }
+
+    fun chooseWeapon(id: Int){
+        fetchWeapon(id)
+    }
+
+    private fun fetchWeapon(id: Int){
+        runBlocking {
+            currentWeapon.value = weaponDao.getById(id)
+        }
+    }
+
+    private fun pushToDB(updatedWeapon: Weapon) {
+        runBlocking {
+            weaponDao.updateWeapon(updatedWeapon)
+            fetchAllWeapons(currentId)
+        }
     }
 
     private fun intToBoolean(b: Int): Boolean {

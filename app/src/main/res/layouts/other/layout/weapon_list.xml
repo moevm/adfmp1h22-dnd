@@ -13,7 +13,7 @@
     android:paddingStart="0dp"
     android:paddingTop="0dp"
     android:paddingEnd="0dp"
-    android:paddingBottom="0dp"
+    android:layout_marginTop="3dp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
@@ -98,12 +98,13 @@
         android:id="@+id/weapon_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/gray_500"
+        android:backgroundTint="@color/gray_500"
         android:text="@string/really_long_text"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AttackRange"
+        android:background="@drawable/back_10dp_w1dp"
         tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

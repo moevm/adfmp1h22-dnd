@@ -4,10 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="500dp"
     android:layout_marginTop="100dp"
     android:layout_marginBottom="100dp"
-    android:maxHeight="400dp"
+    android:layout_marginLeft="40dp"
+    android:layout_marginRight="40dp"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,44 +16,78 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/damageDice1ValueValue"
-            android:layout_width="wrap_content"
+            android:id="@+id/weaponDescription"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="2"
-            android:gravity="center"
-            android:inputType="number"
-            android:text="0"
-            android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@+id/diceText"
-            app:layout_constraintTop_toTopOf="@+id/damageDice1CountValue" />
-
-        <TextView
-            android:id="@+id/diceText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="d"
-            android:textColor="@color/black"
-            android:textSize="@dimen/HP_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/damageDice1CountValue"
-            app:layout_constraintStart_toEndOf="@+id/damageDice1CountValue"
-            app:layout_constraintTop_toTopOf="@+id/damageDice1CountValue" />
-
-        <EditText
-            android:id="@+id/damageDice1CountValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="14dp"
             android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:ems="2"
-            android:gravity="center"
-            android:inputType="number"
-            android:text="0"
-            android:textSize="20sp"
+            android:layout_marginEnd="14dp"
+            android:autofillHints=""
+            android:inputType="textMultiLine"
+            android:maxLines="6"
+            android:minLines="3"
+            android:text="Description:"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/damageDieText"
-            app:layout_constraintTop_toBottomOf="@+id/addAbilityModToDamage" />
+            app:layout_constraintTop_toBottomOf="@+id/addAbilityModToDamage">
+
+            <TextView
+                android:id="@+id/diceText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="d"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/damageDice1ValueValue"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/damageDice1CountValue"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/damageDice1ValueValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="2"
+                android:gravity="center"
+                android:inputType="number"
+                android:text="0"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/diceText"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/damageDice1CountValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="2"
+                android:gravity="center"
+                android:inputType="number"
+                android:text="0"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/diceText"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/damageMagicBonusText"
@@ -97,15 +132,16 @@
             android:id="@+id/damageDieText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
             android:ellipsize="marquee"
             android:gravity="center"
             android:text="Weapon Damage Die"
             android:textColor="@color/black"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/damageDice1CountValue"
+            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
+            app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/damageDice1CountValue" />
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout2" />
 
         <EditText
             android:id="@+id/damageMagicBonusValue"
@@ -399,13 +435,13 @@
             android:id="@+id/SaveButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/custom_button"
             android:foreground="?android:attr/selectableItemBackground"
             android:text="@string/save_button_text"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addAbilityModToDamage" />
+            app:layout_constraintTop_toBottomOf="@+id/weaponDescription" />
 
         <TextView
             android:id="@+id/damageTypeText"

@@ -142,6 +142,7 @@ class WeaponNameRangeTypesDialog : DialogFragment(), AdapterView.OnItemSelectedL
                 binding.addAbilityModToDamage.isChecked,
                 if (binding.damageDice1CountValue.text.toString() != "") binding.damageDice1CountValue.text.toString().toInt() else 0,
                 if (binding.damageDice1ValueValue.text.toString() != "") binding.damageDice1ValueValue.text.toString().toInt() else 0,
+                binding.weaponDescription.text.toString(),
             )
             dismiss()
         }
@@ -184,12 +185,13 @@ class WeaponNameRangeTypesDialog : DialogFragment(), AdapterView.OnItemSelectedL
 
 
     private fun loadChar(weapon: Weapon, character: Character) {
+        viewModel.chooseWeapon(weapon.id)
         damageType = weapon.damageTypePosition
-        attackAbility = weapon.statAttackBonus
+        attackAbility = weapon.attackStatType
         rangedType = weapon.rangeType
         handedType = weapon.handedType
         binding.weaponNameValue.setText(weapon.name)
-        binding.weaponRangeText.setText(weapon.range)
+        binding.weaponRangeValue.setText(weapon.range)
         binding.attackProfBonusValue.setText(character.proficiency.toString())
         binding.attackAbilityBonusValue.setText( when (attackAbility) {
             1 -> viewModel.calcModifier(character.strength)
@@ -213,6 +215,7 @@ class WeaponNameRangeTypesDialog : DialogFragment(), AdapterView.OnItemSelectedL
         }
         binding.damageDice1CountValue.setText(weapon.damageDice1Count.toString())
         binding.damageDice1ValueValue.setText(weapon.damageDice1Count.toString())
+        binding.weaponDescription.setText(weapon.description)
     }
 
     /* todo
