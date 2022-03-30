@@ -1,9 +1,10 @@
-name: Android Build
+name: Android CI
 
 on: push
 
 jobs:
   build:
+    name: Android Debug Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -16,5 +17,28 @@ jobs:
       - name: Build Project
         run: ./gradlew :app:assembleDebug
 
-      - name: Run Tests
-        run: ./gradlew test
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set Up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      - name: Run Unit Tests
+          - run: ./gradlew testDebugUnitTest --tests com.dwards.a5edpockethelper.unitTests.CharacterListAdapterTest
+          - run: ./gradlew testDebugUnitTest --tests com.dwards.a5edpockethelper.unitTests.ConverterTest
+          - run: ./gradlew testDebugUnitTest --tests com.dwards.a5edpockethelper.unitTests.ConverterTest
+
+      - name: Run UI Tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 23
+          target: default
+          arch: x86
+          profile: Nexus 6
+        - run: ./gradlew testDebugUnitTest --tests com.dwards.a5edpockethelper.integretionTest.ModalDialogs
