@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -20,13 +21,17 @@ import com.dwards.a5edpockethelper.dialogs.SpellEditDialog
 import com.dwards.a5edpockethelper.dialogs.SpellFilterDialog
 import com.dwards.a5edpockethelper.dialogs.SpellInfoDialog
 import com.dwards.a5edpockethelper.gdrive.DriveServiceHelper
-import com.dwards.a5edpockethelper.gdrive.DriveServiceHelper.getGoogleDriveService
+import com.dwards.a5edpockethelper.gdrive.DriveServiceHelper.*
 import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
+import com.dwards.a5edpockethelper.utils.ImportExportSpellsConverter
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.drive.Drive.SCOPE_FILE
+import com.google.gson.Gson
+import kotlinx.serialization.ExperimentalSerializationApi
 
+@ExperimentalSerializationApi
 class CharacterSpell : Fragment(), RecyclerViewClickListener {
 
     private val TAG = "MainActivity"
@@ -58,7 +63,7 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
                 getGoogleDriveService(
                     applicationContext,
                     account,
-                    "appName"
+                    "adfmp1h22-dnd"
                 )
             )
         }
@@ -98,7 +103,10 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
                 true
             }
             R.id.export_data -> {
-                // TODO: add file export handling
+                if (mDriveServiceHelper == null) {
+                    return true
+                }
+                uploadSpellsToGDrive()
                 true
             }
             R.id.import_data -> {
@@ -106,6 +114,34 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun uploadSpellsToGDrive() {
+        val applicationContext = context?.applicationContext ?: return
+
+        val filename = ImportExportSpellsConverter.getCurrentTimeBackupName()
+        val content =
+            ImportExportSpellsConverter.convertSpellsListToJsonString(spellAdapter.spellArrayList)
+
+        // you can provide folder id in case you want to save this file inside some folder.
+        // if folder id is null, it will save file to the root
+        mDriveServiceHelper?.createTextFile(filename, content, EXPORT_TYPE_JSON, null)
+            ?.addOnSuccessListener { googleDriveFileHolder ->
+                Log.d(TAG, "onSuccess: " + Gson().toJson(googleDriveFileHolder))
+                Toast.makeText(
+                    applicationContext,
+                    "Backup successfully created!",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+            ?.addOnFailureListener { e ->
+                Log.d(TAG, "onFailure: " + e.message)
+                Toast.makeText(
+                    applicationContext,
+                    "Error occurred: ${e.message}",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
     }
 
     override fun onCreateView(
@@ -244,9 +280,6 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
 
     }
 
-    private companion object {
-        const val REQUEST_CODE_SIGN_IN = 100
-    }
 }
 
 

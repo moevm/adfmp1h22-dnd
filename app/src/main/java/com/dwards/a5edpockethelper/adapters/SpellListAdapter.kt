@@ -16,7 +16,7 @@ import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 import com.dwards.a5edpockethelper.model.Spell
 
 class SpellListAdapter(
-    private var spellArrayList: List<Spell>,
+    var spellArrayList: List<Spell>,
     private val listener: RecyclerViewClickListener
 ) : Adapter<SpellListAdapter.SpellViewHolder>() {
 
