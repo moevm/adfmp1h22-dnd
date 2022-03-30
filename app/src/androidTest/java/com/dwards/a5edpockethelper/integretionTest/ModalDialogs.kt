@@ -1,10 +1,8 @@
 package com.dwards.a5edpockethelper.integretionTest
 
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -25,7 +23,7 @@ class ModalDialogs {
     @Test
     fun checkHPChangeDialog() {
 
-        onView(withId(R.id.HPLayout)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.HPLayout)).check(matches(isCompletelyDisplayed()))
         onView(withId(R.id.HPLayout)).perform(click())
 
         onView(withId(R.id.DamageCheck)).check(matches(isDisplayed()))
@@ -38,7 +36,7 @@ class ModalDialogs {
     @Test
     fun checkToolsProfDialog() {
 
-        onView(withId(R.id.pager)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.pager)).check(matches(isCompletelyDisplayed()))
         onView(withId(R.id.pager)).perform(swipeLeft())
 
         for (i in 0..5) {
@@ -50,4 +48,5 @@ class ModalDialogs {
         onView(withId(R.id.ToolsProficiencyLayout)).perform(click())
         onView(withId(R.id.AddToolsButton)).check(matches(isCompletelyDisplayed()))
     }
+
 }
