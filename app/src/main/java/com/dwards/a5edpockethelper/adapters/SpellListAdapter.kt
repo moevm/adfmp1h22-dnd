@@ -6,11 +6,13 @@ import android.content.ContextWrapper
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.dwards.a5edpockethelper.MyViewModel
+import com.dwards.a5edpockethelper.R
 import com.dwards.a5edpockethelper.databinding.SpellListBinding
 import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 import com.dwards.a5edpockethelper.model.Spell
@@ -77,10 +79,14 @@ class SpellListAdapter(
                 ViewModelProvider(unwrap(itemView.context) as FragmentActivity)[MyViewModel::class.java]
 
             if (viewModel.isFavoriteSpell(spellId)) {
-                itemBinding.favoriteIcon.setBackgroundColor(Color.rgb(255, 0, 0))
+                itemBinding.favoriteIcon.setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.ic_star_active))
+            } else {
+                itemBinding.favoriteIcon.setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.ic_star))
             }
             if (viewModel.isPreparedSpell(spellId)) {
-                itemBinding.preparedIcon.setBackgroundColor(Color.rgb(255, 0, 0))
+                itemBinding.preparedIcon.setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.ic_book_active))
+            } else {
+                itemBinding.preparedIcon.setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.ic_book))
             }
         }
 
