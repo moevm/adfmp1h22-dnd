@@ -135,6 +135,8 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+
     // Google Drive
     implementation "com.google.android.gms:play-services-auth:$play_services_version"
     implementation 'com.google.firebase:firebase-inappmessaging-display:20.1.2'

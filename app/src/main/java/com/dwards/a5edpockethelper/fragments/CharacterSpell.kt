@@ -1,6 +1,7 @@
 package com.dwards.a5edpockethelper.fragments
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -13,11 +14,13 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dwards.a5edpockethelper.MyViewModel
 import com.dwards.a5edpockethelper.R
 import com.dwards.a5edpockethelper.SpellListNames
+import com.dwards.a5edpockethelper.adapters.ImportItemAdapter
 import com.dwards.a5edpockethelper.adapters.SpellListAdapter
 import com.dwards.a5edpockethelper.databinding.FragmentCharacterSpellBinding
 import com.dwards.a5edpockethelper.dialogs.CharacterListDialog
@@ -27,13 +30,21 @@ import com.dwards.a5edpockethelper.dialogs.SpellInfoDialog
 import com.dwards.a5edpockethelper.gdrive.DriveServiceHelper
 import com.dwards.a5edpockethelper.gdrive.DriveServiceHelper.*
 import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
+import com.dwards.a5edpockethelper.utils.ExportSpellsManager
 import com.dwards.a5edpockethelper.utils.ImportExportSpellsConverter
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.drive.Drive.SCOPE_FILE
 import com.google.gson.Gson
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.ExperimentalSerializationApi
+import java.io.File
+import java.io.FileInputStream
+import java.util.*
+
 
 @ExperimentalSerializationApi
 class CharacterSpell : Fragment(), RecyclerViewClickListener {
@@ -111,14 +122,80 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
                 true
             }
             R.id.import_data -> {
+                if (mDriveServiceHelper == null) {
+                    return true
+                }
+                downloadSpellsFromGDrive()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
+    private fun downloadSpellsFromGDrive() {
+        val ctx = context ?: return
+        val applicationContext = ctx.applicationContext
+
+        val dialog = Dialog(ctx).apply {
+            setContentView(R.layout.custom_import_dialog)
+            setTitle(R.string.import_dialog_title)
+            setCancelable(true)
+        }
+        val recycler = dialog.findViewById<RecyclerView>(R.id.recycler)
+        recycler.setHasFixedSize(true)
+        recycler.layoutManager = LinearLayoutManager(ctx).apply {
+            orientation = LinearLayoutManager.VERTICAL
+        }
+
+        val downloadChosenItem = { id: String, name: String ->
+            dialog.cancel()
+            Toast.makeText(
+                applicationContext,
+                "Download started. Please wait.",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            mDriveServiceHelper!!.downloadFile(
+                File(
+                    applicationContext.filesDir, name
+                ), id
+            )
+                .addOnSuccessListener {
+                    // /data/data/<application-package>/files/<file-name>
+                    val filesDir = applicationContext.filesDir
+                    val backupAsString = Scanner(File(filesDir, name)).nextLine()
+                    val backupList = ImportExportSpellsConverter.covertSpellsJsonStringToList(backupAsString)
+                    spellAdapter.spellArrayList = backupList
+                    spellAdapter.notifyDataSetChanged()  // it's ok in this case
+                    Toast.makeText(
+                        applicationContext,
+                        "Backup was successfully downloaded!",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(
+                        applicationContext,
+                        "Backup was successfully downloaded!",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            Unit
+        }
+
+        viewModel.viewModelScope.launch {
+            val spellEntities = ExportSpellsManager.getSpellsFromDataStore(ctx).first()
+            val adapter = ImportItemAdapter(spellEntities, downloadChosenItem)
+            recycler.adapter = adapter
+        }
+            .invokeOnCompletion {
+                dialog.show()
+            }
+    }
+
     private fun uploadSpellsToGDrive() {
-        val applicationContext = context?.applicationContext ?: return
+        val ctx = context ?: return
+        val applicationContext = ctx.applicationContext
 
         val filename = ImportExportSpellsConverter.getCurrentTimeBackupName()
         val content =
@@ -128,12 +205,23 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
         // if folder id is null, it will save file to the root
         mDriveServiceHelper?.createTextFile(filename, content, EXPORT_TYPE_JSON, null)
             ?.addOnSuccessListener { googleDriveFileHolder ->
-                Log.d(TAG, "onSuccess: " + Gson().toJson(googleDriveFileHolder))
-                Toast.makeText(
-                    applicationContext,
-                    "Backup successfully created!",
-                    Toast.LENGTH_LONG
-                ).show()
+                if (googleDriveFileHolder != null) {
+                    Log.d(TAG, "onSuccess: " + Gson().toJson(googleDriveFileHolder))
+                    runBlocking {
+                        launch {
+                            ExportSpellsManager.saveSpellsEntity(
+                                ctx,
+                                googleDriveFileHolder.id ?: "",
+                                filename
+                            )
+                        }
+                    }
+                    Toast.makeText(
+                        applicationContext,
+                        "Backup successfully created!\nFile name: $filename",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             }
             ?.addOnFailureListener { e ->
                 Log.d(TAG, "onFailure: " + e.message)
