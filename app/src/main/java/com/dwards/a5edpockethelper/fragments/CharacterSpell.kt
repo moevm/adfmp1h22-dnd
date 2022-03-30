@@ -161,7 +161,7 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
                 ), id
             )
                 .addOnSuccessListener {
-                    // /data/data/<application-package>/files/<file-name>
+                    // example: /data/user/0/com.dwards.a5edpockethelper/files/2022-3-30-21-19-10_spells_backup.json
                     val filesDir = applicationContext.filesDir
                     val backupAsString = Scanner(File(filesDir, name)).nextLine()
                     val backupList = ImportExportSpellsConverter.covertSpellsJsonStringToList(backupAsString)
