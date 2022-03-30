@@ -1,6 +1,8 @@
 package com.dwards.a5edpockethelper.fragments
 
-import android.graphics.Color
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,7 +11,6 @@ import android.view.*
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.widget.ImageViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,6 +34,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.drive.Drive.SCOPE_FILE
 import com.google.gson.Gson
 import kotlinx.serialization.ExperimentalSerializationApi
+
 
 @ExperimentalSerializationApi
 class CharacterSpell : Fragment(), RecyclerViewClickListener {
@@ -91,6 +93,40 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
             applicationContext,
             signInOptions
         )
+    }
+
+    private fun handleSignInResult(result: Intent, ctx: Context) {
+        GoogleSignIn.getSignedInAccountFromIntent(result)
+            .addOnSuccessListener { googleSignInAccount ->
+                Log.d(TAG, "Signed in as " + googleSignInAccount.email)
+                mDriveServiceHelper = DriveServiceHelper(
+                    getGoogleDriveService(
+                        ctx,
+                        googleSignInAccount,
+                        "appName"
+                    )
+                )
+                Log.d(TAG, "handleSignInResult: $mDriveServiceHelper")
+            }
+            .addOnFailureListener { e ->
+                val errMsg = "Unable to sign in.\nError: ${e.message}"
+                Log.e(TAG, errMsg)
+                Toast.makeText(
+                    ctx,
+                    errMsg,
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, resultData: Intent?) {
+        val applicationContext = context?.applicationContext ?: return
+        when (requestCode) {
+            REQUEST_CODE_SIGN_IN -> if (resultCode == Activity.RESULT_OK && resultData != null) {
+                handleSignInResult(resultData, applicationContext)
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, resultData)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -246,13 +282,23 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
                 if (viewModel.isFavoriteSpell(id)) {
                     viewModel.removeFavoriteSpell(id)
                     //view.setBackgroundColor(Color.rgb(255, 255, 255))
-                    (view as ImageView).setImageDrawable(ContextCompat.getDrawable(view.context, R.drawable.ic_star))
+                    (view as ImageView).setImageDrawable(
+                        ContextCompat.getDrawable(
+                            view.context,
+                            R.drawable.ic_star
+                        )
+                    )
                     //(view as ImageView).drawableTint()
                     //ImageViewCompat.setImageTintList(view as ImageView, ColorStateList.valueOf(Color.rgb(255,255,255)));
 
                 } else {
                     viewModel.addFavoriteSpell(id)
-                    (view as ImageView).setImageDrawable(ContextCompat.getDrawable(view.context, R.drawable.ic_star_active))
+                    (view as ImageView).setImageDrawable(
+                        ContextCompat.getDrawable(
+                            view.context,
+                            R.drawable.ic_star_active
+                        )
+                    )
                     //view.setBackgroundColor(Color.rgb(255, 0, 0))
                     //(view as ImageView).setColorFilter(Color.rgb(255,0,0))
                     //(view as ImageView).backgroundTintList = ColorStateList.valueOf(Color.rgb(255,0,0))
@@ -263,11 +309,21 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
             R.id.preparedIcon -> {
                 if (viewModel.isPreparedSpell(id)) {
                     viewModel.removePreparedSpell(id)
-                    (view as ImageView).setImageDrawable(ContextCompat.getDrawable(view.context, R.drawable.ic_book))
+                    (view as ImageView).setImageDrawable(
+                        ContextCompat.getDrawable(
+                            view.context,
+                            R.drawable.ic_book
+                        )
+                    )
                     //view.setBackgroundColor(Color.rgb(255, 255, 255))
                 } else {
                     viewModel.addPreparedSpell(id)
-                    (view as ImageView).setImageDrawable(ContextCompat.getDrawable(view.context, R.drawable.ic_book_active))
+                    (view as ImageView).setImageDrawable(
+                        ContextCompat.getDrawable(
+                            view.context,
+                            R.drawable.ic_book_active
+                        )
+                    )
                     //view.setBackgroundColor(Color.rgb(255, 0, 0))
                 }
             }
