@@ -1,6 +1,5 @@
 package com.dwards.a5edpockethelper.fragments
 
-
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
@@ -8,7 +7,6 @@ import android.text.TextWatcher
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,9 +19,17 @@ import com.dwards.a5edpockethelper.dialogs.CharacterListDialog
 import com.dwards.a5edpockethelper.dialogs.SpellEditDialog
 import com.dwards.a5edpockethelper.dialogs.SpellFilterDialog
 import com.dwards.a5edpockethelper.dialogs.SpellInfoDialog
+import com.dwards.a5edpockethelper.gdrive.DriveServiceHelper
+import com.dwards.a5edpockethelper.gdrive.DriveServiceHelper.getGoogleDriveService
 import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.drive.Drive.SCOPE_FILE
 
 class CharacterSpell : Fragment(), RecyclerViewClickListener {
+
+    private val TAG = "MainActivity"
 
     private var _binding: FragmentCharacterSpellBinding? = null
     private val binding get() = _binding!!
@@ -31,9 +37,52 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
     private lateinit var spellList: RecyclerView
     private lateinit var viewModel: MyViewModel
 
+    private var mDriveServiceHelper: DriveServiceHelper? = null
+    private var mGoogleSignInClient: GoogleSignInClient? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val applicationContext = context?.applicationContext ?: return
+        val account =
+            GoogleSignIn.getLastSignedInAccount(applicationContext)
+
+        if (account == null) {
+            signIn()
+        } else {
+            mDriveServiceHelper = DriveServiceHelper(
+                getGoogleDriveService(
+                    applicationContext,
+                    account,
+                    "appName"
+                )
+            )
+        }
+    }
+
+    private fun signIn() {
+        mGoogleSignInClient = buildGoogleSignInClient()
+        val signInClient = mGoogleSignInClient
+        if (signInClient != null) {
+            startActivityForResult(signInClient.signInIntent, REQUEST_CODE_SIGN_IN)
+        }
+    }
+
+    private fun buildGoogleSignInClient(): GoogleSignInClient? {
+        val applicationContext = context?.applicationContext ?: return null
+
+        val signInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestScopes(SCOPE_FILE)
+            .requestEmail()
+            .build()
+        return GoogleSignIn.getClient(
+            applicationContext,
+            signInOptions
+        )
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -49,6 +98,7 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
                 true
             }
             R.id.export_data -> {
+                // TODO: add file export handling
                 true
             }
             R.id.import_data -> {
@@ -76,9 +126,9 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
         //    }
         //})
 
-        viewModel.getAllSpells().observe(viewLifecycleOwner, Observer {
+        viewModel.getAllSpells().observe(viewLifecycleOwner) {
             it?.let {
-                spellAdapter = SpellListAdapter(it, this)
+                spellAdapter = SpellListAdapter(it.filterNotNull(), this)
                 spellList.apply {
                     layoutManager = LinearLayoutManager(activity);
                     adapter = spellAdapter
@@ -86,7 +136,7 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
                 }
                 //refreshChar(it)
             }
-        })
+        }
 
         binding.spellTopNavBlock.checkBox.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked && binding.spellTopNavBlock.checkBox2.isChecked) {
@@ -137,12 +187,6 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
         })
 
         return binding.root
-    }
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
     }
 
     override fun onDestroyView() {
@@ -200,6 +244,9 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
 
     }
 
+    private companion object {
+        const val REQUEST_CODE_SIGN_IN = 100
+    }
 }
 
 
