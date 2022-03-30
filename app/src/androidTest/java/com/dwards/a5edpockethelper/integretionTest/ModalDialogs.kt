@@ -35,4 +35,15 @@ class ModalDialogs {
 
     }
 
+    @Test
+    fun checkToolsProfDialog() {
+
+        onView(ViewMatchers.withId(R.id.pager)).check(matches(isCompletelyDisplayed()));
+        onView(ViewMatchers.withId(R.id.pager)).perform(ViewActions.swipeLeft())
+
+        onView(ViewMatchers.withId(R.id.ToolsProficiencyLayout)).check(matches(isDisplayed()))
+
+        onView(ViewMatchers.withId(R.id.ToolsProficiencyLayout)).perform(ViewActions.click())
+        onView(ViewMatchers.withId(R.id.AddToolsButton)).check(matches(isDisplayed()))
+    }
 }
