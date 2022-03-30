@@ -19,7 +19,7 @@ jobs:
 
   test:
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -29,18 +29,11 @@ jobs:
         with:
           java-version: 1.8
 
-      - name: Run Unit Tests - CharacterListAdapterTest
-        run: ./gradlew testDebugUnitTest --tests com.dwards.a5edpockethelper.unitTests.CharacterListAdapterTest
-      - name: Run Unit Tests - CharacterListAdapterTest
-        run: ./gradlew testDebugUnitTest --tests com.dwards.a5edpockethelper.unitTests.ConverterTest
-      - name: Run Unit Tests - ConverterTest
-        run: ./gradlew testDebugUnitTest --tests com.dwards.a5edpockethelper.unitTests.ConverterTest
-
-      - name: Run UI Tests
+      - name: Run UI and Unit Tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 23
           target: default
           arch: x86
           profile: Nexus 6
-        - run: ./gradlew testDebugUnitTest --tests com.dwards.a5edpockethelper.integretionTest.ModalDialogs
+          script: ./gradlew connectedCheck
