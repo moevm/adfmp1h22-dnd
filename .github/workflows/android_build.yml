@@ -30,9 +30,9 @@ jobs:
           java-version: 1.8
 
       - name: Run Unit Tests
-          - run: ./gradlew testDebugUnitTest --tests com.dwards.a5edpockethelper.unitTests.CharacterListAdapterTest
-          - run: ./gradlew testDebugUnitTest --tests com.dwards.a5edpockethelper.unitTests.ConverterTest
-          - run: ./gradlew testDebugUnitTest --tests com.dwards.a5edpockethelper.unitTests.ConverterTest
+        run: ./gradlew testDebugUnitTest --tests com.dwards.a5edpockethelper.unitTests.CharacterListAdapterTest |
+            ./gradlew testDebugUnitTest --tests com.dwards.a5edpockethelper.unitTests.ConverterTest |
+            ./gradlew testDebugUnitTest --tests com.dwards.a5edpockethelper.unitTests.ConverterTest
 
       - name: Run UI Tests
         uses: reactivecircus/android-emulator-runner@v2
