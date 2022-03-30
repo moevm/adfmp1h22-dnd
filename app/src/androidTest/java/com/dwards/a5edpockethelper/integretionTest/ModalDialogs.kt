@@ -2,10 +2,10 @@ package com.dwards.a5edpockethelper.integretionTest
 
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
@@ -25,25 +25,29 @@ class ModalDialogs {
     @Test
     fun checkHPChangeDialog() {
 
-        onView(ViewMatchers.withId(R.id.HPLayout)).check(matches(isCompletelyDisplayed()));
-        onView(ViewMatchers.withId(R.id.HPLayout)).perform(ViewActions.click())
+        onView(withId(R.id.HPLayout)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.HPLayout)).perform(click())
 
-        onView(ViewMatchers.withId(R.id.DamageCheck)).check(matches(isDisplayed()))
-        onView(ViewMatchers.withId(R.id.HealCheck)).check(matches(isDisplayed()))
-        onView(ViewMatchers.withId(R.id.TempHPCheck)).check(matches(isDisplayed()))
-        onView(ViewMatchers.withId(R.id.SaveButton)).check(matches(isDisplayed()))
+        onView(withId(R.id.DamageCheck)).check(matches(isDisplayed()))
+        onView(withId(R.id.HealCheck)).check(matches(isDisplayed()))
+        onView(withId(R.id.TempHPCheck)).check(matches(isDisplayed()))
+        onView(withId(R.id.SaveButton)).check(matches(isDisplayed()))
 
     }
 
     @Test
     fun checkToolsProfDialog() {
 
-        onView(ViewMatchers.withId(R.id.pager)).check(matches(isCompletelyDisplayed()));
-        onView(ViewMatchers.withId(R.id.pager)).perform(ViewActions.swipeLeft())
+        onView(withId(R.id.pager)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.pager)).perform(swipeLeft())
 
-        onView(ViewMatchers.withId(R.id.ToolsProficiencyLayout)).check(matches(isDisplayed()))
+        for (i in 0..5) {
+            onView(withId(R.id.fragment_place_skills)).perform(swipeUp())
+        }
 
-        onView(ViewMatchers.withId(R.id.ToolsProficiencyLayout)).perform(ViewActions.click())
-        onView(ViewMatchers.withId(R.id.AddToolsButton)).check(matches(isDisplayed()))
+        onView(withId(R.id.ToolsProficiencyLayout)).check(matches(isDisplayed()))
+
+        onView(withId(R.id.ToolsProficiencyLayout)).perform(click())
+        onView(withId(R.id.AddToolsButton)).check(matches(isCompletelyDisplayed()))
     }
 }

@@ -3,7 +3,7 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_place"
+    android:id="@+id/fragment_place_skills"
     android:name="com.dwards.a5edpockethelper.CharacterScreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
