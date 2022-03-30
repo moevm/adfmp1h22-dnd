@@ -35,7 +35,6 @@ import com.google.android.gms.drive.Drive.SCOPE_FILE
 import com.google.gson.Gson
 import kotlinx.serialization.ExperimentalSerializationApi
 
-
 @ExperimentalSerializationApi
 class CharacterSpell : Fragment(), RecyclerViewClickListener {
 
@@ -80,43 +79,6 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
         if (signInClient != null) {
             startActivityForResult(signInClient.signInIntent, REQUEST_CODE_SIGN_IN)
         }
-    }
-
-    private fun buildGoogleSignInClient(): GoogleSignInClient? {
-        val applicationContext = context?.applicationContext ?: return null
-
-        val signInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestScopes(SCOPE_FILE)
-            .requestEmail()
-            .build()
-        return GoogleSignIn.getClient(
-            applicationContext,
-            signInOptions
-        )
-    }
-
-    private fun handleSignInResult(result: Intent, ctx: Context) {
-        GoogleSignIn.getSignedInAccountFromIntent(result)
-            .addOnSuccessListener { googleSignInAccount ->
-                Log.d(TAG, "Signed in as " + googleSignInAccount.email)
-                mDriveServiceHelper = DriveServiceHelper(
-                    getGoogleDriveService(
-                        ctx,
-                        googleSignInAccount,
-                        "appName"
-                    )
-                )
-                Log.d(TAG, "handleSignInResult: $mDriveServiceHelper")
-            }
-            .addOnFailureListener { e ->
-                val errMsg = "Unable to sign in.\nError: ${e.message}"
-                Log.e(TAG, errMsg)
-                Toast.makeText(
-                    ctx,
-                    errMsg,
-                    Toast.LENGTH_LONG
-                ).show()
-            }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, resultData: Intent?) {
@@ -342,6 +304,42 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
 
     }
 
+    private fun buildGoogleSignInClient(): GoogleSignInClient? {
+        val applicationContext = context?.applicationContext ?: return null
+
+        val signInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestScopes(SCOPE_FILE)
+            .requestEmail()
+            .build()
+        return GoogleSignIn.getClient(
+            applicationContext,
+            signInOptions
+        )
+    }
+
+    private fun handleSignInResult(result: Intent, ctx: Context) {
+        GoogleSignIn.getSignedInAccountFromIntent(result)
+            .addOnSuccessListener { googleSignInAccount ->
+                Log.d(TAG, "Signed in as " + googleSignInAccount.email)
+                mDriveServiceHelper = DriveServiceHelper(
+                    getGoogleDriveService(
+                        ctx,
+                        googleSignInAccount,
+                        "adfmp1h22-dnd"
+                    )
+                )
+                Log.d(TAG, "handleSignInResult: $mDriveServiceHelper")
+            }
+            .addOnFailureListener { e ->
+                val errMsg = "Unable to sign in.\nError: ${e.message}"
+                Log.e(TAG, errMsg)
+                Toast.makeText(
+                    ctx,
+                    errMsg,
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+    }
 }
 
 
