@@ -3,4 +3,7 @@
     <string name="search">Search</string>
     <string name="prepared">Prepared</string>
     <string name="favorite">Favorite</string>
+    <string name="import_data">Импортировать заклинания</string>
+    <string name="export_data">Экспортировать заклинания</string>
+    <string name="import_dialog_title">Choose backup to download</string>
 </resources>
