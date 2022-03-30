@@ -1,5 +1,6 @@
 package com.dwards.a5edpockethelper.dialogs
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -29,6 +30,7 @@ class WeaponNameRangeTypesDialog : DialogFragment(), AdapterView.OnItemSelectedL
     private var attackAbility: Int = 0
     private var rangedType: Int = 0
     private var handedType: Int = 0
+    private val this_ = this
     private lateinit var viewModel: MyViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -147,6 +149,25 @@ class WeaponNameRangeTypesDialog : DialogFragment(), AdapterView.OnItemSelectedL
             dismiss()
         }
 
+        binding.deleteButton.setOnClickListener{
+            val alertDialog = AlertDialog.Builder(context)
+
+            alertDialog.apply {
+                setTitle("Delete Spell")
+                setMessage("Are you sure?")
+                setPositiveButton("Yes") { _, _ ->
+                    dismiss()
+                    //this_.
+                    dismiss()
+                    viewModel.deleteWeapon(viewModel.weaponList.value?.get(num)!!)
+                }
+                setNegativeButton("No") { _, _ ->
+                    dismiss()
+                }
+            }.create().show()
+
+        }
+
 
         return view
     }
@@ -193,7 +214,7 @@ class WeaponNameRangeTypesDialog : DialogFragment(), AdapterView.OnItemSelectedL
         binding.weaponNameValue.setText(weapon.name)
         binding.weaponRangeValue.setText(weapon.range)
         binding.attackProfBonusValue.setText(character.proficiency.toString())
-        binding.attackAbilityBonusValue.setText( when (attackAbility) {
+        binding.attackAbilityBonusValue.setText( when (attackAbility) {//TODO сделать обновляемым онлайн
             1 -> viewModel.calcModifier(character.strength)
             2 -> viewModel.calcModifier(character.dexterity)
             3 -> viewModel.calcModifier(character.constitution)

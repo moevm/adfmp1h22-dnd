@@ -356,22 +356,12 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
 
 
     private fun fetchAllWeapons(id: Int){
-        //var flag = true //todo не помню зачем этот флаг
         var charAndWeaponList:List<CharacterAndWeapons> = listOf()
-        //if (flag) {
             runBlocking {
-                charAndWeaponList = characterAndWeaponsDao.getCharacterAndWeapons()
-                //currentWeapon.value = weaponDao.getById(id)
-                //charAndWeaponList.forEach {//todo shit
-                //    weaponList.value = it.weapons
-                //}
+                //charAndWeaponList = characterAndWeaponsDao.getCharacterAndWeapons()
                 weaponList.value =  characterAndWeaponsDao.getWeaponListById(id)
             }
-        //}
-        //else
-        //    viewModelScope.launch {
-        //        weaponList.value = weaponDao.getAll()
-        //    }
+
     }
 
 
@@ -904,6 +894,13 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
     private fun pushToDB(updatedWeapon: Weapon) {
         runBlocking {
             weaponDao.updateWeapon(updatedWeapon)
+            fetchAllWeapons(currentId)
+        }
+    }
+
+    fun deleteWeapon(weapon: Weapon){
+        runBlocking {
+            weaponDao.delete(weapon)
             fetchAllWeapons(currentId)
         }
     }

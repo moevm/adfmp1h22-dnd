@@ -15,6 +15,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/deleteButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/cross_mark"
+            android:backgroundTint="@color/cross_red"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/weaponRangeText"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/del_icon" />
+
         <EditText
             android:id="@+id/weaponDescription"
             android:layout_width="0dp"
@@ -356,7 +368,7 @@
             android:id="@+id/weaponNameValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="6dp"
             android:layout_weight="1"
             android:autofillHints=""
             android:ems="6"
@@ -365,8 +377,8 @@
             android:inputType="text"
             android:text="Name"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@+id/damageTypeText"
-            app:layout_constraintStart_toStartOf="@+id/damageTypeText"
+            app:layout_constraintEnd_toEndOf="@+id/weaponNameText"
+            app:layout_constraintStart_toStartOf="@+id/weaponNameText"
             app:layout_constraintTop_toBottomOf="@+id/weaponNameText" />
 
 
@@ -374,7 +386,7 @@
             android:id="@+id/weaponRangeValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="6dp"
             android:layout_weight="1"
             android:autofillHints=""
             android:ems="4"
@@ -383,8 +395,8 @@
             android:inputType="text"
             android:text="20/60"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@+id/DamageTypeSpinner"
-            app:layout_constraintStart_toStartOf="@+id/DamageTypeSpinner"
+            app:layout_constraintEnd_toEndOf="@+id/weaponRangeText"
+            app:layout_constraintStart_toStartOf="@+id/weaponRangeText"
             app:layout_constraintTop_toBottomOf="@+id/weaponRangeText" />
 
 
@@ -393,9 +405,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/weaponRangeValue"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/damageTypeText"
+            app:layout_constraintStart_toStartOf="@+id/weaponRangeValue"
             app:layout_constraintTop_toBottomOf="@+id/weaponRangeValue" />
 
         <Spinner
@@ -449,9 +461,9 @@
             android:layout_height="wrap_content"
             android:text="Damage Type"
             app:layout_constraintBottom_toBottomOf="@+id/DamageTypeSpinner"
-            app:layout_constraintEnd_toStartOf="@+id/DamageTypeSpinner"
+            app:layout_constraintEnd_toEndOf="@+id/weaponNameValue"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/weaponNameValue"
             app:layout_constraintTop_toTopOf="@+id/DamageTypeSpinner" />
 
         <TextView
@@ -484,7 +496,7 @@
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/deleteButton"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/weaponNameText"
             app:layout_constraintTop_toTopOf="parent" />
