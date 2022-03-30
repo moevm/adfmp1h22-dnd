@@ -22,13 +22,12 @@ class SpellEditDialog(private val spell: Spell): DialogFragment(), AdapterView.O
     private val binding get() = _binding!!
     private var editedSpell: Spell = spell.copy()
     private val this_ = this
-    private val TAG = "MyCustomDialog"
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner);
 
         _binding = SpellEditDialogBinding.inflate(inflater, container, false)
