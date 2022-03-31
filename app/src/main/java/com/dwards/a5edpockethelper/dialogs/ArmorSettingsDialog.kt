@@ -140,7 +140,11 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
                     if (intValue in 0..99) {
                         intValue
                     } else {
-                        Toast.makeText(context, "Value is not in correct range: [0,99]!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            context,
+                            "Value is not in correct range: [0,99]!",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         0
                     }
                 } else {
@@ -153,7 +157,11 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
                     if (intValue in 0..99) {
                         intValue
                     } else {
-                        Toast.makeText(context, "Value is not in correct range: [0,99]!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            context,
+                            "Value is not in correct range: [0,99]!",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         0
                     }
                 } else {
@@ -166,7 +174,11 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
                     if (intValue in 0..99) {
                         intValue
                     } else {
-                        Toast.makeText(context, "Value is not in correct range: [0,99]!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            context,
+                            "Value is not in correct range: [0,99]!",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         0
                     }
                 } else {
@@ -179,7 +191,11 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
                     if (intValue in 0..99) {
                         intValue
                     } else {
-                        Toast.makeText(context, "Value is not in correct range: [0,99]!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            context,
+                            "Value is not in correct range: [0,99]!",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         0
                     }
                 } else {
@@ -280,7 +296,11 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
                 if (intValue in 0..99) {
                     intValue
                 } else {
-                    Toast.makeText(context, "Value is not in correct range: [0,99]!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        "Value is not in correct range: [0,99]!",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     0
                 }
             } else {
@@ -293,7 +313,11 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
                 if (intValue in 0..99) {
                     intValue
                 } else {
-                    Toast.makeText(context, "Value is not in correct range: [0,99]!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        "Value is not in correct range: [0,99]!",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     0
                 }
             } else {
@@ -306,7 +330,11 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
                 if (intValue in 0..99) {
                     intValue
                 } else {
-                    Toast.makeText(context, "Value is not in correct range: [0,99]!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        "Value is not in correct range: [0,99]!",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     0
                 }
             } else {
@@ -317,7 +345,11 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
                 val str = binding.MiscBonusValue.text.toString()
                 val intValue = str.toIntOrNull() ?: 0
                 if (intValue in 0..99) {
-                    Toast.makeText(context, "Value is not in correct range: [0,99]!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        "Value is not in correct range: [0,99]!",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     intValue
                 } else {
                     Toast.makeText(context, "Value is not integer!", Toast.LENGTH_SHORT).show()

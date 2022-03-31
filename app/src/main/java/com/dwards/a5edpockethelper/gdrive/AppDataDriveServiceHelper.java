@@ -47,9 +47,7 @@ import javax.annotation.Nullable;
  */
 @Deprecated
 public class AppDataDriveServiceHelper {
-    private final Executor mExecutor = Executors.newSingleThreadExecutor();
-    private final Drive mDriveService;
-
+    private static final String TAG = "DriveServiceHelper";
     public static String TYPE_AUDIO = "application/vnd.google-apps.audio";
     public static String TYPE_GOOGLE_DOCS = "application/vnd.google-apps.document";
     public static String TYPE_GOOGLE_DRAWING = "application/vnd.google-apps.drawing";
@@ -66,7 +64,6 @@ public class AppDataDriveServiceHelper {
     public static String TYPE_UNKNOWN = "application/vnd.google-apps.unknown";
     public static String TYPE_VIDEO = "application/vnd.google-apps.video";
     public static String TYPE_3_RD_PARTY_SHORTCUT = "application/vnd.google-apps.drive-sdk";
-
     public static String EXPORT_TYPE_HTML = "text/html";
     public static String EXPORT_TYPE_HTML_ZIPPED = "application/zip";
     public static String EXPORT_TYPE_PLAIN_TEXT = "text/plain";
@@ -85,7 +82,8 @@ public class AppDataDriveServiceHelper {
     public static String EXPORT_TYPE_MS_POWER_POINT = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
     public static String EXPORT_TYPE_OPEN_OFFICE_PRESENTATION = "application/vnd.oasis.opendocument.presentation";
     public static String EXPORT_TYPE_JSON = "application/vnd.google-apps.script+json";
-
+    private final Executor mExecutor = Executors.newSingleThreadExecutor();
+    private final Drive mDriveService;
 
     public AppDataDriveServiceHelper(Drive driveService) {
 
@@ -413,8 +411,6 @@ public class AppDataDriveServiceHelper {
             }
         });
     }
-
-    private static final String TAG = "DriveServiceHelper";
 
     public Task<List<GoogleDriveFileHolder>> searchFile(final String fileName, final String mimeType) {
         return Tasks.call(mExecutor, new Callable<List<GoogleDriveFileHolder>>() {

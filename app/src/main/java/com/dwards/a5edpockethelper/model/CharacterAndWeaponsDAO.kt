@@ -1,8 +1,8 @@
 package com.dwards.a5edpockethelper.model
 
+import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
-import androidx.room.*
 
 
 @Dao

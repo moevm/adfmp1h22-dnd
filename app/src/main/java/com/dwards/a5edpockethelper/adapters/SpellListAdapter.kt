@@ -3,7 +3,6 @@ package com.dwards.a5edpockethelper.adapters
 import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -79,14 +78,34 @@ class SpellListAdapter(
                 ViewModelProvider(unwrap(itemView.context) as FragmentActivity)[MyViewModel::class.java]
 
             if (viewModel.isFavoriteSpell(spellId)) {
-                itemBinding.favoriteIcon.setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.ic_star_active))
+                itemBinding.favoriteIcon.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        itemView.context,
+                        R.drawable.ic_star_active
+                    )
+                )
             } else {
-                itemBinding.favoriteIcon.setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.ic_star))
+                itemBinding.favoriteIcon.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        itemView.context,
+                        R.drawable.ic_star
+                    )
+                )
             }
             if (viewModel.isPreparedSpell(spellId)) {
-                itemBinding.preparedIcon.setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.ic_book_active))
+                itemBinding.preparedIcon.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        itemView.context,
+                        R.drawable.ic_book_active
+                    )
+                )
             } else {
-                itemBinding.preparedIcon.setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.ic_book))
+                itemBinding.preparedIcon.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        itemView.context,
+                        R.drawable.ic_book
+                    )
+                )
             }
         }
 

@@ -5,13 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.ViewModelProvider
-import com.dwards.a5edpockethelper.MyViewModel
 import com.dwards.a5edpockethelper.R
 import com.dwards.a5edpockethelper.databinding.SpellInfoDialogBinding
 import com.dwards.a5edpockethelper.model.Spell
 
-class SpellInfoDialog(private val spell: Spell): DialogFragment() {
+class SpellInfoDialog(private val spell: Spell) : DialogFragment() {
     private var _binding: SpellInfoDialogBinding? = null
     private val binding get() = _binding!!
 

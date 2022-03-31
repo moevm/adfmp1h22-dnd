@@ -44,11 +44,8 @@ import javax.annotation.Nullable;
  * file picker UI via Storage Access Framework.
  */
 public class DriveServiceHelper {
-    private final Executor mExecutor = Executors.newSingleThreadExecutor();
-    private final Drive mDriveService;
-
+    private static final String TAG = "DriveServiceHelper";
     public static Integer REQUEST_CODE_SIGN_IN = 100;
-
     public static String TYPE_AUDIO = "application/vnd.google-apps.audio";
     public static String TYPE_GOOGLE_DOCS = "application/vnd.google-apps.document";
     public static String TYPE_GOOGLE_DRAWING = "application/vnd.google-apps.drawing";
@@ -65,7 +62,6 @@ public class DriveServiceHelper {
     public static String TYPE_UNKNOWN = "application/vnd.google-apps.unknown";
     public static String TYPE_VIDEO = "application/vnd.google-apps.video";
     public static String TYPE_3_RD_PARTY_SHORTCUT = "application/vnd.google-apps.drive-sdk";
-
     public static String EXPORT_TYPE_HTML = "text/html";
     public static String EXPORT_TYPE_HTML_ZIPPED = "application/zip";
     public static String EXPORT_TYPE_PLAIN_TEXT = "text/plain";
@@ -84,6 +80,8 @@ public class DriveServiceHelper {
     public static String EXPORT_TYPE_MS_POWER_POINT = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
     public static String EXPORT_TYPE_OPEN_OFFICE_PRESENTATION = "application/vnd.oasis.opendocument.presentation";
     public static String EXPORT_TYPE_JSON = "application/vnd.google-apps.script+json";
+    private final Executor mExecutor = Executors.newSingleThreadExecutor();
+    private final Drive mDriveService;
 
     public DriveServiceHelper(Drive driveService) {
         mDriveService = driveService;
@@ -394,8 +392,6 @@ public class DriveServiceHelper {
         });
     }
 
-    private static final String TAG = "DriveServiceHelper";
-
     public Task<List<GoogleDriveFileHolder>> searchFile(final String fileName, final String mimeType) {
         return Tasks.call(mExecutor, () -> {
             List<GoogleDriveFileHolder> googleDriveFileHolderList = new ArrayList<>();
@@ -474,43 +470,43 @@ public class DriveServiceHelper {
      */
     public Task<List<GoogleDriveFileHolder>> queryFiles() {
         return Tasks.call(mExecutor, () -> {
-            List<GoogleDriveFileHolder> googleDriveFileHolderList = new ArrayList<>();
+                    List<GoogleDriveFileHolder> googleDriveFileHolderList = new ArrayList<>();
 
 
-            FileList result = mDriveService.files().list().setFields("files(id, name,size,createdTime,modifiedTime,starred,mimeType)").setSpaces("drive").execute();
+                    FileList result = mDriveService.files().list().setFields("files(id, name,size,createdTime,modifiedTime,starred,mimeType)").setSpaces("drive").execute();
 
-            for (int i = 0; i < result.getFiles().size(); i++) {
+                    for (int i = 0; i < result.getFiles().size(); i++) {
 
-                GoogleDriveFileHolder googleDriveFileHolder = new GoogleDriveFileHolder();
-                googleDriveFileHolder.setId(result.getFiles().get(i).getId());
-                googleDriveFileHolder.setName(result.getFiles().get(i).getName());
-                if (result.getFiles().get(i).getSize() != null) {
-                    googleDriveFileHolder.setSize(result.getFiles().get(i).getSize());
+                        GoogleDriveFileHolder googleDriveFileHolder = new GoogleDriveFileHolder();
+                        googleDriveFileHolder.setId(result.getFiles().get(i).getId());
+                        googleDriveFileHolder.setName(result.getFiles().get(i).getName());
+                        if (result.getFiles().get(i).getSize() != null) {
+                            googleDriveFileHolder.setSize(result.getFiles().get(i).getSize());
+                        }
+
+                        if (result.getFiles().get(i).getModifiedTime() != null) {
+                            googleDriveFileHolder.setModifiedTime(result.getFiles().get(i).getModifiedTime());
+                        }
+
+                        if (result.getFiles().get(i).getCreatedTime() != null) {
+                            googleDriveFileHolder.setCreatedTime(result.getFiles().get(i).getCreatedTime());
+                        }
+
+                        if (result.getFiles().get(i).getStarred() != null) {
+                            googleDriveFileHolder.setStarred(result.getFiles().get(i).getStarred());
+                        }
+
+                        if (result.getFiles().get(i).getMimeType() != null) {
+                            googleDriveFileHolder.setMimeType(result.getFiles().get(i).getMimeType());
+                        }
+                        googleDriveFileHolderList.add(googleDriveFileHolder);
+
+                    }
+
+                    return googleDriveFileHolderList;
+
+
                 }
-
-                if (result.getFiles().get(i).getModifiedTime() != null) {
-                    googleDriveFileHolder.setModifiedTime(result.getFiles().get(i).getModifiedTime());
-                }
-
-                if (result.getFiles().get(i).getCreatedTime() != null) {
-                    googleDriveFileHolder.setCreatedTime(result.getFiles().get(i).getCreatedTime());
-                }
-
-                if (result.getFiles().get(i).getStarred() != null) {
-                    googleDriveFileHolder.setStarred(result.getFiles().get(i).getStarred());
-                }
-
-                if (result.getFiles().get(i).getMimeType() != null) {
-                    googleDriveFileHolder.setMimeType(result.getFiles().get(i).getMimeType());
-                }
-                googleDriveFileHolderList.add(googleDriveFileHolder);
-
-            }
-
-            return googleDriveFileHolderList;
-
-
-        }
         );
     }
 

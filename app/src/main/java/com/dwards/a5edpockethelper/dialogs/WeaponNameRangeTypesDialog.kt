@@ -2,8 +2,6 @@ package com.dwards.a5edpockethelper.dialogs
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -130,26 +128,32 @@ class WeaponNameRangeTypesDialog : DialogFragment(), AdapterView.OnItemSelectedL
 
         binding.SaveButton.setOnClickListener {
             viewModel.changeWeapon(
-                if (binding.weaponNameValue.text.toString() != "")  binding.weaponNameValue.text.toString() else "Weapon",
-                if (binding.weaponRangeValue.text.toString() != "")  binding.weaponRangeValue.text.toString() else "0",
+                if (binding.weaponNameValue.text.toString() != "") binding.weaponNameValue.text.toString() else "Weapon",
+                if (binding.weaponRangeValue.text.toString() != "") binding.weaponRangeValue.text.toString() else "0",
                 damageType,
                 attackAbility,
                 rangedType,
                 handedType,
-                if (binding.attackMagicBonusValue.text.toString() != "") binding.attackMagicBonusValue.text.toString().toInt() else 0,
-                if (binding.attackMiscBonusValue.text.toString() != "") binding.attackMiscBonusValue.text.toString().toInt() else 0,
+                if (binding.attackMagicBonusValue.text.toString() != "") binding.attackMagicBonusValue.text.toString()
+                    .toInt() else 0,
+                if (binding.attackMiscBonusValue.text.toString() != "") binding.attackMiscBonusValue.text.toString()
+                    .toInt() else 0,
                 binding.addProficiencyToAttackCheck.isChecked,
-                if (binding.damageMagicBonusValue.text.toString() != "") binding.damageMagicBonusValue.text.toString().toInt() else 0,
-                if (binding.damageMiscBonusValue.text.toString() != "") binding.damageMiscBonusValue.text.toString().toInt() else 0,
+                if (binding.damageMagicBonusValue.text.toString() != "") binding.damageMagicBonusValue.text.toString()
+                    .toInt() else 0,
+                if (binding.damageMiscBonusValue.text.toString() != "") binding.damageMiscBonusValue.text.toString()
+                    .toInt() else 0,
                 binding.addAbilityModToDamage.isChecked,
-                if (binding.damageDice1CountValue.text.toString() != "") binding.damageDice1CountValue.text.toString().toInt() else 0,
-                if (binding.damageDice1ValueValue.text.toString() != "") binding.damageDice1ValueValue.text.toString().toInt() else 0,
+                if (binding.damageDice1CountValue.text.toString() != "") binding.damageDice1CountValue.text.toString()
+                    .toInt() else 0,
+                if (binding.damageDice1ValueValue.text.toString() != "") binding.damageDice1ValueValue.text.toString()
+                    .toInt() else 0,
                 binding.weaponDescription.text.toString(),
             )
             dismiss()
         }
 
-        binding.deleteButton.setOnClickListener{
+        binding.deleteButton.setOnClickListener {
             val alertDialog = AlertDialog.Builder(context)
 
             alertDialog.apply {
@@ -214,15 +218,17 @@ class WeaponNameRangeTypesDialog : DialogFragment(), AdapterView.OnItemSelectedL
         binding.weaponNameValue.setText(weapon.name)
         binding.weaponRangeValue.setText(weapon.range)
         binding.attackProfBonusValue.setText(character.proficiency.toString())
-        binding.attackAbilityBonusValue.setText( when (attackAbility) {//TODO сделать обновляемым онлайн
-            1 -> viewModel.calcModifier(character.strength)
-            2 -> viewModel.calcModifier(character.dexterity)
-            3 -> viewModel.calcModifier(character.constitution)
-            4 -> viewModel.calcModifier(character.intelligence)
-            5 -> viewModel.calcModifier(character.wisdom)
-            6 -> viewModel.calcModifier(character.charisma)
-            else -> "0"
-        })
+        binding.attackAbilityBonusValue.setText(
+            when (attackAbility) {//TODO сделать обновляемым онлайн
+                1 -> viewModel.calcModifier(character.strength)
+                2 -> viewModel.calcModifier(character.dexterity)
+                3 -> viewModel.calcModifier(character.constitution)
+                4 -> viewModel.calcModifier(character.intelligence)
+                5 -> viewModel.calcModifier(character.wisdom)
+                6 -> viewModel.calcModifier(character.charisma)
+                else -> "0"
+            }
+        )
         binding.attackMagicBonusValue.setText(weapon.magicAttackBonus.toString())
         binding.attackMiscBonusValue.setText(weapon.miscAttackBonus.toString())
         if (weapon.weaponProf) {

@@ -54,8 +54,10 @@ class WeaponListAdapter(
             }
 
             itemBinding.MainWeaponLayout.setOnLongClickListener {
-                val viewModel = ViewModelProvider(unwrap(itemView.context) as FragmentActivity).get(MyViewModel::class.java)
-                val weaponNameRangeTypesDialog: WeaponNameRangeTypesDialog = WeaponNameRangeTypesDialog()
+                val viewModel =
+                    ViewModelProvider(unwrap(itemView.context) as FragmentActivity).get(MyViewModel::class.java)
+                val weaponNameRangeTypesDialog: WeaponNameRangeTypesDialog =
+                    WeaponNameRangeTypesDialog()
                 val args = Bundle()
                 args.putInt("num", absoluteAdapterPosition)
                 weaponNameRangeTypesDialog.arguments = args
@@ -69,15 +71,18 @@ class WeaponListAdapter(
 
         fun bind(weapon: Weapon?) {
             itemBinding.WeaponName.text = weapon?.name
-            itemBinding.DamageType.text = (unwrap(itemView.context) as FragmentActivity).resources.getStringArray(R.array.DamageTypeList)[weapon?.damageTypePosition!!]
-            itemBinding.AttackBonus.text = if (weapon.statAttackBonus + weapon.magicAttackBonus + weapon.miscAttackBonus + weapon.profAttackBnus > 0)
-                                                "+"+(weapon.statAttackBonus + weapon.magicAttackBonus + weapon.miscAttackBonus + weapon.profAttackBnus).toString() else
-                                                (weapon.statAttackBonus + weapon.magicAttackBonus + weapon.miscAttackBonus + weapon.profAttackBnus).toString()
-            itemBinding.AttackDamage.text = if (weapon.damageDice1Count != 0) ("" + weapon.damageDice1Count + "d" +  weapon.damageDice1Size) else "" +
-                                            if (weapon.damageDice1Count != 0) ("+" + weapon.damageDice1Count + "d" +  weapon.damageDice2Size) else "" +
-                                            if (weapon.damageDice1Count != 0) ("+" + weapon.damageDice1Count + "d" +  weapon.damageDice3Size) else "" +
-                                            if (weapon.statDamageBonus + weapon.magicDamageBonus + weapon.miscDamageBonus + weapon.profAttackBnus != 0)
-                                                    ("+" + (weapon.statDamageBonus + weapon.magicDamageBonus + weapon.miscDamageBonus + weapon.profAttackBnus)) else "0"
+            itemBinding.DamageType.text =
+                (unwrap(itemView.context) as FragmentActivity).resources.getStringArray(R.array.DamageTypeList)[weapon?.damageTypePosition!!]
+            itemBinding.AttackBonus.text =
+                if (weapon.statAttackBonus + weapon.magicAttackBonus + weapon.miscAttackBonus + weapon.profAttackBnus > 0)
+                    "+" + (weapon.statAttackBonus + weapon.magicAttackBonus + weapon.miscAttackBonus + weapon.profAttackBnus).toString() else
+                    (weapon.statAttackBonus + weapon.magicAttackBonus + weapon.miscAttackBonus + weapon.profAttackBnus).toString()
+            itemBinding.AttackDamage.text =
+                if (weapon.damageDice1Count != 0) ("" + weapon.damageDice1Count + "d" + weapon.damageDice1Size) else "" +
+                        if (weapon.damageDice1Count != 0) ("+" + weapon.damageDice1Count + "d" + weapon.damageDice2Size) else "" +
+                                if (weapon.damageDice1Count != 0) ("+" + weapon.damageDice1Count + "d" + weapon.damageDice3Size) else "" +
+                                        if (weapon.statDamageBonus + weapon.magicDamageBonus + weapon.miscDamageBonus + weapon.profAttackBnus != 0)
+                                            ("+" + (weapon.statDamageBonus + weapon.magicDamageBonus + weapon.miscDamageBonus + weapon.profAttackBnus)) else "0"
             itemBinding.AttackRange.text = "${weapon?.range} ft."
             itemBinding.weaponDescription.text = weapon.description
         }

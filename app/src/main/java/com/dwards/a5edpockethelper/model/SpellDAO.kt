@@ -20,7 +20,7 @@ interface SpellDAO {
 
     // Удаление из бд
     @Delete
-    suspend  fun delete(spell: Spell)
+    suspend fun delete(spell: Spell)
 
     // Изменение в бд
     @Update

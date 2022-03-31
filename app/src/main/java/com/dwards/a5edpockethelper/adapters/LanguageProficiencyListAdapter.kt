@@ -17,7 +17,7 @@ import com.dwards.a5edpockethelper.interfaces.RecyclerViewClickListener
 class LanguageProficiencyListAdapter(
     languageList: List<String>,
     private val listener: RecyclerViewClickListener
-    ) : Adapter<LanguageProficiencyListAdapter.LanguageProficiencyViewHolder>() {
+) : Adapter<LanguageProficiencyListAdapter.LanguageProficiencyViewHolder>() {
     private var languageArrayList: List<String> = languageList
 
     override fun onCreateViewHolder(

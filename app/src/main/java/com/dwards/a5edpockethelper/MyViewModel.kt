@@ -12,10 +12,16 @@ import com.dwards.a5edpockethelper.model.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.*
-import kotlinx.serialization.json.*
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 
-class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, private val weaponDao: WeaponDAO, private val characterDao: CharacterDAO, private val spellDao: SpellDAO, application: Application) :
+class MyViewModel(
+    private val characterAndWeaponsDao: CharacterAndWeaponsDAO,
+    private val weaponDao: WeaponDAO,
+    private val characterDao: CharacterDAO,
+    private val spellDao: SpellDAO,
+    application: Application
+) :
     AndroidViewModel(application) {
     var currentId: Int = 0
     var character: Character = Character()
@@ -34,7 +40,7 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
     var currentFilter: SpellFilter = SpellFilter()
 
     init {
-        viewModelScope.launch{
+        viewModelScope.launch {
             withContext(viewModelScope.coroutineContext) { fetchAll() }
             //characterList.value = characterDao.getAll()
             //fetchAllWeapons()
@@ -52,22 +58,21 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
                 addCharacter()
             }
         }
-        if (allSpellList.value?.size == 0){
+        if (allSpellList.value?.size == 0) {
             runBlocking { addSpells() }
         }
 
         showAllSpells()
 
         val firstCharacterId = characterList.value?.firstOrNull()?.id
-        if (firstCharacterId == null){
-            runBlocking{
+        if (firstCharacterId == null) {
+            runBlocking {
                 fetchData(currentId)
                 chooseCharacter(currentId)
                 fetchAllWeapons(currentId)
             }
-        }
-        else {
-            runBlocking{
+        } else {
+            runBlocking {
                 fetchData(currentId)
                 chooseCharacter(firstCharacterId)
                 fetchAllWeapons(currentId)
@@ -102,7 +107,7 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         }
     }
 
-    fun fetchSpells(){
+    fun fetchSpells() {
         runBlocking {
             allSpellList.value = spellDao.getAll()
             showSpells()
@@ -110,11 +115,11 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
     }
 
     fun getSpellById(id: Int): Spell? {
-        if (allSpellList.value == null){
+        if (allSpellList.value == null) {
             return null
         }
-        for (v in allSpellList.value!!){
-            if (v?.id == id){
+        for (v in allSpellList.value!!) {
+            if (v?.id == id) {
                 return v
             }
         }
@@ -122,30 +127,33 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         //return allSpellList.value?.get(id-1) //id - позиция в базе, id-1 - позиция в списке. Не сработает при добавлении и удалении заклинаний!!!
     }
 
-    fun fetchCharacterSpells(){
-        if (currentChar.value == null){
+    fun fetchCharacterSpells() {
+        if (currentChar.value == null) {
             favoriteSpellList.value = mutableListOf()
             preparedSpellList.value = mutableListOf()
             return
         }
         val tempFavoriteSpell = mutableListOf<Spell>()
-        for (v in currentChar.value?.spellsFavorite!!){
-            if (getSpellById(v) != null){
+        for (v in currentChar.value?.spellsFavorite!!) {
+            if (getSpellById(v) != null) {
                 tempFavoriteSpell.add(getSpellById(v)!!)
             }
         }
         favoriteSpellList.value = tempFavoriteSpell
 
         val tempPreparedSpell = mutableListOf<Spell>()
-        for (v in currentChar.value?.spellsPrepared!!){
-            if (getSpellById(v) != null){
+        for (v in currentChar.value?.spellsPrepared!!) {
+            if (getSpellById(v) != null) {
                 tempPreparedSpell.add(getSpellById(v)!!)
             }
         }
         preparedSpellList.value = tempPreparedSpell
     }
 
-    fun showSpells(newCurrentSpellListName: SpellListNames = currentSpellListName, newFilter: SpellFilter = currentFilter){
+    fun showSpells(
+        newCurrentSpellListName: SpellListNames = currentSpellListName,
+        newFilter: SpellFilter = currentFilter
+    ) {
         if (newFilter != currentFilter)
             currentFilter = newFilter
         if (newCurrentSpellListName != currentSpellListName)
@@ -160,19 +168,19 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
     }
 
 
-    private fun showAllSpells(){
+    private fun showAllSpells() {
         currentSpellList.value = allSpellList.value?.toMutableList()
     }
 
-    private fun showFavoriteSpells(){
+    private fun showFavoriteSpells() {
         currentSpellList.value = favoriteSpellList.value
     }
 
-    private fun showPreparedSpells(){
+    private fun showPreparedSpells() {
         currentSpellList.value = preparedSpellList.value
     }
 
-    private fun showFavoritePreparedSpells(){
+    private fun showFavoritePreparedSpells() {
         if (favoriteSpellList.value != null && preparedSpellList.value != null)
             currentSpellList.value = favoriteSpellList.value?.intersect(preparedSpellList.value!!)
                 ?.toMutableList()
@@ -180,10 +188,10 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
             currentSpellList.value = mutableListOf()
     }
 
-    fun isFavoriteSpell(spellId: Int) : Boolean {
+    fun isFavoriteSpell(spellId: Int): Boolean {
         if (currentChar.value == null)
             return false
-        for (v in currentChar.value!!.spellsFavorite){
+        for (v in currentChar.value!!.spellsFavorite) {
             if (v == spellId) {
                 return true
             }
@@ -191,10 +199,10 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         return false
     }
 
-    fun isPreparedSpell(spellId: Int) : Boolean {
+    fun isPreparedSpell(spellId: Int): Boolean {
         if (currentChar.value == null)
             return false
-        for (v in currentChar.value!!.spellsPrepared){
+        for (v in currentChar.value!!.spellsPrepared) {
             if (v == spellId) {
                 return true
             }
@@ -202,8 +210,8 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         return false
     }
 
-    fun addFavoriteSpell(spellId: Int){
-        if (currentChar.value != null){
+    fun addFavoriteSpell(spellId: Int) {
+        if (currentChar.value != null) {
             currentChar.value!!.spellsFavorite.add(spellId)
             currentChar.value!!.spellsFavorite.sort() //может стоит ручками вставлять значение в нужное место
             runBlocking {
@@ -213,8 +221,8 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         }
     }
 
-    fun removeFavoriteSpell(spellId: Int){
-        if (currentChar.value != null){
+    fun removeFavoriteSpell(spellId: Int) {
+        if (currentChar.value != null) {
             currentChar.value!!.spellsFavorite.remove(spellId)
             runBlocking {
                 characterDao.updateChar(currentChar.value!!)
@@ -223,8 +231,8 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         }
     }
 
-    fun addPreparedSpell(spellId: Int){
-        if (currentChar.value != null){
+    fun addPreparedSpell(spellId: Int) {
+        if (currentChar.value != null) {
             currentChar.value!!.spellsPrepared.add(spellId)
             currentChar.value!!.spellsPrepared.sort()
             runBlocking {
@@ -234,8 +242,8 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         }
     }
 
-    fun removePreparedSpell(spellId: Int){
-        if (currentChar.value != null){
+    fun removePreparedSpell(spellId: Int) {
+        if (currentChar.value != null) {
             currentChar.value!!.spellsPrepared.remove(spellId)
             runBlocking {
                 characterDao.updateChar(currentChar.value!!)
@@ -244,7 +252,7 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         }
     }
 
-    fun addEmptySpell(){
+    fun addEmptySpell() {
         runBlocking {
             spellDao.insertSpell(Spell(source = "HB"))
             fetchSpells()
@@ -252,15 +260,15 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
 
     }
 
-    fun updateSpell(spell: Spell){
+    fun updateSpell(spell: Spell) {
         runBlocking {
             spellDao.updateSpell(spell)
             fetchSpells()
         }
     }
 
-    fun deleteSpell(spell: Spell){
-        if (currentChar.value != null){
+    fun deleteSpell(spell: Spell) {
+        if (currentChar.value != null) {
             currentChar.value!!.spellsFavorite.remove(spell.id)
             currentChar.value!!.spellsPrepared.remove(spell.id)
         }
@@ -272,12 +280,13 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         }
     }
 
-    private fun filterSpells(){
+    private fun filterSpells() {
         currentSpellList.value = currentSpellList.value?.filter {
             var result = true
-            if (it != null){
+            if (it != null) {
                 if (currentFilter.name != null)
-                    result = result && (it.name.lowercase().contains(currentFilter.name!!.lowercase()))
+                    result =
+                        result && (it.name.lowercase().contains(currentFilter.name!!.lowercase()))
                 if (currentFilter.level != null)
                     result = result && (currentFilter.level == it.level)
                 if (currentFilter.school != null)
@@ -347,23 +356,23 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         character.spellsPrepared = mutableListOf()
         character.spellsPrepared.add(2)
 
-        runBlocking{
+        runBlocking {
             characterDao.insertChar(character)
             characterList.value = characterDao.getAll()
         }
 
     }
 
-    private fun fetchAllWeapons(id: Int){
-        var charAndWeaponList:List<CharacterAndWeapons> = listOf()
-            runBlocking {
-                //charAndWeaponList = characterAndWeaponsDao.getCharacterAndWeapons()
-                weaponList.value =  characterAndWeaponsDao.getWeaponListById(id)
-            }
+    private fun fetchAllWeapons(id: Int) {
+        var charAndWeaponList: List<CharacterAndWeapons> = listOf()
+        runBlocking {
+            //charAndWeaponList = characterAndWeaponsDao.getCharacterAndWeapons()
+            weaponList.value = characterAndWeaponsDao.getWeaponListById(id)
+        }
 
     }
 
-    fun addWeapon(){
+    fun addWeapon() {
         //val updatedChar = currentChar.value!!
         val weapon = Weapon()
         weapon.name = "Weapon2"
@@ -769,12 +778,12 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
     }
 
 
-    fun calcSave(value: Int, saveProf: Boolean, misc: Int): String{
+    fun calcSave(value: Int, saveProf: Boolean, misc: Int): String {
         var sum: Int = calcModifier(value).toInt()
         if (saveProf)
-            sum+=currentChar.value?.proficiency!!
-            sum+= misc
-        return if (sum>0)
+            sum += currentChar.value?.proficiency!!
+        sum += misc
+        return if (sum > 0)
             "+$sum"
         else
             "$sum"
@@ -846,22 +855,24 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         return sum
     }
 
-    fun changeWeapon(name: String,
-                     range: String,
-                     damageType: Int,
-                     attackAbility: Int,
-                     rangedType: Int,
-                     handedType: Int,
-                     attackMagicBonusValue: Int,
-                     attackMiscBonusValue: Int,
-                     addProficiencyToAttackCheck: Boolean,
-                     damageMagicBonusValue: Int,
-                     damageMiscBonusValue: Int,
-                     addAbilityModToDamage: Boolean,
-                     damageDice1CountValue: Int,
-                     damageDice1SizeValue: Int,
-                     description: String){
-        currentWeapon.value?.name  = name
+    fun changeWeapon(
+        name: String,
+        range: String,
+        damageType: Int,
+        attackAbility: Int,
+        rangedType: Int,
+        handedType: Int,
+        attackMagicBonusValue: Int,
+        attackMiscBonusValue: Int,
+        addProficiencyToAttackCheck: Boolean,
+        damageMagicBonusValue: Int,
+        damageMiscBonusValue: Int,
+        addAbilityModToDamage: Boolean,
+        damageDice1CountValue: Int,
+        damageDice1SizeValue: Int,
+        description: String
+    ) {
+        currentWeapon.value?.name = name
         currentWeapon.value?.range = range
         currentWeapon.value?.damageTypePosition = damageType
         currentWeapon.value?.attackStatType = attackAbility
@@ -879,11 +890,11 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         pushToDB(currentWeapon.value!!)
     }
 
-    fun chooseWeapon(id: Int){
+    fun chooseWeapon(id: Int) {
         fetchWeapon(id)
     }
 
-    private fun fetchWeapon(id: Int){
+    private fun fetchWeapon(id: Int) {
         runBlocking {
             currentWeapon.value = weaponDao.getById(id)
         }
@@ -896,7 +907,7 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
         }
     }
 
-    fun deleteWeapon(weapon: Weapon){
+    fun deleteWeapon(weapon: Weapon) {
         runBlocking {
             weaponDao.delete(weapon)
             fetchAllWeapons(currentId)

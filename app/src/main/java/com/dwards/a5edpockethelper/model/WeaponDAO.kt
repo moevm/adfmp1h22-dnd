@@ -17,7 +17,7 @@ interface WeaponDAO {
 
     // Удаление из бд
     @Delete
-    suspend  fun delete(weapon: Weapon)
+    suspend fun delete(weapon: Weapon)
 
     // Изменение в бд
     @Update

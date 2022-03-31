@@ -17,7 +17,8 @@ import com.dwards.a5edpockethelper.R
 import com.dwards.a5edpockethelper.databinding.SpellEditDialogBinding
 import com.dwards.a5edpockethelper.model.Spell
 
-class SpellEditDialog(private val spell: Spell): DialogFragment(), AdapterView.OnItemSelectedListener {
+class SpellEditDialog(private val spell: Spell) : DialogFragment(),
+    AdapterView.OnItemSelectedListener {
     private var _binding: SpellEditDialogBinding? = null
     private val binding get() = _binding!!
     private var editedSpell: Spell = spell.copy()
@@ -36,7 +37,7 @@ class SpellEditDialog(private val spell: Spell): DialogFragment(), AdapterView.O
         val viewModel = ViewModelProvider(requireActivity())[MyViewModel::class.java]
 
         val levels = listOf(
-            0,1,2,3,4,5,6,7,8,9
+            0, 1, 2, 3, 4, 5, 6, 7, 8, 9
         )
         val schools = resources.getStringArray(R.array.SpellSchoolList)
         val sources = resources.getStringArray(R.array.SpellSourceList)
@@ -111,6 +112,7 @@ class SpellEditDialog(private val spell: Spell): DialogFragment(), AdapterView.O
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 editedSpell.name = binding.spellNameText.text.toString()
             }
+
             override fun afterTextChanged(s: Editable?) {}
         })
 
@@ -119,6 +121,7 @@ class SpellEditDialog(private val spell: Spell): DialogFragment(), AdapterView.O
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 editedSpell.castingTime = binding.castingTimeTextValue.text.toString()
             }
+
             override fun afterTextChanged(s: Editable?) {}
         })
 
@@ -127,6 +130,7 @@ class SpellEditDialog(private val spell: Spell): DialogFragment(), AdapterView.O
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 editedSpell.range = binding.rangeTextValue.text.toString()
             }
+
             override fun afterTextChanged(s: Editable?) {}
         })
 
@@ -135,6 +139,7 @@ class SpellEditDialog(private val spell: Spell): DialogFragment(), AdapterView.O
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 editedSpell.materials = binding.materialsTextValue.text.toString()
             }
+
             override fun afterTextChanged(s: Editable?) {}
         })
 
@@ -143,6 +148,7 @@ class SpellEditDialog(private val spell: Spell): DialogFragment(), AdapterView.O
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 editedSpell.components = binding.componentsTextValue.text.toString()
             }
+
             override fun afterTextChanged(s: Editable?) {}
         })
 
@@ -151,6 +157,7 @@ class SpellEditDialog(private val spell: Spell): DialogFragment(), AdapterView.O
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 editedSpell.duration = binding.durationTextValue.text.toString()
             }
+
             override fun afterTextChanged(s: Editable?) {}
         })
 
@@ -159,17 +166,18 @@ class SpellEditDialog(private val spell: Spell): DialogFragment(), AdapterView.O
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 editedSpell.text = binding.spellDescription.text.toString()
             }
+
             override fun afterTextChanged(s: Editable?) {}
         })
 
         binding.SaveButton.setOnClickListener {
-            if (spell != editedSpell){
+            if (spell != editedSpell) {
                 viewModel.updateSpell(editedSpell)
             }
             dismiss()
         }
 
-        binding.deleteButton.setOnClickListener{
+        binding.deleteButton.setOnClickListener {
             val alertDialog = AlertDialog.Builder(context)
 
             alertDialog.apply {

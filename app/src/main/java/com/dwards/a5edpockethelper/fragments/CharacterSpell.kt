@@ -42,7 +42,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.ExperimentalSerializationApi
 import java.io.File
-import java.io.FileInputStream
 import java.util.*
 
 
@@ -164,7 +163,8 @@ class CharacterSpell : Fragment(), RecyclerViewClickListener {
                     // example: /data/user/0/com.dwards.a5edpockethelper/files/2022-3-30-21-19-10_spells_backup.json
                     val filesDir = applicationContext.filesDir
                     val backupAsString = Scanner(File(filesDir, name)).nextLine()
-                    val backupList = ImportExportSpellsConverter.covertSpellsJsonStringToList(backupAsString)
+                    val backupList =
+                        ImportExportSpellsConverter.covertSpellsJsonStringToList(backupAsString)
                     spellAdapter.spellArrayList = backupList
                     spellAdapter.notifyDataSetChanged()  // it's ok in this case
                     Toast.makeText(

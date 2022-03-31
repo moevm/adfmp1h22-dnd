@@ -14,7 +14,8 @@ import com.dwards.a5edpockethelper.R
 import com.dwards.a5edpockethelper.databinding.SpellFilterDialogBinding
 import com.dwards.a5edpockethelper.model.SpellFilter
 
-class SpellFilterDialog(private val spellFilter: SpellFilter): DialogFragment(), AdapterView.OnItemSelectedListener {
+class SpellFilterDialog(private val spellFilter: SpellFilter) : DialogFragment(),
+    AdapterView.OnItemSelectedListener {
     private var _binding: SpellFilterDialogBinding? = null
     private val binding get() = _binding!!
     private var newFilter: SpellFilter = spellFilter.copy()
@@ -34,7 +35,7 @@ class SpellFilterDialog(private val spellFilter: SpellFilter): DialogFragment(),
         val viewModel = ViewModelProvider(requireActivity())[MyViewModel::class.java]
 
         val levels = listOf(
-            "All", "0","1","2","3","4","5","6","7","8","9"
+            "All", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
         )
         val schools = resources.getStringArray(R.array.SpellSchoolList).toMutableList()
         schools.add(0, "All")
@@ -84,7 +85,7 @@ class SpellFilterDialog(private val spellFilter: SpellFilter): DialogFragment(),
             ritualSpinner.adapter = adapter
         }
         ritualSpinner.onItemSelectedListener = this
-        ritualSpinner.setSelection(if (spellFilter.ritual == null) 0 else if (spellFilter.ritual == true) 1 else 2 )
+        ritualSpinner.setSelection(if (spellFilter.ritual == null) 0 else if (spellFilter.ritual == true) 1 else 2)
 
         val sourceSpinner: Spinner = binding.sourceValueSpinner
         ArrayAdapter(
@@ -130,7 +131,7 @@ class SpellFilterDialog(private val spellFilter: SpellFilter): DialogFragment(),
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         when (parent?.id) {
             R.id.levelValueSpinner -> {
-                newFilter.level = if (position == 0) null else position-1
+                newFilter.level = if (position == 0) null else position - 1
             }
             R.id.schoolValueSpinner -> {
                 if (position == 0)

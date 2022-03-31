@@ -83,7 +83,11 @@ class CurrentHpSettingsDialog : DialogFragment() {
                     if (intValue in 0..99) {
                         intValue
                     } else {
-                        Toast.makeText(context, "Value is not in correct range: [0,99]!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            context,
+                            "Value is not in correct range: [0,99]!",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         0
                     }
                 } else {

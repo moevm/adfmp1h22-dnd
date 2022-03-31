@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -76,10 +77,40 @@ class SpeedSettingsDialog : DialogFragment() {
 
         binding.SaveButton.setOnClickListener {
             viewModel.changeCharactersSpeed(
-                if (binding.SpeedBaseValue.text.toString() != "") binding.SpeedBaseValue.text.toString()
-                    .toInt() else 0,
-                if (binding.SpeedMiscBonusValue.text.toString() != "") binding.SpeedMiscBonusValue.text.toString()
-                    .toInt() else 0,
+                if (binding.SpeedBaseValue.text.toString().isNotBlank()) {
+                    val str = binding.SpeedBaseValue.text.toString()
+                    val intValue = str.toIntOrNull() ?: 0
+                    if (intValue in 0..99) {
+                        intValue
+                    } else {
+                        Toast.makeText(
+                            context,
+                            "Value is not in correct range: [0,99]!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        0
+                    }
+                } else {
+                    Toast.makeText(context, "Value is not integer!", Toast.LENGTH_SHORT).show()
+                    0
+                },
+                if (binding.SpeedMiscBonusValue.text.toString().isNotBlank()) {
+                    val str = binding.SpeedMiscBonusValue.text.toString()
+                    val intValue = str.toIntOrNull() ?: 0
+                    if (intValue in 0..99) {
+                        intValue
+                    } else {
+                        Toast.makeText(
+                            context,
+                            "Value is not in correct range: [0,99]!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        0
+                    }
+                } else {
+                    Toast.makeText(context, "Value is not integer!", Toast.LENGTH_SHORT).show()
+                    0
+                },
                 speedType
             )
             dismiss()
