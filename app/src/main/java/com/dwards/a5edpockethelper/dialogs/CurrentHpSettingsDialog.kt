@@ -83,15 +83,16 @@ class CurrentHpSettingsDialog : DialogFragment() {
                     if (intValue in 0..9999) {
                         intValue
                     } else {
-                        Toast.makeText(
-                            context,
-                            "Value is not in correct range: [0,9999]!",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        if (str.isNotEmpty()) {
+                            Toast.makeText(
+                                context,
+                                "Value is not in correct range: [0,9999]!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                         0
                     }
                 } else {
-                    Toast.makeText(context, "Value is not integer!", Toast.LENGTH_SHORT).show()
                     0
                 }
                 binding.MinusButton.isEnabled = changeHP != 0

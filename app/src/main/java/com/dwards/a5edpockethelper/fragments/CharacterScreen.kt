@@ -93,7 +93,6 @@ class CharacterScreen : Fragment() {
 
         //редактирование максимума здоровья
         binding.mainCharacterInfoBlock.HPLayout.setOnLongClickListener {
-
             val maxHPSettingsDialog = MaxHPSettingsDialog()
             maxHPSettingsDialog.show(parentFragmentManager, "MaxHPSettingsDialog")
             return@setOnLongClickListener true

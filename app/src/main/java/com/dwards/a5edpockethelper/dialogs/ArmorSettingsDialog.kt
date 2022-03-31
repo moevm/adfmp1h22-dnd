@@ -296,15 +296,16 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
                 if (intValue in 0..99) {
                     intValue
                 } else {
-                    Toast.makeText(
-                        context,
-                        "Value is not in correct range: [0,99]!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    if (str.isNotEmpty()) {
+                        Toast.makeText(
+                            context,
+                            "Value is not in correct range: [0,99]!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                     0
                 }
             } else {
-                Toast.makeText(context, "Value is not integer!", Toast.LENGTH_SHORT).show()
                 0
             },
             if (binding.ShieldBonusValue.text.toString().isNotBlank()) {

@@ -19,14 +19,11 @@ class MaxHPSettingsDialog : DialogFragment() {
     private var _binding: MaxhpSettingsDialogBinding? = null
     private val binding get() = _binding!!
 
-    private val TAG = "MyCustomDialog"
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner);
 
         _binding = MaxhpSettingsDialogBinding.inflate(inflater, container, false)
@@ -64,12 +61,7 @@ class MaxHPSettingsDialog : DialogFragment() {
             dismiss()
         }
 
-
         return view
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
     }
 
     override fun onStart() {
@@ -77,8 +69,6 @@ class MaxHPSettingsDialog : DialogFragment() {
         val width = (resources.displayMetrics.widthPixels * 0.85).toInt()
         //val height = (resources.displayMetrics.heightPixels * 0.40).toInt()
         dialog!!.window?.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
-
-
     }
 
     override fun onDestroyView() {
@@ -96,6 +86,7 @@ class MaxHPSettingsDialog : DialogFragment() {
                 binding.HPValue.setTextColor(ctx.getColor(R.color.black))
             }
         }
-        binding.HPValue.text = (character.currentHP + character.tempHP).toString()
+        val hpSum = character.currentHP + character.tempHP
+        binding.HPValue.text = hpSum.toString()
     }
 }

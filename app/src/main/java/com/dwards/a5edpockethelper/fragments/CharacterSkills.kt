@@ -233,7 +233,7 @@ class CharacterSkills : Fragment() {
     }
 
     private fun refreshChar(character: Character) {
-        val viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+        val viewModel = ViewModelProvider(requireActivity())[MyViewModel::class.java]
         binding.strengthBlock.StrengthModifier.text = viewModel.calcModifier(character.strength)
         binding.dexterityBlock.DexterityModifier.text = viewModel.calcModifier(character.dexterity)
         binding.intelligenceBlock.IntelligenceModifier.text =
@@ -912,5 +912,3 @@ class CharacterSkills : Fragment() {
     }
 
 }
-
-

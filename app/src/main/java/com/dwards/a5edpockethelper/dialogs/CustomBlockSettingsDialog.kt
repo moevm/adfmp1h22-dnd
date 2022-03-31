@@ -31,7 +31,7 @@ class CustomBlockSettingsDialog : DialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner);
 
         _binding = CustomblockSettingsDialogBinding.inflate(inflater, container, false)
