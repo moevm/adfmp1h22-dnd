@@ -776,7 +776,8 @@ class MyViewModel(
     private fun pushToDB(updatedChar: Character) {
         viewModelScope.launch {
             characterDao.updateChar(updatedChar)
-            fetchData(updatedChar.id!!)
+                fetchData(updatedChar.id!!)
+                fetchAll()
         }
     }
 
