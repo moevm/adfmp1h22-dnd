@@ -34,7 +34,6 @@ class WeaponListAdapter(
         holder.bind(weapon)
     }
 
-
     override fun getItemCount(): Int {
         return weaponArrayList.size;
     }
@@ -68,21 +67,19 @@ class WeaponListAdapter(
             }
         }
 
-
-
         fun bind(weapon: Weapon?) {
             itemBinding.WeaponName.text = weapon?.name
             itemBinding.DamageType.text = (unwrap(itemView.context) as FragmentActivity).resources.getStringArray(R.array.DamageTypeList)[weapon?.damageTypePosition!!]
-            itemBinding.AttackBonus.text = if (weapon?.statAttackBonus!! + weapon.magicAttackBonus + weapon.miscAttackBonus + weapon.profAttackBnus > 0)
-                                                "+"+(weapon?.statAttackBonus!! + weapon.magicAttackBonus + weapon.miscAttackBonus + weapon.profAttackBnus).toString() else
-                                                (weapon?.statAttackBonus!! + weapon.magicAttackBonus + weapon.miscAttackBonus + weapon.profAttackBnus).toString()
+            itemBinding.AttackBonus.text = if (weapon.statAttackBonus + weapon.magicAttackBonus + weapon.miscAttackBonus + weapon.profAttackBnus > 0)
+                                                "+"+(weapon.statAttackBonus + weapon.magicAttackBonus + weapon.miscAttackBonus + weapon.profAttackBnus).toString() else
+                                                (weapon.statAttackBonus + weapon.magicAttackBonus + weapon.miscAttackBonus + weapon.profAttackBnus).toString()
             itemBinding.AttackDamage.text = if (weapon.damageDice1Count != 0) ("" + weapon.damageDice1Count + "d" +  weapon.damageDice1Size) else "" +
                                             if (weapon.damageDice1Count != 0) ("+" + weapon.damageDice1Count + "d" +  weapon.damageDice2Size) else "" +
                                             if (weapon.damageDice1Count != 0) ("+" + weapon.damageDice1Count + "d" +  weapon.damageDice3Size) else "" +
                                             if (weapon.statDamageBonus + weapon.magicDamageBonus + weapon.miscDamageBonus + weapon.profAttackBnus != 0)
                                                     ("+" + (weapon.statDamageBonus + weapon.magicDamageBonus + weapon.miscDamageBonus + weapon.profAttackBnus)) else "0"
-            itemBinding.AttackRange.text =  weapon?.range + " ft."
-            itemBinding.weaponDescription.text = weapon?.description
+            itemBinding.AttackRange.text = "${weapon?.range} ft."
+            itemBinding.weaponDescription.text = weapon.description
         }
 
         private fun unwrap(context: Context): Activity? {
@@ -93,6 +90,4 @@ class WeaponListAdapter(
             return ctx as Activity?
         }
     }
-
-
 }

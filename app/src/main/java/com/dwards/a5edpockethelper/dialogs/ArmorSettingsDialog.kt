@@ -133,20 +133,55 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
 
         binding.SaveButton.setOnClickListener {
             viewModel.changeCharactersArmor(
-                if (binding.ArmorBonusValue.text.toString() != "") binding.ArmorBonusValue.text.toString()
-                    .toInt() else 0,
-                if (binding.ShieldBonusValue.text.toString() != "") binding.ShieldBonusValue.text.toString()
-                    .toInt() else 0,
-                if (binding.MaxDexterityBonusValue.text.toString() != "") binding.MaxDexterityBonusValue.text.toString()
-                    .toInt() else 0,
-                if (binding.MiscBonusValue.text.toString() != "") binding.MiscBonusValue.text.toString()
-                    .toInt() else 0,
+                if (binding.ArmorBonusValue.text.toString().isNotBlank()) {
+                    val str = binding.ArmorBonusValue.text.toString()
+                    val intValue = str.toIntOrNull() ?: 0
+                    if (intValue in 0..100) {
+                        intValue
+                    } else {
+                        0
+                    }
+                } else {
+                    0
+                },
+                if (binding.ShieldBonusValue.text.toString().isNotBlank()) {
+                    val str = binding.ShieldBonusValue.text.toString()
+                    val intValue = str.toIntOrNull() ?: 0
+                    if (intValue in 0..100) {
+                        intValue
+                    } else {
+                        0
+                    }
+                } else {
+                    0
+                },
+                if (binding.MaxDexterityBonusValue.text.toString().isNotBlank()) {
+                    val str = binding.MaxDexterityBonusValue.text.toString()
+                    val intValue = str.toIntOrNull() ?: 0
+                    if (intValue in 0..100) {
+                        intValue
+                    } else {
+                        0
+                    }
+                } else {
+                    0
+                },
+                if (binding.MiscBonusValue.text.toString().isNotBlank()) {
+                    val str = binding.MiscBonusValue.text.toString()
+                    val intValue = str.toIntOrNull() ?: 0
+                    if (intValue in 0..100) {
+                        intValue
+                    } else {
+                        0
+                    }
+                } else {
+                    0
+                },
                 armorType,
                 additionalStatBonus
             )
             dismiss()
         }
-
 
         return view
     }
@@ -230,14 +265,50 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
 
     private fun refreshArmor() {
         binding.ArmorValue.text = viewModel.calcArmor(
-            if (binding.ArmorBonusValue.text.toString() != "") binding.ArmorBonusValue.text.toString()
-                .toInt() else 0,
-            if (binding.ShieldBonusValue.text.toString() != "") binding.ShieldBonusValue.text.toString()
-                .toInt() else 0,
-            if (binding.MaxDexterityBonusValue.text.toString() != "") binding.MaxDexterityBonusValue.text.toString()
-                .toInt() else 0,
-            if (binding.MiscBonusValue.text.toString() != "") binding.MiscBonusValue.text.toString()
-                .toInt() else 0,
+            if (binding.ArmorBonusValue.text.toString().isNotBlank()) {
+                val str = binding.ArmorBonusValue.text.toString()
+                val intValue = str.toIntOrNull() ?: 0
+                if (intValue in 0..100) {
+                    intValue
+                } else {
+                    0
+                }
+            } else {
+                0
+            },
+            if (binding.ShieldBonusValue.text.toString().isNotBlank()) {
+                val str = binding.ShieldBonusValue.text.toString()
+                val intValue = str.toIntOrNull() ?: 0
+                if (intValue in 0..100) {
+                    intValue
+                } else {
+                    0
+                }
+            } else {
+                0
+            },
+            if (binding.MaxDexterityBonusValue.text.toString().isNotBlank()) {
+                val str = binding.MaxDexterityBonusValue.text.toString()
+                val intValue = str.toIntOrNull() ?: 0
+                if (intValue in 0..100) {
+                    intValue
+                } else {
+                    0
+                }
+            } else {
+                0
+            },
+            if (binding.MiscBonusValue.text.toString().isNotBlank()) {
+                val str = binding.MiscBonusValue.text.toString()
+                val intValue = str.toIntOrNull() ?: 0
+                if (intValue in 0..100) {
+                    intValue
+                } else {
+                    0
+                }
+            } else {
+                0
+            },
             armorType,
             additionalStatBonus
         ).toString()

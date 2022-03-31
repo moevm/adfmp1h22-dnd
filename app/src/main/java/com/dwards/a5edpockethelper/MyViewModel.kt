@@ -354,7 +354,6 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
 
     }
 
-
     private fun fetchAllWeapons(id: Int){
         var charAndWeaponList:List<CharacterAndWeapons> = listOf()
             runBlocking {
@@ -363,7 +362,6 @@ class MyViewModel(private val characterAndWeaponsDao: CharacterAndWeaponsDAO, pr
             }
 
     }
-
 
     fun addWeapon(){
         //val updatedChar = currentChar.value!!

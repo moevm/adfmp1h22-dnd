@@ -76,7 +76,6 @@
         app:layout_constraintStart_toStartOf="@+id/ArmorBonusValue"
         app:layout_constraintTop_toBottomOf="@+id/ArmorClassText" />
 
-
     <EditText
         android:id="@+id/ArmorBonusValue"
         android:layout_width="wrap_content"
@@ -85,6 +84,7 @@
         android:ems="2"
         android:gravity="center"
         android:inputType="number"
+        android:maxLength="3"
         android:textColor="@color/black"
         app:layout_constraintEnd_toStartOf="@+id/ShieldBonusValue"
         app:layout_constraintHorizontal_bias="0.5"
@@ -112,6 +112,7 @@
         android:ems="2"
         android:gravity="center"
         android:inputType="number"
+        android:maxLength="3"
         android:textColor="@color/black"
         app:layout_constraintEnd_toStartOf="@+id/DexterityBonusValue"
         app:layout_constraintHorizontal_bias="0.5"
@@ -139,6 +140,7 @@
         android:enabled="false"
         android:gravity="center"
         android:inputType="number"
+        android:maxLength="3"
         app:layout_constraintEnd_toStartOf="@+id/MaxDexterityBonusValue"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/ShieldBonusValue"
@@ -166,6 +168,7 @@
         android:enabled="false"
         android:gravity="center"
         android:inputType="number"
+        android:maxLength="3"
         app:layout_constraintEnd_toStartOf="@+id/MiscBonusValue"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/DexterityBonusValue"
@@ -182,7 +185,6 @@
         app:layout_constraintStart_toStartOf="@+id/MiscBonusValue"
         app:layout_constraintTop_toTopOf="@+id/MaxDexterityBonusText" />
 
-
     <EditText
         android:id="@+id/MiscBonusValue"
         android:layout_width="wrap_content"
@@ -191,6 +193,7 @@
         android:ems="2"
         android:gravity="center"
         android:inputType="number"
+        android:maxLength="3"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
