@@ -18,7 +18,7 @@ class SpeedSettingsDialog : DialogFragment() {
     private val binding get() = _binding!!
 
     private val TAG = "MyCustomDialog"
-    private var speedType: String = "None"
+    private var speedType: String = "Walk"
 
 
     override fun onCreateView(
