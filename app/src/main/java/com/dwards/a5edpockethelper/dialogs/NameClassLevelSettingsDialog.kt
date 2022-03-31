@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -43,8 +44,23 @@ class NameClassLevelSettingsDialog : DialogFragment() {
             viewModel.changeCharactersNameClassLevel(
                 if (binding.NameValue.text.toString() != "") binding.NameValue.text.toString() else "0",
                 if (binding.ClassValue.text.toString() != "") binding.ClassValue.text.toString() else "0",
-                if (binding.LevelValue.text.toString() != "") binding.LevelValue.text.toString()
-                    .toInt() else 0
+                if (binding.LevelValue.text.toString().isNotBlank()) {
+                    val str = binding.LevelValue.text.toString()
+                    val intValue = str.toIntOrNull() ?: 0
+                    if (intValue in 0..99) {
+                        intValue
+                    } else {
+                        Toast.makeText(
+                            context,
+                            "Value is not in correct range: [0,99]!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        0
+                    }
+                } else {
+                    Toast.makeText(context, "Value is not integer!", Toast.LENGTH_SHORT).show()
+                    0
+                }
             )
             dismiss()
         }

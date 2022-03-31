@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -18,7 +19,6 @@ class CharacteristicSettingsDialog : DialogFragment() {
     private val binding get() = _binding!!
 
     private val TAG = "MyCustomDialog"
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -93,42 +93,29 @@ class CharacteristicSettingsDialog : DialogFragment() {
     private fun packageStat(): HashMap<String, Int> {
         val statsMap: HashMap<String, Int> = hashMapOf()
         statsMap["Strength"] =
-            if (binding.StrengthScoreValue.text.toString() != "") binding.StrengthScoreValue.text.toString()
-                .toInt() else 0
+            getCorrectIntValueFromInput(binding.StrengthScoreValue.text.toString())
         statsMap["Dexterity"] =
-            if (binding.DexterityScoreValue.text.toString() != "") binding.DexterityScoreValue.text.toString()
-                .toInt() else 0
+            getCorrectIntValueFromInput(binding.DexterityScoreValue.text.toString())
         statsMap["Constitution"] =
-            if (binding.ConstitutionScoreValue.text.toString() != "") binding.ConstitutionScoreValue.text.toString()
-                .toInt() else 0
+            getCorrectIntValueFromInput(binding.ConstitutionScoreValue.text.toString())
         statsMap["Intelligence"] =
-            if (binding.IntelligenceScoreValue.text.toString() != "") binding.IntelligenceScoreValue.text.toString()
-                .toInt() else 0
-        statsMap["Wisdom"] =
-            if (binding.WisdomScoreValue.text.toString() != "") binding.WisdomScoreValue.text.toString()
-                .toInt() else 0
+            getCorrectIntValueFromInput(binding.IntelligenceScoreValue.text.toString())
+        statsMap["Wisdom"] = getCorrectIntValueFromInput(binding.WisdomScoreValue.text.toString())
         statsMap["Charisma"] =
-            if (binding.CharismaScoreValue.text.toString() != "") binding.CharismaScoreValue.text.toString()
-                .toInt() else 0
+            getCorrectIntValueFromInput(binding.CharismaScoreValue.text.toString())
 
         statsMap["StrengthSaveMisc"] =
-            if (binding.StrengthSaveMiscValue.text.toString() != "") binding.StrengthSaveMiscValue.text.toString()
-                .toInt() else 0
+            getCorrectIntValueFromInput(binding.StrengthSaveMiscValue.text.toString())
         statsMap["DexteritySaveMisc"] =
-            if (binding.DexteritySaveMiscValue.text.toString() != "") binding.DexteritySaveMiscValue.text.toString()
-                .toInt() else 0
+            getCorrectIntValueFromInput(binding.DexteritySaveMiscValue.text.toString())
         statsMap["ConstitutionSaveMisc"] =
-            if (binding.ConstitutionSaveMiscValue.text.toString() != "") binding.ConstitutionSaveMiscValue.text.toString()
-                .toInt() else 0
+            getCorrectIntValueFromInput(binding.ConstitutionSaveMiscValue.text.toString())
         statsMap["IntelligenceSaveMisc"] =
-            if (binding.IntelligenceSaveMiscValue.text.toString() != "") binding.IntelligenceSaveMiscValue.text.toString()
-                .toInt() else 0
+            getCorrectIntValueFromInput(binding.IntelligenceSaveMiscValue.text.toString())
         statsMap["WisdomSaveMisc"] =
-            if (binding.WisdomSaveMiscValue.text.toString() != "") binding.WisdomSaveMiscValue.text.toString()
-                .toInt() else 0
+            getCorrectIntValueFromInput(binding.WisdomSaveMiscValue.text.toString())
         statsMap["CharismaSaveMisc"] =
-            if (binding.CharismaSaveMiscValue.text.toString() != "") binding.CharismaSaveMiscValue.text.toString()
-                .toInt() else 0
+            getCorrectIntValueFromInput(binding.CharismaSaveMiscValue.text.toString())
 
         statsMap["StrengthSaveProf"] = binding.StrengthSaveProf.isChecked.compareTo(false)
         statsMap["DexteritySaveProf"] = binding.DexteritySaveProf.isChecked.compareTo(false)
@@ -139,4 +126,22 @@ class CharacteristicSettingsDialog : DialogFragment() {
         return statsMap
     }
 
+    private fun getCorrectIntValueFromInput(str: String): Int {
+        if (str.isNotBlank()) {
+            val intValue = str.toIntOrNull() ?: 0
+            return if (intValue in 0..99) {
+                intValue
+            } else {
+                Toast.makeText(
+                    context,
+                    "Value is not in correct range: [0,99]!",
+                    Toast.LENGTH_SHORT
+                ).show()
+                0
+            }
+        } else {
+            Toast.makeText(context, "Value is not integer!", Toast.LENGTH_SHORT).show()
+            return 0
+        }
+    }
 }

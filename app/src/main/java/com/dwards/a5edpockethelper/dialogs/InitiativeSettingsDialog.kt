@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -149,8 +150,23 @@ class InitiativeSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedLis
         binding.SaveButton.setOnClickListener {
             //val test: Int = binding.MiscBonusValue.text.toString().toInt()
             viewModel.changeCharactersInitiative(
-                if (binding.MiscBonusValue.text.toString() != "")
-                    binding.MiscBonusValue.text.toString().toInt() else 0,
+                if (binding.MiscBonusValue.text.toString().isNotBlank()) {
+                    val str = binding.MiscBonusValue.text.toString()
+                    val intValue = str.toIntOrNull() ?: 0
+                    if (intValue in 0..99) {
+                        intValue
+                    } else {
+                        Toast.makeText(
+                            context,
+                            "Value is not in correct range: [0,99]!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        0
+                    }
+                } else {
+                    Toast.makeText(context, "Value is not integer!", Toast.LENGTH_SHORT).show()
+                    0
+                },
                 prof,
                 halfProf,
                 doubleProf,

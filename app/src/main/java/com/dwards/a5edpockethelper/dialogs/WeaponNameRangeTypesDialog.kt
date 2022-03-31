@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -134,20 +135,14 @@ class WeaponNameRangeTypesDialog : DialogFragment(), AdapterView.OnItemSelectedL
                 attackAbility,
                 rangedType,
                 handedType,
-                if (binding.attackMagicBonusValue.text.toString() != "") binding.attackMagicBonusValue.text.toString()
-                    .toInt() else 0,
-                if (binding.attackMiscBonusValue.text.toString() != "") binding.attackMiscBonusValue.text.toString()
-                    .toInt() else 0,
+                getCorrectIntValueFromInput(binding.attackMagicBonusValue.text.toString()),
+                getCorrectIntValueFromInput(binding.attackMiscBonusValue.text.toString()),
                 binding.addProficiencyToAttackCheck.isChecked,
-                if (binding.damageMagicBonusValue.text.toString() != "") binding.damageMagicBonusValue.text.toString()
-                    .toInt() else 0,
-                if (binding.damageMiscBonusValue.text.toString() != "") binding.damageMiscBonusValue.text.toString()
-                    .toInt() else 0,
+                getCorrectIntValueFromInput(binding.damageMagicBonusValue.text.toString()),
+                getCorrectIntValueFromInput(binding.damageMiscBonusValue.text.toString()),
                 binding.addAbilityModToDamage.isChecked,
-                if (binding.damageDice1CountValue.text.toString() != "") binding.damageDice1CountValue.text.toString()
-                    .toInt() else 0,
-                if (binding.damageDice1ValueValue.text.toString() != "") binding.damageDice1ValueValue.text.toString()
-                    .toInt() else 0,
+                getCorrectIntValueFromInput(binding.damageDice1CountValue.text.toString()),
+                getCorrectIntValueFromInput(binding.damageDice1ValueValue.text.toString()),
                 binding.weaponDescription.text.toString(),
             )
             dismiss()
@@ -262,4 +257,22 @@ class WeaponNameRangeTypesDialog : DialogFragment(), AdapterView.OnItemSelectedL
     }
      */
 
+    private fun getCorrectIntValueFromInput(str: String): Int {
+        if (str.isNotBlank()) {
+            val intValue = str.toIntOrNull() ?: 0
+            return if (intValue in 0..99) {
+                intValue
+            } else {
+                Toast.makeText(
+                    context,
+                    "Value is not in correct range: [0,99]!",
+                    Toast.LENGTH_SHORT
+                ).show()
+                0
+            }
+        } else {
+            Toast.makeText(context, "Value is not integer!", Toast.LENGTH_SHORT).show()
+            return 0
+        }
+    }
 }
