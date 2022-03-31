@@ -46,12 +46,12 @@ class MaxHPSettingsDialog : DialogFragment() {
                 if (binding.MaxHPValue.text.toString().isNotBlank()) {
                     val str = binding.MaxHPValue.text.toString()
                     val intValue = str.toIntOrNull() ?: 0
-                    if (intValue in 0..99) {
+                    if (intValue in 0..9999) {
                         intValue
                     } else {
                         Toast.makeText(
                             context,
-                            "Value is not in correct range: [0,99]!",
+                            "Value is not in correct range: [0,9999]!",
                             Toast.LENGTH_SHORT
                         ).show()
                         0

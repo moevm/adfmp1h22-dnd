@@ -330,12 +330,15 @@ class MyViewModel(
 
     fun deleteCharacter(id: Int) {
         runBlocking {
-            val deletedChar: Character? = characterDao.getById(id)
-            characterDao.delete(deletedChar!!)
-            characterList.value = characterDao.getAll()
-            if (characterList.value?.size != 0 && currentId == id) {
-                chooseCharacter(characterList.value?.get(0)?.id!!)
+            if (characterList.value?.size!! > 1){
+                val deletedChar: Character? = characterDao.getById(id)
+                characterDao.delete(deletedChar!!)
+                characterList.value = characterDao.getAll()
+                if (characterList.value?.size!= 0 && currentId == id ) {
+                    chooseCharacter(characterList.value?.get(0)?.id!!)
+                }
             }
+
         }
     }
 
