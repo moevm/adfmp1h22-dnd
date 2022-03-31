@@ -28,7 +28,6 @@ class CurrentHpSettingsDialog : DialogFragment() {
     //private var tempHPMode: Boolean = false
     private var changeHP: Int = 0
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -77,9 +76,17 @@ class CurrentHpSettingsDialog : DialogFragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                changeHP =
-                    if (binding.ChangeHPValue.text.toString() != "") binding.ChangeHPValue.text.toString()
-                        .toInt() else 0
+                changeHP = if (binding.ChangeHPValue.text.toString().isNotBlank()) {
+                    val str = binding.ChangeHPValue.text.toString()
+                    val intValue = str.toIntOrNull() ?: 0
+                    if (intValue in 0..9) {
+                        intValue
+                    } else {
+                        0
+                    }
+                } else {
+                    0
+                }
                 binding.MinusButton.isEnabled = changeHP != 0
             }
 
@@ -130,9 +137,8 @@ class CurrentHpSettingsDialog : DialogFragment() {
         _binding = null
     }
 
-
     private fun refreshChar(character: Character) {
-        binding.HPValue.text = (character.currentHP + character.tempHP).toString()
+        binding.HPValue.text = "${character.currentHP} $character.tempHP}"
         if (character.tempHP > 0) {
             binding.HPValue.setTextColor(Color.parseColor("#2f00ba"))
         } else {
