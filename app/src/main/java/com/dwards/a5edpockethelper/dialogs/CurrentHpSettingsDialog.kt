@@ -80,12 +80,12 @@ class CurrentHpSettingsDialog : DialogFragment() {
                 changeHP = if (binding.ChangeHPValue.text.toString().isNotBlank()) {
                     val str = binding.ChangeHPValue.text.toString()
                     val intValue = str.toIntOrNull() ?: 0
-                    if (intValue in 0..99) {
+                    if (intValue in 0..9999) {
                         intValue
                     } else {
                         Toast.makeText(
                             context,
-                            "Value is not in correct range: [0,99]!",
+                            "Value is not in correct range: [0,9999]!",
                             Toast.LENGTH_SHORT
                         ).show()
                         0

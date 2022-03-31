@@ -42,12 +42,12 @@ class HitDiceSettingsDialog : DialogFragment() {
                 if (binding.HitDiceCountValue.text.toString().isNotBlank()) {
                     val str = binding.HitDiceCountValue.text.toString()
                     val intValue = str.toIntOrNull() ?: 0
-                    if (intValue in 0..9) {
+                    if (intValue in 0..99) {
                         intValue
                     } else {
                         Toast.makeText(
                             context,
-                            "Value is not in correct range: [0,9]!",
+                            "Value is not in correct range: [0,99]!",
                             Toast.LENGTH_SHORT
                         ).show()
                         0
@@ -59,12 +59,12 @@ class HitDiceSettingsDialog : DialogFragment() {
                 if (binding.HitDiceSizeValue.text.toString().isNotBlank()) {
                     val str = binding.HitDiceSizeValue.text.toString()
                     val intValue = str.toIntOrNull() ?: 0
-                    if (intValue in 0..9) {
+                    if (intValue in 0..99) {
                         intValue
                     } else {
                         Toast.makeText(
                             context,
-                            "Value is not in correct range: [0,9]!",
+                            "Value is not in correct range: [0,99]!",
                             Toast.LENGTH_SHORT
                         ).show()
                         0
@@ -106,12 +106,12 @@ class HitDiceSettingsDialog : DialogFragment() {
                     Toast.makeText(context, "Value is too big!", Toast.LENGTH_SHORT).show()
                     "0"
                 }
-                if (intValue in 0..9) {
+                if (intValue in 0..99) {
                     intValue.toString()
                 } else {
                     Toast.makeText(
                         context,
-                        "Value is not in correct range: [0,9]!",
+                        "Value is not in correct range: [0,99]!",
                         Toast.LENGTH_SHORT
                     ).show()
                     "0"
@@ -127,7 +127,7 @@ class HitDiceSettingsDialog : DialogFragment() {
                     Toast.makeText(context, "Value is too big!", Toast.LENGTH_SHORT).show()
                     "0"
                 }
-                if (intValue in 0..9) {
+                if (intValue in 0..99) {
                     intValue.toString()
                 } else {
                     Toast.makeText(
