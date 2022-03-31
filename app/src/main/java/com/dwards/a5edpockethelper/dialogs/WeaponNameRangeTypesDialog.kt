@@ -236,7 +236,7 @@ class WeaponNameRangeTypesDialog : DialogFragment(), AdapterView.OnItemSelectedL
             binding.addAbilityModToDamage.isChecked = true
         }
         binding.damageDice1CountValue.setText(weapon.damageDice1Count.toString())
-        binding.damageDice1ValueValue.setText(weapon.damageDice1Count.toString())
+        binding.damageDice1ValueValue.setText(weapon.damageDice1Size.toString())
         binding.weaponDescription.setText(weapon.description)
     }
 
