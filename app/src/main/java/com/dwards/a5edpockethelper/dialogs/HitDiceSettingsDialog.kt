@@ -18,14 +18,11 @@ class HitDiceSettingsDialog : DialogFragment() {
     private var _binding: HitdiceSettingsDialogBinding? = null
     private val binding get() = _binding!!
 
-    private val TAG = "MyCustomDialog"
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner);
 
         _binding = HitdiceSettingsDialogBinding.inflate(inflater, container, false)
@@ -80,7 +77,6 @@ class HitDiceSettingsDialog : DialogFragment() {
             dismiss()
         }
 
-
         return view
     }
 
@@ -106,39 +102,44 @@ class HitDiceSettingsDialog : DialogFragment() {
         binding.HitDiceCountValue.setText(
             if (character.hitDiceCount.toString().isNotBlank()) {
                 val str = character.hitDiceCount.toString()
-                val intValue = str.toIntOrNull() ?: 0
+                val intValue = str.toIntOrNull() ?: {
+                    Toast.makeText(context, "Value is too big!", Toast.LENGTH_SHORT).show()
+                    "0"
+                }
                 if (intValue in 0..9) {
+                    intValue.toString()
+                } else {
                     Toast.makeText(
                         context,
                         "Value is not in correct range: [0,9]!",
                         Toast.LENGTH_SHORT
                     ).show()
-                    intValue
-                } else {
-                    Toast.makeText(context, "Value is too big!", Toast.LENGTH_SHORT).show()
-                    0
+                    "0"
                 }
             } else {
-                0
+                "0"
             }
         )
         binding.HitDiceSizeValue.setText(
             if (character.hitDiceSize.toString().isNotBlank()) {
                 val str = character.hitDiceSize.toString()
-                val intValue = str.toIntOrNull() ?: 0
+                val intValue = str.toIntOrNull() ?: {
+                    Toast.makeText(context, "Value is too big!", Toast.LENGTH_SHORT).show()
+                    "0"
+                }
                 if (intValue in 0..9) {
-                    intValue
+                    intValue.toString()
                 } else {
                     Toast.makeText(
                         context,
                         "Value is not in correct range: [0,99]!",
                         Toast.LENGTH_SHORT
                     ).show()
-                    0
+                    "0"
                 }
             } else {
                 Toast.makeText(context, "Value is not integer!", Toast.LENGTH_SHORT).show()
-                0
+                "0"
             }
         )
     }
