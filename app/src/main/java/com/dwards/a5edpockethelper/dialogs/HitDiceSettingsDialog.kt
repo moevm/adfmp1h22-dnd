@@ -39,14 +39,30 @@ class HitDiceSettingsDialog : DialogFragment() {
             }
         })
 
-
-
         binding.SaveButton.setOnClickListener {
             viewModel.changeCharactersHitDice(
-                if (binding.HitDiceCountValue.text.toString() != "") binding.HitDiceCountValue.text.toString()
-                    .toInt() else 0,
-                if (binding.HitDiceSizeValue.text.toString() != "") binding.HitDiceSizeValue.text.toString()
-                    .toInt() else 0
+                if (binding.HitDiceCountValue.text.toString().isNotBlank()) {
+                    val str = binding.HitDiceCountValue.text.toString()
+                    val intValue = str.toIntOrNull() ?: 0
+                    if (intValue in 0..9) {
+                        intValue
+                    } else {
+                        0
+                    }
+                } else {
+                    0
+                },
+                if (binding.HitDiceSizeValue.text.toString().isNotBlank()) {
+                    val str = binding.HitDiceSizeValue.text.toString()
+                    val intValue = str.toIntOrNull() ?: 0
+                    if (intValue in 0..9) {
+                        intValue
+                    } else {
+                        0
+                    }
+                } else {
+                    0
+                },
             )
             dismiss()
         }
@@ -74,7 +90,31 @@ class HitDiceSettingsDialog : DialogFragment() {
     }
 
     private fun refreshChar(character: Character) {
-        binding.HitDiceCountValue.setText(character.hitDiceCount.toString())
-        binding.HitDiceSizeValue.setText(character.hitDiceSize.toString())
+        binding.HitDiceCountValue.setText(
+            if (character.hitDiceCount.toString().isNotBlank()) {
+                val str = character.hitDiceCount.toString()
+                val intValue = str.toIntOrNull() ?: 0
+                if (intValue in 0..9) {
+                    intValue
+                } else {
+                    0
+                }
+            } else {
+                0
+            }
+        )
+        binding.HitDiceSizeValue.setText(
+            if (character.hitDiceSize.toString().isNotBlank()) {
+                val str = character.hitDiceSize.toString()
+                val intValue = str.toIntOrNull() ?: 0
+                if (intValue in 0..9) {
+                    intValue
+                } else {
+                    0
+                }
+            } else {
+                0
+            }
+        )
     }
 }

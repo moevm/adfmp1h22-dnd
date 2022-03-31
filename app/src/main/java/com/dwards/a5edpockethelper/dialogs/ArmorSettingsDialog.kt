@@ -136,7 +136,7 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
                 if (binding.ArmorBonusValue.text.toString().isNotBlank()) {
                     val str = binding.ArmorBonusValue.text.toString()
                     val intValue = str.toIntOrNull() ?: 0
-                    if (intValue in 0..100) {
+                    if (intValue in 0..99) {
                         intValue
                     } else {
                         0
@@ -147,7 +147,7 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
                 if (binding.ShieldBonusValue.text.toString().isNotBlank()) {
                     val str = binding.ShieldBonusValue.text.toString()
                     val intValue = str.toIntOrNull() ?: 0
-                    if (intValue in 0..100) {
+                    if (intValue in 0..99) {
                         intValue
                     } else {
                         0
@@ -158,7 +158,7 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
                 if (binding.MaxDexterityBonusValue.text.toString().isNotBlank()) {
                     val str = binding.MaxDexterityBonusValue.text.toString()
                     val intValue = str.toIntOrNull() ?: 0
-                    if (intValue in 0..100) {
+                    if (intValue in 0..99) {
                         intValue
                     } else {
                         0
@@ -169,7 +169,7 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
                 if (binding.MiscBonusValue.text.toString().isNotBlank()) {
                     val str = binding.MiscBonusValue.text.toString()
                     val intValue = str.toIntOrNull() ?: 0
-                    if (intValue in 0..100) {
+                    if (intValue in 0..99) {
                         intValue
                     } else {
                         0
@@ -268,7 +268,7 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
             if (binding.ArmorBonusValue.text.toString().isNotBlank()) {
                 val str = binding.ArmorBonusValue.text.toString()
                 val intValue = str.toIntOrNull() ?: 0
-                if (intValue in 0..100) {
+                if (intValue in 0..99) {
                     intValue
                 } else {
                     0
@@ -279,7 +279,7 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
             if (binding.ShieldBonusValue.text.toString().isNotBlank()) {
                 val str = binding.ShieldBonusValue.text.toString()
                 val intValue = str.toIntOrNull() ?: 0
-                if (intValue in 0..100) {
+                if (intValue in 0..99) {
                     intValue
                 } else {
                     0
@@ -290,7 +290,7 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
             if (binding.MaxDexterityBonusValue.text.toString().isNotBlank()) {
                 val str = binding.MaxDexterityBonusValue.text.toString()
                 val intValue = str.toIntOrNull() ?: 0
-                if (intValue in 0..100) {
+                if (intValue in 0..99) {
                     intValue
                 } else {
                     0
@@ -301,7 +301,7 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
             if (binding.MiscBonusValue.text.toString().isNotBlank()) {
                 val str = binding.MiscBonusValue.text.toString()
                 val intValue = str.toIntOrNull() ?: 0
-                if (intValue in 0..100) {
+                if (intValue in 0..99) {
                     intValue
                 } else {
                     0
