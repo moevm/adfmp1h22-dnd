@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -79,12 +80,14 @@ class CurrentHpSettingsDialog : DialogFragment() {
                 changeHP = if (binding.ChangeHPValue.text.toString().isNotBlank()) {
                     val str = binding.ChangeHPValue.text.toString()
                     val intValue = str.toIntOrNull() ?: 0
-                    if (intValue in 0..9) {
+                    if (intValue in 0..99) {
                         intValue
                     } else {
+                        Toast.makeText(context, "Value is not in correct range: [0,99]!", Toast.LENGTH_SHORT).show()
                         0
                     }
                 } else {
+                    Toast.makeText(context, "Value is not integer!", Toast.LENGTH_SHORT).show()
                     0
                 }
                 binding.MinusButton.isEnabled = changeHP != 0
@@ -128,8 +131,6 @@ class CurrentHpSettingsDialog : DialogFragment() {
         val width = (resources.displayMetrics.widthPixels * 0.85).toInt()
         //val height = (resources.displayMetrics.heightPixels * 0.40).toInt()
         dialog!!.window?.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
-
-
     }
 
     override fun onDestroyView() {
@@ -138,7 +139,8 @@ class CurrentHpSettingsDialog : DialogFragment() {
     }
 
     private fun refreshChar(character: Character) {
-        binding.HPValue.text = "${character.currentHP} $character.tempHP}"
+        val hpSum = character.currentHP + character.tempHP
+        binding.HPValue.text = hpSum.toString()
         if (character.tempHP > 0) {
             binding.HPValue.setTextColor(Color.parseColor("#2f00ba"))
         } else {

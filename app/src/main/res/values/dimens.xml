@@ -28,7 +28,7 @@
         <dimen name="HPArmor_table_height">100dp</dimen>
 
             <dimen name="HP_text_size">24sp</dimen>
-            <dimen name="HP_number_size">42sp</dimen>
+            <dimen name="HP_number_size">38sp</dimen>
             <dimen name="Armor_number_size">36sp</dimen>
             <dimen name="HitDice_number_size">32sp</dimen>
             <dimen name="HitDice_text_size">18sp</dimen>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -47,9 +48,11 @@ class HitDiceSettingsDialog : DialogFragment() {
                     if (intValue in 0..9) {
                         intValue
                     } else {
+                        Toast.makeText(context, "Value is not in correct range: [0,9]!", Toast.LENGTH_SHORT).show()
                         0
                     }
                 } else {
+                    Toast.makeText(context, "Value is not integer!", Toast.LENGTH_SHORT).show()
                     0
                 },
                 if (binding.HitDiceSizeValue.text.toString().isNotBlank()) {
@@ -58,9 +61,11 @@ class HitDiceSettingsDialog : DialogFragment() {
                     if (intValue in 0..9) {
                         intValue
                     } else {
+                        Toast.makeText(context, "Value is not in correct range: [0,9]!", Toast.LENGTH_SHORT).show()
                         0
                     }
                 } else {
+                    Toast.makeText(context, "Value is not integer!", Toast.LENGTH_SHORT).show()
                     0
                 },
             )
@@ -95,8 +100,10 @@ class HitDiceSettingsDialog : DialogFragment() {
                 val str = character.hitDiceCount.toString()
                 val intValue = str.toIntOrNull() ?: 0
                 if (intValue in 0..9) {
+                    Toast.makeText(context, "Value is not in correct range: [0,9]!", Toast.LENGTH_SHORT).show()
                     intValue
                 } else {
+                    Toast.makeText(context, "Value is too big!", Toast.LENGTH_SHORT).show()
                     0
                 }
             } else {
@@ -110,9 +117,11 @@ class HitDiceSettingsDialog : DialogFragment() {
                 if (intValue in 0..9) {
                     intValue
                 } else {
+                    Toast.makeText(context, "Value is not in correct range: [0,99]!", Toast.LENGTH_SHORT).show()
                     0
                 }
             } else {
+                Toast.makeText(context, "Value is not integer!", Toast.LENGTH_SHORT).show()
                 0
             }
         )

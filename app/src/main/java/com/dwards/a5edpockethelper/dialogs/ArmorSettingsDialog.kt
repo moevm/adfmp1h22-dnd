@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -139,9 +140,11 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
                     if (intValue in 0..99) {
                         intValue
                     } else {
+                        Toast.makeText(context, "Value is not in correct range: [0,99]!", Toast.LENGTH_SHORT).show()
                         0
                     }
                 } else {
+                    Toast.makeText(context, "Value is not integer!", Toast.LENGTH_SHORT).show()
                     0
                 },
                 if (binding.ShieldBonusValue.text.toString().isNotBlank()) {
@@ -150,9 +153,11 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
                     if (intValue in 0..99) {
                         intValue
                     } else {
+                        Toast.makeText(context, "Value is not in correct range: [0,99]!", Toast.LENGTH_SHORT).show()
                         0
                     }
                 } else {
+                    Toast.makeText(context, "Value is not integer!", Toast.LENGTH_SHORT).show()
                     0
                 },
                 if (binding.MaxDexterityBonusValue.text.toString().isNotBlank()) {
@@ -161,9 +166,11 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
                     if (intValue in 0..99) {
                         intValue
                     } else {
+                        Toast.makeText(context, "Value is not in correct range: [0,99]!", Toast.LENGTH_SHORT).show()
                         0
                     }
                 } else {
+                    Toast.makeText(context, "Value is not integer!", Toast.LENGTH_SHORT).show()
                     0
                 },
                 if (binding.MiscBonusValue.text.toString().isNotBlank()) {
@@ -172,9 +179,11 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
                     if (intValue in 0..99) {
                         intValue
                     } else {
+                        Toast.makeText(context, "Value is not in correct range: [0,99]!", Toast.LENGTH_SHORT).show()
                         0
                     }
                 } else {
+                    Toast.makeText(context, "Value is not integer!", Toast.LENGTH_SHORT).show()
                     0
                 },
                 armorType,
@@ -271,9 +280,11 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
                 if (intValue in 0..99) {
                     intValue
                 } else {
+                    Toast.makeText(context, "Value is not in correct range: [0,99]!", Toast.LENGTH_SHORT).show()
                     0
                 }
             } else {
+                Toast.makeText(context, "Value is not integer!", Toast.LENGTH_SHORT).show()
                 0
             },
             if (binding.ShieldBonusValue.text.toString().isNotBlank()) {
@@ -282,9 +293,11 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
                 if (intValue in 0..99) {
                     intValue
                 } else {
+                    Toast.makeText(context, "Value is not in correct range: [0,99]!", Toast.LENGTH_SHORT).show()
                     0
                 }
             } else {
+                Toast.makeText(context, "Value is not integer!", Toast.LENGTH_SHORT).show()
                 0
             },
             if (binding.MaxDexterityBonusValue.text.toString().isNotBlank()) {
@@ -293,17 +306,21 @@ class ArmorSettingsDialog : DialogFragment(), AdapterView.OnItemSelectedListener
                 if (intValue in 0..99) {
                     intValue
                 } else {
+                    Toast.makeText(context, "Value is not in correct range: [0,99]!", Toast.LENGTH_SHORT).show()
                     0
                 }
             } else {
+                Toast.makeText(context, "Value is not integer!", Toast.LENGTH_SHORT).show()
                 0
             },
             if (binding.MiscBonusValue.text.toString().isNotBlank()) {
                 val str = binding.MiscBonusValue.text.toString()
                 val intValue = str.toIntOrNull() ?: 0
                 if (intValue in 0..99) {
+                    Toast.makeText(context, "Value is not in correct range: [0,99]!", Toast.LENGTH_SHORT).show()
                     intValue
                 } else {
+                    Toast.makeText(context, "Value is not integer!", Toast.LENGTH_SHORT).show()
                     0
                 }
             } else {
