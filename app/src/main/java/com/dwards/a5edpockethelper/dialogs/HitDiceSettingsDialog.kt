@@ -45,12 +45,12 @@ class HitDiceSettingsDialog : DialogFragment() {
                 if (binding.HitDiceCountValue.text.toString().isNotBlank()) {
                     val str = binding.HitDiceCountValue.text.toString()
                     val intValue = str.toIntOrNull() ?: 0
-                    if (intValue in 0..9) {
+                    if (intValue in 0..99) {
                         intValue
                     } else {
                         Toast.makeText(
                             context,
-                            "Value is not in correct range: [0,9]!",
+                            "Value is not in correct range: [0,99]!",
                             Toast.LENGTH_SHORT
                         ).show()
                         0
@@ -62,12 +62,12 @@ class HitDiceSettingsDialog : DialogFragment() {
                 if (binding.HitDiceSizeValue.text.toString().isNotBlank()) {
                     val str = binding.HitDiceSizeValue.text.toString()
                     val intValue = str.toIntOrNull() ?: 0
-                    if (intValue in 0..9) {
+                    if (intValue in 0..99) {
                         intValue
                     } else {
                         Toast.makeText(
                             context,
-                            "Value is not in correct range: [0,9]!",
+                            "Value is not in correct range: [0,99]!",
                             Toast.LENGTH_SHORT
                         ).show()
                         0
@@ -107,10 +107,10 @@ class HitDiceSettingsDialog : DialogFragment() {
             if (character.hitDiceCount.toString().isNotBlank()) {
                 val str = character.hitDiceCount.toString()
                 val intValue = str.toIntOrNull() ?: 0
-                if (intValue in 0..9) {
+                if (intValue in 0..99) {
                     Toast.makeText(
                         context,
-                        "Value is not in correct range: [0,9]!",
+                        "Value is not in correct range: [0,99]!",
                         Toast.LENGTH_SHORT
                     ).show()
                     intValue
@@ -126,7 +126,7 @@ class HitDiceSettingsDialog : DialogFragment() {
             if (character.hitDiceSize.toString().isNotBlank()) {
                 val str = character.hitDiceSize.toString()
                 val intValue = str.toIntOrNull() ?: 0
-                if (intValue in 0..9) {
+                if (intValue in 0..99) {
                     intValue
                 } else {
                     Toast.makeText(
